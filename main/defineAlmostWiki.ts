@@ -1,7 +1,10 @@
 import { DefaultTheme, UserConfig } from "vitepress"
 
-function getBaseThemeConfig(): DefaultTheme.Config {
+function getBaseThemeConfig(title: string): DefaultTheme.Config {
     return {
+        editLink: {
+            pattern: `https://github.com/AlmostReliable/almostreliable.github.io/edit/main/wikis/${title}/docs/:path`
+        },
         socialLinks: [
             {
                 icon: "github",
@@ -34,13 +37,15 @@ export function defineConfig(config: UserConfig<DefaultTheme.Config>): UserConfi
         throw new Error("Docs title not found")
     }
 
-    config.srcDir = "./docs"
-    config.base = config.base ?? `/${config.title.toLocaleLowerCase()}/`
-    config.description = `Documentation for ${config.title}`
-    config.title = `${config.title} - AlmostReliable`
+    const wikiTitle = config.title
 
-    const baseThemeConfig = getBaseThemeConfig();
-    config.themeConfig = Object.assign(config.themeConfig || {}, baseThemeConfig);
+    config.srcDir = "./docs"
+    config.base = config.base ?? `/${wikiTitle.toLocaleLowerCase()}/`
+    config.description = `Documentation for ${wikiTitle}`
+    config.title = `${wikiTitle} - AlmostReliable`
+
+    const baseThemeConfig = getBaseThemeConfig(config.base)
+    config.themeConfig = Object.assign(config.themeConfig || {}, baseThemeConfig)
 
     return config
 }

@@ -113,7 +113,7 @@ Add a new loot modifier for all blocks which match the given filter.
 ```js
 LootJS.modifiers((event) => {
     event
-        .addEntityModifier("minecraft:iron_ore")
+        .addBlockModifier("minecraft:iron_ore")
         .randomChance(0.5)
         .addLoot("minecraft:iron_nugget")
 })
@@ -122,7 +122,7 @@ LootJS.modifiers((event) => {
 ```js
 LootJS.modifiers((event) => {
     event
-        .addEntityModifier(["minecraft:gravel", "minecraft:dirt"])
+        .addBlockModifier(["minecraft:gravel", "minecraft:dirt"])
         .randomChance(0.5)
         .addLoot("minecraft:gold_nugget")
 })
@@ -131,7 +131,7 @@ LootJS.modifiers((event) => {
 ```js
 LootJS.modifiers((event) => {
     event
-        .addEntityModifier("#c:ores")
+        .addBlockModifier("#c:ores")
         .randomChance(0.5)
         .addLoot("minecraft:flint")
 })

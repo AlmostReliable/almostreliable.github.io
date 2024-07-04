@@ -72,3 +72,13 @@ You can see that we return `itemEntry` again. This is required because `modify` 
 
 ## Remove Item
 
+We also want to remove `minecraft:bone` from our desert pyramids loot table. `removeItem` takes an [ItemFilter](/api/item-filter) as an argument, in our case we just want to remove bones, so we can simply use the item id as argument.
+
+```js
+LootJS.lootTables((event) => {
+    event
+        .getLootTable("minecraft:chests/desert_pyramid")
+        .firstPool()
+        .removeItem("minecraft:bone")
+})
+```

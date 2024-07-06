@@ -4,11 +4,42 @@ While conditions can be used in different ways, from now on the examples on this
 
 ## `matchTool`
 
-Matches the tool, the player used to destroy the block. This is only set when destroying blocks. When working with block loot, prefer `matchTool` over `matchMainHand`.
+Matches the tool, the player used to destroy the block. This is only set when destroying blocks.
+::: info
+When working with block loot, prefer `matchTool` over `matchMainHand`.
+:::
 
 -   Syntax:
-    -   `.matchTool(filter: ItemPredicate | ItemFilter | Item)`_<sub>, see [ItemFilter] & [ItemPredicate]</sub>_
+    -   `.matchTool(filter: ItemPredicate | ItemFilter | Item)`_<sub>, see [ItemFilter] or [ItemPredicate]</sub>_
     -   `LootCondition.matchTool(filter: ItemPredicate | ItemFilter | Item)`
+
+```js
+LootEntry.of("minecraft:diamond").matchTool("#c:tools")
+```
+
+```js
+LootEntry.of("minecraft:diamond").matchTool(
+    ItemFilter.tag("c:tools").and(
+        ItemFilter.hasEnchantment("minecraft:fortune", 3)
+    )
+)
+```
+
+Using an ItemPredicate:
+
+```js
+LootEntry.of("minecraft:diamond").matchTool({
+    items: "#c:tools",
+    predicates: {
+        enchantments: [
+            {
+                enchantments: "minecraft:fortune",
+                levels: 3,
+            },
+        ],
+    },
+})
+```
 
 ## `matchMainHand`
 
@@ -19,9 +50,7 @@ Matches the main hand item of the player by given [ItemFilter] or [Ingredient]
     -   `LootCondition.matchMainHand(filter: ItemFilter | Item)`
 
 ```js
-LootEntry.of("minecraft:diamond").when((c) => {
-    c.matchMainHand("#minecraft:pickaxes")
-})
+LootEntry.of("minecraft:diamond").matchMainHand("#minecraft:pickaxes")
 ```
 
 ## `matchOffHand`
@@ -33,9 +62,7 @@ Matches the off hand item of the player by given [ItemFilter] or [Ingredient]
     -   `LootCondition.matchOffHand(filter: ItemFilter | Item)`
 
 ```js
-LootEntry.of("minecraft:diamond").when((c) => {
-    c.matchOffHand("#minecraft:pickaxes")
-})
+LootEntry.of("minecraft:diamond").matchOffHand("#minecraft:pickaxes")
 ```
 
 ## `matchEquip`
@@ -48,9 +75,7 @@ Possible slots are: `"mainhand"`, `"offhand"`, `"head"`, `"chest"`, `"legs"`, `"
     -   `LootCondition.matchEquip(slot, filter: ItemFilter | Item)`
 
 ```js
-LootEntry.of("minecraft:diamond").when((c) => {
-    c.matchEquip("mainhand", "#minecraft:pickaxes")
-})
+LootEntry.of("minecraft:diamond").matchEquip("mainhand", "#minecraft:pickaxes")
 ```
 
 ## `survivesExplosion`
@@ -62,54 +87,46 @@ Matches if the item survives an explosion. Calculated by probability of `random_
     -   `LootCondition.survivesExplosion()`
 
 ```js
-LootEntry.of("minecraft:diamond").when((c) => {
-    c.survivesExplosion()
-})
+LootEntry.of("minecraft:diamond").survivesExplosion()
 ```
 
-## `checkTime`
+## `matchTime`
 
 Compares the current day time (`24000 * day_count + day_time`) against given values.
 
 -   Syntax:
-    -   `.checkTime(min: number, max: number)`
-    -   `.checkTime(period: number, min: number, max: number)`
-    -   `LootCondition.checkTime(min: number, max: number)`
-    -   `LootCondition.checkTime(period: number, min: number, max: number)`<br>
+    -   `.matchTime(min: number, max: number)`
+    -   `.matchTime(period: number, min: number, max: number)`
+    -   `LootCondition.matchTime(min: number, max: number)`
+    -   `LootCondition.matchTime(period: number, min: number, max: number)`<br>
         If period is provided, `day_time` will be reduced modulo by given `period`. Setting this to _24000_ simulates a full day check. _Default is 24000, if not provided_
 
 ```js
-LootEntry.of("minecraft:diamond").when((c) => {
-    // Will match if the current day time is between 0 and 9000.
-    c.checkTime(0, 9000)
-})
+// Will match if the current day time is between 0 and 9000.
+LootEntry.of("minecraft:diamond").matchTime(0, 9000)
 ```
 
 ```js
-LootEntry.of("minecraft:diamond").when((c) => {
-    // Will match the first day of the week. (If we go with 7 days per minecraft "week")
-    c.checkTime(24000 * 7, 0, 24000)
-})
+// Will match the first day of the week. (If we go with 7 days per minecraft "week")
+LootEntry.of("minecraft:diamond").matchTime(24000 * 7, 0, 24000)
 ```
 
-## `weatherCheck`
+## `matchWeather`
 
 Matches the current weather
 
 -   Syntax:
-    -   `.weatherCheck(isRaining: boolean | null, isThundering: boolean | null)`
-    -   `LootCondition.weatherCheck(isRaining: boolean | null, isThundering: boolean | null)`
+    -   `.matchWeather(isRaining: boolean | null, isThundering: boolean | null)`
+    -   `LootCondition.matchWeather(isRaining: boolean | null, isThundering: boolean | null)`
 
 ```js
-LootEntry.of("minecraft:diamond").when((c) => {
-    c.weatherCheck(true, false) // Matches if it is raining and not thundering
-})
+// Matches if it is raining and not thundering
+LootEntry.of("minecraft:diamond").matchWeather(true, false)
 ```
 
 ```js
-LootEntry.of("minecraft:diamond").when((c) => {
-    c.weatherCheck(true, null) // Matches if it is raining
-})
+// Matches if it is raining
+LootEntry.of("minecraft:diamond").matchWeather(true, null)
 ```
 
 ## `randomChance`
@@ -121,9 +138,7 @@ Matches if a random number between 0 and 1 is lower than the given value
     -   `LootCondition.randomChance(chance: number)`
 
 ```js
-LootEntry.of("minecraft:diamond").when((c) => {
-    c.randomChance(0.5) // 50% chance
-})
+LootEntry.of("minecraft:diamond").randomChance(0.5) // 50% chance
 ```
 
 ## `randomTableBonus`
@@ -136,7 +151,7 @@ Passes with probability picked from a list of probabilities, indexed by enchantm
 ```js
 LootEntry.of("minecraft:diamond").randomTableBonus(
     "minecraft:fortune",
-    [0, 0.33, 0.66, 1.0],
+    [0, 0.33, 0.66, 1.0]
 )
 ```
 
@@ -151,79 +166,62 @@ Passes with probability picked from a list of probabilities, indexed by enchantm
 ```js
 LootEntry.of("minecraft:diamond").randomChanceWithEnchantment(
     "minecraft:looting",
-    [0, 0.33, 0.66, 1.0],
+    [0, 0.33, 0.66, 1.0]
 )
 ```
 
-## `biome`
+## `matchBiome`
 
 Matches if the player is in the given biome
 
 -   Syntax:
-    -   `.biome(...biomes: id | tag)`
-    -   `LootCondition.biome(...biomes: id | tag)`
+    -   `.matchBiome(biomes: string | string[] | tag)`
+    -   `LootCondition.matchBiome(biomes: string | string[] | tag)`
 
 ```js
-LootEntry.of("minecraft:diamond").when((c) => {
-    c.biome("minecraft:jungle")
-})
+LootEntry.of("minecraft:diamond").matchBiome("minecraft:jungle")
 ```
 
-## `anyBiome`
-
-Matches if the player is in one of the given biomes
-
--   Syntax:
-    -   `.anyBiome(...biome: id | tag)`
-    -   `LootCondition.anyBiome(...biome: id | tag)`
-
-```js
-LootEntry.of("minecraft:diamond").when((c) => {
-    c.anyBiome("minecraft:jungle", "#minecraft:is_forest")
-})
-```
-
-## `anyDimension`
+## `matchDimension`
 
 Matches if the player is in one of the given dimensions
 
 -   Syntax:
-    -   `.anyDimension(...dimension: id | tag)`
-    -   `LootCondition.anyDimension(...dimension: id | tag)`
+    -   `.matchDimension(dimension: id)`
+    -   `LootCondition.matchDimension(dimension: id)`
 
 ```js
-LootEntry.of("minecraft:diamond").when((c) => {
-    c.anyDimension("minecraft:overworld")
-})
+LootEntry.of("minecraft:diamond").matchDimension("minecraft:overworld")
 ```
 
-## `anyStructure`
+## `matchStructure`
 
 Matches if the player is in one of the given structures. <br>
 If `exact` is set to `true`, it will check if the player is inside the structure parts (like houses in a village). Otherwise it will just check if the player is within the structure bounds.
 
 -   Syntax:
-    -   `.anyStructure(structure: (id | tag)[], exact: boolean)`
-    -   `LootCondition.anyStructure(structure: (id | tag)[], exact: boolean)`
+    -   `.matchStructure(structure: string | string[] | tag)`
+    -   `LootCondition.matchStructure(structure: string | string[] | tag)`
+    -   `.matchStructure(structure: string | string[] | tag, exact: boolean)`
+    -   `LootCondition.matchStructure(structure: string | string[] | tag, exact: boolean)`
 
 ```js
-LootEntry.of("minecraft:diamond").when((c) => {
-    c.anyStructure(["minecraft:stronghold", "minecraft:village"], false)
-})
+LootEntry.of("minecraft:diamond").matchStructure(
+    ["minecraft:stronghold", "minecraft:village"],
+    false
+)
 ```
 
-## `lightLevel`
+## `isLightLevel`
 
 Matches if the player is in the given light level
 
 -   Syntax:
-    -   `.lightLevel(min: number, max: number)`
-    -   `LootCondition.lightLevel(min: number, max: number)`
+    -   `.isLightLevel(min: number, max: number)`
+    -   `LootCondition.isLightLevel(min: number, max: number)`
 
 ```js
-LootEntry.of("minecraft:diamond").when((c) => {
-    c.lightLevel(0, 15)
-})
+LootEntry.of("minecraft:diamond").isLightLevel(0, 15)
 ```
 
 ## `luck`
@@ -231,8 +229,8 @@ LootEntry.of("minecraft:diamond").when((c) => {
 Matches if the player has the given luck level
 
 -   Syntax:
-    -   `.luck(level: Bounds)`
-    -   `LootCondition.luck(level: Bounds)`
+    -   `.luck(level: Range)`_<sub>, see [Range]</sub>_
+    -   `LootCondition.luck(level: Range)`
 
 ## `killedByPlayer`
 
@@ -243,9 +241,7 @@ Matches if an entity was killed by the player
     -   `LootCondition.killedByPlayer()`
 
 ```js
-LootEntry.of("minecraft:diamond").when((c) => {
-    c.killedByPlayer()
-})
+LootEntry.of("minecraft:diamond").killedByPlayer()
 ```
 
 ## `matchEntity`
@@ -257,118 +253,110 @@ Matches against the entity that died, opened the chest or destroyed the block.
     -   `LootCondition.matchEntity(predicate: EntityPredicate)`
 
 ```js
-LootEntry.of("minecraft:diamond").when((c) => {
-    c.matchEntity(Predicates.entity().isCrouching(true))
-})
+LootEntry.of("minecraft:diamond").matchEntity(
+    Predicates.entity().isCrouching(true)
+)
 ```
 
-## `matchDirectKiller`
+## `matchDirectAttacker`
 
 Matches against the direct entity which caused the death, e.g. the arrow entity, not the shooter.
 
 -   Syntax:
-    -   `.matchDirectKiller(predicate: EntityPredicate)`_<sub>, see [EntityPredicate]</sub>_
-    -   `LootCondition.matchDirectKiller(predicate: EntityPredicate)`
+    -   `.matchDirectAttacker(predicate: EntityPredicate)`_<sub>, see [EntityPredicate]</sub>_
+    -   `LootCondition.matchDirectAttacker(predicate: EntityPredicate)`
 
 ```js
-LootEntry.of("minecraft:diamond").when((c) => {
-    c.matchDirectKiller(Predicates.entity().isCrouching(true))
-})
+LootEntry.of("minecraft:diamond").matchDirectAttacker(
+    Predicates.entity().isCrouching(true)
+)
 ```
 
-## `matchKiller`
+## `matchAttacker`
 
 Matches against the entity which caused the death.
 
 -   Syntax:
-    -   `.matchKiller(predicate: EntityPredicate)`_<sub>, see [EntityPredicate]</sub>_
-    -   `LootCondition.matchKiller(predicate: EntityPredicate)`
+    -   `.matchAttacker(predicate: EntityPredicate)`_<sub>, see [EntityPredicate]</sub>_
+    -   `LootCondition.matchAttacker(predicate: EntityPredicate)`
 
 ```js
-LootEntry.of("minecraft:diamond").when((c) => {
-    c.matchKiller(Predicates.entity().isCrouching(true))
-})
+LootEntry.of("minecraft:diamond").matchAttacker(
+    Predicates.entity().isCrouching(true)
+)
 ```
 
 ## `matchPlayer`
 
-Matches against the player. If a player kills another player, it will check against the killer.
+Matches against the player. If a player kills another player, it will check against the attacker.
 
 -   Syntax:
     -   `.matchPlayer(predicate: EntityPredicate)`_<sub>, see [EntityPredicate]</sub>_
     -   `LootCondition.matchPlayer(predicate: EntityPredicate)`
 
 ```js
-LootEntry.of("minecraft:diamond").when((c) => {
-    c.matchPlayer(Predicates.entity().isCrouching(true))
-})
+LootEntry.of("minecraft:diamond").matchPlayer(
+    Predicates.entity().isCrouching(true)
+)
 ```
 
-## `customPlayerCheck`
+## `matchPlayerCustom`
 
 Custom callback predicate to check the player. The callback **must** return either `true` or `false`.
 
 -   Syntax:
-    -   `.customPlayerCheck((player) => {})`_<sub>, where player is the actual player</sub>_
-    -   `LootCondition.customPlayerCheck((player) => {})`
+    -   `.matchPlayerCustom((player) => {})`_<sub>, where player is the actual player</sub>_
+    -   `LootCondition.matchPlayerCustom((player) => {})`
 
 ```js
-LootEntry.of("minecraft:diamond").when((c) => {
-    c.customPlayerCheck((player) => {
-        // We are working with the actual player here
-        return player.getMaxHealth() > 20
-    })
+LootEntry.of("minecraft:diamond").matchPlayerCustom((player) => {
+    // We are working with the actual player here
+    return player.getMaxHealth() > 20
 })
 ```
 
-## `customEntityCheck`
+## `matchEntityCustom`
 
 Custom callback predicate to check the entity. The callback **must** return either `true` or `false`.
 
 -   Syntax:
-    -   `.customEntityCheck((entity) => {})`_<sub>, where entity is the actual entity</sub>_
-    -   `LootCondition.customEntityCheck((entity) => {})`
+    -   `.matchEntityCustom((entity) => {})`_<sub>, where entity is the actual entity</sub>_
+    -   `LootCondition.matchEntityCustom((entity) => {})`
 
 ```js
-LootEntry.of("minecraft:diamond").when((c) => {
-    c.customEntityCheck((entity) => {
-        // We are working with the actual entity here
-        return entity.getMaxHealth() > 20
-    })
+LootEntry.of("minecraft:diamond").matchEntityCustom((entity) => {
+    // We are working with the actual entity here
+    return entity.getMaxHealth() > 20
 })
 ```
 
-## `customKillerCheck`
+## `matchAttackerCustom`
 
-Custom callback predicate to check the killer. The callback **must** return either `true` or `false`.
+Custom callback predicate to check the attacker. The callback **must** return either `true` or `false`.
 
 -   Syntax:
-    -   `.customKillerCheck((entity) => {})`_<sub>, where entity is the actual entity</sub>_
-    -   `LootCondition.customKillerCheck((entity) => {})`
+    -   `.matchAttackerCustom((entity) => {})`_<sub>, where entity is the actual entity</sub>_
+    -   `LootCondition.matchAttackerCustom((entity) => {})`
 
 ```js
-LootEntry.of("minecraft:diamond").when((c) => {
-    c.customKillerCheck((entity) => {
-        // We are working with the actual entity here
-        return entity.getMaxHealth() > 20
-    })
+LootEntry.of("minecraft:diamond").matchAttackerCustom((entity) => {
+    // We are working with the actual entity here
+    return entity.getMaxHealth() > 20
 })
 ```
 
-## `customDirectKillerCheck`
+## `matchDirectAttackerCustom`
 
-Custom callback predicate to check the direct killer. The callback **must** return either `true` or `false`.
+Custom callback predicate to check the direct attacker. The callback **must** return either `true` or `false`.
 
 -   Syntax:
-    -   `.customDirectKillerCheck((entity) => {})`_<sub>, where entity is the actual entity</sub>_
-    -   `LootCondition.customDirectKillerCheck((entity) => {})`
+    -   `.matchDirectAttackerCustom((entity) => {})`_<sub>, where entity is the actual entity</sub>_
+    -   `LootCondition.matchDirectAttackerCustom((entity) => {})`
 
 ```js
-LootEntry.of("minecraft:diamond").when((c) => {
-    c.customDirectKillerCheck((entity) => {
-        // We are working with the actual entity here
-        return entity.getMaxHealth() > 20
-    })
+LootEntry.of("minecraft:diamond").matchDirectAttackerCustom((entity) => {
+    // We are working with the actual entity here
+    return entity.getMaxHealth() > 20
 })
 ```
 
@@ -381,48 +369,28 @@ Matches if the damage source is of the given type
     -   `LootCondition.matchDamageSource(predicate: DamageSourcePredicate)`
 
 ```js
-LootEntry.of("minecraft:diamond").when((c) => {
-    c.matchDamageSource(
-        Predicates.damageSource()
-            .is("minecraft:falling_block")
-            .isNot("minecraft:magic")
-            .direct(Predicates.entity().isCrouching(true))
-            .source(Predicates.entity().isCrouching(true)),
-    )
-})
+LootEntry.of("minecraft:diamond").matchDamageSource(
+    Predicates.damageSource()
+        .is("minecraft:falling_block")
+        .isNot("minecraft:magic")
+        .direct(Predicates.entity().isCrouching(true))
+        .source(Predicates.entity().isCrouching(true))
+)
 ```
 
-## `distance`
+## `matchDistance`
 
 Matches if the player is within the given distance
 
 -   Syntax:
-    -   `.distance(distance: Bounds)`_<sub>, see [Bounds]</sub>_
-    -   `LootCondition.distance(distance: Bounds)`
+    -   `.matchDistance(predicate: DistancePredicate)`_<sub>, see [DistancePredicate]</sub>_
+    -   `LootCondition.matchDistance(predicate: DistancePredicate)`
 
 ```js
-LootEntry.of("minecraft:diamond").when((c) => {
-    c.distance(10)
-})
-```
-
-```js
-LootEntry.of("minecraft:diamond").when((c) => {
-    c.distance(0, 100)
-})
-```
-
-## `customDistance`
-
-Matches if the player is within the given distance
-
--   Syntax:
-    -   `.customDistance(predicate: DistancePredicate)`_<sub>, see [DistancePredicate]</sub>_
-    -   `LootCondition.customDistance(predicate: DistancePredicate)`
-
-```js
-LootEntry.of("minecraft:diamond").when((c) => {
-    c.customDistance(Predicate.distance().absolute(Bounds.atLeast(50)))
+LootEntry.of("minecraft:diamond").matchDistance({
+    absolute: {
+        min: 42,
+    },
 })
 ```
 
@@ -435,11 +403,9 @@ Match the given block entity. Must return either `true` or `false`.
     -   `LootCondition.blockEntity((blockEntity) => {})`
 
 ```js
-LootEntry.of("minecraft:diamond").when((c) => {
-    c.blockEntity((blockEntity) => {
-        // We are working with the actual block entity here.
-        // Return either true or false to match or not
-    })
+LootEntry.of("minecraft:diamond").blockEntity((blockEntity) => {
+    // We are working with the actual block entity here.
+    // Return either true or false to match or not
 })
 ```
 
@@ -452,14 +418,13 @@ Will match if all the given conditions match. False otherwise.
     -   `LootCondition.matchAllOf(condition1, condition2, ...)`
 
 ```js
-LootEntry.of("minecraft:diamond").when((c) => {
-    c.matchAllOf((conditions) => {
-        conditions.matchMainHand("#minecraft:pickaxes")
-           .randomChance(0.5)
-           .survivesExplosion()
-           .biome(#minecraft:forest);
-    });
-});
+LootEntry.of("minecraft:diamond").matchAllOf((conditions) => {
+    conditions
+        .matchMainHand("#minecraft:pickaxes")
+        .randomChance(0.5)
+        .survivesExplosion()
+        .matchBiome("#minecraft:forest")
+})
 ```
 
 Using `LootCondition.matchAllOf` directly to create the condition.
@@ -469,7 +434,7 @@ const ourAndCondition = LootCondition.matchAllOf(
     LootCondition.matchMainHand("#minecraft:pickaxes"),
     LootCondition.randomChance(0.5),
     LootCondition.survivesExplosion(),
-    LootCondition.biome("#minecraft:forest"),
+    LootCondition.matchBiome("#minecraft:forest")
 )
 
 LootEntry.of("minecraft:diamond").when((c) => {
@@ -486,14 +451,12 @@ Will match if one of the given conditions match. False otherwise.
     -   `LootCondition.matchAnyOf(condition1, condition2, ...)`
 
 ```js
-LootEntry.of("minecraft:diamond").when((c) => {
-    c.matchAnyOf((conditions) => {
-        conditions
-            .matchMainHand("#minecraft:pickaxes")
-            .randomChance(0.5)
-            .survivesExplosion()
-            .biome("#minecraft:forest")
-    })
+LootEntry.of("minecraft:diamond").matchAnyOf((conditions) => {
+    conditions
+        .matchMainHand("#minecraft:pickaxes")
+        .randomChance(0.5)
+        .survivesExplosion()
+        .matchBiome("#minecraft:forest")
 })
 ```
 
@@ -504,7 +467,7 @@ const ourOrCondition = LootCondition.matchAnyOf(
     LootCondition.matchMainHand("#minecraft:pickaxes"),
     LootCondition.randomChance(0.5),
     LootCondition.survivesExplosion(),
-    LootCondition.biome("#minecraft:forest"),
+    LootCondition.matchBiome("#minecraft:forest")
 )
 
 LootEntry.of("minecraft:diamond").when((c) => {
@@ -512,29 +475,27 @@ LootEntry.of("minecraft:diamond").when((c) => {
 })
 ```
 
-## `jsonCondition`
+## `matchCustomCondition`
 
 Create a condition directly from JSON. This is useful to load conditions from other mods.
 
 -   Syntax:
-    -   `.jsonCondition(json)`
-    -   `LootCondition.fromJson(json)`
+    -   `.matchCustomCondition(json)`
+    -   `LootCondition.matchCustomCondition(json)`
 
 ```js
-LootEntry.of("minecraft:diamond").when((c) => {
-    c.jsonCondition({
-        condition: "minecraft:match_tool",
-        predicate: {
-            enchantments: [
-                {
-                    enchantment: "minecraft:silk_touch",
-                    levels: {
-                        min: 1,
-                    },
+LootEntry.of("minecraft:diamond").matchCustomCondition({
+    condition: "minecraft:match_tool",
+    predicate: {
+        enchantments: [
+            {
+                enchantment: "minecraft:silk_touch",
+                levels: {
+                    min: 1,
                 },
-            ],
-        },
-    })
+            },
+        ],
+    },
 })
 ```
 
@@ -544,4 +505,4 @@ LootEntry.of("minecraft:diamond").when((c) => {
 [DistancePredicate]: /api/predicates#distance-predicate
 [ItemFilter]: /api/item-filter
 [Ingredient]: https://wiki.latvian.dev
-[Bounds]: /api/bounds
+[Range]: /api/range

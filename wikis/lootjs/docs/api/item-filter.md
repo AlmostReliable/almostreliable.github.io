@@ -106,7 +106,7 @@ Used to check if given item matches the enchantments.
 
 -   Syntax:
     -   `ItemFilter.hasEnchantment(filter)`
-    -   `ItemFilter.hasEnchantment(filter, levelBound: Bounds)`, _<sub>see [Bounds]</sub>_
+    -   `ItemFilter.hasEnchantment(filter, levelRange: Range)`, _<sub>see [Range]</sub>_
 
 ```js
 ItemFilter.hasEnchantment("minecraft:fortune")
@@ -127,7 +127,7 @@ Used to check if given book item matches the enchantments. In minecraft `books` 
 
 -   Syntax:
     -   `ItemFilter.hasStoredEnchantment(filter)`
-    -   `ItemFilter.hasStoredEnchantment(filter, levelBound: Bounds)`, _<sub>see [Bounds]</sub>_
+    -   `ItemFilter.hasStoredEnchantment(filter, levelBound: Range)`, _<sub>see [Range]</sub>_
 
 ```js
 ItemFilter.hasStoredEnchantment("minecraft:fortune")
@@ -247,4 +247,4 @@ Returns an item filter that matches nothing.
 -   Syntax:
     -   `ItemFilter.NONE`
 
-[Bounds]: /api/bounds
+[Range]: /api/range

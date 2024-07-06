@@ -39,7 +39,7 @@ export default defineConfig({
                     { text: "LootModifier", link: "/api/loot-modifier" },
                     { text: "LootContext", link: "/api/loot-context" },
                     { text: "NumberProvider", link: "/api/number-provider" },
-                    { text: "Bounds", link: "/api/bounds" },
+                    { text: "Range", link: "/api/range" },
                 ],
             },
         ],

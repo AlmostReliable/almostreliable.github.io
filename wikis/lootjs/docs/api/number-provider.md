@@ -2,7 +2,7 @@
 
 `NumberProvider`s are used in loot tables to create a random number depending on the loot context. Minecraft itself offers three number providers, but mods can add their own.
 
-To simplify the usage of number providers LootJS does register a type wrapper in KubeJS. 
+To simplify the usage of number providers LootJS does register a type wrapper in KubeJS.
 
 ## Constant Number
 

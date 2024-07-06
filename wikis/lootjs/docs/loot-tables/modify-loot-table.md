@@ -44,7 +44,7 @@ LootJS.lootTables((event) => {
         .getLootTable("minecraft:chests/desert_pyramid")
         .firstPool()
         .addEntry(
-            LootEntry.of("minecraft:apple").withWeight(20).setCount([2, 5]),
+            LootEntry.of("minecraft:apple").withWeight(20).setCount([2, 5])
         )
 })
 ```

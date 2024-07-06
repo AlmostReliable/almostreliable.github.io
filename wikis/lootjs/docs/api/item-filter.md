@@ -215,7 +215,7 @@ Combines multiple item filters into one. Matches if all filters match.
 ```js
 ItemFilter.allOf(
     ItemFilter.hasEnchantment("minecraft:fortune"),
-    ItemFilter.equipmentSlotGroup("hand"),
+    ItemFilter.equipmentSlotGroup("hand")
 )
 ```
 
@@ -229,7 +229,7 @@ Combines multiple item filters into one. Matches if any filter matches.
 ```js
 ItemFilter.anyOf(
     ItemFilter.hasEnchantment("minecraft:silk_touch"),
-    ItemFilter.equipmentSlotGroup("armor"),
+    ItemFilter.equipmentSlotGroup("armor")
 )
 ```
 

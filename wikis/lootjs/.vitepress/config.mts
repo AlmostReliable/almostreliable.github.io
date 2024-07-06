@@ -1,4 +1,4 @@
-import { defineConfig } from "../../../main/defineAlmostWiki";
+import { defineConfig } from "../../../main/defineAlmostWiki"
 
 export default defineConfig({
     srcDir: "./docs",
@@ -22,9 +22,7 @@ export default defineConfig({
             },
             {
                 text: "Loot Modifiers",
-                items: [
-                    { text: "Event Overview", link: "/loot-modifiers/event" },
-                ],
+                items: [{ text: "Event Overview", link: "/loot-modifiers/event" }],
             },
             {
                 text: "API",

@@ -4,7 +4,7 @@ import path from "path"
 import WikiConfig, { WikiEntry } from "./WikiConfig"
 
 const DIST_DIR = path.join(__dirname, "../dist")
-if(!fs.existsSync(DIST_DIR)) throw new Error("Wiki dist directory not found")
+if (!fs.existsSync(DIST_DIR)) throw new Error("Wiki dist directory not found")
 
 const app = express()
 app.use(express.static(DIST_DIR))

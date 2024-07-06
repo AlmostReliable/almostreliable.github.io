@@ -9,12 +9,12 @@ The loot tables event contains multiple functions to modify or create new loot t
 
 ```js
 LootJS.lootTables((event) => {
-    let ids = event.getLootTableIds();
+    let ids = event.getLootTableIds()
 
     // or
 
-    let filteredIds = event.getLootTableIds(/.*chests\/.*/);
-});
+    let filteredIds = event.getLootTableIds(/.*chests\/.*/)
+})
 ```
 
 ## `hasLootTable`
@@ -25,9 +25,10 @@ Returns `true` if the loot table with the given id exists.
 
 ```js
 LootJS.lootTables((event) => {
-    let exists = event.hasLootTable("minecraft:chests/simple_dungeon");
-});
+    let exists = event.hasLootTable("minecraft:chests/simple_dungeon")
+})
 ```
+
 ## `getLootTable`
 
 Returns a mutable loot table by the given id which can be modified. Will return `null` if no loot table with the given id exists.
@@ -38,8 +39,8 @@ Returns a mutable loot table by the given id which can be modified. Will return 
 
 ```js
 LootJS.lootTables((event) => {
-    let table = event.getLootTable("minecraft:chests/simple_dungeon");
-});
+    let table = event.getLootTable("minecraft:chests/simple_dungeon")
+})
 ```
 
 ## `modifyLootTables`
@@ -54,8 +55,8 @@ Modify all matching loot tables by given filter.
 LootJS.lootTables((event) => {
     event.modifyLootTables(/.*chests\/.*/).createPool((pool) => {
         // editing the pool
-    });
-});
+    })
+})
 ```
 
 ## `getBlockTable`
@@ -68,8 +69,8 @@ Returns a mutable loot table for the given block which can be modified. Will ret
 
 ```js
 LootJS.lootTables((event) => {
-    let table = event.getBlockTable("minecraft:diamond_ore");
-});
+    let table = event.getBlockTable("minecraft:diamond_ore")
+})
 ```
 
 ## `modifyBlockTables`
@@ -84,24 +85,26 @@ Modify all matching block loot by given filter.
 LootJS.lootTables((event) => {
     event.modifyBlockTables("minecraft:diamond_ore").createPool((pool) => {
         // editing the pool
-    });
-});
+    })
+})
 ```
 
 ```js
 LootJS.lootTables((event) => {
-    event.modifyBlockTables(["minecraft:diamond_ore", "minecraft:emerald_ore"]).createPool((pool) => {
-        // editing the pool
-    });
-});
+    event
+        .modifyBlockTables(["minecraft:diamond_ore", "minecraft:emerald_ore"])
+        .createPool((pool) => {
+            // editing the pool
+        })
+})
 ```
 
 ```js
 LootJS.lootTables((event) => {
     event.modifyBlockTables("#minecraft:logs").createPool((pool) => {
         // editing the pool
-    });
-});
+    })
+})
 ```
 
 ## `getEntityTable`
@@ -114,8 +117,8 @@ Returns a mutable loot table for the given entity which can be modified. Will re
 
 ```js
 LootJS.lootTables((event) => {
-    let table = event.getEntityTable("minecraft:sheep");
-});
+    let table = event.getEntityTable("minecraft:sheep")
+})
 ```
 
 ## `modifyEntityTables`
@@ -130,8 +133,8 @@ Modify all matching entity loot by given filter.
 LootJS.lootTables((event) => {
     event.modifyEntityTables("minecraft:sheep").createPool((pool) => {
         // editing the pool
-    });
-});
+    })
+})
 ```
 
 ## `modifyLootTypeTables`
@@ -158,18 +161,20 @@ Modify all matching loot tables by given type. Loot tables mostly have a type e.
 LootJS.lootTables((event) => {
     event.modifyLootTypeTables(LootType.CHEST).createPool((pool) => {
         // editing the pool
-    });
+    })
 
     // As kubejs automatically type wraps Enums, we can just use the name of the enum
     event.modifyLootTypeTables("chest").createPool((pool) => {
         // editing the pool
-    });
+    })
 
     // If we want to match multiple types, we can use an array
-    event.modifyLootTypeTables([LootType.CHEST, LootType.ENTITY]).createPool((pool) => {
-        // editing the pool
-    });
-});
+    event
+        .modifyLootTypeTables([LootType.CHEST, LootType.ENTITY])
+        .createPool((pool) => {
+            // editing the pool
+        })
+})
 ```
 
 ## `clearLootTables`
@@ -200,13 +205,13 @@ Create a new loot table.
 LootJS.lootTables((event) => {
     event.create("lootjs:table1", LootType.CHEST).createPool((pool) => {
         // editing the pool
-    });
+    })
 
     // We can skip the type argument if we want to use the default
     event.create("lootjs:table2").createPool((pool) => {
         // editing the pool
-    });
-});
+    })
+})
 ```
 
 [ResourceLocationFilter]: ./test.md

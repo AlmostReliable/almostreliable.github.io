@@ -3,7 +3,7 @@ import { DefaultTheme, UserConfig } from "vitepress"
 function getBaseThemeConfig(title: string): DefaultTheme.Config {
     return {
         editLink: {
-            pattern: `https://github.com/AlmostReliable/almostreliable.github.io/edit/main/wikis/${title}/docs/:path`
+            pattern: `https://github.com/AlmostReliable/almostreliable.github.io/edit/main/wikis/${title}/docs/:path`,
         },
         socialLinks: [
             {

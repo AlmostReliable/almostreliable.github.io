@@ -51,14 +51,14 @@ LootJS.modifiers((event) => {
     const stickWhenFortune = LootEntry.of("minecraft:stick")
         .applyOreBonus("minecraft:fortune")
         .when((c) =>
-            c.matchMainHand(ItemFilter.hasEnchantment("minecraft:fortune")),
+            c.matchMainHand(ItemFilter.hasEnchantment("minecraft:fortune"))
         )
 
     /**
      * Second loot entry with a condition. Will drop if the player has silk touch and the first entry doesn't match.
      */
     const appleWhenSilkTouch = LootEntry.of("minecraft:apple").when((c) =>
-        c.matchMainHand(ItemFilter.hasEnchantment("minecraft:silk_touch")),
+        c.matchMainHand(ItemFilter.hasEnchantment("minecraft:silk_touch"))
     )
 
     /**
@@ -86,14 +86,14 @@ LootJS.modifiers((event) => {
      * First loot entry with a condition. Will drop if the player has fortune.
      */
     const stickWhenFortune = LootEntry.of("minecraft:stick").when((c) =>
-        c.matchMainHand(ItemFilter.hasEnchantment("minecraft:fortune")),
+        c.matchMainHand(ItemFilter.hasEnchantment("minecraft:fortune"))
     )
 
     /**
      * Second loot entry with a condition. Will drop if the player has silk touch.
      */
     const appleWhenEfficiency = LootEntry.of("minecraft:apple").when((c) =>
-        c.matchMainHand(ItemFilter.hasEnchantment("minecraft:efficiency")),
+        c.matchMainHand(ItemFilter.hasEnchantment("minecraft:efficiency"))
     )
 
     /**
@@ -105,7 +105,7 @@ LootJS.modifiers((event) => {
      * Random chance is 0 so no diamond will ever drop. Just to show, that it will skip all other entries.
      */
     const diamondNoDrop = LootEntry.of("minecraft:diamond").when((c) =>
-        c.randomChance(0.0),
+        c.randomChance(0.0)
     )
 
     /**
@@ -121,7 +121,7 @@ LootJS.modifiers((event) => {
             appleWhenEfficiency,
             flint,
             diamondNoDrop,
-            ironIngot,
+            ironIngot
         )
 })
 ```

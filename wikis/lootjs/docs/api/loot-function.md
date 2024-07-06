@@ -75,7 +75,7 @@ Applies a bonus based on the binomial distribution, where `n = enchantmentLevel 
 LootEntry.of("minecraft:emerald_ore").applyBinomialDistributionBonus(
     "minecraft:fortune",
     0.2,
-    3,
+    3
 )
 ```
 
@@ -94,7 +94,10 @@ LootEntry.of("minecraft:emerald_ore").applyEnchantmentBonus([2, 5])
 ```
 
 ```js
-LootEntry.of("minecraft:emerald_ore").applyEnchantmentBonus("minecraft:fortune", [2, 5])
+LootEntry.of("minecraft:emerald_ore").applyEnchantmentBonus(
+    "minecraft:fortune",
+    [2, 5]
+)
 ```
 
 ## `setCount`
@@ -153,7 +156,7 @@ LootEntry.of("minecraft:emerald_ore").setCustomData({ someCustomStuff: true })
 
 ```js
 LootEntry.of("minecraft:emerald_ore").setName(
-    Component.translatable("item.minecraft.emerald_ore"),
+    Component.translatable("item.minecraft.emerald_ore")
 )
 ```
 

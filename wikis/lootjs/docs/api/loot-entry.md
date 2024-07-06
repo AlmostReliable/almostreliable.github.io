@@ -134,7 +134,7 @@ LootEntry.reference("minecraft:chests/abandoned_mineshaft")
 LootEntry.alternative(
     LootEntry.of("minecraft:diamond").when((c) => c.randomChance(0.5)),
     LootEntry.of("minecraft:emerald").when((c) => c.randomChance(0.5)),
-    LootEntry.of("minecraft:iron_ingot"),
+    LootEntry.of("minecraft:iron_ingot")
 )
 ```
 
@@ -146,7 +146,7 @@ LootEntry.alternative(
 LootEntry.sequence(
     LootEntry.of("minecraft:diamond").when((c) => c.randomChance(0.5)),
     LootEntry.of("minecraft:emerald").when((c) => c.randomChance(0.2)),
-    LootEntry.of("minecraft:iron_ingot"),
+    LootEntry.of("minecraft:iron_ingot")
 )
 ```
 
@@ -158,7 +158,7 @@ LootEntry.sequence(
 LootEntry.group(
     LootEntry.of("minecraft:diamond").when((c) => c.randomChance(0.5)),
     LootEntry.of("minecraft:emerald").when((c) => c.randomChance(0.2)),
-    LootEntry.of("minecraft:iron_ingot"),
+    LootEntry.of("minecraft:iron_ingot")
 )
 ```
 

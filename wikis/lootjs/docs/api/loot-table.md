@@ -1,10 +1,11 @@
 # LootTable
 
-Loot tables are used dictate what items should be dropped through specific actions. 
+Loot tables are used dictate what items should be dropped through specific actions.
 
 `LootTables` in LootJS extends from `LootEntriesTransformer`. See [`LootEntriesTransformer`](/api/loot-entries-transformer) for more information.
 
 ## `firstPool`
+
 Returns the first pool inside a loot table. If no pool exist, it will create one and return it.
 
 -   Syntax:

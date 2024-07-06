@@ -1,4 +1,4 @@
-import { defineConfig } from "../../../main/defineAlmostWiki";
+import { defineConfig } from "../../../main/defineAlmostWiki"
 
 export default defineConfig({
     srcDir: "./docs",
@@ -7,9 +7,7 @@ export default defineConfig({
         sidebar: [
             {
                 text: "Intro",
-                items: [
-                    { text: "Getting Started", link: "/" },
-                ],
+                items: [{ text: "Getting Started", link: "/" }],
             },
         ],
     },

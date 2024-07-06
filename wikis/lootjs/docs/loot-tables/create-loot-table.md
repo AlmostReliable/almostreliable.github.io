@@ -54,7 +54,7 @@ LootJS.lootTables((event) => {
         pool.addEntry(
             LootEntry.of("minecraft:diamond_leggings")
                 .withWeight(3)
-                .enchantWithLevels([20, 39]),
+                .enchantWithLevels([20, 39])
         )
     })
 })
@@ -70,20 +70,20 @@ LootJS.lootTables((event) => {
         pool.addEntry(
             LootEntry.of("minecraft:diamond_leggings")
                 .withWeight(3)
-                .enchantWithLevels([20, 39]),
+                .enchantWithLevels([20, 39])
         )
 
         pool.addEntry(
             LootEntry.of("minecraft:iron_pickaxe")
                 .withWeight(10)
-                .enchantWithLevels([10, 19]),
+                .enchantWithLevels([10, 19])
         )
 
         pool.addEntry(
             LootEntry.of("minecraft:diamond_sword")
                 .withWeight(5)
                 .enchantWithLevels([30, 50])
-                .damage([0.3, 0.5]),
+                .damage([0.3, 0.5])
         )
 
         pool.addEntry("minecraft:diamond_horse_armor")
@@ -111,7 +111,7 @@ LootJS.lootTables((event) => {
                     builder.withEnchantment("minecraft:unbreaking", 3)
                     builder.withEnchantment("minecraft:knockback", 2)
                     builder.withEnchantment("minecraft:mending", 1)
-                }),
+                })
             )
 
             // Vanilla often uses an empty entry with a weight instead of `randomChance`
@@ -129,7 +129,7 @@ Now we want to add our loot table to the `minecraft:gameplay/fishing` loot table
 LootJS.lootTables((event) => {
     event.getLootTable("minecraft:gameplay/fishing").firstPool((pool) => {
         pool.addEntry(
-            LootEntry.reference("lootjs:rare_equipment").randomChance(0.1),
+            LootEntry.reference("lootjs:rare_equipment").randomChance(0.1)
         )
     })
 })

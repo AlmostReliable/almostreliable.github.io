@@ -7,7 +7,15 @@ export default defineConfig({
         sidebar: [
             {
                 text: "Intro",
-                items: [{ text: "Getting Started", link: "/" }],
+                items: [{ text: "Event Overview", link: "/" }],
+            },
+            {
+                text: "Villager Trades",
+                items: [
+                    { text: "Understanding trades", link: "/trades" },
+                    { text: "Add trades", link: "/trades/add.md" },
+                    { text: "Remove trades", link: "/trades/remove.md" },
+                ],
             },
         ],
     },

@@ -52,20 +52,14 @@ Valid loot types are `chest`, `block`, `entity`, `fishing`, `archaeology`, `gift
 
 ```js
 LootJS.modifiers((event) => {
-    event
-        .addTypeModifier("chest")
-        .randomChance(0.5)
-        .addLoot("minecraft:gunpowder")
+    event.addTypeModifier("chest").randomChance(0.5).addLoot("minecraft:gunpowder")
 })
 ```
 
 ```js
 LootJS.modifiers((event) => {
     // We can also use multiple ones
-    event
-        .addTypeModifier("block", "entity")
-        .randomChance(0.5)
-        .addLoot("minecraft:gunpowder")
+    event.addTypeModifier("block", "entity").randomChance(0.5).addLoot("minecraft:gunpowder")
 })
 ```
 
@@ -78,10 +72,7 @@ Add a new loot modifier for all entities which match the given filter.
 
 ```js
 LootJS.modifiers((event) => {
-    event
-        .addEntityModifier("minecraft:creeper")
-        .randomChance(0.5)
-        .addLoot("minecraft:gunpowder")
+    event.addEntityModifier("minecraft:creeper").randomChance(0.5).addLoot("minecraft:gunpowder")
 })
 ```
 
@@ -96,10 +87,7 @@ LootJS.modifiers((event) => {
 
 ```js
 LootJS.modifiers((event) => {
-    event
-        .addEntityModifier("#minecraft:skeletons")
-        .randomChance(0.5)
-        .addLoot("minecraft:stick")
+    event.addEntityModifier("#minecraft:skeletons").randomChance(0.5).addLoot("minecraft:stick")
 })
 ```
 
@@ -112,10 +100,7 @@ Add a new loot modifier for all blocks which match the given filter.
 
 ```js
 LootJS.modifiers((event) => {
-    event
-        .addBlockModifier("minecraft:iron_ore")
-        .randomChance(0.5)
-        .addLoot("minecraft:iron_nugget")
+    event.addBlockModifier("minecraft:iron_ore").randomChance(0.5).addLoot("minecraft:iron_nugget")
 })
 ```
 
@@ -130,10 +115,7 @@ LootJS.modifiers((event) => {
 
 ```js
 LootJS.modifiers((event) => {
-    event
-        .addBlockModifier("#c:ores")
-        .randomChance(0.5)
-        .addLoot("minecraft:flint")
+    event.addBlockModifier("#c:ores").randomChance(0.5).addLoot("minecraft:flint")
 })
 ```
 

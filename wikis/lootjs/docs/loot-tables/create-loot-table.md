@@ -52,9 +52,7 @@ LootJS.lootTables((event) => {
     event.create("lootjs:rare_equipment").createPool((pool) => {
         // Per default it will always be `#minecraft:on_random_loot` for `enchantWithLevels`
         pool.addEntry(
-            LootEntry.of("minecraft:diamond_leggings")
-                .withWeight(3)
-                .enchantWithLevels([20, 39])
+            LootEntry.of("minecraft:diamond_leggings").withWeight(3).enchantWithLevels([20, 39])
         )
     })
 })
@@ -68,15 +66,11 @@ Let's add some more items to the first pool.
 LootJS.lootTables((event) => {
     event.create("lootjs:rare_equipment").createPool((pool) => {
         pool.addEntry(
-            LootEntry.of("minecraft:diamond_leggings")
-                .withWeight(3)
-                .enchantWithLevels([20, 39])
+            LootEntry.of("minecraft:diamond_leggings").withWeight(3).enchantWithLevels([20, 39])
         )
 
         pool.addEntry(
-            LootEntry.of("minecraft:iron_pickaxe")
-                .withWeight(10)
-                .enchantWithLevels([10, 19])
+            LootEntry.of("minecraft:iron_pickaxe").withWeight(10).enchantWithLevels([10, 19])
         )
 
         pool.addEntry(
@@ -128,9 +122,7 @@ Now we want to add our loot table to the `minecraft:gameplay/fishing` loot table
 ```js
 LootJS.lootTables((event) => {
     event.getLootTable("minecraft:gameplay/fishing").firstPool((pool) => {
-        pool.addEntry(
-            LootEntry.reference("lootjs:rare_equipment").randomChance(0.1)
-        )
+        pool.addEntry(LootEntry.reference("lootjs:rare_equipment").randomChance(0.1))
     })
 })
 ```

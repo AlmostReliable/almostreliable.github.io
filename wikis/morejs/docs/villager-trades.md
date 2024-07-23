@@ -78,10 +78,7 @@ MoreJS.villagerTrades((event) => {
 ```js
 MoreJS.villagerTrades((event) => {
     // Removes all vanilla trades from farmer and workers
-    event.removeVanillaTypedTrades(
-        ["minecraft:farmer", "minecraft:worker"],
-        [1, 5]
-    )
+    event.removeVanillaTypedTrades(["minecraft:farmer", "minecraft:worker"], [1, 5])
 })
 ```
 
@@ -89,12 +86,7 @@ MoreJS.villagerTrades((event) => {
 
 ```js
 MoreJS.villagerTrades((event) => {
-    event.addTrade(
-        "minecraft:farmer",
-        2,
-        Item.of("minecraft:diamond", 10),
-        "minecraft:stick"
-    )
+    event.addTrade("minecraft:farmer", 2, Item.of("minecraft:diamond", 10), "minecraft:stick")
 })
 ```
 
@@ -115,12 +107,7 @@ We also can use `TradeItem` if we want to have a random range for the costs.
 ```js
 MoreJS.villagerTrades((event) => {
     // This will randomly pick the cost between 3 and 10
-    event.addTrade(
-        "minecraft:farmer",
-        2,
-        TradeItem.of("minecraft:diamond", 3, 10),
-        "minecraft:stick"
-    )
+    event.addTrade("minecraft:farmer", 2, TradeItem.of("minecraft:diamond", 3, 10), "minecraft:stick")
 })
 ```
 
@@ -131,10 +118,7 @@ You can find all available trades under [`VillagerUtils`](/villager-utils).
 
 ```js
 MoreJS.villagerTrades((event) => {
-    const jungleMapTrade = VillagerUtils.createBiomeMapTrade(
-        "minecraft:diamond",
-        "minecraft:jungle"
-    )
+    const jungleMapTrade = VillagerUtils.createBiomeMapTrade("minecraft:diamond", "minecraft:jungle")
 
     event.addTrade("minecraft:farmer", 1, jungleMapTrade)
 })

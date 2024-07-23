@@ -34,9 +34,7 @@ We also can just use a simple item id. LootJS will automatically convert it into
 
 ```js
 LootJS.lootTables((event) => {
-    event
-        .getLootTable("minecraft:chests/simple_dungeon")
-        .removeItem("minecraft:diamond")
+    event.getLootTable("minecraft:chests/simple_dungeon").removeItem("minecraft:diamond")
 })
 ```
 
@@ -66,9 +64,7 @@ We remove junk from the fishing loot table, no one needs junk.
 
 ```js
 LootJS.lootTables((event) => {
-    event
-        .getLootTable("minecraft:gameplay/fishing")
-        .removeReference("minecraft:gameplay/fishing/junk")
+    event.getLootTable("minecraft:gameplay/fishing").removeReference("minecraft:gameplay/fishing/junk")
 })
 ```
 
@@ -111,16 +107,14 @@ Modifies all loot entries. Requires to always **return** a loot entry again. You
 
 ```js
 LootJS.lootTables((event) => {
-    event
-        .getLootTable("minecraft:chests/simple_dungeon")
-        .modifyEntry((entry) => {
-            if (entry.isItem() && entry.item.id === "minecraft:string") {
-                entry.setCount([5, 12])
-            }
+    event.getLootTable("minecraft:chests/simple_dungeon").modifyEntry((entry) => {
+        if (entry.isItem() && entry.item.id === "minecraft:string") {
+            entry.setCount([5, 12])
+        }
 
-            // Remember to always return an entry!
-            return entry
-        })
+        // Remember to always return an entry!
+        return entry
+    })
 })
 ```
 
@@ -133,16 +127,14 @@ Same as `modifyEntry` but will only iterates through `LootItemEntry`s.
 
 ```js
 LootJS.lootTables((event) => {
-    event
-        .getLootTable("minecraft:chests/simple_dungeon")
-        .modifyItem((itemEntry) => {
-            if (itemEntry.item.id === "minecraft:string") {
-                itemEntry.setCount([5, 12])
-            }
+    event.getLootTable("minecraft:chests/simple_dungeon").modifyItem((itemEntry) => {
+        if (itemEntry.item.id === "minecraft:string") {
+            itemEntry.setCount([5, 12])
+        }
 
-            // Remember to always return an entry!
-            return itemEntry
-        })
+        // Remember to always return an entry!
+        return itemEntry
+    })
 })
 ```
 

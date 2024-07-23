@@ -13,10 +13,7 @@ Get the name of the pool. May return `null` if no name is set. Some mods will gi
 
 ```js
 LootJS.lootTables((event) => {
-    let name = event
-        .getLootTable("minecraft:chests/simple_dungeon")
-        .firstPool()
-        .getName()
+    let name = event.getLootTable("minecraft:chests/simple_dungeon").firstPool().getName()
 })
 ```
 
@@ -29,10 +26,7 @@ Sets the name of the pool.
 
 ```js
 LootJS.lootTables((event) => {
-    event
-        .getLootTable("minecraft:chests/simple_dungeon")
-        .firstPool()
-        .name("example_name")
+    event.getLootTable("minecraft:chests/simple_dungeon").firstPool().name("example_name")
 })
 ```
 
@@ -45,10 +39,7 @@ Sets the number of rolls of the pool. The default value is `1`.
 
 ```js
 LootJS.lootTables((event) => {
-    event
-        .getLootTable("minecraft:chests/simple_dungeon")
-        .firstPool()
-        .rolls([1, 5]) // Will roll between 1 and 5 times
+    event.getLootTable("minecraft:chests/simple_dungeon").firstPool().rolls([1, 5]) // Will roll between 1 and 5 times
 })
 ```
 
@@ -61,10 +52,7 @@ Sets the number of bonus rolls of the pool. The default value is `0`.
 
 ```js
 LootJS.lootTables((event) => {
-    event
-        .getLootTable("minecraft:chests/simple_dungeon")
-        .firstPool()
-        .bonusRolls(1)
+    event.getLootTable("minecraft:chests/simple_dungeon").firstPool().bonusRolls(1)
 })
 ```
 
@@ -96,10 +84,7 @@ Returns a list of all conditions attached to the pool. Alternative to `when`. Se
 
 ```js
 LootJS.lootTables((event) => {
-    let conditions = event
-        .getLootTable("minecraft:chests/simple_dungeon")
-        .firstPool()
-        .getConditions()
+    let conditions = event.getLootTable("minecraft:chests/simple_dungeon").firstPool().getConditions()
     conditions.add(LootCondition.randomChance(0.5))
 })
 ```
@@ -132,10 +117,7 @@ Returns a list of all loot item functions attached to the pool. Alternative to `
 
 ```js
 LootJS.lootTables((event) => {
-    let functions = event
-        .getLootTable("minecraft:chests/simple_dungeon")
-        .firstPool()
-        .getFunctions()
+    let functions = event.getLootTable("minecraft:chests/simple_dungeon").firstPool().getFunctions()
     functions.add(LootFunction.setCount([1, 25]))
 })
 ```
@@ -150,10 +132,7 @@ Returns a list of all `LootEntry` in the pool.
 
 ```js
 LootJS.lootTables((event) => {
-    let entries = event
-        .getLootTable("minecraft:chests/simple_dungeon")
-        .firstPool()
-        .getEntries()
+    let entries = event.getLootTable("minecraft:chests/simple_dungeon").firstPool().getEntries()
 
     entries.addEntry("minecraft:apple")
 })
@@ -179,10 +158,7 @@ LootJS.lootTables((event) => {
 
 ```js
 LootJS.lootTables((event) => {
-    event
-        .getLootTable("minecraft:chests/simple_dungeon")
-        .firstPool()
-        .addEntry("minecraft:apple") // Loot JS will automatically convert it.
+    event.getLootTable("minecraft:chests/simple_dungeon").firstPool().addEntry("minecraft:apple") // Loot JS will automatically convert it.
 })
 ```
 
@@ -190,10 +166,7 @@ Or you can directly use `addItem`
 
 ```js
 LootJS.lootTables((event) => {
-    event
-        .getLootTable("minecraft:chests/simple_dungeon")
-        .firstPool()
-        .addItem("minecraft:apple")
+    event.getLootTable("minecraft:chests/simple_dungeon").firstPool().addItem("minecraft:apple")
 })
 ```
 

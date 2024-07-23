@@ -36,9 +36,7 @@ Creates a new pool and returns it.
 
 ```js
 LootJS.lootTables((event) => {
-    let pool = event
-        .getLootTable("minecraft:chests/simple_dungeon")
-        .createPool()
+    let pool = event.getLootTable("minecraft:chests/simple_dungeon").createPool()
 })
 ```
 
@@ -59,9 +57,7 @@ Returns a list of all [item functions](/api/loot-function) attached to the loot 
 
 ```js
 LootJS.lootTables((event) => {
-    let functions = event
-        .getLootTable("minecraft:chests/simple_dungeon")
-        .getFunctions()
+    let functions = event.getLootTable("minecraft:chests/simple_dungeon").getFunctions()
 })
 ```
 
@@ -74,13 +70,11 @@ Adds a custom callback when the loot table is rolled.
 
 ```js
 LootJS.lootTables((event) => {
-    event
-        .getLootTable("minecraft:chests/simple_dungeon")
-        .onDrop((context, loot) => {
-            for (let item of loot) {
-                console.log(item)
-            }
-        })
+    event.getLootTable("minecraft:chests/simple_dungeon").onDrop((context, loot) => {
+        for (let item of loot) {
+            console.log(item)
+        }
+    })
 })
 ```
 

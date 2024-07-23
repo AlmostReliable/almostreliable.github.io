@@ -97,11 +97,9 @@ LootJS.lootTables((event) => {
 
 ```js
 LootJS.lootTables((event) => {
-    event
-        .modifyBlockTables(["minecraft:diamond_ore", "minecraft:emerald_ore"])
-        .createPool((pool) => {
-            // editing the pool
-        })
+    event.modifyBlockTables(["minecraft:diamond_ore", "minecraft:emerald_ore"]).createPool((pool) => {
+        // editing the pool
+    })
 })
 ```
 
@@ -173,11 +171,9 @@ LootJS.lootTables((event) => {
     })
 
     // If we want to match multiple types, we can use an array
-    event
-        .modifyLootTypeTables(LootType.CHEST, LootType.ENTITY)
-        .createPool((pool) => {
-            // editing the pool
-        })
+    event.modifyLootTypeTables(LootType.CHEST, LootType.ENTITY).createPool((pool) => {
+        // editing the pool
+    })
 })
 ```
 

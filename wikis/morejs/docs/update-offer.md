@@ -53,10 +53,7 @@ We will remove the clay trade from the mason and replace it with a trade from th
 
 ```js
 MoreJS.updateOffer((event) => {
-    if (
-        event.isProfession("minecraft:mason") &&
-        event.offer.firstCost.id === "minecraft:clay_ball"
-    ) {
+    if (event.isProfession("minecraft:mason") && event.offer.firstCost.id === "minecraft:clay_ball") {
         // Get all level 2 trades from shepherd
         const shepherdTrades = event.getVillagerTrades("minecraft:shepherd", 2)
 
@@ -75,10 +72,7 @@ We will add a 20% chance to replace an offer with a random biome map for the car
 
 ```js
 MoreJS.updateOffer((event) => {
-    if (
-        event.isProfession("minecraft:cartographer") &&
-        event.random.nextDouble() < 0.2
-    ) {
+    if (event.isProfession("minecraft:cartographer") && event.random.nextDouble() < 0.2) {
         const randomBiome = Registry.of("worldgen/biome")
             .getValues("#minecraft:is_overworld")
             .getRandom()

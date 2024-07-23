@@ -213,10 +213,7 @@ Combines multiple item filters into one. Matches if all filters match.
     -   `ItemFilter.allOf(...filters: ItemFilter[])`
 
 ```js
-ItemFilter.allOf(
-    ItemFilter.hasEnchantment("minecraft:fortune"),
-    ItemFilter.equipmentSlotGroup("hand")
-)
+ItemFilter.allOf(ItemFilter.hasEnchantment("minecraft:fortune"), ItemFilter.equipmentSlotGroup("hand"))
 ```
 
 ### `anyOf`

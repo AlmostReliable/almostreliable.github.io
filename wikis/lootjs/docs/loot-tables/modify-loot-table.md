@@ -12,10 +12,7 @@ Let's add a simple `apple` to our chest loot.
 
 ```js
 LootJS.lootTables((event) => {
-    event
-        .getLootTable("minecraft:chests/desert_pyramid")
-        .firstPool()
-        .addEntry("minecraft:apple")
+    event.getLootTable("minecraft:chests/desert_pyramid").firstPool().addEntry("minecraft:apple")
 })
 ```
 
@@ -43,9 +40,7 @@ LootJS.lootTables((event) => {
     event
         .getLootTable("minecraft:chests/desert_pyramid")
         .firstPool()
-        .addEntry(
-            LootEntry.of("minecraft:apple").withWeight(20).setCount([2, 5])
-        )
+        .addEntry(LootEntry.of("minecraft:apple").withWeight(20).setCount([2, 5]))
 })
 ```
 
@@ -76,9 +71,6 @@ We also want to remove `minecraft:bone` from our desert pyramids loot table. `re
 
 ```js
 LootJS.lootTables((event) => {
-    event
-        .getLootTable("minecraft:chests/desert_pyramid")
-        .firstPool()
-        .removeItem("minecraft:bone")
+    event.getLootTable("minecraft:chests/desert_pyramid").firstPool().removeItem("minecraft:bone")
 })
 ```

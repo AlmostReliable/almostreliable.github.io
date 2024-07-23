@@ -72,11 +72,7 @@ Applies a bonus based on the binomial distribution, where `n = enchantmentLevel 
     -   `LootFunction.applyBinomialDistributionBonus(enchantment, p: number, extra: number)`
 
 ```js
-LootEntry.of("minecraft:emerald_ore").applyBinomialDistributionBonus(
-    "minecraft:fortune",
-    0.2,
-    3
-)
+LootEntry.of("minecraft:emerald_ore").applyBinomialDistributionBonus("minecraft:fortune", 0.2, 3)
 ```
 
 ## `applyEnchantmentBonus`
@@ -94,10 +90,7 @@ LootEntry.of("minecraft:emerald_ore").applyEnchantmentBonus([2, 5])
 ```
 
 ```js
-LootEntry.of("minecraft:emerald_ore").applyEnchantmentBonus(
-    "minecraft:fortune",
-    [2, 5]
-)
+LootEntry.of("minecraft:emerald_ore").applyEnchantmentBonus("minecraft:fortune", [2, 5])
 ```
 
 ## `setCount`
@@ -155,9 +148,7 @@ LootEntry.of("minecraft:emerald_ore").setCustomData({ someCustomStuff: true })
     -   `LootFunction.setName(name: Component)`
 
 ```js
-LootEntry.of("minecraft:emerald_ore").setName(
-    Component.translatable("item.minecraft.emerald_ore")
-)
+LootEntry.of("minecraft:emerald_ore").setName(Component.translatable("item.minecraft.emerald_ore"))
 ```
 
 ```js
@@ -177,10 +168,7 @@ LootEntry.of("minecraft:emerald_ore").enchantRandomly()
 ```
 
 ```js
-LootEntry.of("minecraft:emerald_ore").enchantRandomly([
-    "minecraft:fortune",
-    "minecraft:unbreaking",
-])
+LootEntry.of("minecraft:emerald_ore").enchantRandomly(["minecraft:fortune", "minecraft:unbreaking"])
 ```
 
 ## `enchantWithLevels`

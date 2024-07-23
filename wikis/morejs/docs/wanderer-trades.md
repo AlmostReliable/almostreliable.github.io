@@ -12,7 +12,7 @@ Event can be used by using `MoreJS.wandererTrades((event) => {...})`
 -   `.addTrade(level: number, trade: Trade)`
 -   `.addCustomTrade(level: number, (offer, entity, random) => {})`
 -   `.removeTrade(filter: TradeFilter)`
-    - Allows better control over trade removal. See [example](#tradefilter) for usage.
+    -   Allows better control over trade removal. See [example](#tradefilter) for usage.
 -   `.removeVanillaTypedTrades(level: number | Range)`
 -   `.removeVanillaTypedTrades()`
 -   `.removeModdedTypedTrades(level: number | Range)`

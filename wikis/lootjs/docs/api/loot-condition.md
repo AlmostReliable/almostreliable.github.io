@@ -19,9 +19,7 @@ LootEntry.of("minecraft:diamond").matchTool("#c:tools")
 
 ```js
 LootEntry.of("minecraft:diamond").matchTool(
-    ItemFilter.tag("c:tools").and(
-        ItemFilter.hasEnchantment("minecraft:fortune", 3)
-    )
+    ItemFilter.tag("c:tools").and(ItemFilter.hasEnchantment("minecraft:fortune", 3))
 )
 ```
 
@@ -149,10 +147,7 @@ Passes with probability picked from a list of probabilities, indexed by enchantm
     -   `LootCondition.randomTableBonus(enchantment: Enchantment, probabilities: number[])`
 
 ```js
-LootEntry.of("minecraft:diamond").randomTableBonus(
-    "minecraft:fortune",
-    [0, 0.33, 0.66, 1.0]
-)
+LootEntry.of("minecraft:diamond").randomTableBonus("minecraft:fortune", [0, 0.33, 0.66, 1.0])
 ```
 
 ## `randomChanceWithEnchantment`
@@ -206,10 +201,7 @@ If `exact` is set to `true`, it will check if the player is inside the structure
     -   `LootCondition.matchStructure(structure: string | string[] | tag, exact: boolean)`
 
 ```js
-LootEntry.of("minecraft:diamond").matchStructure(
-    ["minecraft:stronghold", "minecraft:village"],
-    false
-)
+LootEntry.of("minecraft:diamond").matchStructure(["minecraft:stronghold", "minecraft:village"], false)
 ```
 
 ## `isLightLevel`
@@ -253,9 +245,7 @@ Matches against the entity that died, opened the chest or destroyed the block.
     -   `LootCondition.matchEntity(predicate: EntityPredicate)`
 
 ```js
-LootEntry.of("minecraft:diamond").matchEntity(
-    Predicates.entity().isCrouching(true)
-)
+LootEntry.of("minecraft:diamond").matchEntity(Predicates.entity().isCrouching(true))
 ```
 
 ## `matchDirectAttacker`
@@ -267,9 +257,7 @@ Matches against the direct entity which caused the death, e.g. the arrow entity,
     -   `LootCondition.matchDirectAttacker(predicate: EntityPredicate)`
 
 ```js
-LootEntry.of("minecraft:diamond").matchDirectAttacker(
-    Predicates.entity().isCrouching(true)
-)
+LootEntry.of("minecraft:diamond").matchDirectAttacker(Predicates.entity().isCrouching(true))
 ```
 
 ## `matchAttacker`
@@ -281,9 +269,7 @@ Matches against the entity which caused the death.
     -   `LootCondition.matchAttacker(predicate: EntityPredicate)`
 
 ```js
-LootEntry.of("minecraft:diamond").matchAttacker(
-    Predicates.entity().isCrouching(true)
-)
+LootEntry.of("minecraft:diamond").matchAttacker(Predicates.entity().isCrouching(true))
 ```
 
 ## `matchPlayer`
@@ -295,9 +281,7 @@ Matches against the player. If a player kills another player, it will check agai
     -   `LootCondition.matchPlayer(predicate: EntityPredicate)`
 
 ```js
-LootEntry.of("minecraft:diamond").matchPlayer(
-    Predicates.entity().isCrouching(true)
-)
+LootEntry.of("minecraft:diamond").matchPlayer(Predicates.entity().isCrouching(true))
 ```
 
 ## `matchPlayerCustom`

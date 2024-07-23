@@ -11,9 +11,7 @@ Besides actions you can also apply any [loot condition](/api/loot-condition) and
 
 ```js
 LootJS.modifiers((event) => {
-    event
-        .addTableModifier("minecraft:chests/simple_dungeon")
-        .addLoot("minecraft:gunpowder")
+    event.addTableModifier("minecraft:chests/simple_dungeon").addLoot("minecraft:gunpowder")
 })
 ```
 
@@ -50,9 +48,7 @@ LootJS.modifiers((event) => {
      */
     const stickWhenFortune = LootEntry.of("minecraft:stick")
         .applyOreBonus("minecraft:fortune")
-        .when((c) =>
-            c.matchMainHand(ItemFilter.hasEnchantment("minecraft:fortune"))
-        )
+        .when((c) => c.matchMainHand(ItemFilter.hasEnchantment("minecraft:fortune")))
 
     /**
      * Second loot entry with a condition. Will drop if the player has silk touch and the first entry doesn't match.
@@ -104,9 +100,7 @@ LootJS.modifiers((event) => {
     /**
      * Random chance is 0 so no diamond will ever drop. Just to show, that it will skip all other entries.
      */
-    const diamondNoDrop = LootEntry.of("minecraft:diamond").when((c) =>
-        c.randomChance(0.0)
-    )
+    const diamondNoDrop = LootEntry.of("minecraft:diamond").when((c) => c.randomChance(0.0))
 
     /**
      * No conditions just an item, but this will not drop, because the previous entry failed.
@@ -116,13 +110,7 @@ LootJS.modifiers((event) => {
     event
         .addBlockLootModifier("minecraft:coal_ore")
         .removeLoot(Ingredient.all)
-        .addSequenceLoot(
-            stickWhenFortune,
-            appleWhenEfficiency,
-            flint,
-            diamondNoDrop,
-            ironIngot
-        )
+        .addSequenceLoot(stickWhenFortune, appleWhenEfficiency, flint, diamondNoDrop, ironIngot)
 })
 ```
 
@@ -135,9 +123,7 @@ Remove all `items` which matches the given [ItemFilter].
 
 ```js
 LootJS.modifiers((event) => {
-    event
-        .addTableModifier("minecraft:chests/simple_dungeon")
-        .removeLoot("minecraft:string")
+    event.addTableModifier("minecraft:chests/simple_dungeon").removeLoot("minecraft:string")
 })
 ```
 
@@ -242,11 +228,9 @@ Creates a new nested loot modifier. You can also pre-filter it, so you can only 
 
 ```js
 LootJS.modifiers((event) => {
-    event
-        .addTableModifier("minecraft:chests/simple_dungeon")
-        .group((modifier) => {
-            // Work with the modifier
-        })
+    event.addTableModifier("minecraft:chests/simple_dungeon").group((modifier) => {
+        // Work with the modifier
+    })
 })
 ```
 

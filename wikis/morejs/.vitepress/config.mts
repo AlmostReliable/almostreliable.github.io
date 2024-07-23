@@ -10,11 +10,17 @@ export default defineConfig({
                 items: [{ text: "Event Overview", link: "/" }],
             },
             {
-                text: "Villager Trades",
+                text: "Events",
                 items: [
-                    { text: "Understanding trades", link: "/trades" },
-                    { text: "Add trades", link: "/trades/add.md" },
-                    { text: "Remove trades", link: "/trades/remove.md" },
+                    {
+                        text: "Trading",
+                        items: [
+                            { text: "Understanding trades", link: "/understanding-trades" },
+                            { text: "Villager trades", link: "/villager-trades" },
+                            { text: "Wanderer trades", link: "/wanderer-trades" },
+                            { text: "Update offer", link: "update-offer" },
+                        ],
+                    },
                 ],
             },
         ],

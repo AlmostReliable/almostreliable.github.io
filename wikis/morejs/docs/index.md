@@ -5,9 +5,7 @@
 -   `villagerTrades`
 -   `wandererTrades`
 -   `playerStartTrading`
--   `updateAbstractVillagerOffers`
--   `updateVillagerOffers`
--   `updateWandererOffers`
+-   `updateOffer`
 -   `isEnchantable`
 -   `playerEnchant`
 -   `enchantmentTableChanged`

@@ -2,6 +2,7 @@
 import { h } from "vue"
 import { useRoute, useRouter, type Theme } from "vitepress"
 import DefaultTheme from "vitepress/theme"
+import "./default-style.css"
 import "./style.css"
 
 export default {

@@ -8,15 +8,15 @@ Event can be used by using `MoreJS.wandererTrades((event) => {...})`
 
 ## Methods
 
--   `.addTrade(level: number, input: Item | Item[], output: Item)`
--   `.addTrade(level: number, trade: Trade)`
--   `.addCustomTrade(level: number, (offer, entity, random) => {})`
--   `.removeTrade(filter: TradeFilter)`
+-   `addTrade(level: number, input: Item | Item[], output: Item)`
+-   `addTrade(level: number, trade: Trade)`
+-   `addCustomTrade(level: number, (offer, entity, random) => {})`
+-   `removeTrade(filter: TradeFilter)`
     -   Allows better control over trade removal. See [example](#tradefilter) for usage.
--   `.removeVanillaTypedTrades(level: number | Range)`
--   `.removeVanillaTypedTrades()`
--   `.removeModdedTypedTrades(level: number | Range)`
--   `.removeModdedTypedTrades()`
+-   `removeVanillaTypedTrades(level: number | Range)`
+-   `removeVanillaTypedTrades()`
+-   `removeModdedTypedTrades(level: number | Range)`
+-   `removeModdedTypedTrades()`
 
 ## Usage
 

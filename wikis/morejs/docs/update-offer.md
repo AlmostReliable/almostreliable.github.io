@@ -8,31 +8,31 @@ Event can be used by using `MoreJS.updateOffer((event) => {...})`
 
 ## Methods
 
--   `.getEntity()`
--   `.isVillager()`
--   `.isWanderer()`
--   `.isUnknownTrader()`
+-   `getEntity()`
+-   `isVillager()`
+-   `isWanderer()`
+-   `isUnknownTrader()`
     -   Useful for custom traders from mods
--   `.getVillagerData()`
+-   `getVillagerData()`
     -   Will return `null` if entity is wanderer or some custom trader
--   `.isProfession(profession: string)`
--   `.getProfession()`
+-   `isProfession(profession: string)`
+-   `getProfession()`
     -   Return the profession of the trader. If no profession exist return `minecraft:none`
--   `.getVillagerLevel()`
+-   `getVillagerLevel()`
     -   Return `-1` if trader doesn't have a level
--   `.getAllOffers()`
+-   `getAllOffers()`
     -   Returns a mutable list of all current existing offers from the trader
--   `.getOffer()`
+-   `getOffer()`
     -   Returns the offer which will be added to the trader
--   `.setOffer(offer: Offer)`
--   `.getUsedTrades()`
+-   `setOffer(offer: Offer)`
+-   `getUsedTrades()`
     -   Get all trades which are currently used to create offers for the entity.
--   `.getRandomOffer()` or `.getRandomOffer(trades: Trade[])`
+-   `getRandomOffer()` or `getRandomOffer(trades: Trade[])`
     -   Create a random offer from given trades (If no trades provided, `getUsedTrades` is used automatically). This offer will not be automatically added to the trader!
--   `.getVillagerTrades(profession: string)`
--   `.getVillagerTrades(profession: string, int level)`
--   `.getWandererTrades(int level)`
--   `.getRandom()`
+-   `getVillagerTrades(profession: string)`
+-   `getVillagerTrades(profession: string, int level)`
+-   `getWandererTrades(int level)`
+-   `getRandom()`
 
 ## Usage
 

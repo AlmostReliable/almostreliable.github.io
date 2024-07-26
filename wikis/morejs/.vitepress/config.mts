@@ -21,8 +21,25 @@ export default defineConfig({
                             { text: "Update offer", link: "update-offer" },
                         ],
                     },
+                    {
+                        text: "Potion brewing",
+                        link: "potion-brewing",
+                    }
                 ],
             },
+            {
+                text: "Utils",
+                items: [
+                    {
+                        text: "VillagerUtils",
+                        link: "villager-utils",
+                    },
+                    {
+                        text: "MoreUtils",
+                        link: "more-utils",
+                    }
+                ]
+            }
         ],
     },
 })

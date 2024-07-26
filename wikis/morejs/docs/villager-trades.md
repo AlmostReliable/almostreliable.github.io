@@ -8,17 +8,17 @@ Event can be used by using `MoreJS.villagerTrades((event) => {...})`
 
 ## Methods
 
--   `.addTrade(profession: string, level: number, input: Item | Item[], output: Item)`
--   `.addTrade(profession: string, level: number, trade: Trade)`
--   `.addCustomTrade(profession: string, level: number, (offer, entity, random) => {})`
--   `.removeTrade(filter: TradeFilter)`
+-   `addTrade(profession: string, level: number, input: Item | Item[], output: Item)`
+-   `addTrade(profession: string, level: number, trade: Trade)`
+-   `addCustomTrade(profession: string, level: number, (offer, entity, random) => {})`
+-   `removeTrade(filter: TradeFilter)`
     -   Allows better control over trade removal. See [example](#tradefilter) for usage.
--   `.removeVanillaTypedTrades(profession: string | string[], level: number | Range)`
--   `.removeVanillaTypedTrades(profession: string | string[])`
--   `.removeVanillaTypedTrades()`
--   `.removeModdedTypedTrades(professions: string | string[], level: number | Range)`
--   `.removeModdedTypedTrades(professions: string | string[])`
--   `.removeModdedTypedTrades()`
+-   `removeVanillaTypedTrades(profession: string | string[], level: number | Range)`
+-   `removeVanillaTypedTrades(profession: string | string[])`
+-   `removeVanillaTypedTrades()`
+-   `removeModdedTypedTrades(professions: string | string[], level: number | Range)`
+-   `removeModdedTypedTrades(professions: string | string[])`
+-   `removeModdedTypedTrades()`
 
 ## Usage
 

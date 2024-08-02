@@ -138,13 +138,12 @@ LootJS.lootTables((event) => {
 })
 ```
 
-## `addEntry` & `addItem`
+## `addEntry`
 
 Adds a new `LootEntry` to the pool. See [`LootEntry`](/api/loot-entry) for more information.
 
 -   Syntax:
     -   `.addEntry(entry: LootEntry)`
-    -   `.addItem(item: Item)`
     -   `.addCustomEntry(json)`
 
 ```js
@@ -159,14 +158,6 @@ LootJS.lootTables((event) => {
 ```js
 LootJS.lootTables((event) => {
     event.getLootTable("minecraft:chests/simple_dungeon").firstPool().addEntry("minecraft:apple") // Loot JS will automatically convert it.
-})
-```
-
-Or you can directly use `addItem`
-
-```js
-LootJS.lootTables((event) => {
-    event.getLootTable("minecraft:chests/simple_dungeon").firstPool().addItem("minecraft:apple")
 })
 ```
 

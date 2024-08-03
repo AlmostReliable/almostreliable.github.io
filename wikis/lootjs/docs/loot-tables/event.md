@@ -1,216 +1,257 @@
 # Loot Table Event
 
-LootJS let's you modify or create loot tables through the `LootJS.lootTables` event. With this event you directly modify the loot tables, which are loaded through data packs.
+This event allows you to modify loot tables directly. To read more about the differences between the two main events, check out the [event difference page](/difference).
 
-The event also loads after other mods may inject their custom loot tables into vanilla ones, so you will be able to remove or update these changes.
+The event fires after other mods inject their loot changes into vanilla tables allowing you to remove or update them.
 
-## `getLootTableIds`
+## Loot Tables
 
-Returns an array of all loot table ids. Can also be filtered.
+### `getLootTableIds`
+
+Returns an array of all available loot table ids. Can optionally be filtered.
 
 -   Syntax:
-    -   `.getLootTableIds()`
-    -   `.getLootTableIds(filter)`
+    -   `getLootTableIds()`
+    -   `getLootTableIds(filter: string | regex)`
 
-```js
-LootJS.lootTables((event) => {
+::: code-group
+
+```js [Without Filter]
+LootJS.lootTables(event => {
     let ids = event.getLootTableIds()
 })
 ```
 
-It's also possible to filter them through regex:
-
-```js
-LootJS.lootTables((event) => {
+```js [With Filter]
+LootJS.lootTables(event => {
     let ids = event.getLootTableIds(/.*chests\/.*/)
 })
 ```
 
-## `hasLootTable`
+:::
 
-Will return `true` if the loot table with the given id exists.
+### `getLootTable`
 
--   Syntax:
-    -   `.hasLootTable(id)`
-
-```js
-LootJS.lootTables((event) => {
-    let exists = event.hasLootTable("minecraft:chests/simple_dungeon")
-})
-```
-
-## `getLootTable`
-
-Returns a loot table by the given id which can be modified. Will return `null` if no loot table found.
+Returns a [loot table] by the given id or `null` if no loot table is found.
 
 -   Syntax:
-    -   `.getLootTable(id)`
+    -   `getLootTable(id: string)`
 
 ```js
-LootJS.lootTables((event) => {
+LootJS.lootTables(event => {
     let table = event.getLootTable("minecraft:chests/simple_dungeon")
 })
 ```
 
-## `modifyLootTables`
+### `hasLootTable`
 
-Modify all matching loot tables by given filter.
+Returns whether the loot table with the given id exists.
 
 -   Syntax:
-    -   `.modifyLootTables(filter)`
+    -   `hasLootTable(id: string)`
 
 ```js
-LootJS.lootTables((event) => {
-    event.modifyLootTables(/.*chests\/.*/).createPool((pool) => {
-        // editing the pool
+LootJS.lootTables(event => {
+    let exists = event.hasLootTable("minecraft:chests/simple_dungeon")
+})
+```
+
+### `clearLootTables`
+
+Clears all loot tables matching the given filter.
+
+Alternatively, you can call `.clear()` directly on the loot table object obtained from `getLootTable`.
+
+-   Syntax:
+    -   `clearLootTables(filter: string | regex)`
+
+```js
+LootJS.lootTables(event => {
+    event.clearLootTables(/.*chests.*/)
+})
+```
+
+### `create`
+
+Creates a new [loot table].
+
+-   Syntax:
+    -   `create(id: string, type?: LootType)`, _defaults to `LootType.CHEST` if not provided_
+
+```js
+LootJS.lootTables(event => {
+    event.create("lootjs:table1", LootType.ENTITY).createPool(pool => {
+        // edit the pool
+    })
+
+    // uses default type
+    event.create("lootjs:table2").createPool(pool => {
+        // edit the pool
     })
 })
 ```
 
-## `getBlockTable`
+### `modifyLootTables`
 
-Returns a loot table for the given block which can be modified. Will return `null` if no loot table found.
+Returns all [loot table]s matching the given filters as a compound. The compound allows you to modify all loot tables at once.
+
+Alternatively, you can filter by loot table type. Loot table types are defined under the `type` key within the table JSON. As an example, the loot table `minecraft:blocks/bricks` in the JSON below uses `block` as its type in line 2.
+
+```json
+{
+    "type": "minecraft:block", // [!code focus]
+    "pools": [
+        {
+            // ...
+        }
+    ],
+    "random_sequence": "minecraft:blocks/bricks"
+}
+```
 
 -   Syntax:
-    -   `.getBlockTable(block)`
+    -   `modifyLootTables(filter: LootTableFilter | LootTableFilter[])`
+
+A `LootTableFilter` can be a string, regex, or a `LootType`.
+
+```ts
+enum LootType {
+    CHEST,
+    BLOCK,
+    ENTITY,
+    EQUIPMENT,
+    FISHING,
+    ARCHAEOLOGY,
+    GIFT,
+    VAULT,
+    SHEARING,
+    PIGLIN_BARTER,
+}
+```
+
+::: code-group
+
+```js [Single Filter]
+LootJS.lootTables(event => {
+    event.modifyLootTables(/.*chests\/.*/).createPool(pool => {
+        // edit the pool
+    })
+
+    event.modifyLootTables(LootType.CHEST).createPool(pool => {
+        // edit the pool
+    })
+})
+```
+
+```js [Multiple Filters]
+LootJS.lootTables(event => {
+    event.modifyLootTables(LootType.CHEST, "minecraft:gameplay/fishing").createPool(pool => {
+        // edit the pool
+    })
+
+    event.modifyLootTables(LootType.CHEST, LootType.ENTITY).createPool(pool => {
+        // edit the pool
+    })
+})
+```
+
+:::
+
+## Block Loot Tables
+
+### `getBlockTable`
+
+Returns a [loot table] for the given block or `null` if no loot table is found.
+
+-   Syntax:
+    -   `getBlockTable(block: string | Block)`
 
 ```js
-LootJS.lootTables((event) => {
+LootJS.lootTables(event => {
     let table = event.getBlockTable("minecraft:diamond_ore")
 })
 ```
 
-## `modifyBlockTables`
+### `modifyBlockTables`
 
-Modify all matching block loot by given filter.
+Returns all [loot table]s matching the given blocks as a compound. The compound allows you to modify all loot tables at once.
+
+> [!IMPORTANT]
+> Because of the load order of Minecraft since **1.21**, loot tables are loaded before tags exist. It's not possible to use `modifyBlockTables` with a tag.
+>
+> If you need to modify by tags, consider using the [loot modifier event].
 
 -   Syntax:
-    -   `.modifyBlockTables(filter: Block | Block[])`
+    -   `modifyBlockTables(filter: string | string[] | Block | Block[])`
 
-```js
-LootJS.lootTables((event) => {
-    event.modifyBlockTables("minecraft:diamond_ore").createPool((pool) => {
-        // editing the pool
+::: code-group
+
+```js [Single Filter]
+LootJS.lootTables(event => {
+    event.modifyBlockTables("minecraft:diamond_ore").createPool(pool => {
+        // edit the pool
     })
 })
 ```
 
-```js
-LootJS.lootTables((event) => {
-    event.modifyBlockTables(["minecraft:diamond_ore", "minecraft:emerald_ore"]).createPool((pool) => {
-        // editing the pool
+```js [Multiple Filters]
+LootJS.lootTables(event => {
+    event.modifyBlockTables("minecraft:diamond_ore", "minecraft:emerald_ore").createPool(pool => {
+        // edit the pool
     })
 })
 ```
 
-::: info
-Because of the load order inside minecraft, since **1.21** loot tables are loaded before tags even exist. So it's not possible to use `modifyBlockTables` with a tag.
-
-If you really need to modify by tags, consider to use the loot modifier event.
 :::
 
-## `getEntityTable`
+## Entity Loot Tables
 
-Returns a loot table for the given entity which can be modified. Will return `null` if no loot table found.
+### `getEntityTable`
+
+Returns a [loot table] for the given entity or `null` if no loot table is found.
 
 -   Syntax:
-    -   `.getEntityTable(entity: EntityType)`
+    -   `getEntityTable(entity: string | EntityType)`
 
 ```js
-LootJS.lootTables((event) => {
+LootJS.lootTables(event => {
     let table = event.getEntityTable("minecraft:sheep")
 })
 ```
 
-## `modifyEntityTables`
+### `modifyEntityTables`
 
-Modify all matching entity loot by given filter.
+Returns all [loot table]s matching the given entities as a compound. The compound allows you to modify all loot tables at once.
+
+> [!IMPORTANT]
+> Because of the load order of Minecraft since **1.21**, loot tables are loaded before tags exist. It's not possible to use `modifyEntityTables` with a tag.
+>
+> If you need to modify by tags, consider using the [loot modifier event].
 
 -   Syntax:
-    -   `.modifyEntityTables(filter: EntityType | EntityType[])`
--   Example:
+    -   `modifyEntityTables(filter: string | string[] | EntityType | EntityType[])`
 
-```js
-LootJS.lootTables((event) => {
-    event.modifyEntityTables("minecraft:sheep").createPool((pool) => {
-        // editing the pool
+::: code-group
+
+```js [Single Filter]
+LootJS.lootTables(event => {
+    event.modifyEntityTables("minecraft:sheep").createPool(pool => {
+        // edit the pool
     })
 })
 ```
 
-## `modifyLootTypeTables`
-
-Modify all matching loot tables by given type. Loot tables mostly have a type e.g the loot table `minecraft:blocks/bricks` uses `block` as type in line 2.
-
-```json{2}
-{
-  "type": "minecraft:block",
-  "pools": [
-    {
-      // ...
-    }
-  ],
-  "random_sequence": "minecraft:blocks/bricks"
-}
-```
-
-Valid loot types are `chest`, `block`, `entity`, `fishing`, `archaeology`, `gift`, `vault`, `shearing`, `piglin_barter`
-
--   Syntax:
-    -   `.modifyLootTypeTables(type: LootType | LootType[])`
-
-```js
-LootJS.lootTables((event) => {
-    event.modifyLootTypeTables(LootType.CHEST).createPool((pool) => {
-        // editing the pool
-    })
-
-    // As kubejs automatically type wraps Enums, we can just use the name of the enum
-    event.modifyLootTypeTables("chest").createPool((pool) => {
-        // editing the pool
-    })
-
-    // If we want to match multiple types, we can use an array
-    event.modifyLootTypeTables(LootType.CHEST, LootType.ENTITY).createPool((pool) => {
-        // editing the pool
+```js [Multiple Filters]
+LootJS.lootTables(event => {
+    event.modifyEntityTables("minecraft:sheep", "minecraft:pig").createPool(pool => {
+        // edit the pool
     })
 })
 ```
 
-## `clearLootTables`
-
-Clear all loot tables matching the given filter.
-
--   Syntax:
-    -   `.clearLootTables(filter: string | regex)`
-    -
-
-```js
-LootJS.lootTables((event) => {
-    event.clearLootTables(/.*chests/.*);
-});
-```
-
-::: info
-Alternative to `clearLootTable` we can call `.clear()` directly on our `LootTable`.
 :::
 
-## `create`
+<!-- Links -->
 
-Create a new loot table.
-
--   Syntax:
-    -   `.create(id: string, type?: LootType)`_, default to `LootType.CHEST` if not provided_
-
-```js
-LootJS.lootTables((event) => {
-    event.create("lootjs:table1", LootType.CHEST).createPool((pool) => {
-        // editing the pool
-    })
-
-    // We can skip the type argument if we want to use the default
-    event.create("lootjs:table2").createPool((pool) => {
-        // editing the pool
-    })
-})
-```
+[loot table]: /api/loot-table
+[loot modifier event]: /loot-modifiers/event

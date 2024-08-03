@@ -1,13 +1,13 @@
-# `LootJS.lootTables` or `LootJS.modifiers`
+# `LootJS.lootTables` and `LootJS.modifiers`
 
-LootJS offers two core main events, `LootJS.lootTables()` and `LootJS.modifiers()`.
+LootJS offers the two main events `LootJS.lootTables()` and `LootJS.modifiers()`.
 
-# `LootJS.lootTables()`:
+## `LootJS.lootTables()`
 
-Directly modifies the loot tables, which are loaded through datapacks. This allows to update the loot table without losing any information about rolls, conditions, loot functions etc. You can loop over different parts of the loot table and modify them. As `LootJS.lootTables()` modifies the loot tables directly, changes are reflected at recipe viewers mods such as [JER](https://www.curseforge.com/minecraft/mc-mods/just-enough-resources-jer) or [RER](https://www.curseforge.com/minecraft/mc-mods/roughly-enough-resources).
+This event directly modifies the loot tables which are loaded through datapacks. This allows to update the loot table without losing any information about rolls, conditions, loot functions, etc. You can loop over different parts of the loot table and modify them. Because of direct modifications, changes are reflected in recipe viewer mods such as [JER](https://www.curseforge.com/minecraft/mc-mods/just-enough-resources-jer) or [RER](https://www.curseforge.com/minecraft/mc-mods/roughly-enough-resources).
 
-# `LootJS.modifiers()`:
+## `LootJS.modifiers()`
 
-Loot modifiers are dynamically invoked after a loot table is rolled. They don't hold any information on how the loot table is structures, modifiers only know the items that will be dropped. `LootJS.modifiers()` allows to directly modify the items that will be dropped.
+The modifications specified in this event are dynamically invoked after a loot table is rolled. They don't hold any information on how the loot table is structured. Modifiers only information about the items that will be dropped. The event allows to modify the dropped items directly.
 
-Another thing is the [Global Loot Modifier](https://docs.neoforged.net/docs/resources/server/glm/) system from NeoForge which allows mods to dynamically adds loot, when a specific loot table is rolled. This information does not exist inside a loot table, so using `LootJS.lootTables()` can't catch them. `LootJS.modifiers()` allows to modify them, as it runs after the NeoForge hook runs.
+NeoForge provides the [Global Loot Modifier](https://docs.neoforged.net/docs/resources/server/loottables/glm/) system which allows mods to dynamically add loot when a specific loot table is rolled. This information does not exist inside a loot table meaning the `LootJS.lootTables()` event can't track any information about them. Instead, they can be modified with the `LootJS.modifiers()` event as it runs after the NeoForge hook.

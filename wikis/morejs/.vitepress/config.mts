@@ -24,7 +24,7 @@ export default defineConfig({
                     {
                         text: "Potion brewing",
                         link: "potion-brewing",
-                    }
+                    },
                 ],
             },
             {
@@ -37,9 +37,9 @@ export default defineConfig({
                     {
                         text: "MoreUtils",
                         link: "more-utils",
-                    }
-                ]
-            }
+                    },
+                ],
+            },
         ],
     },
 })

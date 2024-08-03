@@ -6,7 +6,7 @@ export default defineConfig({
     themeConfig: {
         sidebar: [
             {
-                text: "Intro",
+                text: "Introduction",
                 items: [
                     { text: "Getting Started", link: "/" },
                     { text: "Event difference", link: "/difference" },

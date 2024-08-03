@@ -32,9 +32,9 @@ Creates a custom item filter. You can use it to create your own item filters.
     -   `ItemFilter.custom(filter: (item: ItemStack) => boolean)`
 
 ```js
-ItemFilter.custom((item) => item.id === "minecraft:apple")
+ItemFilter.custom(item => item.id === "minecraft:apple")
 
-ItemFilter.custom((item) => {
+ItemFilter.custom(item => {
     if (item.hasTag("#c:ores")) {
         return true
     }

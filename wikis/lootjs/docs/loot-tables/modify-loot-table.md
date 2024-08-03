@@ -11,7 +11,7 @@ We will use the `minecraft:chests/desert_pyramide` loot table as an example. You
 Let's add a simple `apple` to our chest loot.
 
 ```js
-LootJS.lootTables((event) => {
+LootJS.lootTables(event => {
     event.getLootTable("minecraft:chests/desert_pyramid").firstPool().addEntry("minecraft:apple")
 })
 ```
@@ -23,7 +23,7 @@ Note that we use `firstPool()` here. We will use this a lot to always get the fi
 But what if we want to add the apple with a specific weight? For this we can simply use [`LootEntry`](/api/loot-entry), which has the functionality to set the weight.
 
 ```js
-LootJS.lootTables((event) => {
+LootJS.lootTables(event => {
     event
         .getLootTable("minecraft:chests/desert_pyramid")
         .firstPool()
@@ -36,7 +36,7 @@ LootJS.lootTables((event) => {
 Let's also change the quantity of the apple, so it will drop 2 - 5 apples each time an apple is rolled. We can use the [`setCount`](/api/loot-entry#setcount) function.
 
 ```js
-LootJS.lootTables((event) => {
+LootJS.lootTables(event => {
     event
         .getLootTable("minecraft:chests/desert_pyramid")
         .firstPool()
@@ -49,11 +49,11 @@ LootJS.lootTables((event) => {
 Now we want to modify an existing entry inside our loot table. You can see that diamonds have a weight of 5, let's change it to 1 to make it less likely to be rolled.
 
 ```js
-LootJS.lootTables((event) => {
+LootJS.lootTables(event => {
     event
         .getLootTable("minecraft:chests/desert_pyramid")
         .firstPool()
-        .modifyItem((itemEntry) => {
+        .modifyItem(itemEntry => {
             if (itemEntry.item.id === "minecraft:diamond") {
                 itemEntry.setWeight(1)
             }
@@ -70,7 +70,7 @@ You can see that we return `itemEntry` again. This is required because `modify` 
 We also want to remove `minecraft:bone` from our desert pyramids loot table. `removeItem` takes an [ItemFilter](/api/item-filter) as an argument, in our case we just want to remove bones, so we can simply use the item id as argument.
 
 ```js
-LootJS.lootTables((event) => {
+LootJS.lootTables(event => {
     event.getLootTable("minecraft:chests/desert_pyramid").firstPool().removeItem("minecraft:bone")
 })
 ```

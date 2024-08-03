@@ -34,14 +34,14 @@
 ### Treasure map trades
 
 ```js
-MoreJS.villagerTrades((event) => {
+MoreJS.villagerTrades(event => {
     const trade = VillagerUtils.createStructureMapTrade("minecraft:diamond", "minecraft:stronghold")
     event.addTrade("minecraft:cartographer", 1, trade)
 })
 ```
 
 ```js
-MoreJS.villagerTrades((event) => {
+MoreJS.villagerTrades(event => {
     const trade = VillagerUtils.createStructureMapTrade(
         ["minecraft:diamond", "minecraft:paper"],
         "minecraft:stronghold"
@@ -53,7 +53,7 @@ MoreJS.villagerTrades((event) => {
 We can also use `#` to search for a tag. This works for structures and biomes.
 
 ```js
-MoreJS.villagerTrades((event) => {
+MoreJS.villagerTrades(event => {
     const trade = VillagerUtils.createBiomeMapTrade("5x minecraft:emerald", "#minecraft:is_forest")
     event.addTrade("minecraft:cartographer", 1, trade)
 })
@@ -62,7 +62,7 @@ MoreJS.villagerTrades((event) => {
 It's also possible to create a custom map trade by providing your own block pos. This example will get a random overworld biome and search for the position of the biome.
 
 ```js
-MoreJS.villagerTrades((event) => {
+MoreJS.villagerTrades(event => {
     const trade = VillagerUtils.createCustomMapTrade(
         ["10x minecraft:diamond", "minecraft:paper"],
         (level, entity) => {
@@ -82,7 +82,7 @@ MoreJS.villagerTrades((event) => {
 When creating a map trade we can further modify it. You can find possible map markers [here](https://minecraft.wiki/w/Map#Map_icons)
 
 ```js
-MoreJS.villagerTrades((event) => {
+MoreJS.villagerTrades(event => {
     const trade = VillagerUtils.createBiomeMapTrade("5x minecraft:emerald", "#minecraft:is_forest")
         .displayName("Nearest forest")
         .marker("banner_orange")
@@ -98,7 +98,7 @@ MoreJS.villagerTrades((event) => {
 If no enchantments are provided the trade will use `#minecraft:on_traded_equipment` for the enchantments.
 
 ```js
-MoreJS.villagerTrades((event) => {
+MoreJS.villagerTrades(event => {
     const trade = VillagerUtils.createEnchantedItemTrade(
         "5x minecraft:emerald",
         "minecraft:diamond_pickaxe"
@@ -111,7 +111,7 @@ MoreJS.villagerTrades((event) => {
 We can also provide which enchantments we want.
 
 ```js
-MoreJS.villagerTrades((event) => {
+MoreJS.villagerTrades(event => {
     const trade = VillagerUtils.createEnchantedItemTrade(
         "5x minecraft:emerald",
         "minecraft:diamond_pickaxe",
@@ -123,7 +123,7 @@ MoreJS.villagerTrades((event) => {
 ```
 
 ```js
-MoreJS.villagerTrades((event) => {
+MoreJS.villagerTrades(event => {
     const trade = VillagerUtils.createEnchantedItemTrade(
         "5x minecraft:emerald",
         "minecraft:diamond_pickaxe",
@@ -139,7 +139,7 @@ MoreJS.villagerTrades((event) => {
 The enchantment trade will enchant the given item by a given level or levels. We can set them by `.levels()`. The default value is `[5, 20]` which is the same as vanilla uses.
 
 ```js
-MoreJS.villagerTrades((event) => {
+MoreJS.villagerTrades(event => {
     const trade = VillagerUtils.createEnchantedItemTrade(
         "5x minecraft:emerald",
         "minecraft:diamond_pickaxe"
@@ -152,7 +152,7 @@ MoreJS.villagerTrades((event) => {
 Or we can set them by `.levels([10, 30])` if we want a random range between the two values.
 
 ```js
-MoreJS.villagerTrades((event) => {
+MoreJS.villagerTrades(event => {
     const trade = VillagerUtils.createEnchantedItemTrade(
         "5x minecraft:emerald",
         "minecraft:diamond_pickaxe"

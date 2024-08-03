@@ -42,7 +42,7 @@ May return `null`, depending on the type of the loot table.
     -   `.entity`
 
 ```js
-LootJS.modifiers((event) => {
+LootJS.modifiers(event => {
     event.addTypeModifier("chest").customAction((context, loot) => {
         console.log(context.entity)
     })
@@ -58,7 +58,7 @@ May return `null`, depending on the type of the loot table.
     -   `.attackingEntity`
 
 ```js
-LootJS.modifiers((event) => {
+LootJS.modifiers(event => {
     event.addTypeModifier("entity").customAction((context, loot) => {
         console.log(context.attackingEntity)
     })
@@ -74,7 +74,7 @@ May return `null`, depending on the type of the loot table.
     -   `.damageSource`
 
 ```js
-LootJS.modifiers((event) => {
+LootJS.modifiers(event => {
     event.addTypeModifier("entity").customAction((context, loot) => {
         console.log(context.damageSource)
     })
@@ -88,7 +88,7 @@ LootJS.modifiers((event) => {
     -   `.tool`
 
 ```js
-LootJS.modifiers((event) => {
+LootJS.modifiers(event => {
     event.addTypeModifier("block").customAction((context, loot) => {
         console.log(context.tool)
     })

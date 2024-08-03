@@ -23,7 +23,7 @@ Removes all `LootEntry` of type `LootItemEntry`.
     -   `.removeItem(filter: ItemFilter, deepRemove: boolean)`
 
 ```js
-LootJS.lootTables((event) => {
+LootJS.lootTables(event => {
     event
         .getLootTable("minecraft:chests/simple_dungeon")
         .removeItem(ItemFilter.hasEnchantment("minecraft:fortune"))
@@ -33,7 +33,7 @@ LootJS.lootTables((event) => {
 We also can just use a simple item id. LootJS will automatically convert it into an `ItemFilter`.
 
 ```js
-LootJS.lootTables((event) => {
+LootJS.lootTables(event => {
     event.getLootTable("minecraft:chests/simple_dungeon").removeItem("minecraft:diamond")
 })
 ```
@@ -47,7 +47,7 @@ Removes all `LootEntry` of type `LootTagEntry`.
     -   `.removeTag(tag: string, deepRemove: boolean)`
 
 ```js
-LootJS.lootTables((event) => {
+LootJS.lootTables(event => {
     event.modifyLootTypeTables("chest").removeTag("#c:ores")
 })
 ```
@@ -63,7 +63,7 @@ Removes all `LootEntry` of type `TableReferenceLootEntry`.
 We remove junk from the fishing loot table, no one needs junk.
 
 ```js
-LootJS.lootTables((event) => {
+LootJS.lootTables(event => {
     event.getLootTable("minecraft:gameplay/fishing").removeReference("minecraft:gameplay/fishing/junk")
 })
 ```
@@ -77,9 +77,9 @@ Removes an entry through given filter. The filter has to **return** either `true
     -   `.removeEntry((entry) => { ... }, deepRemove: boolean)`
 
 ```js
-LootJS.lootTables((event) => {
+LootJS.lootTables(event => {
     // Let's remove all loot table reference entries
-    event.modifyLootTables(/.*/).removeEntry((entry) => entry.isReference())
+    event.modifyLootTables(/.*/).removeEntry(entry => entry.isReference())
 })
 ```
 
@@ -106,8 +106,8 @@ Modifies all loot entries. Requires to always **return** a loot entry again. You
     -   `.modifyEntry((entry: LootEntry) => { ... }, deepModify: boolean)`
 
 ```js
-LootJS.lootTables((event) => {
-    event.getLootTable("minecraft:chests/simple_dungeon").modifyEntry((entry) => {
+LootJS.lootTables(event => {
+    event.getLootTable("minecraft:chests/simple_dungeon").modifyEntry(entry => {
         if (entry.isItem() && entry.item.id === "minecraft:string") {
             entry.setCount([5, 12])
         }
@@ -126,8 +126,8 @@ Same as `modifyEntry` but will only iterates through `LootItemEntry`s.
     -   `.modifyItem((entry: LootItemEntry) => { ... })`
 
 ```js
-LootJS.lootTables((event) => {
-    event.getLootTable("minecraft:chests/simple_dungeon").modifyItem((itemEntry) => {
+LootJS.lootTables(event => {
+    event.getLootTable("minecraft:chests/simple_dungeon").modifyItem(itemEntry => {
         if (itemEntry.item.id === "minecraft:string") {
             itemEntry.setCount([5, 12])
         }

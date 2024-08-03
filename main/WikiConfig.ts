@@ -14,7 +14,7 @@ const jsonString = fs.readFileSync(path.resolve(__dirname, "../", "wikis.json"),
 const json = schema.parse(JSON.parse(jsonString))
 const wikis: Map<string, WikiEntry> = new Map()
 
-json.wikis.forEach((wiki) => {
+json.wikis.forEach(wiki => {
     wikis.set(wiki.name, wiki as WikiEntry)
 })
 

@@ -46,7 +46,7 @@ interface TradeFilter {
 All properties are optional, so you don't have to check the `second` input for example. For `Range` you can simple pass an array with two numbers, e.g. `[0, 32]`.
 
 ```js
-MoreJS.villagerTrades((event) => {
+MoreJS.villagerTrades(event => {
     // This will remove the wheat trade from farmer level 1
     event.removeTrades({
         first: "#c:crops/wheat",
@@ -64,19 +64,19 @@ Calling `removeVanillaTypedTrades` may also remove trades added from mods, as lo
 :::
 
 ```js
-MoreJS.villagerTrades((event) => {
+MoreJS.villagerTrades(event => {
     event.removeVanillaTypedTrades("minecraft:farmer", 2)
 })
 ```
 
 ```js
-MoreJS.villagerTrades((event) => {
+MoreJS.villagerTrades(event => {
     event.removeVanillaTypedTrades(["minecraft:farmer", "minecraft:worker"], 1)
 })
 ```
 
 ```js
-MoreJS.villagerTrades((event) => {
+MoreJS.villagerTrades(event => {
     // Removes all vanilla trades from farmer and workers
     event.removeVanillaTypedTrades(["minecraft:farmer", "minecraft:worker"], [1, 5])
 })
@@ -85,13 +85,13 @@ MoreJS.villagerTrades((event) => {
 ### Add simple trade
 
 ```js
-MoreJS.villagerTrades((event) => {
+MoreJS.villagerTrades(event => {
     event.addTrade("minecraft:farmer", 2, Item.of("minecraft:diamond", 10), "minecraft:stick")
 })
 ```
 
 ```js
-MoreJS.villagerTrades((event) => {
+MoreJS.villagerTrades(event => {
     // We can use an array with two values when we want to have two inputs for the trade
     event.addTrade(
         "minecraft:farmer",
@@ -105,7 +105,7 @@ MoreJS.villagerTrades((event) => {
 We also can use `TradeItem` if we want to have a random range for the costs.
 
 ```js
-MoreJS.villagerTrades((event) => {
+MoreJS.villagerTrades(event => {
     // This will randomly pick the cost between 3 and 10
     event.addTrade("minecraft:farmer", 2, TradeItem.of("minecraft:diamond", 3, 10), "minecraft:stick")
 })
@@ -117,7 +117,7 @@ MoreJS has a util class to create some special trades, e.g. map trade, enchanted
 You can find all available trades under [`VillagerUtils`](/villager-utils).
 
 ```js
-MoreJS.villagerTrades((event) => {
+MoreJS.villagerTrades(event => {
     const jungleMapTrade = VillagerUtils.createBiomeMapTrade("minecraft:diamond", "minecraft:jungle")
 
     event.addTrade("minecraft:farmer", 1, jungleMapTrade)
@@ -127,7 +127,7 @@ MoreJS.villagerTrades((event) => {
 ### Add custom trade
 
 ```js
-MoreJS.villagerTrades((event) => {
+MoreJS.villagerTrades(event => {
     /**
      * - `offer`: The trade offer
      * - `entity`: The villager entity
@@ -167,7 +167,7 @@ interface Offer {
 ```
 
 ```js
-MoreJS.villagerTrades((event) => {
+MoreJS.villagerTrades(event => {
     event
         .addTrade("minecraft:farmer", 2, "minecraft:diamond", "minecraft:stick")
         .transform((offer, entity, random) => {

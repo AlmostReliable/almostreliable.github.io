@@ -22,7 +22,7 @@ Possible slots are: `"mainhand"`, `"offhand"`, `"head"`, `"chest"`, `"legs"`, `"
     -   `LootFunction.addAttributes(callback => {})`
 
 ```js
-LootEntry.of("minecraft:potion").addAttributes((attr) => {
+LootEntry.of("minecraft:potion").addAttributes(attr => {
     attr.simple("generic.max_health", 1)
     attr.simple(0.99, "generic.max_health", 2)
     attr.forSlots("generic.max_health", 3, [SLOT_MAINHAND])
@@ -191,7 +191,7 @@ LootEntry.of("minecraft:netherite_sword").enchantWithLevels([20, 39])
 The builder has a method `.withEnchantment(enchantment: id, level: NumberProvider)` you can use to apply enchantments.
 
 ```js
-LootEntry.of("minecraft:netherite_sword").enchant((builder) => {
+LootEntry.of("minecraft:netherite_sword").enchant(builder => {
     builder.withEnchantment("minecraft:sharpness", [4, 5])
     builder.withEnchantment("minecraft:unbreaking", 3)
     builder.withEnchantment("minecraft:knockback", 2)

@@ -24,7 +24,7 @@ function cleanDist() {
 
 function buildWikis() {
     console.log("Start building wikis...")
-    WikiConfig.forEach((wiki) => {
+    WikiConfig.forEach(wiki => {
         try {
             buildWiki(wiki)
         } catch (e) {

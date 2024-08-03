@@ -5,7 +5,7 @@
   "quoteProps": "as-needed",
   "bracketSpacing": true,
   "bracketSameLine": true,
-  "arrowParens": "always",
+  "arrowParens": "avoid",
   "endOfLine": "lf",
   "useTabs": false,
   "singleAttributePerLine": false

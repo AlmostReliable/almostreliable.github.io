@@ -293,7 +293,7 @@ Custom callback predicate to check the player. The callback **must** return eith
     -   `LootCondition.matchPlayerCustom((player) => {})`
 
 ```js
-LootEntry.of("minecraft:diamond").matchPlayerCustom((player) => {
+LootEntry.of("minecraft:diamond").matchPlayerCustom(player => {
     // We are working with the actual player here
     return player.getMaxHealth() > 20
 })
@@ -308,7 +308,7 @@ Custom callback predicate to check the entity. The callback **must** return eith
     -   `LootCondition.matchEntityCustom((entity) => {})`
 
 ```js
-LootEntry.of("minecraft:diamond").matchEntityCustom((entity) => {
+LootEntry.of("minecraft:diamond").matchEntityCustom(entity => {
     // We are working with the actual entity here
     return entity.getMaxHealth() > 20
 })
@@ -323,7 +323,7 @@ Custom callback predicate to check the attacker. The callback **must** return ei
     -   `LootCondition.matchAttackerCustom((entity) => {})`
 
 ```js
-LootEntry.of("minecraft:diamond").matchAttackerCustom((entity) => {
+LootEntry.of("minecraft:diamond").matchAttackerCustom(entity => {
     // We are working with the actual entity here
     return entity.getMaxHealth() > 20
 })
@@ -338,7 +338,7 @@ Custom callback predicate to check the direct attacker. The callback **must** re
     -   `LootCondition.matchDirectAttackerCustom((entity) => {})`
 
 ```js
-LootEntry.of("minecraft:diamond").matchDirectAttackerCustom((entity) => {
+LootEntry.of("minecraft:diamond").matchDirectAttackerCustom(entity => {
     // We are working with the actual entity here
     return entity.getMaxHealth() > 20
 })
@@ -387,7 +387,7 @@ Match the given block entity. Must return either `true` or `false`.
     -   `LootCondition.blockEntity((blockEntity) => {})`
 
 ```js
-LootEntry.of("minecraft:diamond").blockEntity((blockEntity) => {
+LootEntry.of("minecraft:diamond").blockEntity(blockEntity => {
     // We are working with the actual block entity here.
     // Return either true or false to match or not
 })
@@ -402,7 +402,7 @@ Will match if all the given conditions match. False otherwise.
     -   `LootCondition.matchAllOf(condition1, condition2, ...)`
 
 ```js
-LootEntry.of("minecraft:diamond").matchAllOf((conditions) => {
+LootEntry.of("minecraft:diamond").matchAllOf(conditions => {
     conditions
         .matchMainHand("#minecraft:pickaxes")
         .randomChance(0.5)
@@ -421,7 +421,7 @@ const ourAndCondition = LootCondition.matchAllOf(
     LootCondition.matchBiome("#minecraft:forest")
 )
 
-LootEntry.of("minecraft:diamond").when((c) => {
+LootEntry.of("minecraft:diamond").when(c => {
     c.addCondition(ourAndCondition)
 })
 ```
@@ -435,7 +435,7 @@ Will match if one of the given conditions match. False otherwise.
     -   `LootCondition.matchAnyOf(condition1, condition2, ...)`
 
 ```js
-LootEntry.of("minecraft:diamond").matchAnyOf((conditions) => {
+LootEntry.of("minecraft:diamond").matchAnyOf(conditions => {
     conditions
         .matchMainHand("#minecraft:pickaxes")
         .randomChance(0.5)
@@ -454,7 +454,7 @@ const ourOrCondition = LootCondition.matchAnyOf(
     LootCondition.matchBiome("#minecraft:forest")
 )
 
-LootEntry.of("minecraft:diamond").when((c) => {
+LootEntry.of("minecraft:diamond").when(c => {
     c.addCondition(ourOrCondition)
 })
 ```

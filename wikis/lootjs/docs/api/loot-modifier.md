@@ -10,13 +10,13 @@ Besides actions you can also apply any [loot condition](/api/loot-condition) and
     -   `.addLoot(item: string | Item | LootEntry)`, _<sub>see [LootEntry]</sub>_
 
 ```js
-LootJS.modifiers((event) => {
+LootJS.modifiers(event => {
     event.addTableModifier("minecraft:chests/simple_dungeon").addLoot("minecraft:gunpowder")
 })
 ```
 
 ```js
-LootJS.modifiers((event) => {
+LootJS.modifiers(event => {
     // We can also use a loot entry. If all conditions from the entry matches, it will be added
     event
         .addTableModifier("minecraft:chests/simple_dungeon")
@@ -25,7 +25,7 @@ LootJS.modifiers((event) => {
 ```
 
 ```js
-LootJS.modifiers((event) => {
+LootJS.modifiers(event => {
     // We can also use multiple ones
     event
         .addTableModifier("minecraft:chests/simple_dungeon")
@@ -42,18 +42,18 @@ According to the Minecraft Wiki: Will only add the first successful (conditions 
     -
 
 ```js
-LootJS.modifiers((event) => {
+LootJS.modifiers(event => {
     /**
      * First loot entry with a condition. Will drop if the player has fortune.
      */
     const stickWhenFortune = LootEntry.of("minecraft:stick")
         .applyOreBonus("minecraft:fortune")
-        .when((c) => c.matchMainHand(ItemFilter.hasEnchantment("minecraft:fortune")))
+        .when(c => c.matchMainHand(ItemFilter.hasEnchantment("minecraft:fortune")))
 
     /**
      * Second loot entry with a condition. Will drop if the player has silk touch and the first entry doesn't match.
      */
-    const appleWhenSilkTouch = LootEntry.of("minecraft:apple").when((c) =>
+    const appleWhenSilkTouch = LootEntry.of("minecraft:apple").when(c =>
         c.matchMainHand(ItemFilter.hasEnchantment("minecraft:silk_touch"))
     )
 
@@ -77,18 +77,18 @@ Will add multiple items which will be rolled one after another. According to the
     -   `.addSequenceLoot(....items: string | Item | LootEntry)`, _<sub>see [LootEntry]</sub>_
 
 ```js
-LootJS.modifiers((event) => {
+LootJS.modifiers(event => {
     /**
      * First loot entry with a condition. Will drop if the player has fortune.
      */
-    const stickWhenFortune = LootEntry.of("minecraft:stick").when((c) =>
+    const stickWhenFortune = LootEntry.of("minecraft:stick").when(c =>
         c.matchMainHand(ItemFilter.hasEnchantment("minecraft:fortune"))
     )
 
     /**
      * Second loot entry with a condition. Will drop if the player has silk touch.
      */
-    const appleWhenEfficiency = LootEntry.of("minecraft:apple").when((c) =>
+    const appleWhenEfficiency = LootEntry.of("minecraft:apple").when(c =>
         c.matchMainHand(ItemFilter.hasEnchantment("minecraft:efficiency"))
     )
 
@@ -100,7 +100,7 @@ LootJS.modifiers((event) => {
     /**
      * Random chance is 0 so no diamond will ever drop. Just to show, that it will skip all other entries.
      */
-    const diamondNoDrop = LootEntry.of("minecraft:diamond").when((c) => c.randomChance(0.0))
+    const diamondNoDrop = LootEntry.of("minecraft:diamond").when(c => c.randomChance(0.0))
 
     /**
      * No conditions just an item, but this will not drop, because the previous entry failed.
@@ -122,13 +122,13 @@ Remove all `items` which matches the given [ItemFilter].
     -   `.removeLoot(items: string | Item | LootEntry)`, _<sub>see [LootEntry]</sub>_
 
 ```js
-LootJS.modifiers((event) => {
+LootJS.modifiers(event => {
     event.addTableModifier("minecraft:chests/simple_dungeon").removeLoot("minecraft:string")
 })
 ```
 
 ```js
-LootJS.modifiers((event) => {
+LootJS.modifiers(event => {
     event
         .addTableModifier("minecraft:chests/simple_dungeon")
         .removeLoot(ItemFilter.equipmentSlot("mainhand"))
@@ -144,7 +144,7 @@ Replaces all `items` which matches the given [ItemFilter] with a replacement. It
     -   `.replaceLoot(item: string | Item | LootEntry, replacement: string | Item | LootEntry, preserveCount?: boolean)`
 
 ```js
-LootJS.modifiers((event) => {
+LootJS.modifiers(event => {
     event
         .addTableModifier("minecraft:chests/simple_dungeon")
         .replaceLoot(ItemFilter.equipmentSlot("mainhand"), "minecraft:diamond")
@@ -152,7 +152,7 @@ LootJS.modifiers((event) => {
 ```
 
 ```js
-LootJS.modifiers((event) => {
+LootJS.modifiers(event => {
     event
         .addTableModifier("minecraft:chests/simple_dungeon")
         .replaceLoot("#c:ores", "minecraft:gunpowder", true)
@@ -167,8 +167,8 @@ For every `item` in the current loot pool which matches the given [ItemFilter], 
     -   `.modifyLoot(items: string | Item | LootEntry, onModify: (item) => { ... })`, _<sub>see [LootEntry]</sub>_
 
 ```js
-LootJS.modifiers((event) => {
-    event.addTypeModifier("chest").modifyLoot(ItemFilter.ENCHANTED, (item) => {
+LootJS.modifiers(event => {
+    event.addTypeModifier("chest").modifyLoot(ItemFilter.ENCHANTED, item => {
         // We will remove the enchantments component from the item
         // So un-enchant it.
         item.remove("minecraft:enchantments")
@@ -185,7 +185,7 @@ Triggers a lightning strike at the position the loot is dropped at. The `items` 
     -   `.triggerLightningStrike(shouldDamagePlayer: boolean)`
 
 ```js
-LootJS.modifiers((event) => {
+LootJS.modifiers(event => {
     event.addTypeModifier("chest").triggerLightningStrike(false)
 })
 ```
@@ -198,7 +198,7 @@ Drops an `amount` of experience on the position where the loot will be dropped.
     -   `.dropExperience(amount: NumberProvider)`, _<sub>see [NumberProvider](/api/number-provider)</sub>_
 
 ```js
-LootJS.modifiers((event) => {
+LootJS.modifiers(event => {
     event.addTypeModifier("chest").triggerLightningStrike(false)
 })
 ```
@@ -211,8 +211,8 @@ Creates a loot pool, which acts as a normal pool from a loot table. See [LootPoo
     -   `.pool(onCreate: (pool) => { ... })`, _<sub>see [LootPool](/api/loot-pool)</sub>_
 
 ```js
-LootJS.modifiers((event) => {
-    event.addTableModifier("minecraft:chests/simple_dungeon").pool((pool) => {
+LootJS.modifiers(event => {
+    event.addTableModifier("minecraft:chests/simple_dungeon").pool(pool => {
         // Work with the pool
     })
 })
@@ -227,8 +227,8 @@ Creates a new nested loot modifier. You can also pre-filter it, so you can only 
     -   `.group(filter: ItemFilter, onCreate: (modifier) => { ... })`, _<sub>see [ItemFilter]</sub>_
 
 ```js
-LootJS.modifiers((event) => {
-    event.addTableModifier("minecraft:chests/simple_dungeon").group((modifier) => {
+LootJS.modifiers(event => {
+    event.addTableModifier("minecraft:chests/simple_dungeon").group(modifier => {
         // Work with the modifier
     })
 })
@@ -242,7 +242,7 @@ Adds a custom action to the loot modifier. The action gives you access to the [L
     -   `.customAction(action: (context, bucket) => { ... })`
 
 ```js
-LootJS.modifiers((event) => {
+LootJS.modifiers(event => {
     event.addTypeModifier("chest").customAction((context, loot) => {
         if (loot.hasItem("#c:ores")) {
             loot.addItem("minecraft:gunpowder")

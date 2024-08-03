@@ -132,8 +132,8 @@ LootEntry.reference("minecraft:chests/abandoned_mineshaft")
  * Otherwise continue with next child
  */
 LootEntry.alternative(
-    LootEntry.of("minecraft:diamond").when((c) => c.randomChance(0.5)),
-    LootEntry.of("minecraft:emerald").when((c) => c.randomChance(0.5)),
+    LootEntry.of("minecraft:diamond").when(c => c.randomChance(0.5)),
+    LootEntry.of("minecraft:emerald").when(c => c.randomChance(0.5)),
     LootEntry.of("minecraft:iron_ingot")
 )
 ```
@@ -144,8 +144,8 @@ LootEntry.alternative(
  * Add all entries until one entry fails, then skip rest
  */
 LootEntry.sequence(
-    LootEntry.of("minecraft:diamond").when((c) => c.randomChance(0.5)),
-    LootEntry.of("minecraft:emerald").when((c) => c.randomChance(0.2)),
+    LootEntry.of("minecraft:diamond").when(c => c.randomChance(0.5)),
+    LootEntry.of("minecraft:emerald").when(c => c.randomChance(0.2)),
     LootEntry.of("minecraft:iron_ingot")
 )
 ```
@@ -156,8 +156,8 @@ LootEntry.sequence(
  * Handle all children by their own. Just a convenience entry.
  */
 LootEntry.group(
-    LootEntry.of("minecraft:diamond").when((c) => c.randomChance(0.5)),
-    LootEntry.of("minecraft:emerald").when((c) => c.randomChance(0.2)),
+    LootEntry.of("minecraft:diamond").when(c => c.randomChance(0.5)),
+    LootEntry.of("minecraft:emerald").when(c => c.randomChance(0.2)),
     LootEntry.of("minecraft:iron_ingot")
 )
 ```

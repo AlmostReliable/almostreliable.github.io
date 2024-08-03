@@ -22,7 +22,7 @@ Remember that the arguments for input and output are `Potion` ids and not items!
 This will add a brewing recipe which creates a strong regeneration potion when using apples.
 
 ```js
-MoreJS.registerPotionBrewing((event) => {
+MoreJS.registerPotionBrewing(event => {
     event.addPotionBrewing("minecraft:apple", "minecraft:water", "minecraft:strong_regeneration")
 })
 ```
@@ -32,7 +32,7 @@ MoreJS.registerPotionBrewing((event) => {
 Custom brewing allows to not rely on any potion. We can just use any item to convert.
 
 ```js
-MoreJS.registerPotionBrewing((event) => {
+MoreJS.registerPotionBrewing(event => {
     event.addCustomBrewing("minecraft:emerald", "minecraft:nether_star", "minecraft:diamond")
 })
 ```
@@ -52,7 +52,7 @@ interface PotionBrewingFilter {
 Using the filter does not require to use all the arguments. Arguments which are not given automatically act as wildcards.
 
 ```js
-MoreJS.registerPotionBrewing((event) => {
+MoreJS.registerPotionBrewing(event => {
     event.removePotionBrewing({
         ingredient: "minecraft:apple",
         input: "minecraft:harming",
@@ -74,7 +74,7 @@ interface CustomBrewingFilter {
 ```
 
 ```js
-MoreJS.registerPotionBrewing((event) => {
+MoreJS.registerPotionBrewing(event => {
     event.removeCustomBrewing({
         ingredient: "minecraft:emerald",
         input: "minecraft:nether_star",

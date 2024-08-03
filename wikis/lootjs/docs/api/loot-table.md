@@ -13,14 +13,14 @@ Returns the first pool inside a loot table. If no pool exist, it will create one
     -   `.firstPool((pool) => {})`
 
 ```js
-LootJS.lootTables((event) => {
+LootJS.lootTables(event => {
     let pool = event.getLootTable("minecraft:chests/simple_dungeon").firstPool()
 })
 ```
 
 ```js
-LootJS.lootTables((event) => {
-    event.getLootTable("minecraft:chests/simple_dungeon").firstPool((pool) => {
+LootJS.lootTables(event => {
+    event.getLootTable("minecraft:chests/simple_dungeon").firstPool(pool => {
         // modify the pool here
     })
 })
@@ -35,14 +35,14 @@ Creates a new pool and returns it.
     -   `.createPool((pool) => {})`
 
 ```js
-LootJS.lootTables((event) => {
+LootJS.lootTables(event => {
     let pool = event.getLootTable("minecraft:chests/simple_dungeon").createPool()
 })
 ```
 
 ```js
-LootJS.lootTables((event) => {
-    event.getLootTable("minecraft:chests/simple_dungeon").createPool((pool) => {
+LootJS.lootTables(event => {
+    event.getLootTable("minecraft:chests/simple_dungeon").createPool(pool => {
         // modify the pool here
     })
 })
@@ -56,7 +56,7 @@ Returns a list of all [item functions](/api/loot-function) attached to the loot 
     -   `.getFunctions()`
 
 ```js
-LootJS.lootTables((event) => {
+LootJS.lootTables(event => {
     let functions = event.getLootTable("minecraft:chests/simple_dungeon").getFunctions()
 })
 ```
@@ -69,7 +69,7 @@ Adds a custom callback when the loot table is rolled.
     -   `.onDrop((context, loot) => {})`
 
 ```js
-LootJS.lootTables((event) => {
+LootJS.lootTables(event => {
     event.getLootTable("minecraft:chests/simple_dungeon").onDrop((context, loot) => {
         for (let item of loot) {
             console.log(item)
@@ -86,7 +86,7 @@ Get the loot table id
     -   `.getLocation()`
 
 ```js
-LootJS.lootTables((event) => {
+LootJS.lootTables(event => {
     let table = event.getLootTable("minecraft:chests/simple_dungeon")
     let location = table.getLocation() // Would return `"minecraft:chests/simple_dungeon"`
 })
@@ -98,7 +98,7 @@ LootJS.lootTables((event) => {
     -   `.getLootType()`
 
 ```js
-LootJS.lootTables((event) => {
+LootJS.lootTables(event => {
     let table = event.getLootTable("minecraft:chests/simple_dungeon")
     let type = table.getLootType() // Would return `LootType.CHEST`
 })
@@ -112,7 +112,7 @@ Clears the loot table. This will remove all item functions and pools from the ta
     -   `.clear()`
 
 ```js
-LootJS.lootTables((event) => {
+LootJS.lootTables(event => {
     event.getLootTable("minecraft:chests/simple_dungeon").clear()
 })
 ```
@@ -125,7 +125,7 @@ Logs the loot table. Can be used for debugging.
     -   `.print()`
 
 ```js
-LootJS.lootTables((event) => {
+LootJS.lootTables(event => {
     event.getLootTable("minecraft:chests/simple_dungeon").print()
 })
 ```

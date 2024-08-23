@@ -40,7 +40,7 @@ export function defineConfig(config: UserConfig<DefaultTheme.Config>): UserConfi
     const wikiTitle = config.title
 
     config.srcDir = "./docs"
-    config.base = config.base ?? `/${wikiTitle.toLocaleLowerCase()}/`
+    config.base = config.base ?? `/${wikiTitle.replace(/ /g, "").toLocaleLowerCase()}/`
     config.description = `Documentation for ${wikiTitle}`
     config.title = `${wikiTitle} - AlmostReliable`
 

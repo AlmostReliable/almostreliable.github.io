@@ -42,7 +42,7 @@ export function defineConfig(config: UserConfig<DefaultTheme.Config>): UserConfi
     config.srcDir = "./docs"
     config.base = config.base ?? `/${wikiTitle.replace(/ /g, "").toLocaleLowerCase()}/`
     config.description = `Documentation for ${wikiTitle}`
-    config.title = `${wikiTitle} - AlmostReliable`
+    config.title = `${wikiTitle} Wiki`
 
     const baseThemeConfig = getBaseThemeConfig(config.base)
     config.themeConfig = Object.assign(config.themeConfig || {}, baseThemeConfig)

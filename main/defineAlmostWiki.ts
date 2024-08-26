@@ -29,6 +29,9 @@ function getBaseThemeConfig(title: string): DefaultTheme.Config {
         outline: {
             level: [2, 3],
         },
+        lastUpdated: {
+            text: "Last updated",
+        },
     }
 }
 

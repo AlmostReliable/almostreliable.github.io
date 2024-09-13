@@ -13,6 +13,17 @@ export default defineConfig({
                 text: "Events",
                 items: [
                     {
+                        text: "Enchanting",
+                        items: [
+                            { text: "Enchanting Table", link: "/enchanting-table" },
+                            { text: "Player Enchant", link: "/player-enchant" },
+                        ],
+                    },
+                    {
+                        text: "Potion brewing",
+                        link: "potion-brewing",
+                    },
+                    {
                         text: "Trading",
                         items: [
                             { text: "Understanding trades", link: "/understanding-trades" },
@@ -20,10 +31,6 @@ export default defineConfig({
                             { text: "Wanderer trades", link: "/wanderer-trades" },
                             { text: "Update offer", link: "update-offer" },
                         ],
-                    },
-                    {
-                        text: "Potion brewing",
-                        link: "potion-brewing",
                     },
                 ],
             },

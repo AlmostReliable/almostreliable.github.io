@@ -3,15 +3,12 @@ import { defineConfig } from "../../../main/defineAlmostWiki"
 export default defineConfig({
     srcDir: "./docs",
     title: "KubeJS EnderIO",
+    base: "/kubejs-enderio/",
     themeConfig: {
         sidebar: [
             {
                 text: "Introduction",
                 items: [{ text: "Getting Started", link: "/" }],
-            },
-            {
-                text: "Standard Recipes",
-                items: [{ text: "Fire Crafting", link: "standard/firecrafting" }],
             },
             {
                 text: "Machine Recipes",
@@ -25,6 +22,10 @@ export default defineConfig({
                     { text: "Tank", link: "machine/tank" },
                     { text: "Vat", link: "machine/vat" },
                 ],
+            },
+            {
+                text: "Misc Recipes",
+                items: [{ text: "Fire Crafting", link: "misc/firecrafting" }],
             },
             {
                 text: "Events",

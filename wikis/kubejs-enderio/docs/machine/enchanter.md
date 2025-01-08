@@ -66,7 +66,7 @@ ServerEvents.recipes(event => {
     event.recipes.enderio.enchanting("minecraft:sharpness", "granite")
 
     // adds a recipe that gives thorns from 5 diorite
-    // this means level 2 will cost 10 diorite, levle 3 will cost 15 diorite, etc.
+    // this means level 2 will cost 10 diorite, level 3 will cost 15 diorite, etc.
     // cost multiplier of 3
     event.recipes.enderio.enchanting("minecraft:thorns", Ingredient.of("diorite", 5), 3)
 

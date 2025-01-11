@@ -85,7 +85,7 @@ LootJS.lootTables(event => {
 
 ## `replaceItem`
 
-Replaces all items that matches the filter with the given item. By replacing the item all loot conditions and item functions are kept. If you don't want this use [`modifyItem`](#) and create your own `LootEntry`.
+Replaces all items that matches the filter with the given item. By replacing the item all loot conditions and item functions are kept. If you don't want this use [`modifyItemEntry`](#) and create your own `LootEntry`.
 
 -   Syntax:
     -   `.replaceItem(filter: ItemFilter, item: Item)`, _<sub>see [ItemFilter]</sub>_
@@ -118,16 +118,16 @@ LootJS.lootTables(event => {
 })
 ```
 
-## `modifyItem`
+## `modifyItemEntry`
 
-Same as `modifyEntry` but will only iterates through `LootItemEntry`s.
+Same as `modifyItemEntry` but will only iterates through `LootItemEntry`s.
 
 -   Syntax:
-    -   `.modifyItem((entry: LootItemEntry) => { ... })`
+    -   `.modifyItemEntry((entry: LootItemEntry) => { ... })`
 
 ```js
 LootJS.lootTables(event => {
-    event.getLootTable("minecraft:chests/simple_dungeon").modifyItem(itemEntry => {
+    event.getLootTable("minecraft:chests/simple_dungeon").modifyItemEntry(itemEntry => {
         if (itemEntry.item.id === "minecraft:string") {
             itemEntry.setCount([5, 12])
         }

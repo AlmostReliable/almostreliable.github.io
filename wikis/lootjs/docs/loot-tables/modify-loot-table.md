@@ -53,7 +53,7 @@ LootJS.lootTables(event => {
     event
         .getLootTable("minecraft:chests/desert_pyramid")
         .firstPool()
-        .modifyItem(itemEntry => {
+        .modifyItemEntry(itemEntry => {
             if (itemEntry.item.id === "minecraft:diamond") {
                 itemEntry.setWeight(1)
             }

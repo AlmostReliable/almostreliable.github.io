@@ -45,7 +45,7 @@ interface EnchantmentInstance {
 ## Usage
 
 ```js
-MoreJS.enchantmentTableChanged((event) => {
+MoreJS.enchantmentTableChanged(event => {
     const data = event.get(2)
     data.addEnchantment("minecraft:mending", 1)
     data.randomClue()
@@ -53,13 +53,15 @@ MoreJS.enchantmentTableChanged((event) => {
 ```
 
 ```js
-MoreJS.enchantmentTableChanged((event) => {
+MoreJS.enchantmentTableChanged(event => {
     const data = event.get(2)
 
     // removes sharpness if level > 3
     data.removeEnchantments((enchantment, level) => {
-        return enchantment.key === "minecraft:sharpness" && level > 3
+        let enchantmentId = enchantment.getKey().location()
+        return enchantmentId == "minecraft:sharpness" && level > 3
     })
+
     data.randomClue()
 })
 ```

@@ -275,30 +275,6 @@ ServerEvents.recipes(event => {
 })
 ```
 
-### Solid Fuel
-
-```js
-ServerEvents.recipes(event => {
-    // removes all solid fuel recipes
-    event.remove({ type: "actuallyadditions:solid_fuel" })
-
-    // adds a recipe that generates energy from any sapling
-    // uses the default energy of 1000 Crystal Flux
-    // uses the default time of 100 ticks (5 seconds) to process
-    event.recipes.actuallyadditions.solid_fuel("#minecraft:saplings")
-
-    // adds a recipe that generates energy from a potato
-    // uses 2000 Crystal Flux as energy
-    // takes 50 ticks (2,5 seconds) to process
-    event.recipes.actuallyadditions.solid_fuel("potato", 2000, 50)
-
-    // adds a recipe that generates energy from a potato
-    // uses 2000 Crystal Flux as energy
-    // takes 50 ticks (2,5 seconds) to process
-    event.recipes.actuallyadditions.solid_fuel("potato").energy(2000).time(50)
-})
-```
-
 ## Events
 
 ```js

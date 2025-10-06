@@ -174,12 +174,16 @@ ServerEvents.recipes(event => {
     // removes all coffee ingredient recipes
     event.remove({ type: "actuallyadditions:coffee_ingredient" })
 
+    // adds a recipe that produces a coffee without any effects from any wool
+    // uses the default extraText of an empty string
+    event.recipes.actuallyadditions.coffee_ingredient("#minecraft:wool")
+
     // adds a recipe that produces a coffee with a strength effect from any sapling
     // uses the default effect duration of 10 seconds
     // uses the default effect amplifier of 0 (level 1)
     // uses the default maxAmplifier of 1
     // uses the default extraText of an empty string
-    event.recipes.actuallyadditions.coffee_ingredient("minecraft:strength", "#minecraft:saplings")
+    event.recipes.actuallyadditions.coffee_ingredient("#minecraft:saplings", ["minecraft:strength"])
 
     // adds a recipe that produces a coffee with a speed effect from a carrot
     // uses the MobEffect binding to define the effect
@@ -188,8 +192,8 @@ ServerEvents.recipes(event => {
     // uses the default maxAmplifier of 1
     // uses the an extra text of "Carrot Edition"
     event.recipes.actuallyadditions.coffee_ingredient(
-        MobEffect.MOVEMENT_SPEED,
         "carrot",
+        [MobEffect.MOVEMENT_SPEED],
         3,
         "Carrot Edition"
     )
@@ -200,14 +204,11 @@ ServerEvents.recipes(event => {
     // Haste 4 (30 seconds), Regeneration 1 (10 seconds), Strength 3 (1 minute)
     // uses builder functions to define the maxAmplifier and extraText properties
     event.recipes.actuallyadditions
-        .coffee_ingredient(
-            [
-                EffectInstance.ofEffect(MobEffect.DIG_SPEED, 30, 3),
-                EffectInstance.ofEffect(MobEffect.REGENERATION, 10),
-                EffectInstance.ofId("minecraft:strength", 60, 2),
-            ],
-            "potato"
-        )
+        .coffee_ingredient("potato", [
+            EffectInstance.ofEffect(MobEffect.DIG_SPEED, 30, 3),
+            EffectInstance.ofEffect(MobEffect.REGENERATION, 10),
+            EffectInstance.ofId("minecraft:strength", 60, 2),
+        ])
         .maxAmplifier(2)
         .extraText("Multi Effect")
 })

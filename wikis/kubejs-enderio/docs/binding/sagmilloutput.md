@@ -59,9 +59,5 @@ ServerEvents.recipes(event => {
     const output3 = SagMillOutput.ofTag("#c:glass_blocks", 5)
     // creates an OutputItem that outputs 2 items from the tag #c:ingots with a 25% chance
     const output4 = SagMillOutput.ofTag("#c:ingots", 2, 0.25)
-
-    // you can also use wrappers inside the methods
-    const output5 = SagMillOutput.of(Item.of("stone", 3), 0.5)
-    const output6 = SagMillOutput.ofTag(Ingredient.of("#c:glass_blocks"), 5)
 })
 ```

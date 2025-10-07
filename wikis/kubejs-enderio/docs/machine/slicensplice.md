@@ -47,7 +47,8 @@ ServerEvents.recipes(event => {
         "rotten_flesh",
     ])
 
-    // adds a recipe that slices any 3 glass, a stick, any ingot, 15 granite, any 3 iron ingots, and an apple into 15 stone
+    // adds a recipe that slices any 3 glass, a stick, any ingot, 15 granite, any 3 iron ingots, and
+    //  an apple into 15 stone
     // energy usage of 5000
     // uses the chaining function for energy
     event.recipes.enderio

@@ -21,11 +21,10 @@ This binding is intended to be used inside [Sag Mill recipes](../machine/sagmill
 It's also possible to use the strings `"NONE"`, `"CHANCE_ONLY"`, and `"MULTIPLY_OUTPUT"` instead of the binding.
 
 ```js
-//...
-.bonus(SagMillBonus.MULTIPLY_OUTPUT)
-//...
-
-//...
-.bonus("CHANCE_ONLY")
-//...
+ServerEvents.recipes(event => {
+    event.recipes.enderio
+        .sag_milling(["stick"], "white_wool")
+        .energy(500)
+        .bonus(SagMillBonus.MULTIPLY_OUTPUT) // [!code focus]
+})
 ```

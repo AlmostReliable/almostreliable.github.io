@@ -17,7 +17,7 @@ export default defineConfig({
                     { text: "Enchanter", link: "machine/enchanter" },
                     { text: "Painting Machine", link: "machine/paintingmachine" },
                     { text: "Sag Mill", link: "machine/sagmill" },
-                    { text: "Slice 'n Splice", link: "machine/slicensplice" },
+                    { text: "Slice'N'Splice", link: "machine/slicensplice" },
                     { text: "Soul Binder", link: "machine/soulbinder" },
                     { text: "Tank", link: "machine/tank" },
                     { text: "Vat", link: "machine/vat" },

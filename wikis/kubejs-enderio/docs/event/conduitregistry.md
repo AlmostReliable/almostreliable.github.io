@@ -92,7 +92,7 @@ For the block of the conduit, the texture file needs to be placed inside the fol
 `kubejs/assets/enderio/textures/block/conduit`
 
 It needs to have the same name as the `id` parameter you used when registering the custom conduit. Make sure it's a valid `.png` file.
-You can download a template PSD file [here](files/conduit.psd).
+You can download a template PSD file [here](https://github.com/AlmostReliable/kubejs-enderio/wiki/files/conduit.psd).
 
 ### Conduit Icon
 

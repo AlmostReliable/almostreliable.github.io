@@ -48,7 +48,7 @@ ServerEvents.recipes(event => {
         -   type: `float`
         -   role: other
         -   required: no
-        -   default: `0`
+        -   default: `0.0`
         -   usage: can be passed as the fourth argument or by chaining the function `.experience(float)`
     -   `is_smelting`
         -   description: specifies if the recipe should be copied to the vanilla smelting recipe type, more information below

@@ -24,7 +24,7 @@ It also supports chance-based outputs which can be useful for something like byp
         -   description: specifies the chance of the output item, between `0` and `1`
         -   type: `float`
         -   required: no
-        -   default: `1` (100% chance)
+        -   default: `1.0` (100% chance)
     -   `optional`
         -   description: this property is currently unused and has no effect
         -   type: `boolean`

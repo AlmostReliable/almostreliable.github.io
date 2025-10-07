@@ -37,6 +37,7 @@ export default defineConfig({
                     { text: "Mob Category", link: "binding/mobcategory" },
                     { text: "Sag Mill Bonus", link: "binding/sagmillbonus" },
                     { text: "Sag Mill Output", link: "binding/sagmilloutput" },
+                    { text: "Tank Mode", link: "binding/tankmode" },
                 ],
             },
         ],

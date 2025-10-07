@@ -16,7 +16,6 @@ and components that require organic materials such as zombie heads or other spec
     -   `inputs`
         -   description: specifies the input items
         -   type: `Ingredient[]`
-        -   validator: must contain exactly 6 items
         -   role: input
         -   required: yes
         -   usage: needs to be passed as the second argument
@@ -27,6 +26,8 @@ and components that require organic materials such as zombie heads or other spec
         -   required: no
         -   default: `2000`
         -   usage: can be passed as the third argument or by chaining the function `.energy(int)`
+-   validators:
+    -   `inputs` must contain exactly 6 items
 
 ## Examples
 

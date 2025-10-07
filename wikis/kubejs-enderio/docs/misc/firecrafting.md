@@ -1,54 +1,48 @@
 # Fire Crafting
 
-Fire Crafting allows you to light a specific block on fire. After a bit of time, the fire will extinguish and the block will spawn items from
-the specified loot table. Optionally, you can specify a block that will replace the ignited block after the fire has extinguished.<br>
-To avoid loot explosions when using a loot table with a lot of items, you can also limit the item count.
+Fire Crafting allows you to light a specific block on fire. After a bit of time, the fire will extinguish and the block can spawn items.
+Optionally, you can specify a block that will replace the ignited block after the fire has extinguished.
 
 ## Overview
 
 -   access in recipes event via: `event.recipes.enderio.fire_crafting`
 -   properties:
-    -   `loot_table`
-        -   description: specifies the output items that are spawned when the block is ignited
-        -   type: `ResourceKey<LootTable>`, a string in the format of a `ResourceLocation`
-        -   role: other
+    -   `results`
+        -   description: specifies the output items, more information [here](../binding/firecraftingresult.md)
+        -   type: `<FireCraftingResult | ItemStack>[]`
+        -   role: output
         -   required: yes
-        -   usage: needs to be passed as the first argument
-    -   `base_blocks`
-        -   description: specifies the blocks that can be ignited
-        -   type: `Block[]`
-        -   role: input
-        -   required: partially, at least one block or block tag needs to be passed
-        -   usage: single blocks can be added by chaining the function `.block`
-    -   `base_tags`
-        -   description: specifies the block tags that can be ignited
-        -   type: `TagKey<Block>[]`
-        -   role: input
-        -   required: partially, at least one block or block tag needs to be passed
-        -   usage: single block tags can be added by chaining the function `.blockTag`
-    -   `block_after_bruning`
-        -   description: specifies the block that will replace the ignited block after the fire has extinguished
+        -   usage: passed as the first argument
+    -   `block_after_burning`
+        -   description: specifies the block that remains after the burning process
         -   type: `Block`
         -   role: output
         -   required: no
-        -   default: `null`, the block will not be replaced
-        -   usage: can be specified by chaining the function `.blockAfterBurning`
+        -   default: `minecraft:air`
+        -   usage: can be set by chaining the function `.blockAfterBurning(block)`
+    -   `base_blocks`
+        -   description: specifies the input blocks
+        -   type: `Block[]`
+        -   role: input
+        -   required: no
+        -   default: none
+        -   usage: can be set by chaining the function `.block(block)`
+    -   `base_tags`
+        -   description: specifies the input block tags
+        -   type: `TagKey<Block>[]`
+        -   role: input
+        -   required: no
+        -   default: none
+        -   usage: can be set by chaining the function `.blockTag(tag)`
     -   `dimensions`
-        -   description: specifies the dimensions in which the fire crafting can be triggered
-        -   type: `ResourceKey<Level>[]`, strings in the format of `ResourceLocation`s
+        -   description: specifies which dimensions this recipe can activate in
+        -   type: `ResourceKey<Level>[]`
         -   role: other
         -   required: no
-        -   default: `["minecraft:overworld"]`
-        -   usage: can be specified by chaining the function `.dimensions`
-    -   `max_item_drops`
-        -   description: specifies the maximum count of items that can be spawned from the loot table
-        -   type: `int`
-        -   role: other
-        -   required: no
-        -   default: `1000`
-        -   usage: can be specified by chaining the function `.maxItemDrops`
--   validation:
-    -   at least one block or block tag needs to be passed, you can also use a combination of both
+        -   default: `minecraft:overworld`
+        -   usage: can be set by chaining the function `.dimensions(dimensions)`
+-   validators:
+    -   either `base_blocks` or `base_tags` must be set, or both, and containing at least one entry
 
 ## Examples
 
@@ -57,21 +51,33 @@ ServerEvents.recipes(event => {
     // removes all fire crafting recipes
     event.remove({ type: "enderio:fire_crafting" })
 
-    // spawns items from the simple dungeon loot table when igniting dirt
+    // adds a recipe that spawns a stick and an apple when igniting an iron block
+    // iron block will be removed after burning by default
     // limited to the overworld by default
-    // limited to 1000 item drops by default
-    // block is not replaced after burning by default
-    event.recipes.enderio.fire_crafting("minecraft:chests/simple_dungeon").block("minecraft:dirt")
+    event.recipes.enderio.fire_crafting(["stick", "apple"]).block("minecraft:iron_block")
 
-    // spawns items from the simple dungeon loot table when igniting any kind of glass block
-    // block is replaced with cobblestone after burning
-    // limited to the nether and the end
-    // limited to 3 item drops
+    // adds a recipe that spawns 2 golden apples and 3 diamonds when igniting dirt or any kind of glass
+    // dirt or glass block will be replaced by a grass block after burning
+    // limited to the overworld by default
     event.recipes.enderio
-        .fire_crafting("minecraft:chests/simple_dungeon")
+        .fire_crafting(["2x golden_apple", Item.of("minecraft:diamond", 3)])
+        .blockAfterBurning("minecraft:grass_block")
+        .block("minecraft:dirt")
         .blockTag("c:glass_blocks")
+
+    // adds a recipe that spawns an emerald, 4 diamonds, 2 sticks, and has a 50% chance to spawn up to
+    //  16 potatoes when igniting obsidian
+    // obsidian will be replaced by cobblestone after burning
+    // can only be activated in the overworld and the nether
+    event.recipes.enderio
+        .fire_crafting([
+            "emerald",
+            FireCraftingResult.of("diamond", 4),
+            FireCraftingResult.of("stick", 2, 8),
+            FireCraftingResult.of("potato", 0, 16, 0.5),
+        ])
+        .block("minecraft:obsidian")
         .blockAfterBurning("minecraft:cobblestone")
-        .dimensions(["minecraft:the_nether", "minecraft:the_end"])
-        .maxItemDrops(3)
+        .dimensions(["minecraft:overworld", "minecraft:the_nether"])
 })
 ```

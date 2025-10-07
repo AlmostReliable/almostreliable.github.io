@@ -40,12 +40,9 @@ export function defineConfig(config: UserConfig<DefaultTheme.Config>): UserConfi
         throw new Error("Docs title not found")
     }
 
-    const wikiTitle = config.title
-
     config.srcDir = "./docs"
-    config.base = config.base ?? `/${wikiTitle.replace(/ /g, "").toLocaleLowerCase()}/`
-    config.description = `Documentation for ${wikiTitle}`
-    config.title = `${wikiTitle} Wiki`
+    config.base = config.base ?? `/${config.title.replace(/ /g, "").toLocaleLowerCase()}/`
+    config.description = `Documentation for ${config.title}`
 
     const baseThemeConfig = getBaseThemeConfig(config.base)
     config.themeConfig = Object.assign(config.themeConfig || {}, baseThemeConfig)

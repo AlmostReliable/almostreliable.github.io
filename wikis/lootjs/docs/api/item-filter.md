@@ -142,6 +142,20 @@ ItemFilter.hasStoredEnchantment(["minecraft:fortune", "minecraft:mending"])
 ItemFilter.hasStoredEnchantment("minecraft:unbreaking", [2, 3])
 ```
 
+## `hasComponent`
+
+Used to check if given item has specific components on it.
+
+-   Syntax:
+    -   `ItemFilter.hasComponent(filter)`
+
+```js
+ItemFilter.hasComponent("minecraft:tool")
+
+// check against multiple components. Requires the item to have all of the components
+ItemFilter.hasComponent("minecraft:tool", "minecraft:custom_name")
+```
+
 ## `item`
 
 Matches if the item matches. This will not check for count but may check against components.

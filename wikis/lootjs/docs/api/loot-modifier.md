@@ -142,6 +142,7 @@ Replaces all `items` which matches the given [ItemFilter] with a replacement. It
 -   Syntax:
     -   `.replaceLoot(item: string | Item | LootEntry, replacement: string | Item | LootEntry)`, _<sub>see [LootEntry]</sub>_
     -   `.replaceLoot(item: string | Item | LootEntry, replacement: string | Item | LootEntry, preserveCount?: boolean)`
+    -   `.replaceLoot(item: string | Item | LootEntry, replacement: string | Item | LootEntry, preserveCount?: boolean, preserveComponentTypes?: string[])`
 
 ```js
 LootJS.modifiers(event => {
@@ -156,6 +157,16 @@ LootJS.modifiers(event => {
     event
         .addTableModifier("minecraft:chests/simple_dungeon")
         .replaceLoot("#c:ores", "minecraft:gunpowder", true)
+})
+```
+
+We also can preserve specific component types by passing the ids as an array.
+
+```js
+LootJS.modifiers(event => {
+    event
+        .addTableModifier(LootType.CHEST)
+        .replaceLoot(ItemFilter.ENCHANTED, "minecraft:stick", true, ["minecraft:enchantments"])
 })
 ```
 

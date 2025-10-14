@@ -68,14 +68,6 @@ LootEntry.of("minecraft:diamond")
 LootEntry.of("minecraft:diamond", [5, 10])
 ```
 
-```js
-const entry = LootEntry.of("minecraft:diamond_sword")
-
-if (entry.test(ItemFilter.SWORD)) {
-    // do something
-}
-```
-
 ### EmptyEntry
 
 -   Syntax:

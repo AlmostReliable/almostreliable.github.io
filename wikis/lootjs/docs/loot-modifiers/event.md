@@ -21,13 +21,29 @@ Remove all global loot modifiers from mods by given filter.
 Add a new loot modifier for all loot tables which match the given filter.
 
 -   Syntax:
-    -   `.addTableModifier(filter: string | string[] | regex)`, returns a [LootModifier]
+    -   `.addTableModifier(filter: LootTableFilter | LootTableFilter[])`, returns a [LootModifier]
+
+A `LootTableFilter` can be a string, regex, or a `LootType`.
+
+```ts
+enum LootType {
+    CHEST,
+    BLOCK,
+    ENTITY,
+    EQUIPMENT,
+    FISHING,
+    ARCHAEOLOGY,
+    GIFT,
+    VAULT,
+    SHEARING,
+    PIGLIN_BARTER,
+}
+```
 
 ```js
 LootJS.modifiers(event => {
     event
         .addTableModifier("minecraft:chests/simple_dungeon")
-        .randomChance(0.5)
         .addLoot("minecraft:gunpowder")
 })
 ```
@@ -37,29 +53,16 @@ LootJS.modifiers(event => {
     // Or we can also use a regex
     event
         .addTableModifier(/minecraft:chests:.*/)
-        .randomChance(0.5)
         .addLoot("minecraft:gunpowder")
 })
 ```
 
-## `addTypeModifier`
-
-Add a new loot modifier for given loot types.
-Valid loot types are `chest`, `block`, `entity`, `fishing`, `archaeology`, `gift`, `vault`, `shearing`, `piglin_barter`
-
--   Syntax:
-    -   `.addTypeModifier(type: LootType)`, returns a [LootModifier]
-
 ```js
 LootJS.modifiers(event => {
-    event.addTypeModifier("chest").randomChance(0.5).addLoot("minecraft:gunpowder")
-})
-```
-
-```js
-LootJS.modifiers(event => {
-    // We can also use multiple ones
-    event.addTypeModifier("block", "entity").randomChance(0.5).addLoot("minecraft:gunpowder")
+    // Or we can also use a regex
+    event
+        .addTableModifier(LootType.CHEST)
+        .addLoot("minecraft:gunpowder")
 })
 ```
 
@@ -72,7 +75,7 @@ Add a new loot modifier for all entities which match the given filter.
 
 ```js
 LootJS.modifiers(event => {
-    event.addEntityModifier("minecraft:creeper").randomChance(0.5).addLoot("minecraft:gunpowder")
+    event.addEntityModifier("minecraft:creeper").addLoot("minecraft:gunpowder")
 })
 ```
 
@@ -80,14 +83,13 @@ LootJS.modifiers(event => {
 LootJS.modifiers(event => {
     event
         .addEntityModifier(["minecraft:cow", "minecraft:pig"])
-        .randomChance(0.5)
         .addLoot("minecraft:gold_nugget")
 })
 ```
 
 ```js
 LootJS.modifiers(event => {
-    event.addEntityModifier("#minecraft:skeletons").randomChance(0.5).addLoot("minecraft:stick")
+    event.addEntityModifier("#minecraft:skeletons").addLoot("minecraft:stick")
 })
 ```
 
@@ -100,7 +102,7 @@ Add a new loot modifier for all blocks which match the given filter.
 
 ```js
 LootJS.modifiers(event => {
-    event.addBlockModifier("minecraft:iron_ore").randomChance(0.5).addLoot("minecraft:iron_nugget")
+    event.addBlockModifier("minecraft:iron_ore").addLoot("minecraft:iron_nugget")
 })
 ```
 
@@ -108,14 +110,13 @@ LootJS.modifiers(event => {
 LootJS.modifiers(event => {
     event
         .addBlockModifier(["minecraft:gravel", "minecraft:dirt"])
-        .randomChance(0.5)
         .addLoot("minecraft:gold_nugget")
 })
 ```
 
 ```js
 LootJS.modifiers(event => {
-    event.addBlockModifier("#c:ores").randomChance(0.5).addLoot("minecraft:flint")
+    event.addBlockModifier("#c:ores").addLoot("minecraft:flint")
 })
 ```
 

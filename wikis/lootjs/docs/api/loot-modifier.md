@@ -168,7 +168,7 @@ For every `item` in the current loot pool which matches the given [ItemFilter], 
 
 ```js
 LootJS.modifiers(event => {
-    event.addTypeModifier("chest").modifyLoot(ItemFilter.ENCHANTED, item => {
+    event.addTableModifier(LootType.CHEST).modifyLoot(ItemFilter.ENCHANTED, item => {
         // We will remove the enchantments component from the item
         // So un-enchant it.
         item.remove("minecraft:enchantments")
@@ -186,7 +186,7 @@ Triggers a lightning strike at the position the loot is dropped at. The `items` 
 
 ```js
 LootJS.modifiers(event => {
-    event.addTypeModifier("chest").triggerLightningStrike(false)
+    event.addTableModifier(LootType.CHEST).triggerLightningStrike(false)
 })
 ```
 
@@ -199,7 +199,7 @@ Drops an `amount` of experience on the position where the loot will be dropped.
 
 ```js
 LootJS.modifiers(event => {
-    event.addTypeModifier("chest").triggerLightningStrike(false)
+    event.addTableModifier(LootType.CHEST).triggerLightningStrike(false)
 })
 ```
 
@@ -243,7 +243,7 @@ Adds a custom action to the loot modifier. The action gives you access to the [L
 
 ```js
 LootJS.modifiers(event => {
-    event.addTypeModifier("chest").customAction((context, loot) => {
+    event.addTableModifier(LootType.CHEST).customAction((context, loot) => {
         if (loot.hasItem("#c:ores")) {
             loot.addItem("minecraft:gunpowder")
         }

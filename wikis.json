@@ -1,6 +1,9 @@
 {
   "wikis": [
     {
+      "name": "collection"
+    },
+    {
       "name": "kubejs-actuallyadditions"
     },
     {

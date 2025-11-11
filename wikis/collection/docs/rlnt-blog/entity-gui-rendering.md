@@ -1,4 +1,4 @@
-# Rendering entities in a GUI
+# Rendering Entities in a GUI
 
 -   Blog Entry 1
 -   2025-11-10
@@ -17,77 +17,50 @@ Links:
 
 ## Introduction
 
-In this blog post, I will discuss the challenges and solutions I encountered while rendering entities in a GUI for my Minecraft mod.
-My name is [rlnt also known as Relentless][author-github]. I am a mod developer for over 10 years now. Within the organization
-[Almost Reliable][ar-github], we primarily develop utility mods for pack developers, a lot of
-[KubeJS]-related mods and every so often a little content mod.
+In this blog post, I discuss the challenges and solutions I encountered while rendering entities in a GUI for my Minecraft mod. My name is [rlnt, also known as Relentless][author-github]. I have been a mod developer for over 10 years. Within the organization [Almost Reliable][ar-github], we primarily develop utility mods for pack developers, many [KubeJS]-related mods, and occasionally a small content mod.
 
-This post is aimed at fellow mod developers who may be facing similar challenges. If if you are new to modding or have limited experience
-or even if you are just curious about the technical aspects of Minecraft modding, I hope you will find this post informative and engaging.
-This may help players understand the effort and challenges around creating mods and why it sometimes takes longer than expected to implement certain features.
+This post is aimed at fellow mod developers who may face similar challenges. Even if you are new to modding, have limited experience, or are just curious about the technical aspects of Minecraft modding, I hope you find this post informative and engaging. It may also help players understand the effort and challenges involved in creating mods and why certain features sometimes take longer than expected to implement.
 
-I personally have little understanding of OpenGL, the technology behind Minecraft's graphics. Most of what I know is based on trial and
-error, reading existing code, and learning from others over the years. Rendering is a very mathematical concept. Most of the following
-content will cover vectors and matrices. I am no mathematician either, but school math and a good understanding of 3D space should be
-enough to grasp the concepts.
+I have little understanding of OpenGL, the technology behind Minecraft's graphics. Most of what I know comes from trial and error, reading existing code, and learning from others over the years. Rendering is a highly mathematical concept. Most of the following content covers vectors and matrices. I am no mathematician, but school-level math and a good understanding of 3D space should be enough to grasp the concepts.
 
-I will try to use little technical jargon and explain concepts in a way that is accessible to a broad audience. The screenshots and code
-snippets will help illustrate the points I make throughout this post.
+I try to use minimal technical jargon and explain concepts accessibly to a broad audience. The screenshots and code snippets illustrate the points throughout this post.
 
 ## Challenge
 
-Rendering entities within a GUI in Minecraft can have different use-cases. In my instance, I wanted to develop a
-[Just Enough Items][jei] (JEI) plugin for my mod
-[Summoning Rituals][sr-github] (SR). SR is a mod that allows pack developers to create custom
-recipes offering item and entity inputs, as well as item, entity, and command outputs. Additionally, pack devs can attach many different
-conditions to these recipes and even customize them further via events.
+Rendering entities within a GUI in Minecraft has various use cases. I wanted to develop a [Just Enough Items][jei] (JEI) plugin for my mod [Summoning Rituals][sr-github] (SR). SR allows pack developers to create custom recipes with item and entity inputs, as well as item, entity, and command outputs. Pack devs can also attach many conditions to these recipes and customize them further via events.
 
-To display a recipe to a player, a mod developer typically adds integration for so called recipe viewer mods. Since JEI is the most
-popular one, I wanted to start out by adding support for that. SR already existed in versions prior to 1.21.1 and had working JEI support
-already. The entity renderer was rather basic, though.
+To display a recipe to a player, a mod developer typically adds integration for recipe viewer mods. Since JEI is the most popular, I started by adding support for it. SR already existed in versions before 1.21.1 and had working JEI support. The entity renderer was pretty basic, though.
 
-The biggest challenge when rendering entities is that Minecraft doesn't expose their actual sizes. The only available information is
-their bounding box, which doesn't always accurately represent their visual size. Think about the Ghast for example. The tentacles aren't
-included in the bounding box, leading to a misleadingly small representation if you render it based on that. Another challenge is the
-height offset. On the one hand some entities are aligned on the Y-axis plane, meaning they sit right on the ground. Others, on the other
-hand, start below that or hover somewhere above it.
+The biggest challenge when rendering entities is that Minecraft does not expose their actual sizes. The only available information is their bounding box, which does not always accurately represent their visual size. Consider the Ghast: the tentacles are not included in the bounding box, leading to a misleadingly small representation if rendered based on that. Another challenge is the height offset. Some entities align on the Y-axis plane, meaning they sit right on the ground. Others start below it or hover above.
 
-The main question is how to determine the correct scale and offset for each entity to ensure they are displayed properly within the GUI.
-How do you work around the limitation of only knowing the bounding box? How do you handle entities with unique models or animations?
+The main question is how to determine the correct scale and offset for each entity to display them properly within the GUI. How do you work around the limitation of only knowing the bounding box? How do you handle entities with unique models or animations?
 
 > [!INFO] NOTE
-> Although this blog post primarily focuses on rendering entities in a JEI GUI, the concepts and techniques discussed can be applied to any other GUI context where entities need to be displayed.
+> Although this blog post focuses primarily on rendering entities in a JEI GUI, the concepts and techniques can be applied to any GUI context where entities need to be displayed.
 
 ## Start
 
-To understand how to render entities in a GUI, it's essential to grasp the basics of JEI integration and the role of custom ingredient
-renderers. They act as the entry point for all the rendering logic.
+To understand how to render entities in a GUI, one needs to understand that the rendering itself is still 3D. Minecraft uses a 3D rendering engine based on OpenGL. Even when rendering in a 2D GUI, the entities are still 3D models rendered in a 3D space. To achieve the desired appearance, an orthographic projection is used, which flattens the 3D space onto a 2D plane without perspective distortion.
 
-### JEI integration basics
+Additionally, it is essential to grasp the basics of JEI integrations and the role of custom ingredient renderers. They serve as the entry point for all rendering logic.
 
-To display recipes in a recipe viewer like JEI, many steps are involved. First, you need to create a custom plugin, a recipe category,
-you need to register your additions, and more. All of that is out of scope for this blog post.
+### JEI Integration Basics
 
-I already implemented a basic display category for my SR recipe that shows the item inputs and outputs. All inputs are aligned in a circle
-around the altar block in the center. Above the altar block is the catalyst needed to start the ritual. The items at the bottom represent
-the outputs of the ritual.
+To display recipes in a recipe viewer like JEI, many steps are involved: creating a custom plugin, a recipe category, registering additions, and more. All of that is out of scope for this blog post.
+
+I already implemented a basic display category for my SR recipe that shows item inputs and outputs. All inputs are aligned in a circle around the altar block in the center. Above the altar block is the catalyst needed to start the ritual. The items at the bottom represent the ritual outputs.
 
 <img src="/../img/starting-point.png" class="center" width="600">
 
-To support entity displays within this category, a custom ingredient type is required. The most important information you need is that
-each custom ingredient type requires a custom renderer. A renderer is responsible to render a single ingredient in the GUI. That includes
-the bookmarks you can set, as well as the different item slots within the recipe.
-In this case, that ingredient is an entity.
-
-Basic implementations of an entity ingredient and the ingredient renderer look as follows.
+To support entity displays within this category, a custom ingredient type is required. The key point is that each custom ingredient type needs a custom renderer. A renderer is responsible for drawing a single ingredient in the GUI, including bookmarks and item slots within the recipe. In this case, the ingredient is an entity. Basic implementations of an entity ingredient and renderer look as follows.
 
 ::: code-group
 
-```java [EntityIngredient.java]
+```java [EntityIngredient]
 public final class EntityIngredient {
 
-    // Holder<EntityType<?>> is a raw definition of the entity that is used to create
-    // an actual instance of the entity in the current world
+    // Holder<EntityType<?>> is a raw definition of the entity used to create
+    // an actual instance in the current world
     private final Holder<EntityType<?>> entityType;
     @Nullable private Entity entity;
 
@@ -106,7 +79,7 @@ public final class EntityIngredient {
 }
 ```
 
-```java [EntityIngredientRenderer.java]
+```java [EntityIngredientRenderer]
 public final class EntityIngredientRenderer implements IIngredientRenderer<EntityIngredient> {
 
     @Override
@@ -125,35 +98,22 @@ public final class EntityIngredientRenderer implements IIngredientRenderer<Entit
 
 #### Entity Ingredient
 
-The `EntityIngredient` receives a `Holder<EntityType<?>>`, which is a raw definition of the entity that is used to create an actual
-instance of the entity in the current world. Upon initialization, it attempts to create the entity using the provided `EntityType` and
-stores it for later use. It's exposing the created entity via a getter method.
+The `EntityIngredient` receives a `Holder<EntityType<?>>`, a raw definition of the entity used to create an instance in the current world. Upon initialization, it creates the entity using the provided `EntityType` and stores it for later use. It exposes the created entity via a getter.
 
 #### Entity Ingredient Renderer
 
-The `EntityIngredientRenderer` implements the `IIngredientRenderer` interface provided by JEI. It is responsible for rendering the
-`EntityIngredient` within the GUI. The `render` method is where the actual rendering logic takes place. The ingredient, as well as the
-renderer, need to be registered within the JEI plugin for them to be used.
+The `EntityIngredientRenderer` implements JEI's `IIngredientRenderer` interface. It's responsible for drawing the `EntityIngredient` within the GUI. The `render` method contains the actual rendering logic. The ingredient and renderer must be registered in the JEI plugin to be used.
 
-The `render` method will pass an instance of the `EntityIngredient`, which allows access to the underlying entity that needs to be
-rendered. `GuiGraphics` is a helper class provided by Minecraft, more about that later.
+The `render` method receives an `EntityIngredient` instance, providing access to the underlying entity. `GuiGraphics` is a Minecraft helper class, more about it later.
 
 ### Initial Approach
 
-The common approach to a new concept in Minecraft modding is to look at how vanilla does it. In case you never heard it, "Vanilla" refers
-to the unmodified version of Minecraft, as released by Mojang. This blog post has been written at the time of Minecraft 1.21.1,
-right after [Mojang announced they will remove obfuscation in future versions][obfuscation-article].
-This means learning from vanilla code will become much
-easier in the future. For now, we still need to rely on decompiled code and mappings provided by the community, which makes the process
-a bit harder.
+The common approach to a concept in Minecraft modding you have no experience with is to examine how vanilla does it. "Vanilla" refers to the unmodified Minecraft version released by Mojang. This blog post has been written at the time of Minecraft 1.21.1, right after [Mojang announced they will remove obfuscation in future versions][obfuscation-article]. This means learning from vanilla code will become much easier in the future. For now, I relied on decompiled code and community mappings, which complicated the process.
 
-First, you always have to ask yourself: Where does Vanilla use similar functionality?<br>
-In this case, I remembered that Minecraft needs to render an entity in the inventory screen. The player is nothing more than an entity.
-That means the same concept can be applied for other entities as well.
+First, ask yourself: Where does vanilla use similar functionality?<br>
+I recalled that Minecraft renders an entity in the inventory screen. In the end, the player is also just an entity. The same concept applies to other entities.
 
-After a bit of investigation, I found the relevant code in the `InventoryScreen` class. The method `renderEntityInInventory` shows
-everything I need to know about rendering an entity in the GUI. Because of its length and the license, I won't include the full code
-in this blog post. The relevant parts are as follows.
+Investigation led to the `InventoryScreen` class. The `renderEntityInInventory` method contains everything needed. Due to length and license, I omit the full code. Relevant parts follow.
 
 ```java:line-numbers
 Lighting.setupForEntityInInventory();
@@ -179,26 +139,24 @@ entityrenderdispatcher.setRenderShadow(true);
 Lighting.setupFor3DItems();
 ```
 
-Now, let's break down the code step by step.
+Breakdown step by step:
 
 1. **Lighting Setup** (line 1):<br>
-   The first line sets up the lighting conditions suitable for rendering entities in an inventory context. This ensures that the entity appears well-lit and visually appealing.
+   Sets lighting suitable for inventory entity rendering, ensuring the entity appears well-lit.
 2. **Entity Render Dispatcher** (line 2):<br>
-   The `EntityRenderDispatcher` is obtained from the Minecraft instance. This dispatcher is responsible for managing the rendering of entities in the game.
-3. **Camera Orientation** (lines 3-7):<br>
-   If a specific camera orientation is provided, it overrides the default camera orientation to ensure the entity is rendered from the desired angle. Vanilla uses this to rotate the player model based on mouse movement.
+   Obtains the `EntityRenderDispatcher` from the Minecraft instance, which manages entity rendering.
+3. **Camera Orientation** (lines 3–7):<br>
+   Overrides default camera orientation if provided, to render from the desired angle. Vanilla uses this to rotate the player model with mouse movement.
 4. **Shadow Rendering** (line 9):<br>
-   Shadow rendering is temporarily disabled to prevent shadows from affecting the appearance of the entity in the GUI.
-5. **Rendering Execution** (lines 10-18):<br>
-   The actual rendering of the entity is performed within a `RenderSystem.runAsFancy` block. This block ensures that the rendering adjusts to quality settings set by the user in the Minecraft options menu. The `render` method of the `EntityRenderDispatcher` is called with the entity and various parameters, including position, rotation, and lighting information.
+   Disables shadows temporarily to avoid affecting GUI appearance.
+5. **Rendering Execution** (lines 10–18):<br>
+   Performs rendering within `RenderSystem.runAsFancy` to respect user quality settings. Calls the dispatcher's `render` method with position, rotation, and lighting parameters.
 6. **Buffer Flushing** (line 19):<br>
-   After rendering, the graphics buffer is flushed to ensure that all rendering commands are executed and the entity is displayed correctly.
-7. **Restoring Rendering** (lines 20-21):<br>
-   Finally, shadow rendering and light setup are re-enabled to restore the original rendering state for subsequent operations.
+   Flushes the graphics buffer to execute all rendering commands.
+7. **Restoring State** (lines 20–21):<br>
+   Re-enables shadows and lighting to restore original state.
 
-After seeing the vanilla implementation, it was time to implement a first approach in my own renderer. I decided to keep the logic the
-same. Because I don't need the entities to follow the mouse movement, I skipped the camera orientation part. The rest is more or less
-the same as in vanilla.
+Following the vanilla example, I implemented a first approach in my renderer. I kept the logic similar but skipped camera orientation since entities in my GUI do not need to follow mouse movement.
 
 <a id="initial-approach-code"></a>
 
@@ -206,7 +164,7 @@ the same as in vanilla.
 @Override
 public void render(GuiGraphics guiGraphics, EntityIngredient entityIngredient) {
     if (!(entityIngredient.getEntity() instanceof LivingEntity entity)) {
-        // don't render the entity if it's null or not a living entity
+        // don't render if null or not a living entity
         return;
     }
 
@@ -228,89 +186,52 @@ public void render(GuiGraphics guiGraphics, EntityIngredient entityIngredient) {
         Lighting.setupFor3DItems();
     }
     poseStack.popPose();
+}
 ```
 
-The implementation follows the vanilla example closely. There are a few more steps involved. Before any rendering, I am checking if the
-entity does even exist and if it's a `LivingEntity`. This includes all mobs. Non-living entities like item frames or boats are not
-supported because I have no use-case for that. The logic uses an `instanceof` cast, which means if the condition is true, the `entity`
-variable will automatically be cast to `LivingEntity` which is non-nullable.
+The implementation mirrored vanilla closely. I checked if the entity exists and is a `LivingEntity`, which covers all mobs. Non-living entities like item frames or boats were unsupported, as I had no use case in my mod.
 
-Another new step is involved. Previously, I mentioned that we will need to talk about `GuiGraphics`. `GuiGraphics` is a helper class
-provided by Minecraft that simplifies rendering operations within GUIs. It provides access to something called a `PoseStack`.
+Rendering in GUIs involves `GuiGraphics`, a Minecraft helper that simplifies GUI rendering. Via `guiGraphics.pose()`, the `PoseStack` can be accessed. It's a stack-based structure for managing transformations (translation, rotation, scaling). It holds coordinate systems that can be modified and restored hierarchically. `pushPose()` adds a new matrix to the stack for transformations without affecting prior state. `popPose()` reverts to the previous state. The `{ ... }` block after `pushPose()` is a an optional style choice to visually separate affected code.
 
-Via `guiGraphics.pose()`, I can access the underlying `PoseStack`, which is a stack-based structure used to manage transformations (translation, rotation, scaling). The `PoseStack` is a core concept of Minecraft's rendering system. A `PoseStack` is essentially a stack
-of transformation matrices that allows you to apply and manage multiple transformations in a hierarchical manner. In simple terms, it
-holds coordinate systems that can be modified and restored as needed.
-
-`pushPose()` pushes a new transformation matrix onto the stack, allowing you to apply transformations without affecting the previous
-state. If you are done with your transformation, you can call `popPose()` to revert to the previous state. You might be wondering why I
-used a block `{ ... }` after pushing the pose. This is just a coding style I like to use to visually separate the code that is affected
-by the pushed pose from the rest. It's completely optional.
-
-With that implemented, the recipe would still look the same as the initial screenshot. The entity ingredients would still need to be
-added to the actual category display. To avoid bloating this blog post too much, I won't include that in here. After defining the entity
-ingredient slots and assigning the entity ingredients with the custom renderer to them, the recipe would look as follows.
+With that implemented, the recipe still looked the same. The entity ingredients still needed to be added to the category display. To avoid bloating the post, I won't include that here. After defining slots and assigning ingredients with the custom renderer, the recipe looked as follows.
 
 <img src="/../img/first-render.png" class="center" width="600">
 
-Although hard to spot, you can see that the entities are rendered. I used a variety of different entities to see how they would look.
-Since the Ghast is a rather large entity, you can see it quite well. That's a good first step. However, a lot of transformation is still
-required to make the entities look good.
+Though hard to spot, entities were being rendered. I used various entities to test appearance. The Ghast, because it is so large, was clearly visible. A good start, but a lot more was needed for proper display.
 
 ### Renderer Transformations
 
-As you can see in the screenshot above, the entities are pretty small and upside down. I can't really explain the reason, but this is a
-common issue when rendering anything in Minecraft. The same will happen if you try to render a block in a GUI. This is probably related
-to how the coordinate system is set up in the 2D space.
+As seen above, entities appeared small and upside down. I cannot fully explain why, but this is common when rendering in Minecraft. Blocks in GUIs behave similarly. It likely relates to the 2D coordinate system setup.
 
-One thing I didn't mention when introducing the `PoseStack` is how it can be used to transform the viewport. In its raw form, the
-`PoseStack` just hosts a matrix that defines the current coordinate system. By applying transformations to the `PoseStack`, and therefore
-to the underlying matrix, you can modify how things are rendered. For example, you can translate (move), rotate, or scale the coordinate
-system.
+I did not mention earlier that the `PoseStack` transforms the viewport. It hosts a matrix defining the current coordinate system. Applying transformations to the `PoseStack` affects the underlying matrix: translate (move), rotate, or scale. Since JEI's `render` method provides `GuiGraphics` with the `PoseStack`, and it is called per slot, the matrix is positioned at the slot's upper-left corner in the recipe layout. Thus, entities rendered in the corner, not centered.
 
-Since the `render` method of the JEI entity renderer already provides an instance of `GuiGraphics` which hosts the `PoseStack`, and the
-renderer is called for each slot individually, the underlying matrix is already positioned at the upper-left corner of the slot within
-the recipe layout. This is the reason why all entities are rendered in the corner of their respective slots and not in the center.
-
-Typically, in a 2D layer, the axes look as follows.
+Typically, in 3D, axes look like this [(source)](https://i.sstatic.net/SitTF.png):
 ![](/../img/axes.png)
 
-But since the entities are upside down, it's an indicator that the Y-axis is inverted. This means that positive `y` values go downwards
-instead of upwards. We can test this by applying a translation to the matrix on the Y-axis in the positive direction. If the entities move
-downwards, our assumption is correct.
+But entities being upside down in my initial approach indicated an inverted Y-axis meaning positive `y` values go downward. I verified this by translating the matrix along the Y-axis, proving the assumption.
 
 | Code                             |                 Before                 |                 After                 |
 | -------------------------------- | :------------------------------------: | :-----------------------------------: |
 | `poseStack.translate(0, 10, 0);` | ![](/../img/before-transformation.png) | ![](/../img/after-transformation.png) |
 
-The matrix is set up in a way that uses relative coordinates and starts at the slot origin at `0, 0`. It's scaled so that it only
-occupies a single pixel of the slot. I needed to transform the matrix in a way that the entities are rendered in the center of the slot
-and in their correct direction. For this I applied a rotation of 180° around the Z-axis (depth axis) and translation of half the slot
-width and the full slot height on the Y-axis so that the entities are aligned with the bottom center of the slot. I performed the
-ranslation before the rotation to ensure the axes are correct. By translating the matrix, we essentially shift the origin position.
-A rotation operation will always use the matrix origin as the angle.
+The matrix uses relative coordinates starting at the slot origin `0, 0`, scaled to a single pixel. To transform the matrix so entities render centered and correctly oriented, I applied a 180° rotation around the Z-axis (depth axis) and translated the matrix by half the slot width and the full slot height. This aligned entities with the slot's bottom center. The translation occurs before rotation to ensure correct axes. Translating shifts the origin position, and rotation uses the matrix origin as the angle.
 
-In modern game development, rotations are usually transformed by something called quaternions. Quaternions are a mathematical concept
-that provides a way to represent rotations in 3D space without suffering from issues like gimbal lock, which can occur with other
-rotation representations like Euler angles. Quaternions are a whole different topic and would need a separate blog post. If you want to
-learn more about them, I recommend checking [their Wikipedia article][wikipedia-quaternion].
+In modern game development, rotations typically use quaternions. Quaternions are a mathematical concept that provides a way to represent rotations in 3D space without suffering from issues like gimbal lock. Quaternions are a complex topic and would likely require their own blog post. If you want to learn more about them, I recommend checking [their Wikipedia article][wikipedia-quaternion].
 
-For my purpose, the operation is quite simple and doesn't need a whole lot knowledge about quaternions. Minecraft already provides a lot
-of useful helper methods to work with them. `100` is used as the Z-coordinate to ensure the entity is rendered in front of other GUI
-elements and doesn't clip into the background (also known as Z-fighting).
+For my needs, it was simple. Minecraft provides quaternion helpers. The `100` was applied to the Z-coordinate to ensure the entity is rendered in front of other GUI elements avoiding clipping into the background (known as Z-fighting).
 
 ```java
 private static final int SLOT_SIZE = 16;
 // ... inside render method
 poseStack.translate(SLOT_SIZE / 2f, SLOT_SIZE, 100);
-poseStack.rotate(Axis.ZP.rotationDegrees(180));
+poseStack.mulPose(Axis.ZP.rotationDegrees(180));
 ```
 
 |                 Before                 |                    After                     |
 | :------------------------------------: | :------------------------------------------: |
 | ![](/../img/before-transformation.png) | ![](/../img/after-transformation-center.png) |
 
-To see the entities better, I applied a uniform scale of `6.0f` to the matrix as well.
+For better visibility, I also applied uniform scale `6.0f` to the matrix.
 
 | Code                                 |                    Before                    |             After              |
 | ------------------------------------ | :------------------------------------------: | :----------------------------: |
@@ -318,50 +239,31 @@ To see the entities better, I applied a uniform scale of `6.0f` to the matrix as
 
 ## Interim Conclusion
 
-The rendering of entities in a GUI is pretty straightforward once you understand how to manipulate the `PoseStack` to achieve the desired
-transformations. However, there are many more challenges to tackle.
+Rendering entities in a GUI is straightforward once you master `PoseStack` transformations. However, many more challenges remained.
 
-At first, since each entity has a different size, the uniform scale results in an inconsistent appearance. Large entities will become way
-too big for a slot, while small entities are still too small to be recognizable. Additionally, there are some entities that act really
-strange. As you can see above, the Bat and the Ender Dragon face in the opposite direction. Furthermore, the Ghast isn't correctly
-centered and its tentacles overlap the slot borders.
+Since each entity has a different size, uniform scaling yielded inconsistent appearance. Large entities overflowed, small ones were unrecognizable. Some entities behaved oddly, as you can see below. The Bat and Ender Dragon faced the opposite direction. The Ghast was miscentered with its tentacles overlapping slot borders.
 
-<img src="/../img/after-scaleing-all.png" class="center" width="600">
+<img src="/../img/after-scaling-all.png" class="center" width="600">
 
-After looking at the current state for a while, I realized the entity dispatcher uses the bottom of the bounding box for alignment. This
-means the bottom slot border is aligned with the bottom of the bounding box. For most entities, this is fine. But for entities like the
-Ghast, whose model extends beyond the bounding box, this leads to visual issues. Since Minecraft offers a way to render bounding boxes in
-the game for debugging purposes, it's pretty simple to confirm this assumption.
+It seemed the entity dispatcher aligned the entities using their bounding box. This worked for most but caused issues for entities like the Ghast, whose model extended beyond the box. Minecraft's debug bounding box rendering confirmed this.
 
 |            Bat            |            Creeper            |            Wither            |            Ghast            |
 | :-----------------------: | :---------------------------: | :--------------------------: | :-------------------------: |
 | ![](/../img/bbox-bat.png) | ![](/../img/bbox-creeper.png) | ![](/../img/bbox-wither.png) | ![](/../img/bbox-ghast.png) |
 
-As you can see, bounding boxes in Minecraft are just simple rectangular prisms that encapsulate the entity. They don't account for the
-actual model. Most of the time, these bounding boxes act as the hitbox at the same time. This means they define the area where players
-can interact with the entity. For some entities, like the Dragon, where the bounding box is extremely huge compared to the model, there
-is special logic to handle interactions. The bounding box is still used for rendering, though. You might be wondering where the bounding
-box of the Ghast is. Take a look at the following screenshot. As I mentioned earlier, the tentacles aren't part of the bounding box. And
-now we can see that even the head is not fully included.
+As you can see, bounding boxes are simple rectangular prisms encapsulating the entity, ignoring the actual model. You might be wondering where the bounding box of the Ghast is. As mentioned previously, it's a special case. The tentacles and part of its head are excluded from the bounding box, causing misalignment and overlap.
 
 <img src="/../img/bbox-ghast-inner.png" class="center" width="600">
 
-Since the bounding box is the point of alignment, the Ghast appears misaligned in the slot and its tentacles as well as a bit of it head
-overlap the slot borders.
-
 ## Entity Scaling and Offsetting
 
-To tackle the issues I mentioned above, I needed to find a way to determine the correct scale and offset for each entity. This is where
-things got _really_ tricky.
+To address these issues, I needed to determine correct scale and offset per entity. This proved tricky.
 
-While looking at vanilla code is a good starting point, most modders also take inspiration from other mods. Most of the time, there are
-other mods that faced similar challenges and have already implemented solutions. There are a few mods rendering entities in their GUIs as
-well. One of the most popular ones is [Just Enough Resources][jer-github], a JEI add-on that
-displays additional information about loot drops, loot tables, and more. For the entity loot drops, they display an entity in JEI.
+Looking at Vanilla code is a good start, but modders also draw inspiration from other mods. Several mods render entities in GUIs. A popular one is [Just Enough Resources][jer-github], a JEI add-on displaying additional info about loot drops. For the loot drop overview, they display an entity in JEI.
 
 <img src="/../img/jer-preview.png" class="center" width="600">
 
-After a quick look into their codebase, I found the following logic.
+Their codebase revealed the following logic.
 
 ```java
 private float getScale(LivingEntity livingEntity) {
@@ -395,12 +297,9 @@ private int getOffsetY(LivingEntity livingEntity) {
 }
 ```
 
-This is a simple but efficient approach to scale and offset entities. However, this only covers most vanilla entities. Custom entities
-of other mods won't be supported unless you add proper integration and hardcode their values as well. My goal is to have a future-proof
-dynamic solution that works for any entity, including custom ones from other mods.
+This is a simple and efficient approach, but only covers vanilla entities. Custom mod entities require hardcoded integration. My goal was a future-proof dynamic solution for any entity.
 
-To start out, I reused logic from older versions of SR. Back then, I used a lot of debugging and Excel to create a spreadsheet of the
-different entity sizes and offsets. After that I used an example size, in this case a Creeper, and calculated scale factors for each entity based on that. To have a multiplicative factor, I used the height of the bounding box as a reference.
+To start I reused logic from older SR versions. For the old renderer I used plenty of debugging and a spreadsheet to track the entity sizes and offsets. I then used a reference value, in this case the Creeper bounding box height, calculating scale factors.
 
 ```java{4-6}
 private static final float CREEPER_HEIGHT = 1.7f;
@@ -414,46 +313,25 @@ var scaleFactor = CREEPER_SCALE * size * entityScale;
 
 <img src="/../img/hardcoded-scaling.png" class="center" width="600">
 
-This calculation primarily focuses on the height of the bounding box. Since most entities are taller than they are wide, this approach
-is already more dynamic than the previous hardcoded one. However, it still has its flaws. Entities that are wider than they are tall will
-be rendered out of bounds. Additionally, since we only rely on the bounding box, entities with models that extend beyond it will still
-have visual issues. This implementation also has no offsetting logic, meaning entities like the Ghast will still be misaligned.
+This calculation primarily focused on height, was more dynamic than hardcoding, but was still limited. Most entities are taller than wide. Entities wider than tall were overflowed. Additionally, since the bounding box was the only available info, entities with models beyond the box were misaligned.
 
 ### Entity Measuring
 
-The next step was to find a way to retrieve the actual size of an entity. Since Minecraft doesn't expose that information directly, I only
-had one idea. Parse the model files of each entity to determine their actual dimensions. This would be really tedious and error-prone, so
-I decided to give myself a break and keep using the bounding box for now.
+Next, I sought the actual entity size. Minecraft does not expose it directly. My only idea was to parse the model files of each entity. But this would be tedious and error-prone. So I stuck with bounding boxes temporarily.
 
-Later that day, after talking on a Discord with some fellow modders, one of them mentioned a new idea to tackle this problem. After
-thinking about this approach for some time, I realized this could actually work. I want to give huge shoutouts to [embeddedt] for coming up
-with this idea and pitching it to me out of the blue.
+Later, discussing on Discord with fellow modders, one suggested a new approach. Huge shoutouts to [embeddedt] for the idea.
 
 <img src="/../img/embeddedt.png" class="center" width="800">
 
-So what does this even mean?
+But what does this mean?
 
-As you could see in previous code snippets, the entity render dispatcher uses something called a `BufferSource` to render entities. A
-`BufferSource` is responsible for managing vertices and sending them to the GPU for rendering. But what on earth does "vertices" mean?
-Vertices is plural for vertex. A vertex is a point in 3D space that defines the corners of geometric shapes. In 3D graphics, objects are
-typically represented as a collection of vertices connected by edges and faces to form polygons, usually triangles. You have probably
-heard of this concept before when talking about 3D models or game engines. Explaining this concept in detail would go beyond the scope of
-this blog post. The only thing you need to know is that each entity is made up of many vertices that define its shape. This is unrelated
-to the bounding box. I am talking about the actual model geometry also known as the render shape or the mesh.
+The entity render dispatcher uses a `BufferSource`, which is responsible for managing vertices sent to the GPU. Vertices (plural for vertex) are points in 3D space defining the corners of geometric shapes. In 3D graphics, objects are typically represented as a collection of vertices connected by edges and faces to form polygons, usually triangles. You have probably heard of this before. Explaining this concept in detail would go beyond the scope of this blog post. The only thing you need to know is that each entity is made up of many vertices that define its shape. This is unrelated to the bounding box. It is the actual model geometry also known as the render shape or the mesh.
 
-Typically, when working with a `BufferSource`, you obtain a `VertexConsumer` from it by specifying a render type. Minecraft uses a lot
-of different render types for different purposes. For example, there are render types for solid objects, translucent objects, cutout
-objects, and more. After obtaining the `VertexConsumer`, you can use it to add vertices to the buffer. Each vertex has a position in 3D
-space, as well as other attributes like color, texture coordinates, and normals.
+Typically, when working with a `BufferSource`, you obtain a `VertexConsumer` from it by specifying a render type. Minecraft uses a lot of different render types for different purposes (solid objects, translucent objects, cutout objects, and more). After obtaining the `VertexConsumer`, it can be used to add vertices. Each vertex has a position in 3D space, as well as other attributes like color, texture coordinates, and normals.
 
-The idea [embeddedt] came up with is to create a custom `VertexConsumer` exposed by the `BufferSource` which doesn't actually render
-anything. Instead, it only tracks the minimum and maximum coordinates of all vertices added to it. By doing this, we can effectively
-measure the actual size of the entity based on its rendered geometry rather than relying on the bounding box. Feel free to check out the
-implementation in the following spoiler, it's not required, though. You only need to understand that it allows me to capture the minimum
-and maximum vertex positions on each axis. Since I only use it for measuring purposes, it's not required to respect the render type or
-other unrelated data like colors or texture coordinates.
+The idea [embeddedt] came up with is a custom `VertexConsumer` exposed by a dummy `BufferSource` tracking the minimum and maximum coordinates of all vertices added to it without rendering. By doing this, you can effectively measure the mesh of the entity based on its geometry rather than relying on the bounding box. Check out my implementation below. It captures the minimum and maximum per axis, ignoring render type, colors and other unnecessary properties.
 
-:::details Custom Vertex Consumer Implementation
+:::details MeasuringBufferSource and MeasuringVertexConsumer
 
 ```java
 public class MeasuringBufferSource implements MultiBufferSource {
@@ -462,7 +340,7 @@ public class MeasuringBufferSource implements MultiBufferSource {
 
     @Override
     public VertexConsumer getBuffer(RenderType renderType) {
-        // return the same consumer for all render layers, we only care about positions
+        // same consumer for all layers, we care only about positions
         return instance;
     }
 
@@ -541,18 +419,11 @@ public class MeasuringBufferSource implements MultiBufferSource {
     }
 
 }
-
 ```
 
 :::
 
-How does this work in action?
-
-Let's look back at the render implementation in the [Initial Approach section](#initial-approach-code). It uses the `BufferSource`
-provided by the `GuiGraphics` to render the entity. Because this handles the actual rendering, I needed to keep it. However, I can
-recreate the logic and call it with the custom `MeasuringBufferSource` instead. After that, I can retrieve the measured data from the
-it and use it for scaling and offsetting. Combining that with the rotation, slot centering, and the scaling logic of old SR versions,
-we end up with the following code.
+Recall the [Initial Approach section](#initial-approach-code). It uses the `BufferSource` provided by the `GuiGraphics` for rendering. I kept that since it's responsible for drawing the entity on the screen but I recreated the logic with the custom `MeasuringBufferSource`, retrieving the data, and using it for scaling and offsetting. Combining that with the rotation, slot centering, and the scaling logic of old SR versions, I ended up with the following code.
 
 ```java:line-numbers
 private static final float CREEPER_HEIGHT = 1.7f;
@@ -562,7 +433,7 @@ private static final int SLOT_SIZE = 16;
 @Override
 public void render(GuiGraphics guiGraphics, EntityIngredient entityIngredient) {
     if (!(entityIngredient.getEntity() instanceof LivingEntity entity)) {
-        // don't render the entity if it's null or not a living entity
+        // don't render if null or not a living entity
         return;
     }
 
@@ -598,12 +469,10 @@ public void render(GuiGraphics guiGraphics, EntityIngredient entityIngredient) {
         Lighting.setupFor3DItems();
     }
     poseStack.popPose();
+}
 ```
 
-In line 28 of this implementation, I create an instance of the new `MeasuringBufferSource`. I then call the render method of the entity
-dispatcher with it in lines 29-32. This will not render anything but will populate the measuring buffer with vertex data. After that, I
-can access the collected data via `measuringBufferSource.getData()`. The new code doesn't handle the actual scaling and offsetting just
-yet. But we can already take a look at the collected data for a few entities in comparison to their bounding boxes.
+Line 28 created an instance of `MeasuringBufferSource`. Lines 29-32 called the render method of the entity dispatcher. This didn't render anything, but populated the buffer with vertex data, which was accessible via `measuringBufferSource.getData()`. This did not handle scaling and offsetting just yet. But it gave good insight on the measured entity data in comparison to their bounding box.
 
 <a id="measuring-results"></a>
 
@@ -635,14 +504,9 @@ yet. But we can already take a look at the collected data for a few entities in 
 | zombie bbox         | -0.3    | 0.0     | -0.3   | 0.3     | 1.95    | 0.3     |
 | zombie mesh         | 363.481 | 279.777 | 99.718 | 364.517 | 281.999 | 101.216 |
 
-Looking at this data, we can already see some interesting things. The min and max values represent the axis-aligned bounding box of the
-actual model geometry. By subtracting the min values from the max values, we can determine the actual size of the entity. If we look at
-the Ghast, for example, we can see that its model extends significantly beyond its bounding box, especially in height. This confirms
-our earlier observation about the Ghast's misalignment in the slot.
+The data showed the minimum and maximum values of the axis-aligned model geometry. Subtracting yielded the actual size. Looking at the Ghast, the model extends significantly beyond its bounding box, especially in height. This confirmed the observation about the Ghast's misalignment in the slot.
 
-With that data in mind, I tried improving the scaling and offsetting logic. Since there are some entities that are wider than they are
-tall, I decided to take all dimensions into account when calculating the scale factor. For that, I used the diagonal size of the measured
-bounding box. The diagonal size can be calculated in the following way.
+Using this, I improved the scaling and offsetting. Accounting for wide entities, I decided to use all dimensions when calculating the scale factor. For that, I used the diagonal size of the measured mesh.
 
 ```java
 float dx = maxX - minX;
@@ -651,7 +515,7 @@ float dz = maxZ - minZ;
 float diagonal = (float) Math.sqrt(dx * dx + dy * dy + dz * dz);
 ```
 
-Using this for the scale and the height of the measured bounding box for the offset, I ended up with the following code.
+With the diagonal size for the scale and the measured height for the offset, I ended up with the following code.
 
 ```java
 // ... inside render method after measuring
@@ -664,7 +528,7 @@ float dz = data.maxZ() - data.minZ();
 float diagonal = (float) Math.sqrt(dx * dx + dy * dy + dz * dz);
 poseStack.scale(diagonal, diagonal, diagonal);
 
-float height = measuringResult.maxY() - measuringResult.minY();
+float height = data.maxY() - data.minY();
 poseStack.translate(0, height, 0);
 
 RenderSystem.runAsFancy(() -> entityRenderer.render(
@@ -674,18 +538,13 @@ RenderSystem.runAsFancy(() -> entityRenderer.render(
 // ... rest of render logic
 ```
 
-The resulting rendering looks as follows. You might be thinking "Hey, this looks like a huge step back!". And you would be right when
-comparing the current state to the previous hardcoded scaling approach. However, with this implementation, we know the scale and offset
-is dynamically calculated based on the actual model size. Big models became really big while smaller models are still really small. The
-next step is to normalize the scale and offset to fit within the slot properly.
+The result looked like a huge step back. However, the scale and offset calculations were now dynamic based on the measured mesh size which was a good foundation for further improvement. The next step was to normalize the scale and offset to fit the slot.
 
 <img src="/../img/after-measuring.png" class="center" width="600">
 
 ### Normalization
 
-To tackle the normalization, we need to think of a mathematical formula that maps the measured size to a target size. Because I am pretty
-bad at math, I had to resort to trial and error again. After some testing, I came up with a formula that already matched my expectations
-quite well.
+To tackle normalization, a mathematical formula that maps the measured size to a target size was required. Trial and error (I am bad in mathematics) yielded a formula that already matched my expectations quite well.
 
 ```java
 float dx = data.maxX() - data.minX();
@@ -698,16 +557,12 @@ poseStack.scale(scale, scale, scale);
 
 <img src="/../img/after-scale-formula.png" class="center" width="600">
 
-The formula uses a target size of `18f`, which acts as a global modifier. Changing this value will make all entities bigger or smaller.
-Additionally, I applied an exponent of `0.9` to the diagonal size to reduce the impact of larger entities. This means that larger entities
-will be scaled down more aggressively than smaller ones. This results in a more consistent appearance across different entity sizes.
+The formula used a target size of `18` acting as a global modifier. Changing it would make all entities larger or smaller. The exponent of `0.9` to the diagonal size reduced the impact of larger entities. They were scaled down more aggressively than smaller entities resulting in a more consistent appearance across different entity sizes.
 
-The scaling looks pretty good now. Entities have a consistent size as they would appear in the game as well just shrinked to the size
-of the slot. However, the offset is still not perfect. Because we shift the offset by the measured height, entities that already aligned
-with the bottom of the slot will now appear too high. To fix this, we need to subtract their bounding box height from the current offset.
+Scaling looked alright. Entities shrunk to the slot size consistently. However, the offset was wrong. Because I shifted the offset by the measured height, entities aligned with the bottom of the slot appeared too high. I subtracted their bounding box height from the current offset to fix this.
 
 ```java
-float height = measuringResult.maxY() - measuringResult.minY();
+float height = data.maxY() - data.minY();
 poseStack.translate(0, height - entity.getBbHeight(), 0);
 ```
 
@@ -715,10 +570,7 @@ poseStack.translate(0, height - entity.getBbHeight(), 0);
 
 ## Animations
 
-This is already looking pretty good. However, entities are still static and looka bit dull. To improve the visual appearance, I decided
-to add their animations to the rendering as well. This is quite simple to achieve. The entity renderer already handles animations based
-on the entity's age in ticks. Since we are in a client-side environment, we can access the current tick count in the player of the current
-Minecraft instance and apply that to the entity before rendering it.
+Looking pretty good, but the entities were static and looked dull. To improve the visual appearance, I added their animations to the rendering. The entity renderer handles animations based on the entity's age in ticks. In a client-side environment, the current tick count is stored in the player of the current Minecraft instance. This can simply be applied to the entity before rendering it.
 
 ```java
 Minecraft mc = Minecraft.getInstance();
@@ -727,24 +579,13 @@ if (mc.player != null) {
 }
 ```
 
-After applying this change, entities now animate as they would in the game. There are some exceptions like the Ender Dragon. The Dragon
-is a really old entity and uses a custom animation system that changes state based on various factors, such as its phase or the target
-it is attacking. Since we don't have any of that context in our renderer, the Dragon will just stay still. All entities using a tick-based
-animation system will animate properly, though. Activating the animations of the entities brought up another issue to the already long
-list of problems.
+Entities now animated as they would in the game. Exceptions like the Ender Dragon seemed to use a custom animation system that changes state based on factors like its phase or the attack target. Enabling the animations brought up another issue.
 
 <video src="/../img/entity-jitter.mp4" class="center" width="600" controls></video>
 
-As you can see in the video, some entities appear to jitter or shake slightly. This is especially noticeable in entities like the Blaze
-or the Ghast. The reason for this is that the render method is called on every frame, which means on every refresh of your monitor. In
-my case this is 144 times per second. Since the measuring logic is called within the render method and therefore on every frame as well,
-every entity with alternating height vertices will appear to jitter because their total height changes slightly on each frame. To fix
-this, the measured values need to be cached.
+Some entities jittered. This was very noticeable for entities like the Blaze or the Ghast. When the render method was called on every frame, the measuring logic was called on every frame as well. Entities alternating in height during their animations jittered because their total height changed slightly on each frame. I fixed this by caching the measuring results per entity.
 
-Caching is the process of storing data in a temporary storage area so that it can be accessed more quickly in the future. A cache needs
-a unique key to identify each entry. In our case, the key can be the entity identifier. Since an entity with the same identifier will
-always have the same model, the measured values will be the same as well. Therefore, we can use the entity identifier as the cache key.
-To implement this, I decided to use a simple `Map` that maps entity identifiers to their measured results.
+Caching is the process of storing data in a temporary storage. It can be accessed more quickly in the future. A cache needs a unique key to identify each entry. Since an entity with the same identifier will have the same model, I cached the measuring results by the entity identifier. I used a simple `Map` mapping from the identifier to the measuring result.
 
 ```java
 private final Map<String, MeasuringResult> measuringCache = new HashMap<>();
@@ -773,30 +614,19 @@ poseStack.translate(0, height - entity.getBbHeight(), 0);
 // ... rest of render logic
 ```
 
-Caching fixed the jittering issue completely. The concept of caching is a good practice for implementations like this in general and I
-would have done it sooner or later anyways. In this case, it also has the added benefit of fixing one of the many rendering issues.
+Caching fixed the jitter. The concept of caching is a good practice for implementations like this in general. Sooner or later, I would have implemented this anyway. In this case, it doubled as a bug fix.
 
 <video src="/../img/jitter-fix.mp4" class="center" width="600" controls></video>
 
 ## Improvements
 
-The renderer is in a good state now. A happy end you could say, right? My OCD says No! I wanted to improve. As you could see in the
-previous screenshots and videos, the entities, except for the Dragon, are aligned pretty well, now that the offset is calculated by the
-entity's mesh. However, some entities still appear a bit off. Additionally, the scaling doesn't really represent a good user experience.
-Small entities are still very small and hardly recognizable. A better solution would be to scale all entities to an equal size.
+The renderer was in a good state. A happy end you could say, right? My OCD said No! I wanted to improve. Theprevious screenshots and videos show the entities were aligned pretty well, except for the Dragon. However, some entities still appeared a bit off. The scaling did not represent an entity's actual size. Small entities were still very small and hardly recognizable.
 
-To achieve this, I needed to establish a proper relationship between the measured size and the target size. Right now, the measured size
-has no relation to the bounding box size which is used by the dispatcher to align the entity.
+A better solution would be to scale all entities to an equal size. To achieve this, I needed to establish a proper relationship between the measured size and the bounding box size.
 
-Approaching this problem needs more investigation. You might have asked yourself why the values in the
-[measuring results](#measuring-results) look so weird in comparison to the bounding box values. They seem to be starting in arbitrary
-high numbers instead of around `0.0`. I was questioning this myself as well. Looking at these values, I realized that the number depends
-on the position of the entity in the GUI. This means the vertex positions use the relative coordinates of the entity in the world. This
-makes sense because the `PoseStack` I am using for measuring the entity is already transformed to the position of the slot in the GUI.
+Approaching this problem needed more investigation. You might have asked yourself why the values in the [measuring results](#measuring-results) look so weird in comparison to the bounding box values. They seem to be starting in arbitrary high numbers instead of the center of the matrix. I was questioning this myself. I realized that the number depended on the position of the entity in the GUI. This meant the vertex positions used the relative coordinates of the entity in the world. This made sense because the `PoseStack` I used for measuring the entity was already transformed to the position of the slot in the GUI by JEI.
 
-To fix this, I decided to create a new `PoseStack` for the measuring logic. If you create a new `PoseStack`, the underlying matrix is
-a zero matrix. Theoretically, this should result in vertex positions starting from the origin point `0, 0, 0`. After implementing this
-change, the measuring results looked as follows.
+I decided to create a new `PoseStack` for the measuring logic. If you create a new `PoseStack`, the underlying matrix is a zero matrix. After implementing this change, the measuring results looked as follows.
 
 ```java
 MeasuringResult data = measuringCache.computeIfAbsent(
@@ -828,15 +658,11 @@ MeasuringResult data = measuringCache.computeIfAbsent(
 | wither         | -1.5   | 0.241  | -0.699 | 1.5   | 3.502 | 0.515 |
 | zombie         | -0.517 | 3.814  | -0.281 | 0.517 | 2.245 | 1.213 |
 
-These new values confirm my assumption. The vertex positions now start around `0.0`. More importantly, all models seem to be centered
-around the origin point, which can be seen by the min and max X/Z values being roughly equal in magnitude but opposite in sign. With this
-new data, I am now able to build a relationship between the measured size and the bounding box size.
+Confirming the assumption, the vertex positions now started at around `0.0`. More importantly, all models seemed to be centered around the origin point, which can be seen by the min and max X/Z values being roughly equal in magnitude but opposite in sign. I was now able to build a relationship between the measured size and the bounding box size.
 
 <img src="/../img/measure-graphical.png" class="center" width="600">
 
-Since we already know the lower bound of the bounding box is always `0.0` on the Y-axis, and we know the entity dispatcher uses that for
-alignment, we can use the max Y value of the now center-aligned measured bounding box to determine the actual height offset of the entity
-model, as well as a scale that maps the measured height to the slot height.
+Since the lower bound of the bounding box is always `0.0` on the Y-axis, and the entity dispatcher uses that for alignment, the max Y value of the measured mesh could be used to determine the actual height offset of the entity model and its scale.
 
 ```java
 // ... inside render method after measuring
@@ -851,10 +677,7 @@ poseStack.scale(scale, scale, scale);
 
 <img src="/../img/relationship-calculation.png" class="center" width="600">
 
-Now, all entities have a consistent size and are properly aligned within the slot. At least for the entity height. Since we have a few
-entities that are wider than they are tall, like the Phantom, or the Dragon, we could improve the scaling further by taking the width
-into account. Because entities like the Phantom will become very small again if we fit the wings between the slot borders, we use a
-modifier that reduces the impact of the width on the final scale.
+All entities used a consistent size and were properly aligned within the slot. Since there are a few entities being wider than tall, I improved the logic further by taking the width into account. Because entities like the Phantom would become very small if I tried to fit the wings into the slot, I used a modifier that reduced the impact of the width on the final scale.
 
 ```java
 float width = data.maxX() - data.minX();
@@ -868,18 +691,13 @@ poseStack.translate(0, -offsetY, 0);
 poseStack.scale(scale, scale, scale);
 ```
 
-If you look closely, the Blaze is not perfectly aligned yet. The same problem can be seen with the Phantom. It's located inside the slot
-bounds, but it appears right at the bottom. That happens because the models of those entities extend below their bounding box, but only
-in a specific animation state. Since I only measure the entity once in the initial tick, and then cache the result, the measuring logic
-doesn't capture the lowest point of the model during its animation cycle.
+Looking closely, the Blaze was not perfectly aligned. The same problem was visible on the Phantom. It was located inside the slot, but it appeared at the bottom. The models of these entities extend below their bounding box, but only in a specific animation state. Since I only measured the entity once in the initial tick, the measuring logic did not capture the lowest point of the model during its animation cycle.
 
 |             Blaze             |             Phantom             |
 | :---------------------------: | :-----------------------------: |
 | ![](/../img/offset-blaze.png) | ![](/../img/offset-phantom.png) |
 
-To fix this, I needed to find a way to measure the entity in all its animation states. For that, I looped for 40 ticks (2 seconds) and
-called the entity measuring logic on each tick with the same measuring buffer. This way, the measuring buffer captures all vertex
-positions during the animation cycle and therefore the lowest point of the model as well.
+To measure the entities in all animation states, I looped for 40 ticks (2 seconds) and called the entity measuring logic on each tick with the same measuring buffer. The measuring buffer then captured all vertex positions during the animation cycle.
 
 ```java
 // ... inside cache computeIfAbsent
@@ -896,10 +714,9 @@ for (var i = 0; i < 40; i++) {
 // ... rest of measuring logic
 ```
 
-Because calling this measuring logic 40 times is quite expensive if it would happen on every render call, the caching becomes even more
-important. However, since the measuring only happens once per entity type, the performance impact is negligible in the end. There is a
-little edge case remaining. If an entity has an animation longer than 40 ticks, it might still not capture the lowest point of the model.
-However, most entity animations are shorter than that, so this should be fine.
+Because calling this measuring logic 40 times was quite expensive, the caching logic become even more important. Since measuring only happend once per entity type, the performance impact was negligible in the end.
+
+There is an edge case remaining. If an entity has an animation longer than 40 ticks, it might still not capture the lowest point of the model. Most entity animations are shorter than that, so this should be fine.
 
 |                Blaze                |                Phantom                |
 | :---------------------------------: | :-----------------------------------: |
@@ -907,17 +724,13 @@ However, most entity animations are shorter than that, so this should be fine.
 
 ## Scissor
 
-To further improve the visual appearance, I wanted to avoid that an entity in the output slot overlaps with other slots next to it. This
-can happen with wide entities like the Ender Dragon or the Phantom. To find this, I planned to use a technique called scissoring. In
-OpenGL, scissoring is used to define a rectangular area of the screen where rendering is allowed. Any pixels outside this area will not
-be drawn. Think of it like an invisible frame that restricts where things can be rendered.
+To further improve the visual appearance, I wanted to avoid that an entity in the output slot overlaps with other slots next to it.
 
-Because I never worked with scissoring before, I had to do some research on how to implement it properly. I found a method in the
-`RenderSystem` class called `enableScissor` that takes the coordinates and dimensions of the scissor rectangle as parameters. After
-applying this method, I quickly realized that the coordinates need to be in the screen space rather than the GUI space. This means you
-need the `x` and `y` position measured from the corner of the screen. Since this depends on your resolution and your GUI scale, it's a
-real hassle to obtain these coordinates and is out of scope for this blog post. I can just say that this information is not exposed
-anywhere, so I started researching again until I found another method in the `GuiGraphics` class called `enableScissor` as well.
+I used a technique called scissor masking. In OpenGL, the scissor mask is used to define a rectangular area of the screen where rendering is allowed. Any vertices outside this area will not be drawn. Think of it like an invisible frame that restricts where things can be rendered.
+
+Because I never worked with a scissor mask before, I researched how to implement it. I found a method in the `RenderSystem` class called `enableScissor` taking the coordinates and dimensions of the scissor rectangle as parameters. After I applied the method, I realized the coordinates needed to be in the screen space rather than the GUI space. This means I needed the `x` and `y` positions measured from the corner of the screen. Since this depends on the screen's resolution and the player's GUI scale, obtaining this information was tricky. This is out of scope for this post.
+
+Being blocked by this, I searched for alternatives leading me to another method called `enableScissor` in the `GuiGraphics` class.
 
 ```java
 guiGraphics.enableScissor(0, 0, SLOT_SIZE, SLOT_SIZE);
@@ -925,13 +738,9 @@ guiGraphics.enableScissor(0, 0, SLOT_SIZE, SLOT_SIZE);
 guiGraphics.disableScissor();
 ```
 
-Contrary to the `RenderSystem` method, this one takes minimum and maximum positions for `x` and `y` instead of coordinates and
-dimensions. Since this method is exposed by the `GuiGraphics` instance and the `GuiGraphics` host the `PoseStack` instance, I assumed
-that the coordinates are in GUI space rather than screen space because the underlying matrix already holds the position of the slot.
+Contrary to the `RenderSystem` method, this one took minimum and maximum positions for `x` and `y` instead of coordinates and dimensions. Since this method was exposed by the `GuiGraphics` instance and the `GuiGraphics` hosted the `PoseStack` instance, I assumed that the required positions are in GUI space rather than screen space.
 
-After applying it to the render method, all my entities vanished. Because something like this isn't easy to debug, I wanted to to
-visualize the positions I used by drawing some simple rectangles. The `GuiGraphics` offer a simple method for this. It also takes
-minimum and maximum positions for `x` and `y`, as well as a color.
+Applying this method in the render method caused all my entities to vanish. This system is hard to debug so I tried visualizing the positions I used by drawing simple rectangles. The `GuiGraphics` class offered a simple method for this. It also expected minimum and maximum positions for `x` and `y`, as well as a color.
 
 ```java
 guiGraphics.fill(0, 0, SLOT_SIZE, SLOT_SIZE, 0xFFFF_FFFF);
@@ -939,22 +748,11 @@ guiGraphics.fill(0, 0, SLOT_SIZE, SLOT_SIZE, 0xFFFF_FFFF);
 
 <img src="/../img/scissor-debug.png" class="center" width="600">
 
-As you can see, the drawn rectangles are perfectly aligned with the slots. This means the scissoring coordinates should be correct as
-well. You would assume that the position you define is in the GUI space because it's a method by `GuiGraphics` that holds the instance of
-the `PoseStack` and that should use the underlying matrix, right? Wrong!
+The drawn rectangles were perfectly aligned with the slots meaning my scissor mask coordinates should have been correct. You would assume that the positions you pass to a method in the `GuiGraphics` are in the GUI space because it hosts the `PoseStack` and that should use the underlying matrix, right? Wrong!
 
-It turns out that this method also uses screen space coordinates just like the `RenderSystem` method. Why is that? I have no idea.
-Function-wise they are identical. This meant that I once again needed to find the screen space coordinates of the slot. Because I had a
-lot of mathematics in school and in university, I tried to remember how obtain the origin point of a matrix. Because Minecraft uses
-quaternions for rotation, the underlying matrix is 4-dimensional. Something I didn't ever have to deal with in math class. Funnily enough,
-I searched through available methods in the matrix of the `PoseStack` and found a method called `transformPosition` which takes a
-position in 3D space and a vector. Looking at its implementation, I had no clue what it does. However, after testing it, I realized that
-it somehow converts the position you pass into screen space and applies it to the vector you provide. By passing a zero vector, I was
-able to retrieve the screen space position of the slot.
+It turned out the method also used screen space coordinates. Why is that? I have no idea.
 
-Some things to note are that this needed to be called before transforming the matrix in any way, because it starts at the upper left slot
-corner which is the exact position I needed. Additionally, I needed to ensure to disable scissoring after the rendering is done because
-this also uses a stack internally. If you don't remove your scissor entry from the stack, the game will crash later.
+Searching through available methods in the matrix of the `PoseStack` yielded another method `transformPosition`. It expected a position in 3D space and a vector. It somehow converted the position I passed into screen space and applied it to the vector provided to it. By passing a zero vector, I was able to retrieve the screen space position of the slot. This needed to be called before transforming the matrix because it started at the upper left slot corner.
 
 ```java
 Vector3f absolutePos = poseStack.last().pose().transformPosition(0, 0, 0, new Vector3f());
@@ -967,36 +765,23 @@ guiGraphics.disableScissor();
 
 <img src="/../img/scissor.png" class="center" width="600">
 
-As you can see, for entities that extend beyond the slot boundaries, like the Ender Dragon, the overlapping parts are now properly
-clipped. For the output slots, this is perfect. It looks weird on the input slots, though. This can easily be fixed by gating the
-clipping logic behind a boolean flag that is set depending on whether the slot is an input or output slot.
+For entities extending beyond the slot boundaries, the overlapping parts were now properly clipped. This was perfect for the output slots. For the input slots, however, it looked a bit strange. I was easily able to fix this by gating the clipping logic behind a boolean flag that is set depending on whether the slot is an input or output slot.
 
 ## Rotation
 
-Now, we are getting to the most confusing part of this whole journey.
+Here comes the most confusing part of this whole journey.
 
-You probably noticed that all entities are rendered facing towards the camera. But there are two cases where this is not true. The Ender
-Dragon and the Bat. Both entities are rendered facing away from the camera. The Bat is a special topic. The entity it renders in a GUI
-doesn't seem to match the entity that is rendered in world. I have no explanation for this as of now. The Dragon, however, is easier to
-explain. Its model is in fact rotated 180 degrees on the Y-axis by default. Why is this? I have no clue. Is this what we call Mojank?
+All entities are rendered facing towards the camera but there were two exceptions. The Ender Dragon and the Bat. I can't explain what's going on with the Bat. The model rendered inside the GUI seems to be a different model than the in-world model. The Dragon model is indeed rotated by 180° on the Y-axis by default. Why is this? I had no clue. Is this what we call Mojank?
 
-I can only imagine that this is an old leftover from when the Dragon was first implemented in Minecraft. To ensure I am not doing
-anything wrong, I checked JER again. To my surprise, JER renders the Dragon correctly facing the camera. The Bat, however, is also facing
-away.
+I could only imagine it's a leftover from when the Dragon was first implemented in Minecraft. To ensure I was not doing anything wrong, I checked JER again. To my surprise, JER rendered the Dragon correctly facing the camera. The Bat, however, was also facing away.
 
 |         JER Bat          |         JER Dragon          |
 | :----------------------: | :-------------------------: |
 | ![](/../img/jer-bat.png) | ![](/../img/jer-dragon.png) |
 
-Looking at JER's implementation, I found that they just call the vanilla entity renderer that is used inside the `InventoryScreen` to
-render the player model. Because method parameter and local variable names are obfuscated in Minecraft, I had to debug my way through
-the code to see what each value does. After some trial and error, I decided to call the vanilla renderer myself and could confirm that
-the Dragon is rendered correctly.
+Looking at JER's implementation, I found it calls the vanilla entity renderer in `InventoryScreen`. Because method parameters and local variable names are obfuscated in Minecraft, I debugged through the code to see what each value did. After researching, I called the vanilla renderer myself and confirmed the Dragon rendering correctly.
 
-The interesting part in the vanilla implementation is that they seem to adjust rotation properties of the entity instance. The following
-code displays the relevant part of the vanilla implementation. You'll notice that variable names are obfuscated and that some of the code
-doesn't really make sense because variables are being assigned to themselves. This is one of the downsides of decompiled code but we can
-still observe what is happening.
+The interesting part in the vanilla implementation was they seemed to adjust rotation properties of the entity instance. Variable names were obfuscated and some of the code did not make sense. Variables were assigned to themselves. This is one of the side effects of decompiled code. It was enough to observe the functionality, though.
 
 ```java:line-numbers
 float f4 = p_275689_.yBodyRot;
@@ -1020,18 +805,12 @@ p_275689_.yHeadRotO = f7;
 p_275689_.yHeadRot = f8;
 ```
 
-In the lines 1-5, different rotation values of the entity are being captured. An entity has many different rotation values that control
-how it is positioned in the world. The Y body rotation is the rotation of the main body of the entity. The Y rotation is the overall
-rotation around the Y-axis. The Y head rotation is the rotation of the head part of the entity. There are additional properties for each
-rotation that are suffixed with `0`. These properties are used to lerp between the previous and the current rotation for smooth
-transitions. If you ever played Minecraft, you have probably seen that if you rotate your player, the body remains in the same position
-for a bit before rotating as well. To achieve this effect, the distinction between the body rotation and the overall rotation is used.
+Lines 1-5 showed capturing of rotation values of the entity. An entity has many different rotation values that control how it is positioned in the world. The Y body rotation value is the rotation of the main body of the entity. The Y rotation value is the overall rotation around the Y-axis. The Y head rotation value is the rotation of the head part of the entity. Additionally, there are properties for each rotation suffixed with `0`. They are used to lerp between the previous and the current rotation for smooth transitions. If you ever played Minecraft, you have probably seen that if you rotate your player, the body remains in the same position for a bit before rotating as well. To achieve this effect, the distinction between the body rotation and the overall rotation is used.
 
-The lines 6 and 7 show us that the body and the overall rotation are set to 180°. The remaining calculation serves the purpose of facing
-the mouse cursor, which is irrelevant in our case. After that, the head rotation is set to the same values. But what does this mean? It
-means that the vanilla code rotates the entity to face the opposite direction instead of the camera. This means that all entities are
-facing away from the camera. When the `renderEntityInInventory` method is called, it receives the scale from the logic above.
-Interestingly, this method does the following.
+Lines 6 and 7 revealed the body and the overall rotation are set to 180°. The remaining calculation served the purpose of facing the mouse cursor, which was irrelevant in my case. Afterwards, the head rotation was set to the same values.
+
+But what did this mean?<br>
+It meant vanilla rotated the entity to face the opposite direction instead of the camera. When the `renderEntityInInventory` method was called in line 14, it received a scale. This method did the following.
 
 ```java:line-numbers
 guiGraphics.pose().pushPose();
@@ -1041,11 +820,7 @@ guiGraphics.pose().translate(translate.x, translate.y, translate.z);
 guiGraphics.pose().mulPose(pose);
 ```
 
-As you can see in line 3, it scales the Z-axis negatively with the full value of the scale. This effectively mirrors the entity towards
-the camera. Well, this would make sense if all entities were rotated 180° by default. However, this is not the case as we have seen with
-the Dragon or the Bat. I recreated the rotation logic without applying the mirroring scale to see what's going on. After a lot of trial
-and error, I realized it's really important to set all rotation properties, including the head. Otherwise, some entities will face in
-the opposite way while the head still looks at the camera. For entities without a head, like the Silverfish, this doesn't matter.
+Line 3 scaled the Z-axis negatively with the full value of the scale. This effectively mirrored the entity towards the camera. This would have made sense if all entities were rotated 180° by default. I recreated the rotation logic without applying the mirroring scale to see what's going on.
 
 ```java
 // ... inside render method before rendering
@@ -1070,9 +845,7 @@ poseStack.scale(scale, scale, scale);
 
 <img src="/../img/rotated.png" class="center" width="600">
 
-As expected, the entities are now facing away from the camera. Logically, the Bat and the Dragon should now face the camera correctly.
-However, only the Bat does while the Dragon still faces away. Do I have an explanation for this? No, I don't. I just accepted the fact
-and applied the negative Z scaling to see what happens next.
+As I expected, the entities were now facing away from the camera. Logically, the Bat and the Dragon should have faced the camera now. However, only the Bat did. Did I have an explanation for this? No, I did not. I just accepted the fact and applied the negative Z scaling to see what happens next.
 
 ```java
 poseStack.scale(scale, scale, scale); // [!code --]
@@ -1081,50 +854,38 @@ poseStack.scale(scale, scale, -scale); // [!code ++]
 
 <img src="/../img/mirrored.png" class="center" width="600">
 
-Now, all entities are facing the camera correctly. Does this make sense? Not really. But it works. Sometimes in development, you just
-have to accept that things are weird and move on. Especially if you already spent many hours on something that was to be as simple as
-rendering an entity in a GUI slot.
+All entities faced the camera correctly. Did this make sense? Not really. But it worked. Sometimes when developing, you just have to accept that things are weird and move on. Especially if you already spent many hours on something that was supposed to be simple.
 
-You would think that mirroring the Z-axis would have the same effect as rotating the matrix by 180° on the Y-axis. Turns out, it doesn't.
-If you rotate the matrix, the following will happen.
+You would think that mirroring the Z-axis would have had the same effect as rotating the matrix by 180° on the Y-axis, right? Turns out, it doesn't. When I rotated the matrix, the following happened.
 
 <img src="/../img/rotated-matrix.png" class="center" width="600">
 
-For some reason, this causes the Bat to still be facing in the wrong direction. I have no explanation for this behavior. If you have any
-idea why this is happening, feel free to reach out to me.
+For some reason, this caused the Bat to face the wrong direction again. I have no explanation for this behavior. If you have any idea why this is happening, feel free to reach out to me.
 
-The last remaining issue on the topic of rotation is the Wither. As you can see, the Wither's head is correctly facing the camera, but
-the two additional heads are not. After a bit of investigation, I found out that the Wither's additional head rotation is controlled in
-the AI logic of the entity. This means it only updates the head rotation under certain conditions, such as when it is attacking a target.
+The last remaining issue was the Wither. The Wither's head was correctly facing the camera, but the two additional heads were not. After investigating, I found the Wither's additional head rotation was controlled in the AI logic of the entity. This meant it only updates the head rotation under certain conditions, such as when it attacks a target.
 
-Because I don't want to apply actual AI ticking logic to the entities in the GUI, I decided to manually set the head rotations by
-checking if the entity is a Wither. This is the only case which needs special treatment so far and I hope it is the last. I personally
-find the vanilla approach to this very ugly but since Minecraft itself has no other use case for rotating the heads except for the
-actual in-world entity, it's the only solution they needed.
+No AI ticking logic should be applied to entities in a GUI. Instead, I manually set the head rotations by checking if the entity is a Wither. This was the only case which needed special treatment.
 
 ```java
 if (entity instanceof WitherBoss witherBoss) {
     var yRotHeads = witherBoss.yRotHeads; // this is private and needs access widening
     var yRotOHeads = witherBoss.yRotOHeads;
     for (var i = 0; i < yRotHeads.length; i++) {
-        yRotHeads[i] = HALF_ROT;
-        yRotOHeads[i] = HALF_ROT;
+        yRotHeads[i] = 180;
+        yRotOHeads[i] = 180;
     }
 }
 ```
 
 ## Result
 
-After applying all the changes mentioned above, the final renderer looks as follows. To make things a bit more readable, I extracted
-the measuring logic into a separate method. The scissoring logic is now gated behind a boolean flag that is set depending on whether the
-slot is an input or output slot. Constants have been extracted and the caching logic has been improved.
+After I applied all the changes above, the final renderer looked as follows. To make things a bit more readable, I extracted the measuring logic into a separate method. The scissor masking logic was now gated behind a boolean flag that is set depending on whether the slot is an input or output slot. Constants have been extracted and the caching logic has been improved.
 
-To display the entities in a more recognizable fashion, I also added a bit of rotation to their models. They now face a bit towards the
-bottom left instead of directly facing the camera. This gives a better view on the models and makes them more appealing.
+To display the entities in a more recognizable fashion, I added a bit of rotation to their models. They now faced towards the bottom left instead of the camera. This gave a better view on the models and made them more appealing.
 
 <img src="/../img/result.png" class="center" width="600">
 
-::: details Final Renderer Code
+::: details Final Renderer
 
 ```java
 public final class EntityIngredientRenderer implements IIngredientRenderer<EntityIngredient> {
@@ -1265,17 +1026,11 @@ public final class EntityIngredientRenderer implements IIngredientRenderer<Entit
 
 ## Conclusion
 
-Rendering entities in a GUI is a complex task that requires careful consideration of various factors, including entity size, offsets,
-and vanilla rendering quirks. There are many things I still don't fully understand, but I'm happy with the current state of the entity
-renderer in SR's JEI integration.
+Rendering entities in a GUI is a complex task that requires careful consideration of various factors, including entity size, offsets, and vanilla rendering quirks. There are many things I still don't fully understand, but I'm happy with the current state of the entity renderer in SR's JEI integration.
 
-Who would have though that a simple pitch of an idea would lead to such a deep dive into a system like this? I certainly didn't expect
-to spend so much time on this. However, I learned a lot about Minecraft's rendering system and how to work with entities in a GUI
-context. I hope this blog post has provided some insights into the challenges and solutions involved in rendering entities in a GUI.
+Who would have thought a simple idea would lead to a deep dive into a system like this? I certainly didn't expect to spend so much time on this. However, I learned a lot about Minecraft's rendering system and how to work with entities in a GUI context. I hope this blog post has provided some insights into the challenges and solutions involved.
 
-Special thanks again to [embeddedt] for giving me this awesome idea. Another huge shoutouts to the team behind NeoForge as well as
-ModDevGradle. The mod loader and the Gradle toolchain are awesome tools that make mod development so much easier. Shoutouts to the
-JetBrains team as well for maintaining a Java runtime that supports DCEVM which makes hot swapping way better.
+Special thanks again to [embeddedt] for giving me this awesome idea. Another huge shoutout to the team behind NeoForge as well as ModDevGradle. The mod loader and the Gradle toolchain are awesome tools that make mod development much easier. Shoutouts to the JetBrains team for maintaining a Java runtime that supports DCEVM which makes hot swapping way better.
 
 Lastly, I want to thank you for reading this far. If you have any questions or suggestions, feel free to reach out.
 

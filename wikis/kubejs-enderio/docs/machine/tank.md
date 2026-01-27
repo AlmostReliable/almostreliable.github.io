@@ -21,7 +21,7 @@ with containers, buckets, bottles, or any modded fluid-handling items.
         -   usage: needs to be passed as the second argument
     -   `fluid`
         -   description: specifies the fluid to fill into or extract from the item
-        -   type: `FluidStack`
+        -   type: `SizedFluidIngredient`
         -   role: other
         -   required: yes
         -   usage: needs to be passed as the third argument
@@ -48,9 +48,9 @@ ServerEvents.recipes(event => {
     //  the item into the tank
     event.recipes.enderio.tank("potato", "3x carrot", Fluid.of("lava", 5000), TankMode.EMPTY)
 
-    // adds a recipe that converts a 5 sticks to a 3 stone by draining 1 bucket of water from
-    //  the item into the tank
+    // adds a recipe that converts a 5 sticks to a 3 stone by draining 2 buckets of any kind
+    //  of water from the item into the tank
     // uses the chaining function for emptying
-    event.recipes.enderio.tank("3x stone", Item.of("stick", 5), "water").emptying()
+    event.recipes.enderio.tank("3x stone", Item.of("stick", 5), "2000x #c:water").emptying()
 })
 ```

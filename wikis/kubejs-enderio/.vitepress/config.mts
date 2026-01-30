@@ -31,6 +31,7 @@ export default defineConfig({
                 text: "Events",
                 items: [
                     { text: "Conduit Registration", link: "event/conduitregistry" },
+                    { text: "Grinding Ball Modification", link: "event/grindingballs" },
                     { text: "Vat Reagent Modification", link: "event/vatreagents" },
                 ],
             },

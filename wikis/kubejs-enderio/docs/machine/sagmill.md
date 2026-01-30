@@ -3,6 +3,9 @@
 The Sag Mill is a machine that grinds items. It is used to process ores, foods, and other items. It can also be used to process items into dusts. By
 making use of Grinding Balls, the Sag Mill can process items more efficiently and increase its output.
 
+Sag Mill recipes support multiple outputs. Output chances and energy consumption can be modified with Grinding Balls. To modify Grinding Balls, please refer
+to the [Grinding Ball Modification Event](../event/grindingballs.md) page.
+
 ## Overview
 
 -   access in recipes event via: `event.recipes.enderio.sag_milling`

@@ -29,7 +29,10 @@ export default defineConfig({
             },
             {
                 text: "Events",
-                items: [{ text: "Conduit Registration", link: "event/conduitregistry" }],
+                items: [
+                    { text: "Conduit Registration", link: "event/conduitregistry" },
+                    { text: "Vat Reagent Modification", link: "event/vatreagents" },
+                ],
             },
             {
                 text: "Bindings",

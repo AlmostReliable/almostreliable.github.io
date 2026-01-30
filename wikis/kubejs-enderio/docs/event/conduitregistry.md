@@ -7,7 +7,7 @@ Keep in mind that server events have to be located inside the `kubejs/server_scr
 
 ## Overview
 
-EnderIO for 1.21.1 and above supports data-driven conduits by default. This event adds convenience methods to register custom conduits via KubeJS.
+EnderIO supports data-driven conduits by default. This event adds convenience methods to register custom conduits via KubeJS.
 
 It automatically generates the required JSON files for the conduit as well as the language file entry. The only thing you have to provide is a texture
 for your custom conduit.

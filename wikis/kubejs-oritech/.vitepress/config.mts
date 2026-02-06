@@ -45,6 +45,7 @@ export default defineConfig({
             {
                 text: "Events",
                 items: [
+                    { text: "Overview", link: "event/overview" },
                     { text: "Deep Drill Registration", link: "event/deepdrill_registration" },
                     { text: "Soul Collection", link: "event/soulcollection" },
                     { text: "Tags", link: "event/tags" },

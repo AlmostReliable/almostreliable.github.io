@@ -22,6 +22,11 @@ The Enderic Laser is a machine that can accelerate other blocks, break blocks, a
         -   required: no
         -   default: `60`
 
+## Tagging
+
+A laser can make use of different block tags to determine how it interacts with blocks in front of it. Read more about tags and how
+to assign them in the [tags event documentation](../../event/tags.md#laser).
+
 ## Examples
 
 ```js

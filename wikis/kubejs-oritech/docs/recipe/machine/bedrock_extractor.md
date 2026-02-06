@@ -32,14 +32,7 @@ node, the block tag `oritech:resource_nodes` must be assigned to the input block
 
 Once the block tag and the recipe have been set up, the Bedrock Extractor needs to be rebuilt in order to detect the new resource node.
 
-```js
-ServerEvents.tags("block", event => {
-    // assigns the block tag to the glass block
-    event.add("oritech:resource_nodes", "glass")
-    // assigns the block tag to the cobblestone block
-    event.add("oritech:resource_nodes", "minecraft:cobblestone")
-})
-```
+Read more about tags and how to assign them in the [tags event documentation](../../event/tags.md#resource-nodes).
 
 ## Examples
 

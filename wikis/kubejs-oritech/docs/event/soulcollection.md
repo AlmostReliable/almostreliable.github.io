@@ -1,99 +1,70 @@
 # Soul Collection Event
 
-This event allows you to add, modify, and remove Vat Reagents.
+This event allows you to cancel soul collection or modify the soul collection amount.
 
 **It is a server event and reloadable!**
 Keep in mind that server events have to be located inside the `kubejs/server_scripts` folder.
 
 ## Overview
 
-EnderIO supports data-driven Vat Reagents by default. This event adds convenience methods to modify entries via KubeJS.
-Vat Reagents are used in the Vat to add a modifier value to the processing of items. The modifier affects the output quantity of the processed item.
+Oritech has a mechanic that allows collecting souls from parting mobs. The collected souls can be used in various ways, such as
+enchanting or spawning certain mobs. By default, the soul collection is always 1, whenever a mob dies nearby. This event allows you to
+cancel the soul collection completely or modify the the amount of souls collected per mob death.
 
-A [Vat recipe](../machine/vat.md) only accepts item tag as inputs. A Vat Reagent is defined by specifying an item within this input tag and assigning
-a modifier value to it. You can also assign a modifier to the whole input tag. If the reagent item is not part of the input tag, the modifier will
-not be applied. This system is a bit tricky to understand at first, but it allows defining different modifier values for the same item depending on the
-recipe input tag.
-
--   access in a server script via: `EnderIOEvents.vatReagents`
--   supported operations
-    -   add new entries
-    -   remove existing entries
-    -   clear all entries
+-   access in a server script via: `EnderIOEvents.soulCollection`
+-   properties
+    -   `level`
+        -   type: `ServerLevel`
+        -   description: the level where the soul collection is happening
+    -   `position`
+        -   type: `Vec3` (precise floating point position as a vector)
+        -   description: the position the mob died at, the soul collection is happening at this position
+    -   `blockEntity`
+        -   type: `? extends BaseSoulCollectionEntity`
+        -   description: the `BlockEntity` of the soul collection block; this object is responsible for collecting and storing the soul
+    -   `entity`
+        -   type: `? extends LivingEntity` (nullable)
+        -   description: the mob that died and is the source of the soul collection; this can be null if the soul collection was initiated by a Soul Flower
+-   functions
+    -   `cancel()`
+        -   description: cancels the soul collection, no souls will be collected for this mob death
+    -   `setSoulValue(Integer)`
+        -   description: sets the amount of souls collected for this mob death; the default value is 1
 
 ## Event Listener
 
-To access the event, the first thing you need to do is to open an event listener for the `vatReagents` event in a server script.
+To access the event, the first thing you need to do is to open an event listener for the `soulCollection` event in a server script.
 
 ```js
-EnderIOEvents.vatReagents(event => {
+EnderIOEvents.soulCollection(event => {
     // ...
 })
 ```
 
-After that, use one of the following methods to modify the Vat Reagents.
+After that, you can apply logic to modify the soul collection amount or cancel it.
 
-## Adding
-
--   access in the event via: `event.add(...)`
--   properties:
-    -   `item`
-        -   description: specifies the input item or tag
-        -   type: `Ingredient`
-    -   `tag`
-        -   description: specifies the recipe input tag
-        -   type: `TagKey<Item>`
-    -   `modifier`
-        -   description: specifies the modifier value
-        -   type: `float`
--   notes:
-    -   the `item` property can take a single item or a tag (prefixed with `#`)
-    -   the `tag` property is always a tag, do not prefix it with `#`
-    -   if a tag has been used for `item` and you add another entry with a single item, which is part of the tag, the tag entry takes priority
+## Example
 
 ```js
-EnderIOEvents.vatReagents(event => {
-    // assigns a modifier value of 5 to all entries of the c:rods tag
-    // the second statement will be ignored because stick is part of the c:rods tag
-    event.add("#c:rods", "c:rods", 5)
-    event.add("stick", "c:rods", 6)
+OritechEvents.soulCollection(event => {
+    // obtaining all properties of the event by destructuring
+    let { level, position, blockEntity, entity } = event
 
-    // assigns a modifier value of 3 to an iron ingot item within the c:ingots tag
-    event.add("iron_ingot", "c:ingots", 3)
+    // this happens when it's a soul flower
+    // let the soul flower always pass -> 1 soul will be collected
+    if (entity == null) return
 
-    // this is also possible to cover all kinds of iron ingots
-    event.add("#c:iron_ingots", "c:ingots", 3)
-})
-```
+    // grab the max health of the entity that died
+    let maxHealth = entity.maxHealth
 
-### Removing
-
--   access in the event via: `event.remove(...)`
--   properties:
-    -   `item`
-        -   description: specifies the item or tag to remove the modifier from
-        -   type: `Ingredient`
--   notes:
-    -   the `item` property can take a single item or a tag (prefixed with `#`)
-    -   if a tag is used, all items, which are part of the tag, will have their modifiers removed
-
-```js
-EnderIOEvents.vatReagents(event => {
-    // remove whole tag
-    event.remove("#c:crops")
-
-    // remove single item
-    event.remove("torchflower")
-})
-```
-
-### Clearing
-
--   access in the event via: `event.clear()`
--   description: removes all existing Vat Reagents
-
-```js
-EnderIOEvents.vatReagents(event => {
-    event.clear()
+    // pigs, cows, sheep have 10 max health, chicken has 4
+    if (maxHealth > 9) {
+        // give two souls for entities with more than 9 max health
+        event.setSoulValue(2)
+    } else if (maxHealth < 5) {
+        // enable rain and don't give any souls for entities with less than 5 max health
+        level.levelData.setRaining(true)
+        event.cancel()
+    }
 })
 ```

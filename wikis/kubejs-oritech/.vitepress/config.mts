@@ -44,7 +44,10 @@ export default defineConfig({
             },
             {
                 text: "Events",
-                items: [{ text: "Soul Collection", link: "event/soulcollection" }],
+                items: [
+                    { text: "Soul Collection", link: "event/soulcollection" },
+                    { text: "Tags", link: "event/tags" },
+                ],
             },
         ],
     },

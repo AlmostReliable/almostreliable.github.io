@@ -11,7 +11,7 @@ Oritech has a mechanic that allows collecting souls from parting mobs. The colle
 enchanting or spawning certain mobs. By default, the soul collection is always 1, whenever a mob dies nearby. This event allows you to
 cancel the soul collection completely or modify the the amount of souls collected per mob death.
 
--   access in a server script via: `EnderIOEvents.soulCollection`
+-   access in a server script via: `OritechEvents.soulCollection`
 -   properties
     -   `level`
         -   type: `ServerLevel`

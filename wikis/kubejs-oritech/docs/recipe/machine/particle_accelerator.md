@@ -25,6 +25,15 @@ The Particle Accelerator is a machine that can drastically speed up matter to co
         -   default: `60`
         -   description: specifies the required energy in Joules for the collision; higher values require higher speed
 
+## Events
+
+If you want to adjust the behavior of the particle accelerator beyond just adding or removing recipes, there are three events that allow
+you to do so.
+
+-   [particle injected event](../../event/particle/injected.md)
+-   [particle collided event](../../event/particle/collided.md)
+-   [particle exited event](../../event/particle/exited.md)
+
 ## Examples
 
 ```js

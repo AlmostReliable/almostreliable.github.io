@@ -48,6 +48,14 @@ export default defineConfig({
                     { text: "Deep Drill Registration", link: "event/deepdrill_registration" },
                     { text: "Soul Collection", link: "event/soulcollection" },
                     { text: "Tags", link: "event/tags" },
+                    {
+                        text: "Particle Accelerator",
+                        items: [
+                            { text: "Injected", link: "event/particle/injected" },
+                            { text: "Collided", link: "event/particle/collided" },
+                            { text: "Exited", link: "event/particle/exited" },
+                        ],
+                    },
                 ],
             },
         ],

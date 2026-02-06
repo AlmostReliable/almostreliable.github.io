@@ -60,6 +60,10 @@ ServerEvents.tags("block", event => {
 
 ## Resource Nodes
 
+> [!DANGER] WARNING
+> Because the functionality of the Bedrock Extractor relies on a recipe **and** a tag, it is highly recommended to use the
+> [dedicated event](deepdrill_registration.md) for registering new recipes and resource nodes.
+
 Oritech uses the block tag `oritech:resource_nodes` to determine which blocks can be used as resource nodes for the
 [Bedrock Extractor](../recipe/machine/bedrock_extractor.md). Tagging a block is required if it's used as an input for the
 extractor recipe.
@@ -82,7 +86,7 @@ is captured inside the unstable container. There are 3 different levels of insta
 -   `oritech:unstable_container/medium` -> 1.0
 -   `oritech:unstable_container/high` -> 5.0
 
-Assigning these tags is also required to even capture a block inside of the safe.
+Assigning these tags is also required to capture a block inside of the safe.
 
 ```js
 ServerEvents.tags("block", event => {

@@ -4,6 +4,10 @@ Internally, this machine is called the Deep Drill.
 
 The Bedrock Extractor can mine ores from resource nodes that act as infinite sources of ores. These are usually found at Bedrock level.
 
+> [!DANGER] WARNING
+> Because the functionality of this machine relies on a recipe **and** a tag, it is highly recommended to use the
+> [dedicated event](../../event/deepdrill_registration.md) for registering new recipes and resource nodes.
+
 > [!WARNING] NOTE
 > This recipe inherits from the Oritech base recipe. [Read about it first](../basics.md) before reading this page.
 

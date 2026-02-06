@@ -16,10 +16,10 @@ cancel the soul collection completely or modify the the amount of souls collecte
     -   `level`
         -   type: `ServerLevel`
         -   description: the level where the soul collection is happening
-    -   `position`
+    -   `pos`
         -   type: `Vec3` (precise floating point position as a vector)
         -   description: the position the mob died at, the soul collection is happening at this position
-    -   `blockEntity`
+    -   `soulCollector`
         -   type: `? extends BaseSoulCollectionEntity`
         -   description: the `BlockEntity` of the soul collection block; this object is responsible for collecting and storing the soul
     -   `entity`
@@ -48,7 +48,7 @@ After that, you can apply logic to modify the soul collection amount or cancel i
 ```js
 OritechEvents.soulCollection(event => {
     // obtaining all properties of the event by destructuring
-    let { level, position, blockEntity, entity } = event
+    let { level, pos, soulCollector, entity } = event
 
     // this happens when it's a soul flower
     // let the soul flower always pass -> 1 soul will be collected

@@ -34,6 +34,9 @@ you to do so.
 -   [particle collided event](../../event/particle/collided.md)
 -   [particle exited event](../../event/particle/exited.md)
 
+There are two special particle accelerator interactions that reserve certain items for portal creation. If you want to make use of these
+items in your own recipes, you can disable the portal creation via the particle injected event.
+
 ## Examples
 
 ```js

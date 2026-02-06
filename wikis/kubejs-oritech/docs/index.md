@@ -1,8 +1,5 @@
 # Getting Started
 
-> [!WARNING] NOTE
-> This wiki is work in progress!
-
 This mod is an add-on for [KubeJS](https://github.com/KubeJS-Mods/KubeJS) to add support for [Oritech](https://github.com/Rearth/Oritech).
 It offers easy creation of new recipes, modification of existing ones, and events.
 

@@ -40,6 +40,17 @@ export function defineConfig(config: UserConfig<DefaultTheme.Config>): UserConfi
         throw new Error("Docs title not found")
     }
 
+    config.head = [
+        [
+            "script",
+            {
+                src: "https://umami.almostreliable.com/script.js",
+                "data-website-id": "48de55c0-1bad-43f4-a4b1-122a413ccb3d",
+                defer: "",
+            },
+        ],
+    ]
+
     config.srcDir = "./docs"
     config.base = config.base ?? `/${config.title.replace(/ /g, "").toLocaleLowerCase()}/`
     config.description = `Documentation for ${config.title}`

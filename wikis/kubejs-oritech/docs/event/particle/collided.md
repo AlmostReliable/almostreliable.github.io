@@ -55,6 +55,29 @@ that happens when no valid recipe is found.
         -   description: spawns a nether portal at the given position; this is usually used by a special interaction when two Fire Charges
             collide with high speed
 
+## Oritech Recipe
+
+The instance you obtain when using the `recipe` property is an `OritechRecipe`. This type is reused for all Oritech recipes, so it is not
+as straightforward to use. The following shows available properties you can call on the recipe instance to get its data.
+
+All properties and functions, that are not listed here, should not be used and are intended for internal use.
+
+```js
+// obtains the time of the recipe in ticks
+let time = recipe.time
+
+// obtains the input ingredients of the recipe as list
+let ingredients = recipe.inputs
+let firstInput = ingredients[0] // get the first input ingredient
+
+// obtains the output item stacks of the recipe as list
+let results = recipe.results
+let firstResult = results[0] // get the first output item stack
+```
+
+Because this type is reused for all Oritech recipes, the inputs and outputs use lists, even if this specific recipe only has two inputs
+and a single output. Make sure to unwrap the list to invoke logic on specific elements.
+
 ## Event Listener
 
 To access the event, the first thing you need to do is to open an event listener for the `particleCollided` event in a server script.

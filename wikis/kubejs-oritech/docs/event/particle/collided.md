@@ -48,6 +48,12 @@ that happens when no valid recipe is found.
 -   functions
     -   `cancel()`
         -   description: cancels the particle collision; collision still happens but no item output will be produced, even if a recipe matches
+    -   `spawnEndPortal(BlockPos)`
+        -   description: spawns an end portal at the given position; this is usually used by a special interaction when two Ender Pearls
+            collide with high speed
+    -   `spawnNetherPortal(BlockPos)`
+        -   description: spawns a nether portal at the given position; this is usually used by a special interaction when two Fire Charges
+            collide with high speed
 
 ## Event Listener
 

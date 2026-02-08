@@ -48,6 +48,13 @@ the particle becomes too fast and can't be contained by the accelerator, for exa
             -   `COLLIDED` - particle collided with another particle; should not be possible in a valid scenario
             -   `EXITED_FAST` - particle was too fast to take curve
             -   `EXITED_NO_GATE` - no gate found in range; particle was to slow to bridge the gap between gates
+-   functions
+    -   `spawnEndPortal(BlockPos)`
+        -   description: spawns an end portal at the given position; this is usually used by a special interaction when two Ender Pearls
+            collide with high speed
+    -   `spawnNetherPortal(BlockPos)`
+        -   description: spawns a nether portal at the given position; this is usually used by a special interaction when two Fire Charges
+            collide with high speed
 
 ## Event Listener
 

@@ -48,6 +48,12 @@ normally reserved for portal creation.
         -   description: disables the special interaction that creates a nether portal
     -   `disableEndPortal()`
         -   description: disables the special interaction that creates an end portal
+    -   `spawnEndPortal(BlockPos)`
+        -   description: spawns an end portal at the given position; this is usually used by a special interaction when two Ender Pearls
+            collide with high speed
+    -   `spawnNetherPortal(BlockPos)`
+        -   description: spawns a nether portal at the given position; this is usually used by a special interaction when two Fire Charges
+            collide with high speed
 
 ## Event Listener
 

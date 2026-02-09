@@ -36,7 +36,7 @@ cancel the soul collection completely or modify the the amount of souls collecte
 To access the event, the first thing you need to do is to open an event listener for the `soulCollection` event in a server script.
 
 ```js
-EnderIOEvents.soulCollection(event => {
+OritechEvents.soulCollection(event => {
     // ...
 })
 ```

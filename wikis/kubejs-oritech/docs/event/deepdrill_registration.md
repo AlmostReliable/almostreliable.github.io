@@ -15,7 +15,7 @@ Keep in mind that server events have to be located inside the `kubejs/server_scr
 Oritech uses the tag `oritech:resource_nodes` to determine which blocks can be mined from by the Bedrock Extractor. The item result
 is determined by a recipe. This event allows you to register new resource nodes and recipes for the Bedrock Extractor at the same time.
 
--   access in a server script via: `EnderIOEvents.deepDrillRegistration`
+-   access in a server script via: `OritechEvents.deepDrillRegistration`
 -   functions
     -   `add(...)`
         -   description: registers the input block as resource node and adds the recipe for the Bedrock Extractor
@@ -43,7 +43,7 @@ is determined by a recipe. This event allows you to register new resource nodes 
 To access the event, the first thing you need to do is to open an event listener for the `deepDrillRegistration` event in a server script.
 
 ```js
-EnderIOEvents.deepDrillRegistration(event => {
+OritechEvents.deepDrillRegistration(event => {
     // ...
 })
 ```
@@ -53,7 +53,7 @@ After that, you can use the `add` function to register new resource nodes and re
 ## Example
 
 ```js
-OritechEvents.soulCollection(event => {
+OritechEvents.deepDrillRegistration(event => {
     // registers the glass block as a resource node
     // adds a recipe that converts a glass block into a cobblestone
     // defaults to 60 ticks / 3 seconds

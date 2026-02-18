@@ -10,7 +10,7 @@ Keep in mind that server events have to be located inside the `kubejs/server_scr
 EnderIO supports data-driven Vat Reagents by default. This event adds convenience methods to modify entries via KubeJS.
 Vat Reagents are used in the Vat to add a modifier value to the processing of items. The modifier affects the output quantity of the processed item.
 
-A [Vat recipe](../machine/vat.md) only accepts item tag as inputs. A Vat Reagent is defined by specifying an item within this input tag and assigning
+A [Vat recipe](../machine/vat.md) only accepts item tags as inputs. A Vat Reagent is defined by specifying an item within this input tag and assigning
 a modifier value to it. You can also assign a modifier to the whole input tag. If the reagent item is not part of the input tag, the modifier will
 not be applied. This system is a bit tricky to understand at first, but it allows defining different modifier values for the same item depending on the
 recipe input tag.
@@ -62,7 +62,7 @@ EnderIOEvents.vatReagents(event => {
     event.add("iron_ingot", "c:ingots", 3)
 
     // this is also possible to cover all kinds of iron ingots
-    event.add("#c:iron_ingots", "c:ingots", 3)
+    event.add("#c:ingots/iron", "c:ingots", 3)
 })
 ```
 

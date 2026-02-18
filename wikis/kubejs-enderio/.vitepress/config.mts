@@ -30,6 +30,8 @@ export default defineConfig({
             {
                 text: "Events",
                 items: [
+                    { text: "Overview", link: "event/overview" },
+                    { text: "Capacitor Registration", link: "event/capacitorregistry" },
                     { text: "Conduit Registration", link: "event/conduitregistry" },
                     { text: "Grinding Ball Modification", link: "event/grindingballs" },
                     { text: "Vat Reagent Modification", link: "event/vatreagents" },

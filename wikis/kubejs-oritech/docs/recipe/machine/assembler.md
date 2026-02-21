@@ -49,7 +49,7 @@ ServerEvents.recipes(event => {
     // could use .timeInSeconds(2) alternatively
     event.recipes.oritech
         .assembler()
-        .itemInputs("glass", "brick", "diamond", "gold_ingot")
+        .itemInputs(["glass", "brick", "diamond", "gold_ingot"])
         .itemOutputs("2x sand")
         .time(40)
 })

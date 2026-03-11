@@ -3,6 +3,6 @@
 | Name                       | Startup | Server |
 | -------------------------- | :-----: | :----: |
 | Capacitor Registry         |    ✓    |        |
-| Conduit Registry           |         |   ✓    |
-| Grinding Ball Modification |    ✓    |        |
+| Conduit Registration       |         |   ✓    |
+| Grinding Ball Modification |         |   ✓    |
 | Vat Reagent Modification   |         |   ✓    |

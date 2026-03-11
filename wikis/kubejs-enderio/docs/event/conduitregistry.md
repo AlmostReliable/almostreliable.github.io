@@ -5,6 +5,9 @@ This event allows you to register custom conduits.
 **It is a server event and reloadable!**
 Keep in mind that server events have to be located inside the `kubejs/server_scripts` folder.
 
+> [!WARNING] NOTE
+> The Conduits have been reworked by the EnderIO team in version 8.2.0. Previously, the functions to register the conduits required some more properties. If you need help with that, join the Discord or take a look at the source code before version 8.2.0.
+
 ## Overview
 
 EnderIO supports data-driven conduits by default. This event adds convenience methods to register custom conduits via KubeJS.
@@ -14,6 +17,7 @@ for your custom conduit.
 
 -   access in a server script via: `EnderIOEvents.conduits`
 -   supported conduits
+    -   item conduit
     -   energy conduit
     -   fluid conduit
     -   chemical conduit (Mekanism)
@@ -33,7 +37,19 @@ After that, use one of the following methods to register the respective conduit 
 `name` that is used for the automatic language file entry generation.
 
 The custom conduit will be part of the normal EnderIO Conduits creative tab. Recipes are **not** generated automatically. You have to add a recipe
-for your custom conduits yourself!
+for your custom conduits yourself! You sometimes need to rejoin the world to see the new conduits. A game restart is not necessary.
+
+### Item Conduit
+
+-   `transferRate` - specifies the transfer rate of items per tick
+-   `ticksPerCycle` - specifies the amount of ticks per second the conduit operates at
+-   note: to calculate the effective transfer rate, the two values need to be multiplied (e.g. 2 ticks per cycle and a transfer rate of 8 would be 16 items per second)
+
+```js
+EnderIOEvents.conduits(event => {
+    event.registerItemConduit(String id, String name, int transferRate, int ticksPerCycle); // [!code focus]
+});
+```
 
 ### Energy Conduit
 
@@ -48,23 +64,20 @@ EnderIOEvents.conduits(event => {
 ### Fluid Conduit
 
 -   `transferRate` - specifies the transfer rate of fluid per tick
--   `multiFluid` - specifies whether the conduit can transport multiple fluids at once
--   `supportPriority` - specifies whether the conduit supports priority settings
 
 ```js
 EnderIOEvents.conduits(event => {
-    event.registerFluidConduit(String id, String name, int transferRate, boolean multiFluid, boolean supportPriority); // [!code focus]
+    event.registerFluidConduit(String id, String name, int transferRate); // [!code focus]
 });
 ```
 
 ### Chemical Conduit
 
 -   `transferRate` - specifies the transfer rate of chemical per tick
--   `multiChemical` - specifies whether the conduit can transport multiple chemicals at once
 
 ```js
 EnderIOEvents.conduits(event => {
-    event.registerChemicalConduit(String id, String name, int transferRate, boolean multiChemical); // [!code focus]
+    event.registerChemicalConduit(String id, String name, int transferRate); // [!code focus]
 });
 ```
 

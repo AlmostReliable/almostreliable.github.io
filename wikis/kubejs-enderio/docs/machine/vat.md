@@ -1,10 +1,8 @@
 # Vat
 
-The Vat combines fluids with solid reagents to produce new fluids through a processing step that takes time.
-It accepts two solid reagents (left and right) and one input fluid, producing one output fluid after processing.
+The Vat combines fluids with solid reagents to produce new fluids through a processing step that takes time. It accepts two solid reagents (left and right) and one input fluid, producing one output fluid after processing.
 
-Vat recipes also support the concept of Vat Reagents, which modify the output quantity based on the reagents used.
-To modify the Vat Reagents, please refer to the [Vat Reagents Event](../event/vatreagents.md) page.
+Vat recipes also support the concept of Vat Reagents, which modify the output quantity based on the reagents used. To modify the Vat Reagents, please refer to the [Vat Reagents Event](../event/vatreagents.md) page.
 
 ## Overview
 

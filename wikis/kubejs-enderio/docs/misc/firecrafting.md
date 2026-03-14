@@ -1,7 +1,6 @@
 # Fire Crafting
 
-Fire Crafting allows you to light a specific block on fire. After a bit of time, the fire will extinguish and the block can spawn items.
-Optionally, you can specify a block that will replace the ignited block after the fire has extinguished.
+Fire Crafting allows you to light a specific block on fire. After a bit of time, the fire will extinguish and the block can spawn items. Optionally, you can specify a block that will replace the ignited block after the fire has extinguished.
 
 ## Overview
 

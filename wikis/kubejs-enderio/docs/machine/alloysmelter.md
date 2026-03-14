@@ -1,13 +1,10 @@
 # Alloy Smelter
 
-The Alloy Smelter allows smelting multiple items into an alloy. Additionally, it is capable of processing simple smelting recipes
-at three times the rate of a regular vanilla Furnace.
+The Alloy Smelter allows smelting multiple items into an alloy. Additionally, it is capable of processing simple smelting recipes at three times the rate of a regular vanilla Furnace.
 
 ## Recipe Inheritance
 
-It is important to note that the Alloy Smelter (non-primitive variant) inherits all vanilla smelting recipes automatically. If you
-want to remove specific smelting recipes from the Alloy Smelter without removing them from other blocks like the Furnace, you should
-remove them by their recipe ID. Inherited recipes are always prefixed with `smelting/modid/`.
+It is important to note that the Alloy Smelter (non-primitive variant) inherits all vanilla smelting recipes automatically. If you want to remove specific smelting recipes from the Alloy Smelter without removing them from other blocks like the Furnace, you should remove them by their recipe ID. Inherited recipes are always prefixed with `smelting/modid/`.
 
 ```js
 ServerEvents.recipes(event => {
@@ -60,14 +57,9 @@ ServerEvents.recipes(event => {
 
 ## Smelting Mode
 
-The smelting mode of an Alloy Smelter recipe defines if the recipe is inherited from the vanilla smelting recipe type. When a
-recipe's smelting mode is enabled, it will also have a custom recipe ID that is prefixed with `smelting/modid/`. This indicates
-inheritance from vanilla to EnderIO.
+The smelting mode of an Alloy Smelter recipe defines if the recipe is inherited from the vanilla smelting recipe type. When a recipe's smelting mode is enabled, it will also have a custom recipe ID that is prefixed with `smelting/modid/`. This indicates inheritance from vanilla to EnderIO.
 
-When creating custom Alloy Smelter recipes with KubeJS, you can use the smelting mode to tell KubeJS EnderIO to copy the recipe to
-vanilla. The following example will copy an Alloy Smelter recipe to the vanilla recipe type, so it can be used by blocks like the
-vanilla Furnace. It will use the same recipe ID with the `_inherited` suffix. To allow inheritance from KubeJS to vanilla, the recipes
-must have exactly one input and one output. Recipes with multiple inputs will be ignored.
+When creating custom Alloy Smelter recipes with KubeJS, you can use the smelting mode to tell KubeJS EnderIO to copy the recipe to vanilla. The following example will copy an Alloy Smelter recipe to the vanilla recipe type, so it can be used by blocks like the vanilla Furnace. It will use the same recipe ID with the `_inherited` suffix. To allow inheritance from KubeJS to vanilla, the recipes must have exactly one input and one output. Recipes with multiple inputs will be ignored.
 
 ```js
 ServerEvents.recipes(event => {

@@ -1,7 +1,6 @@
 # Soul Binding
 
-The Soul Binder is a machine that binds the essence of living beings into items. It is used to create soul-infused materials, tools, and upgrades
-by combining items with captured mob souls. Each recipe may target a specific entity type, mob category, or use a predefined soul type.
+The Soul Binder is a machine that binds the essence of living beings into items. It is used to create soul-infused materials, tools, and upgrades by combining items with captured mob souls. Each recipe may target a specific entity type, mob category, or use a predefined soul type.
 
 ## Overview
 

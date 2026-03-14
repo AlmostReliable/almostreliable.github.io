@@ -17,8 +17,7 @@ A `BonusType` specifies the behavior of Grinding Balls in Sag Mill recipes.
 
 ## Examples
 
-This binding is intended to be used inside [Sag Mill recipes](../machine/sagmill.md). Pass it to the `bonus` parameter to define the bonus type of the recipe.
-It's also possible to use the strings `"NONE"`, `"CHANCE_ONLY"`, and `"MULTIPLY_OUTPUT"` instead of the binding.
+This binding is intended to be used inside [Sag Mill recipes](../machine/sagmill.md). Pass it to the `bonus` parameter to define the bonus type of the recipe. It's also possible to use the strings `"NONE"`, `"CHANCE_ONLY"`, and `"MULTIPLY_OUTPUT"` instead of the binding.
 
 ```js
 ServerEvents.recipes(event => {

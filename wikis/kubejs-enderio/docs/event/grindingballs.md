@@ -2,16 +2,14 @@
 
 This event allows you to add, modify, and remove Grinding Balls, which can be used in the [Sag Mill](../machine/sagmill.md).
 
-**It is a server event and reloadable!**
-Keep in mind that server events have to be located inside the `kubejs/server_scripts` folder.
+**It is a server event and reloadable!** Keep in mind that server events have to be located inside the `kubejs/server_scripts` folder.
 
 > [!WARNING] NOTE
 > The Grinding Ball system has been reworked by the EnderIO team in version 8.2.0. Previously, this was a startup event.
 
 ## Overview
 
-Grinding Balls are used in the [Sag Mill](../machine/sagmill.md) to add a modifier values to the recipe process. These modifiers affect the output quantity,
-the chance of a byproduct, and the energy consumption of the recipe.
+Grinding Balls are used in the [Sag Mill](../machine/sagmill.md) to add a modifier values to the recipe process. These modifiers affect the output quantity, the chance of a byproduct, and the energy consumption of the recipe.
 
 -   access in a server script via: `EnderIOEvents.grindingBalls`
 -   supported operations

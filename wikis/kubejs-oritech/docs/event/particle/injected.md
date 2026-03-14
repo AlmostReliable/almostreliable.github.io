@@ -1,22 +1,17 @@
 # Particle Injected Event
 
-This event allows you to invoke logic when a particle is injected into the
-[Particle Accelerator](../../recipe/machine/particle_accelerator.md). It can also be used to cancel the injection completely.
+This event allows you to invoke logic when a particle is injected into the [Particle Accelerator](../../recipe/machine/particle_accelerator.md). It can also be used to cancel the injection completely.
 
 > [!WARNING] NOTE
 > This event only exists since mod version 1.21.1-0.3.0, release date: 2026-02-06.
 
-**It is a server event and reloadable!**
-Keep in mind that server events have to be located inside the `kubejs/server_scripts` folder.
+**It is a server event and reloadable!** Keep in mind that server events have to be located inside the `kubejs/server_scripts` folder.
 
 ## Overview
 
-This event is fired when an item is inserted into a Particle Accelerator Controller and the controller tries to push the item into the
-accelerator in the world. By cancelling the event, the item will not be injected into the accelerator and never leave the input slot.
+This event is fired when an item is inserted into a Particle Accelerator Controller and the controller tries to push the item into the accelerator in the world. By cancelling the event, the item will not be injected into the accelerator and never leave the input slot.
 
-Additionally, you can disable special interactions such as the creation of an End or a Nether portal by particle collision. This is
-useful if you want to avoid that players access these dimensions or if you want to make your own recipes with the same items that are
-normally reserved for portal creation.
+Additionally, you can disable special interactions such as the creation of an End or a Nether portal by particle collision. This is useful if you want to avoid that players access these dimensions or if you want to make your own recipes with the same items that are normally reserved for portal creation.
 
 -   access in a server script via: `OritechEvents.particleInjected`
 -   properties

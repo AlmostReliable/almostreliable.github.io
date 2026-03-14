@@ -1,7 +1,6 @@
 # Slice'N'Splice
 
-The Slice'N'Splice is a precision crafting machine designed to cut and assemble complex materials, often used for crafting advanced machine parts, tools,
-and components that require organic materials such as zombie heads or other special items.
+The Slice'N'Splice is a precision crafting machine designed to cut and assemble complex materials, often used for crafting advanced machine parts, tools, and components that require organic materials such as zombie heads or other special items.
 
 ## Overview
 

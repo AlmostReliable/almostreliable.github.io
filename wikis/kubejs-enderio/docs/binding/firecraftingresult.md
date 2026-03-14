@@ -41,8 +41,7 @@ A `Result` is a convenience type added by EnderIO that supports `ItemStack`s wit
 
 ## Examples
 
-This binding is intended to be used inside [Fire Crafting recipes](../misc/firecrafting.md). Pass it to the `results` parameter to define complex outputs. You
-can also store the outputs in a variable and reuse them in multiple recipes.
+This binding is intended to be used inside [Fire Crafting recipes](../misc/firecrafting.md). Pass it to the `results` parameter to define complex outputs. You can also store the outputs in a variable and reuse them in multiple recipes.
 
 ```js
 ServerEvents.recipes(event => {

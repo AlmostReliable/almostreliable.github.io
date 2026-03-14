@@ -15,8 +15,7 @@ A `Mode` specifies the behavior of the tank in the recipe.
 
 ## Examples
 
-This binding is intended to be used inside [Tank recipes](../machine/tank.md). Pass it to the `mode` parameter to define the mode of the recipe.
-It's also possible to use the strings `"FILL"` and `"EMPTY"` instead of the binding.
+This binding is intended to be used inside [Tank recipes](../machine/tank.md). Pass it to the `mode` parameter to define the mode of the recipe. It's also possible to use the strings `"FILL"` and `"EMPTY"` instead of the binding.
 
 ```js
 ServerEvents.recipes(event => {

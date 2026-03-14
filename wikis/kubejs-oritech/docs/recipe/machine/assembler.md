@@ -1,7 +1,6 @@
 # Assembler
 
-The Assembler acts as a 2x2 crafting grid and will automatically craft items as long as it has energy and items in the input slots.
-Crafting with the Assembler is usually cheaper than crafting manually.
+The Assembler acts as a 2x2 crafting grid and will automatically craft items as long as it has energy and items in the input slots. Crafting with the Assembler is usually cheaper than crafting manually.
 
 > [!WARNING] NOTE
 > This recipe inherits from the Oritech base recipe. [Read about it first](../basics.md) before reading this page.

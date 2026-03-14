@@ -2,8 +2,7 @@
 
 The Lava Generator burns lava to generate energy.
 
-Because generators support a boiler add-on, which turns water into steam, all fluid generators do not accept water as an input. This is
-a restriction by Oritech to prevent players from accidentally inserting water into the generator instead of the add-on.
+Because generators support a boiler add-on, which turns water into steam, all fluid generators do not accept water as an input. This is a restriction by Oritech to prevent players from accidentally inserting water into the generator instead of the add-on.
 
 > [!WARNING] NOTE
 > This recipe inherits from the Oritech base recipe. [Read about it first](../basics.md) before reading this page.

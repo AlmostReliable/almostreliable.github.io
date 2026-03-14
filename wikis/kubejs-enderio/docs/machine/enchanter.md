@@ -1,8 +1,6 @@
 # Enchanter
 
-The Enchanter allows to craft enchantments using items. When defining a recipe for a specific enchantment, the Enchanter will automatically
-generate recipes for each level of the enchantment. The cost multiplier defines the experience cost that is required to craft each consecutive
-level of the enchantment.
+The Enchanter allows to craft enchantments using items. When defining a recipe for a specific enchantment, the Enchanter will automatically generate recipes for each level of the enchantment. The cost multiplier defines the experience cost that is required to craft each consecutive level of the enchantment.
 
 ## Overview
 
@@ -30,8 +28,7 @@ level of the enchantment.
 
 ## Cost Multiplier
 
-The cost multiplier is not a direct multiplier for the experience cost of the enchantment. A multiplier of 1 will not result in a linear cost increase.
-It depends on the enchantment level and the enchantment base cost as well as config values.
+The cost multiplier is not a direct multiplier for the experience cost of the enchantment. A multiplier of 1 will not result in a linear cost increase. It depends on the enchantment level and the enchantment base cost as well as config values.
 
 The formula for the experience cost of a recipe is the following:
 

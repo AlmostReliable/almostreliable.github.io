@@ -1,19 +1,15 @@
 # Particle Exited Event
 
-This event allows you to invoke logic when a particle exits the [Particle Accelerator](../../recipe/machine/particle_accelerator.md).
-Exiting refers to uncontrolled particle movement leaving the accelerator. For successful particle exits, refer to the
-[particle collided event](collided.md).
+This event allows you to invoke logic when a particle exits the [Particle Accelerator](../../recipe/machine/particle_accelerator.md). Exiting refers to uncontrolled particle movement leaving the accelerator. For successful particle exits, refer to the [particle collided event](collided.md).
 
 > [!WARNING] NOTE
 > This event only exists since mod version 1.21.1-0.3.0, release date: 2026-02-06.
 
-**It is a server event and reloadable!**
-Keep in mind that server events have to be located inside the `kubejs/server_scripts` folder.
+**It is a server event and reloadable!** Keep in mind that server events have to be located inside the `kubejs/server_scripts` folder.
 
 ## Overview
 
-This event is fired when an a particle leaves the Particle Accelerator without colliding with another particle. This can happen if
-the particle becomes too fast and can't be contained by the accelerator, for example.
+This event is fired when an a particle leaves the Particle Accelerator without colliding with another particle. This can happen if the particle becomes too fast and can't be contained by the accelerator, for example.
 
 -   access in a server script via: `OritechEvents.particleExited`
 -   properties

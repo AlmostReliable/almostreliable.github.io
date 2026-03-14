@@ -1,7 +1,6 @@
 # Tank
 
-The Tank allows automated filling and emptying of items with fluids. It supports both fill and drain modes, enabling flexible fluid interactions
-with containers, buckets, bottles, or any modded fluid-handling items.
+The Tank allows automated filling and emptying of items with fluids. It supports both fill and drain modes, enabling flexible fluid interactions with containers, buckets, bottles, or any modded fluid-handling items.
 
 ## Overview
 

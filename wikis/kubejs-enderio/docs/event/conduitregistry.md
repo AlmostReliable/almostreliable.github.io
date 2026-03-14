@@ -2,8 +2,7 @@
 
 This event allows you to register custom conduits.
 
-**It is a server event and reloadable!**
-Keep in mind that server events have to be located inside the `kubejs/server_scripts` folder.
+**It is a server event and reloadable!** Keep in mind that server events have to be located inside the `kubejs/server_scripts` folder.
 
 > [!WARNING] NOTE
 > The Conduits have been reworked by the EnderIO team in version 8.2.0. Previously, the functions to register the conduits required some more properties. If you need help with that, join the Discord or take a look at the source code before version 8.2.0.
@@ -33,11 +32,9 @@ EnderIOEvents.conduits(event => {
 })
 ```
 
-After that, use one of the following methods to register the respective conduit type. All conduits need an `id` that is used as the registry name and a
-`name` that is used for the automatic language file entry generation.
+After that, use one of the following methods to register the respective conduit type. All conduits need an `id` that is used as the registry name and a `name` that is used for the automatic language file entry generation.
 
-The custom conduit will be part of the normal EnderIO Conduits creative tab. Recipes are **not** generated automatically. You have to add a recipe
-for your custom conduits yourself! You sometimes need to rejoin the world to see the new conduits. A game restart is not necessary.
+The custom conduit will be part of the normal EnderIO Conduits creative tab. Recipes are **not** generated automatically. You have to add a recipe for your custom conduits yourself! You sometimes need to rejoin the world to see the new conduits. A game restart is not necessary.
 
 ### Item Conduit
 
@@ -96,21 +93,17 @@ EnderIOEvents.conduits(event => {
 
 ## Texture
 
-After registering the custom conduit inside the event, the language file as well as the model file are automatically generated. The
-only things you have to provide are the textures.
+After registering the custom conduit inside the event, the language file as well as the model file are automatically generated. The only things you have to provide are the textures.
 
 ### Block Texture
 
-For the block of the conduit, the texture file needs to be placed inside the following directory:
-`kubejs/assets/enderio/textures/block/conduit`
+For the block of the conduit, the texture file needs to be placed inside the following directory: `kubejs/assets/enderio/textures/block/conduit`
 
-It needs to have the same name as the `id` parameter you used when registering the custom conduit. Make sure it's a valid `.png` file.
-You can download a template PSD file [here](https://github.com/AlmostReliable/kubejs-enderio/wiki/files/conduit.psd).
+It needs to have the same name as the `id` parameter you used when registering the custom conduit. Make sure it's a valid `.png` file. You can download a template PSD file [here](https://github.com/AlmostReliable/kubejs-enderio/wiki/files/conduit.psd).
 
 ### Conduit Icon
 
-For the icon inside the conduit GUI, you need to provide an additional texture file. It has to be placed in the following directory:
-`kubejs/assets/enderio/textures/conduit_icon`
+For the icon inside the conduit GUI, you need to provide an additional texture file. It has to be placed in the following directory: `kubejs/assets/enderio/textures/conduit_icon`
 
 Once again, the texture should have the same name as your conduit `id`. Make sure to crop the texture accordingly so it only consists of the actual icon.
 

@@ -2,11 +2,9 @@
 
 Internally, this machine is called the Centrifuge Fluid.
 
-The Fluid Centrifuge transforms items and fluids by seperating them into their components. Without the fluid add-on, it functions the
-same as the [Centrifuge](centrifuge.md). For configuring item recipes, refer to the Centrifuge page.
+The Fluid Centrifuge transforms items and fluids by seperating them into their components. Without the fluid add-on, it functions the same as the [Centrifuge](centrifuge.md). For configuring item recipes, refer to the Centrifuge page.
 
-If you want to avoid that players have two use two Centrifuges or constantly need to attach and detach the fluid add-on, it's recommended
-to add the Centrifuge recipes to the Fluid Centrifuge as well, since the Fluid Centrifuge can process both item and fluid recipes.
+If you want to avoid that players have two use two Centrifuges or constantly need to attach and detach the fluid add-on, it's recommended to add the Centrifuge recipes to the Fluid Centrifuge as well, since the Fluid Centrifuge can process both item and fluid recipes.
 
 > [!WARNING] NOTE
 > This recipe inherits from the Oritech base recipe. [Read about it first](../basics.md) before reading this page.

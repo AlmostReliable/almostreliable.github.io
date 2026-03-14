@@ -1,8 +1,6 @@
 # Recipe Basics
 
-Oritech uses a base class for all its recipes. Each recipe type has different requirements and constraints it must follow. KubeJS Oritech
-adds validation for all recipe types it adds support for ensuring you never accidentally create an invalid recipe. To assist you in
-development, there are a lot of custom error messages that appear upon `/reload`ing or restarting the game.
+Oritech uses a base class for all its recipes. Each recipe type has different requirements and constraints it must follow. KubeJS Oritech adds validation for all recipe types it adds support for ensuring you never accidentally create an invalid recipe. To assist you in development, there are a lot of custom error messages that appear upon `/reload`ing or restarting the game.
 
 ## Overview
 
@@ -45,30 +43,21 @@ The base layout for each Oritech recipe is the following:
     -   helper accessors: `seconds`, `timeInSeconds`
         -   these helpers assign the passed amount multiplied by 20
 
-All recipe types theoretically support all of these properties. However, because of slot limitations and logic, most recipes have
-special constraints and make use of the time property in different ways. Some recipe only support items, some only fluids and some
-accept both types in different ratios.
+All recipe types theoretically support all of these properties. However, because of slot limitations and logic, most recipes have special constraints and make use of the time property in different ways. Some recipe only support items, some only fluids and some accept both types in different ratios.
 
-There is special handling to accept a single parameter when a list is required. This means instead of `itemOutputs(['cobblestone'])`, you
-can also write `itemOutputs('cobblestone')`. However, when multiple entries are required, you **have** to pass them as an array
-(with the `[]` brackets).
+There is special handling to accept a single parameter when a list is required. This means instead of `itemOutputs(['cobblestone'])`, you can also write `itemOutputs('cobblestone')`. However, when multiple entries are required, you **have** to pass them as an array (with the `[]` brackets).
 
 If you want to know more about the limitations and requirements for specific recipes, read the respective recipe page.
 
 ## Fluid Ingredient
 
-`FluidIngredient` is a special type by Oritech. Usually, ingredients do not support amounts (also known as count). However, this custom
-implementation does support it. A `FluidIngredient` can either refer to a fluid `TagKey` or a fluid.
+`FluidIngredient` is a special type by Oritech. Usually, ingredients do not support amounts (also known as count). However, this custom implementation does support it. A `FluidIngredient` can either refer to a fluid `TagKey` or a fluid.
 
-A fluid tag groups multiple fluids in a simple entry. A built-in example for a fluid tag is `c:water`, which groups the still water and
-the flowing water variant. Making use of this tag doesn't really make sense, but if multiple mods add the same liquid, you can cover
-them all by making use of a tag.
+A fluid tag groups multiple fluids in a simple entry. A built-in example for a fluid tag is `c:water`, which groups the still water and the flowing water variant. Making use of this tag doesn't really make sense, but if multiple mods add the same liquid, you can cover them all by making use of a tag.
 
-The amount of a `FluidIngredient` is measured in millibuckets. 1000 millibuckets are one bucket. If the amount is not set, it will default
-to `1000` millibuckets / 1 bucket.
+The amount of a `FluidIngredient` is measured in millibuckets. 1000 millibuckets are one bucket. If the amount is not set, it will default to `1000` millibuckets / 1 bucket.
 
-KubeJS Oritech adds a custom component that supports the custom `FluidIngredient` by default. Conventional KubeJS ways to define fluids
-and fluid ingredients are natively supported.
+KubeJS Oritech adds a custom component that supports the custom `FluidIngredient` by default. Conventional KubeJS ways to define fluids and fluid ingredients are natively supported.
 
 ### Examples
 
@@ -92,11 +81,8 @@ Fluid.of("#c:water", 1500)
 
 ## Time
 
-The time property is mostly used for defining how long a machine has to operate to finish a single recipe. However, because Oritech
-uses the base recipe type for all of its recipes, it is often reused to define different data.
+The time property is mostly used for defining how long a machine has to operate to finish a single recipe. However, because Oritech uses the base recipe type for all of its recipes, it is often reused to define different data.
 
-If the time is not specified, it defaults to `60`. Time is always measured in game ticks. 20 game ticks are one second in real life.
-That means 60 ticks would be 3 seconds.
+If the time is not specified, it defaults to `60`. Time is always measured in game ticks. 20 game ticks are one second in real life. That means 60 ticks would be 3 seconds.
 
-Sometimes, the time property is used to define how much energy is required to finish a certain recipes. You can read more about the
-specific usages on each recipe page.
+Sometimes, the time property is used to define how much energy is required to finish a certain recipes. You can read more about the specific usages on each recipe page.

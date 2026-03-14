@@ -27,15 +27,13 @@ The Particle Accelerator is a machine that can drastically speed up matter to co
 
 ## Events
 
-If you want to adjust the behavior of the particle accelerator beyond just adding or removing recipes, there are three events that allow
-you to do so.
+If you want to adjust the behavior of the particle accelerator beyond just adding or removing recipes, there are three events that allow you to do so.
 
 -   [particle injected event](../../event/particle/injected.md)
 -   [particle collided event](../../event/particle/collided.md)
 -   [particle exited event](../../event/particle/exited.md)
 
-There are two special particle accelerator interactions that reserve certain items for portal creation. If you want to make use of these
-items in your own recipes, you can disable the portal creation via the particle injected event.
+There are two special particle accelerator interactions that reserve certain items for portal creation. If you want to make use of these items in your own recipes, you can disable the portal creation via the particle injected event.
 
 ## Examples
 

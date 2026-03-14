@@ -1,7 +1,6 @@
 # Pulverizer
 
-The Pulverizer is a slow and simple machine that pulverizes ores and biomass. It is an early alternative to the
-[Fragment Forge](fragment_forge.md).
+The Pulverizer is a slow and simple machine that pulverizes ores and biomass. It is an early alternative to the [Fragment Forge](fragment_forge.md).
 
 > [!WARNING] NOTE
 > This recipe inherits from the Oritech base recipe. [Read about it first](../basics.md) before reading this page.

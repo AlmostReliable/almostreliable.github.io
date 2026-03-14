@@ -2,8 +2,7 @@
 
 The `SagMillOutput` is a utility binding that allows you to easily create `OutputItem`s for [Sag Mill recipes](../machine/sagmill.md).
 
-An `OutputItem` is a convenience type added by EnderIO that supports `ItemStack`s and `TagKey`s. Its main purpose is to allow the usage of tags
-as outputs in Sag Mill recipes. This way, EnderIO doesn't need to add a material for every compat recipe they have. Instead they can use the respective tag.
+An `OutputItem` is a convenience type added by EnderIO that supports `ItemStack`s and `TagKey`s. Its main purpose is to allow the usage of tags as outputs in Sag Mill recipes. This way, EnderIO doesn't need to add a material for every compat recipe they have. Instead they can use the respective tag.
 
 It also supports chance-based outputs which can be useful for something like byproducts.
 
@@ -46,8 +45,7 @@ It also supports chance-based outputs which can be useful for something like byp
 
 ## Examples
 
-This binding is intended to be used inside [Sag Mill recipes](../machine/sagmill.md). Pass it to the `outputs` parameter to define complex outputs. You
-can also store the outputs in a variable and reuse them in multiple recipes.
+This binding is intended to be used inside [Sag Mill recipes](../machine/sagmill.md). Pass it to the `outputs` parameter to define complex outputs. You can also store the outputs in a variable and reuse them in multiple recipes.
 
 ```js
 ServerEvents.recipes(event => {

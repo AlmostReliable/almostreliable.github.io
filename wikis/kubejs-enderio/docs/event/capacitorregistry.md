@@ -5,8 +5,7 @@ This registry event extension allows you to register custom Capacitors. Capacito
 > [!WARNING] NOTE
 > This event extension only exists since mod version 1.21.1-0.12.0, release date: 2026-02-18.
 
-**It is a startup event and not reloadable!**
-Keep in mind that startup events have to be located inside the `kubejs/startup_scripts` folder.
+**It is a startup event and not reloadable!** Keep in mind that startup events have to be located inside the `kubejs/startup_scripts` folder.
 
 ## Overview
 

@@ -1,9 +1,6 @@
 # Painting Machine
 
-The Painting Machine allows painting blocks to change their appearance. In the base mod, this is used to create painted variants of blocks like
-fences, stairs, slabs, walls, and much more.<br>
-However, it can also be used to create all kinds of recipes. In the examples at the bottom, you can see that you can even convert an apple into a stick.
-This doesn't make much sense, but it's possible as long as the machine contains some dummy block.
+The Painting Machine allows painting blocks to change their appearance. In the base mod, this is used to create painted variants of blocks like fences, stairs, slabs, walls, and much more.<br> However, it can also be used to create all kinds of recipes. In the examples at the bottom, you can see that you can even convert an apple into a stick. This doesn't make much sense, but it's possible as long as the machine contains some dummy block.
 
 ## Overview
 

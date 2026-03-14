@@ -2,8 +2,7 @@
 
 The Atomic Forge is a precise machine capable of creating advanced computer chips. Its input slots are ordered by left, top, bottom.
 
-The machine doesn't store energy. Instead, it is fed by a Laser until the energy bar is full. Once the limit is reached, the current
-recipe is finished.
+The machine doesn't store energy. Instead, it is fed by a Laser until the energy bar is full. Once the limit is reached, the current recipe is finished.
 
 > [!WARNING] NOTE
 > This recipe inherits from the Oritech base recipe. [Read about it first](../basics.md) before reading this page.

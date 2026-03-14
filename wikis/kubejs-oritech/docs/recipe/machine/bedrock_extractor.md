@@ -31,8 +31,7 @@ The Bedrock Extractor can mine ores from resource nodes that act as infinite sou
 
 ## Tagging
 
-The recipes only define which resource node results in which items. In order for the Bedrock Extractor to detect a block as a resource
-node, the block tag `oritech:resource_nodes` must be assigned to the input block.
+The recipes only define which resource node results in which items. In order for the Bedrock Extractor to detect a block as a resource node, the block tag `oritech:resource_nodes` must be assigned to the input block.
 
 Once the block tag and the recipe have been set up, the Bedrock Extractor needs to be rebuilt in order to detect the new resource node.
 

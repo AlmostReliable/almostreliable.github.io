@@ -2,8 +2,7 @@
 
 Internally, this machine is called the Grinder.
 
-The Fragment Forge is a machine primarily focused at ore processing and can provide additional yield. Its main usage is crushing and
-acts as an upgraded version of the [Pulverizer](pulverizer.md).
+The Fragment Forge is a machine primarily focused at ore processing and can provide additional yield. Its main usage is crushing and acts as an upgraded version of the [Pulverizer](pulverizer.md).
 
 > [!WARNING] NOTE
 > This recipe inherits from the Oritech base recipe. [Read about it first](../basics.md) before reading this page.

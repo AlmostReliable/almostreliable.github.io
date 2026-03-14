@@ -2,14 +2,11 @@
 
 This event allows you to cancel soul collection or modify the soul collection amount.
 
-**It is a server event and reloadable!**
-Keep in mind that server events have to be located inside the `kubejs/server_scripts` folder.
+**It is a server event and reloadable!** Keep in mind that server events have to be located inside the `kubejs/server_scripts` folder.
 
 ## Overview
 
-Oritech has a mechanic that allows collecting souls from parting mobs. The collected souls can be used in various ways, such as
-enchanting or spawning certain mobs. By default, the soul collection is always 1, whenever a mob dies nearby. This event allows you to
-cancel the soul collection completely or modify the the amount of souls collected per mob death.
+Oritech has a mechanic that allows collecting souls from parting mobs. The collected souls can be used in various ways, such as enchanting or spawning certain mobs. By default, the soul collection is always 1, whenever a mob dies nearby. This event allows you to cancel the soul collection completely or modify the the amount of souls collected per mob death.
 
 -   access in a server script via: `OritechEvents.soulCollection`
 -   properties

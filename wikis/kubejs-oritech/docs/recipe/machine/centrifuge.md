@@ -1,7 +1,6 @@
 # Centrifuge
 
-The Centrifuge transforms items by seperating them into their components. It is also capable of transforming fluids, once a fluid add-on
-has been installed. For configuring fluid recipes, refer to the [Fluid Centrifuge](fluid_centrifuge.md) page.
+The Centrifuge transforms items by seperating them into their components. It is also capable of transforming fluids, once a fluid add-on has been installed. For configuring fluid recipes, refer to the [Fluid Centrifuge](fluid_centrifuge.md) page.
 
 > [!WARNING] NOTE
 > This recipe inherits from the Oritech base recipe. [Read about it first](../basics.md) before reading this page.

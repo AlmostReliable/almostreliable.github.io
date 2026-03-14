@@ -1,19 +1,14 @@
 # Deep Drill Registration Event
 
-This event is a utility event to allow registering new materials and recipes mined by the
-[Bedrock Extractor](../recipe/machine/bedrock_extractor.md) also known as the Deep Drill. Because the deep drill mechanic depends on a
-recipe and a tag, this event handles both of these registrations at the same time.
+This event is a utility event to allow registering new materials and recipes mined by the [Bedrock Extractor](../recipe/machine/bedrock_extractor.md) also known as the Deep Drill. Because the deep drill mechanic depends on a recipe and a tag, this event handles both of these registrations at the same time.
 
-If you prefer registering both of these separately, check out the Bedrock Extractor recipe page and the
-[tag documentation](tags.md#resource-nodes).
+If you prefer registering both of these separately, check out the Bedrock Extractor recipe page and the [tag documentation](tags.md#resource-nodes).
 
-**It is a server event and reloadable!**
-Keep in mind that server events have to be located inside the `kubejs/server_scripts` folder.
+**It is a server event and reloadable!** Keep in mind that server events have to be located inside the `kubejs/server_scripts` folder.
 
 ## Overview
 
-Oritech uses the tag `oritech:resource_nodes` to determine which blocks can be mined from by the Bedrock Extractor. The item result
-is determined by a recipe. This event allows you to register new resource nodes and recipes for the Bedrock Extractor at the same time.
+Oritech uses the tag `oritech:resource_nodes` to determine which blocks can be mined from by the Bedrock Extractor. The item result is determined by a recipe. This event allows you to register new resource nodes and recipes for the Bedrock Extractor at the same time.
 
 -   access in a server script via: `OritechEvents.deepDrillRegistration`
 -   functions

@@ -1,3 +1,7 @@
+# Full Example
+
+This page shows a full example of a very complex altar recipe with all available functions. This example only shows how it looks when you combine the logic described on all other pages. It won't explain any concepts. For that, please read the [usage for developers page](usage_for_developers.md) and navigate from there.
+
 ```js
 ServerEvents.recipes(event => {
     event.recipes.summoningrituals
@@ -25,7 +29,7 @@ ServerEvents.recipes(event => {
             SummoningEntity.output("blaze", 2)
                 .data({
                     Health: 50,
-                    Attributes: [{ Name: "generic.max_health", Base: 50 }],
+                    attributes: [{ id: "generic.max_health", base: 50 }],
                 })
                 .offset([1, 2, 2])
                 .tooltip([Text.of("50 health").aqua()]),
@@ -45,10 +49,10 @@ ServerEvents.recipes(event => {
                 .spread([4, 2, 4])
                 .data({
                     Health: 50,
-                    Attributes: [{ Name: "generic.max_health", Base: 50 }],
+                    attributes: [{ id: "generic.max_health", base: 50 }],
                 }),
         ])
-        .commands(["say Hi", "/say Hello"]) // doesn't matter if with slash or not
+        .commands(["say Foo", "/say Bar"])
         .sacrificeZone([3, 3, 3])
         .conditions(conditions =>
             conditions

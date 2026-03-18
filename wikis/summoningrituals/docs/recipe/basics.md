@@ -74,7 +74,7 @@ Each recipe uses the same set of components which define inputs, outputs, condit
     -   required: no
     -   default: `[3, 2, 3]`
     -   primary access: `entityInputZone(...)`
-    -   aliases: `entityInputZone`, `mobInputZone`, `inputZone`, `sacrificeZone`, `entityZone`, `mobZone`, `zone`
+    -   aliases: `mobInputZone`, `inputZone`, `sacrificeZone`, `entityZone`, `mobZone`, `zone`
     -   description: half-size region around altar used to search required entities
 -   `conditions`
     -   type: `List<LootItemCondition>`

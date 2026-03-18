@@ -26,13 +26,20 @@ Because it's a builder, you can chain all functions. See all available condition
 
 ## Biome
 
-The biome check ensures the ritual is only started in the given biomes. If you specify multiple biomes, the ritual can be started in any of them. You can also use biome tags. If you want to specify multiple entries, you have to wrap them in an array via `[]`.
+The biome check ensures the ritual is only started in the given biomes. If you specify multiple biomes, the ritual can be started in any of them. If you want to specify multiple entries, you have to wrap them in an array via `[]`.
 
-Function: `biomes(HolderSet<Biome> biomes)`
+It's possible to either specify specific biomes or a single biome tag.
+
+Functions:
+
+-   `biomes(HolderSet<Biome> biomes)`
+-   `biomes(TagKey<Biome> biomeTag)`
 
 ```js
 .conditions(c =>
-    c.biomes(["minecraft:plains", "minecraft:desert", "#minecraft:is_badlands"]) // [!code focus]
+    c.biomes(["minecraft:plains", "minecraft:desert"]) // [!code focus: 3]
+    // or
+    c.biomes("#minecraft:is_badlands")
 )
 ```
 
@@ -193,13 +200,20 @@ Function: `setSmoked(Boolean smoked)`
 
 ## Structures
 
-The structure check ensures the ritual is only started inside the bounds of the specified structure. If you specify multiple structures, the ritual can be started in any of them. You can also use structure tags. If you want to specify multiple entries, you have to wrap them in an array via `[]`.
+The structure check ensures the ritual is only started inside the bounds of the specified structure. If you specify multiple structures, the ritual can be started in any of them. If you want to specify multiple entries, you have to wrap them in an array via `[]`.
 
-Function: `structures(HolderSet<Structure> structures)`
+It's possible to either specify specific structures or a single structure tag.
+
+Functions:
+
+-   `structures(HolderSet<Structure> structures)`
+-   `structures(TagKey<Structure> structureTag)`
 
 ```js
 .conditions(c =>
-    c.structures(["minecraft:desert_pyramid", "minecraft:pillager_outpost", "#minecraft:mineshaft"]) // [!code focus]
+    c.structures(["minecraft:desert_pyramid", "minecraft:pillager_outpost"]) // [!code focus:3]
+    // or
+    c.structures("#minecraft:mineshaft")
 )
 ```
 

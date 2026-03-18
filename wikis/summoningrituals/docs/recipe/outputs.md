@@ -1,9 +1,9 @@
 # Altar Recipe Outputs
 
-Altar recipe outputs can be item, entity, or command inputs. A recipe requires at least one item, entity, _or_ command output in order to be valid.
+Altar recipe outputs can be item, entity, or command outputs. A recipe requires at least one item, entity, _or_ command output to be valid.
 
 > [!WARNING] NOTE
-> This page assumes that you know how to get an instance of the altar recipe builder. If you do not know how to do that or you didn't read about the general recipe structure yet, please read the [recipe basics page](basics.md).
+> This page assumes that you know how to get an instance of the altar recipe builder. If you do not know how to do that, or if you have not read about the general recipe structure yet, please read the [recipe basics page](basics.md).
 
 ## Item Outputs
 
@@ -15,7 +15,7 @@ Altar recipe outputs can be item, entity, or command inputs. A recipe requires a
 
 ### Syntax
 
-The required type `ItemOutput` is a custom type by Summoning Rituals. This type, next to the `ItemStack`, stores optional offset and spread values that define where to spawn the item output.
+The required type `ItemOutput` is a custom type provided by Summoning Rituals. In addition to the `ItemStack`, this type stores optional offset and spread values that define where the item output spawns.
 
 This custom type supports all KubeJS `ItemStack` wrappers. You can use multiple different syntaxes to pass an instance of it to the recipe builder. If you want to specify multiple entries, you have to wrap them in an array via `[]`.
 
@@ -52,7 +52,7 @@ To pass additional data to an item output such as offset and spread values, you 
 
 ### Syntax
 
-Because entities are not wrapped by KubeJS by default, Summoning Rituals offers custom wrappers to provide an easy syntax. Additionally, because entity outputs support additional properties, the mod offers a builder binding to pass additional data.
+Because entities are not wrapped by KubeJS by default, Summoning Rituals offers custom wrappers to provide an easy syntax. Additionally, because entity outputs support extra properties, the mod offers a builder binding for passing additional data.
 
 ```js
 .entityOutputs([
@@ -71,4 +71,38 @@ To pass additional data to an entity output such as NBT, a custom tooltip, or of
 
 ## Command Outputs
 
-TODO
+-   type: `CommandOutput`
+-   required: no
+-   default: empty
+-   primary access: `commands(...)`
+-   aliases: `command`
+
+### Syntax
+
+Summoning Rituals offers a few ways to pass command outputs to the recipe builder. Even if multiple commands are provided, they are grouped into a single `CommandOutput` instance. In addition to the commands, this object also supports a custom tooltip that can be displayed in recipe viewers instead of the raw commands, and a toggle for whether the command requires player context.
+
+Functions:
+
+-   `commands(CommandOutput command)`
+-   `commands(List<String> commands, List<Component> tooltip)`
+-   `commands(List<String> commands, List<Component> tooltip, Boolean requiresPlayer)`
+
+When no custom tooltip is provided, recipe viewers show the output commands in their raw form. If a tooltip is provided, it is shown _instead_ of the commands. That means if you want to show the actual command, you have to add it to the tooltip yourself. Commands you pass to the function do not have to start with a slash, but you can include one for better clarity if you prefer.
+
+The `requiresPlayer` boolean defaults to true. If a command output requires player context, the output command is not invoked if the ritual is started without a player, for example, by automation. Entity descriptors like `@s` always reference the player starting the ritual.
+
+### Examples
+
+```js
+// say Hi and Hello in the chat
+// the leading slash is optional
+.commands(["say Hi", "/say Hello"])
+
+// give the invoking player experience
+// use a custom tooltip for recipe viewers
+.command(["experience add @s 1"], ["Give 1 experience to the player"])
+
+// kill the invoking player
+// the @s is optional because kill has an implicit entity target
+.command("kill @s");
+```

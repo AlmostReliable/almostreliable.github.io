@@ -1,6 +1,6 @@
 # Summoning Item
 
-`SummoningItem` is a utility binding that allows you to easily create complex instances of `ItemOutput`s via the `ItemOutputBuilder`. The builder offers functionality to add offset and spread values to an item output, which is otherwise not possible, if you only provide a simple [item output](../recipe/outputs.md#item-outputs) instance.
+`SummoningItem` is a utility binding that allows you to easily create complex instances of `ItemOutput`s via the `ItemOutputBuilder`. The builder offers functionality to add offset and spread values to an item output, which is otherwise not possible if you only provide a simple [item output](../recipe/outputs.md#item-outputs) instance.
 
 ## Overview
 
@@ -20,7 +20,7 @@ SummoningItem.of("minecraft:carrot", 2)
 
 ## Item Output Builder
 
-After obtaining the `ItemOutputBuilder` instance through the binding, you can chain more functions to it. It is not required to finish the builder because the `itemOutputs` function accepts builder instances as well.
+After obtaining the `ItemOutputBuilder` instance through the binding, you can chain additional functions to it. It is not required to finish the builder because the `itemOutputs` function also accepts builder instances.
 
 -   properties:
     -   `item`
@@ -28,7 +28,7 @@ After obtaining the `ItemOutputBuilder` instance through the binding, you can ch
         -   type: `ItemStack`
         -   required: yes
     -   `offset`
-        -   description: specifies the offset to the altar block where to spawn the output item at
+        -   description: specifies the offset from the altar block where the output item is spawned
         -   type: `BlockPos`
         -   required: no
         -   default: `[0, 2, 0]`

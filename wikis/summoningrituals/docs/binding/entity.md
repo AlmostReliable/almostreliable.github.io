@@ -1,6 +1,6 @@
 # Summoning Entity
 
-`SummoningEntity` is a utility binding that allows you to easily create complex instances of `EntityInput`s and `EntityOutput`s via the `EntityInputBuilder` and `EntityOutputBuilder`. The builders offer functionality to add tooltips, offset and spread values, as well as NBT to entities, which is otherwise not possible, if you only provide a simple [entity input](../recipe/inputs.md#entity-inputs) or [entity output](../recipe/outputs.md#entity-outputs) instance.
+`SummoningEntity` is a utility binding that allows you to easily create complex instances of `EntityInput`s and `EntityOutput`s via the `EntityInputBuilder` and `EntityOutputBuilder`. The builders offer functionality to add tooltips, offset and spread values, as well as NBT to entities, which is otherwise not possible if you only provide a simple [entity input](../recipe/inputs.md#entity-inputs) or [entity output](../recipe/outputs.md#entity-outputs) instance.
 
 ## Overview
 
@@ -27,7 +27,7 @@ SummoningEntity.output("iron_golem", 2)
 
 ## Entity Input Builder
 
-After obtaining the `EntityInputBuilder` instance through the binding, you can chain more functions to it. It is not required to finish the builder because the `entityInputs` function accepts builder instances as well.
+After obtaining the `EntityInputBuilder` instance through the binding, you can chain additional functions to it. It is not required to finish the builder because the `entityInputs` function also accepts builder instances.
 
 -   properties:
     -   `entity`
@@ -63,10 +63,10 @@ After obtaining the `EntityInputBuilder` instance through the binding, you can c
         -   assigns the given validator to the `EntityInput`
 
 > [!TIP] What is a validator?
-> You might ask why a custom `validator` is required if `data` is already provided. For inputs, the `data` property is only used for rendering purposes in recipe viewers. If you give an entity a sword via the `data` property, it will be displayed in the recipe viewer page, but it won't be checked if the entity actually has a sword when being sacrificed.
+> You might ask why a custom `validator` is required if `data` is already provided. For inputs, the `data` property is only used for rendering purposes in recipe viewers. If you give an entity a sword via the `data` property, it will be displayed on the recipe viewer page, but it won't check whether the entity actually has a sword when being sacrificed.
 >
 > **Why is that?<br>**
-> Because vanilla Minecraft only checks entity data (NBT) for exact matches, there is no way to always cover all desired functionality. If you want to ensure that an entity has at least 10 HP, this wouldn't be possible because Minecraft would check for the exact value only. That's why you have to use a custom validator with your own logic to check if the respective values are correct.
+> Because vanilla Minecraft only checks entity data (NBT) for exact matches, there is no way to always cover all desired functionality. If you want to ensure that an entity has at least 10 HP, this wouldn't be possible because Minecraft would check only for the exact value. That's why you have to use a custom validator with your own logic to check whether the respective values are correct.
 
 ```js
 .entityInputs([
@@ -88,7 +88,7 @@ After obtaining the `EntityInputBuilder` instance through the binding, you can c
 
 ## Entity Output Builder
 
-After obtaining the `EntityOutputBuilder` instance through the binding, you can chain more functions to it. It is not required to finish the builder because the `entityOutputs` function accepts builder instances as well.
+After obtaining the `EntityOutputBuilder` instance through the binding, you can chain additional functions to it. It is not required to finish the builder because the `entityOutputs` function also accepts builder instances.
 
 -   properties:
     -   `entity`
@@ -111,7 +111,7 @@ After obtaining the `EntityOutputBuilder` instance through the binding, you can 
         -   required: no
         -   default: empty list
     -   `offset`
-        -   description: specifies the offset to the altar block where to spawn the output entity at
+        -   description: specifies the offset from the altar block where the output entity is spawned
         -   type: `BlockPos`
         -   required: no
         -   default: `[0, 2, 0]`

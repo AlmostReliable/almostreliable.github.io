@@ -5,28 +5,44 @@ This page shows a full example of a very complex altar recipe with all available
 ```js
 ServerEvents.recipes(event => {
     event.recipes.summoningrituals
-        .altar("stick")
-        .itemInputs(["cobblestone", "#c:glass_blocks", "3x #c:ingots"])
+        .altar("#c:ingots")
+        .itemInputs([
+            "2x cobblestone",
+            Item.of("stone", 4),
+            Ingredient.of("dirt", 2),
+            "#c:glass_blocks",
+            "3x #c:ingots/iron",
+        ])
         .entityInputs([
             "3x minecraft:elder_guardian",
             "phantom",
-            "silverfish",
-            "3x cow",
             "minecraft:wither",
-            SummoningEntity.input("cat").tooltip("Meow"),
+            SummoningEntity.input("2x silverfish"),
+            SummoningEntity.input("cat", 3).tooltip("Meow"),
+            SummoningEntity.input("zombie")
+                .data({
+                    HandItems: [
+                        {
+                            id: "minecraft:diamond_sword",
+                            Count: 1,
+                            tag: { ench: [{ id: 16, lvl: 1 }] },
+                        },
+                    ],
+                })
+                .tooltip("Needs any sword")
+                .validator(e => e.mainHandItem.id.contains("sword")),
         ])
         .itemOutputs([
-            "apple",
-            "carrot",
+            "3x carrot",
+            Item.of("iron_sword"),
+            Item.of("potato", 4),
             SummoningItem.of("3x diamond"),
-            SummoningItem.of("emerald").offset([1, 2, 2]).spread([4, 2, 4]),
+            SummoningItem.of("emerald", 6).offset([1, 2, 2]).spread([4, 2, 4]),
         ])
         .entityOutputs([
             "bat",
-            "ender_dragon",
-            "4x creeper",
-            SummoningEntity.output("fox", 2),
-            SummoningEntity.output("blaze", 2)
+            SummoningEntity.output("fox", 3),
+            SummoningEntity.output("2x blaze")
                 .data({
                     Health: 50,
                     attributes: [{ id: "generic.max_health", base: 50 }],
@@ -43,26 +59,69 @@ ServerEvents.recipes(event => {
                         },
                     ],
                 })
-                .tooltip("Has Sword lol"),
-            SummoningEntity.output("ghast")
-                .offset([1, 2, 2])
-                .spread([4, 2, 4])
-                .data({
-                    Health: 50,
-                    attributes: [{ id: "generic.max_health", base: 50 }],
-                }),
+                .tooltip("Has a Sword"),
+            SummoningEntity.output("ghast").offset([1, 2, 2]).spread([4, 2, 4]),
         ])
-        .commands(["say Foo", "/say Bar"])
+        .commands(["say Hi", "/say Hello"], ["Broadcasts a greeting!"], false)
         .sacrificeZone([3, 3, 3])
         .conditions(conditions =>
             conditions
                 .biomes(["minecraft:plains", "minecraft:desert"])
+                .blockBelow("furnace", { lit: true })
                 .dimension("minecraft:overworld")
-                .maxHeight(30)
-                .setOpenSky(true)
+                .facing(Direction.NORTH)
+                .height(0, 30)
+                .minLightLevel(5)
+                .setOpenSky(false)
+                .setSmoked(true)
                 .structures("#minecraft:mineshaft")
-                .time("night")
+                .time(SummoningTime.NIGHT)
+                .setWaterlogged(true)
                 .weather(w => w.setThundering(true))
         )
+        .id("kubejs:forbidden_ritual")
+})
+
+SummoningRituals.start(event => {
+    const { level, pos, recipeInfo, player } = event
+
+    // check for a specific recipe
+    if (recipeInfo.recipeId.toString() !== "kubejs:forbidden_ritual") {
+        return
+    }
+
+    // cancel the ritual if one of the entity inputs has less than their max health
+    for (let entity of recipeInfo.inputEntities) {
+        if (entity.health < entity.maxHealth) {
+            if (player) {
+                player.tell("Ritual cancelled: Entity health too low")
+            }
+            event.cancel()
+        }
+    }
+})
+
+SummoningRituals.complete(event => {
+    const { level, pos, recipeInfo, player } = event
+
+    // check for a specific recipe
+    if (recipeInfo.recipeId.toString() !== "kubejs:forbidden_ritual") {
+        return
+    }
+
+    // if an item output is a sword, enchant it with sharpness 3
+    for (let itemEntity of recipeInfo.outputItems) {
+        if (itemEntity.item.id.contains("sword")) {
+            itemEntity.item.enchant("minecraft:sharpness", 3)
+        }
+    }
 })
 ```
+
+![](/../img/recipe.png)
+![](/../img/initiator.png)
+![](/../img/cat_tooltip.png)
+![](/../img/zombie_tooltip.png)
+![](/../img/blaze_tooltip.png)
+![](/../img/commands.png)
+![](/../img/conditions.png)

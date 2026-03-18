@@ -124,6 +124,11 @@ The `ticks` component defines the duration the ritual needs to be finished. When
 
 Values passed to this function are specified in ticks (_1 second = 20 ticks_). Higher values mean longer duration for the ritual.
 
+```js
+.ticks(40) // 2 seconds, this is the default
+.ticks(200) // 10 seconds
+```
+
 ## Recipe Validation
 
 After a recipe has been created, the mod will check its validity internally. There are multiple checks in place to ensure a recipe is valid.

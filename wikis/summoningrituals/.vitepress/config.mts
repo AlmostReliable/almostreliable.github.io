@@ -38,6 +38,7 @@ export default defineConfig({
                 items: [
                     { text: "Summoning Item", link: "/binding/item" },
                     { text: "Summoning Entity", link: "/binding/entity" },
+                    { text: "Summoning Time", link: "/binding/time" },
                 ],
             },
         ],

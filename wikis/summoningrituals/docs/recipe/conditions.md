@@ -52,6 +52,8 @@ Functions:
 -   `blockBelow(Block block)`
 -   `blockBelow(Block block, BlockState blockState)`
 
+Since blocks can have an infinite amount of properties, and mods can also define their own, it's not possible to list all possible variants. However, you can easily check a block's properties yourself in the game by activating the debug screen (by pressing `F3`) and looking at the block's properties on the right side of the screen. For more information about `BlockState`s, please read the official [Minecraft wiki article](https://minecraft.wiki/w/Block_states).
+
 ```js
 .conditions(c =>
     c.blockBelow("furnace", { lit: true }) // [!code focus:3]

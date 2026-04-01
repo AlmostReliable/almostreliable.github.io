@@ -176,6 +176,32 @@ Function: `maxLightLevel(Integer max)`
 )
 ```
 
+## Moon Phase
+
+The moon phase check ensures the ritual is only started at the given moon phase.
+
+If you want to read more about moon phases and how they are calculated, check the [official Minecraft wiki article](https://minecraft.wiki/w/Moon#Phases).
+
+Function: `moonPhase(MoonPhase phase)`<br>
+Available Options:
+
+-   `FULL_MOON`
+-   `WANING_GIBBOUS`
+-   `THIRD_QUARTER`
+-   `WANING_CRESCENT`
+-   `NEW_MOON`
+-   `WAXING_CRESCENT`
+-   `FIRST_QUARTER`
+-   `WAXING_GIBBOUS`
+
+```js
+.conditions(c =>
+    c.moonPhase(SummoningMoonPhase.FULL_MOON) // [!code focus:3]
+    // or
+    c.moonPhase("full_moon")
+)
+```
+
 ## Open Sky
 
 The open sky check ensures the ritual is only started when the altar block has an open sky. This means that the block has to be exposed to the sky (no blocks above it). By default, it does not matter if the altar block has an open sky or not. This means that by passing `false`, you can ensure that the altar block does not have an open sky.

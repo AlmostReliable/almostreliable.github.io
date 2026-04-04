@@ -45,6 +45,9 @@ Functions:
 
 ## Block Below
 
+> [!DANGER] DEPRECATED
+> This condition was removed in version 3.6.0 in favor of the more generic [`blockPattern` condition](#block-pattern).
+
 This check ensures the ritual is only started if the block below the ritual is the given block. You can specify the required `BlockState` as well. If a `BlockState` is passed, the mod will ensure if the properties are valid and can be applied to the block. Passing a required `BlockState` is optional.
 
 Functions:
@@ -59,6 +62,37 @@ Since blocks can have an infinite amount of properties, and mods can also define
     c.blockBelow("furnace", { lit: true }) // [!code focus:3]
     // or
     c.blockBelow("minecraft:furnace") // no required BlockState
+)
+```
+
+## Block Pattern
+
+> [!INFO] NOTE
+> This condition is available since version 3.6.0.
+
+The block pattern check ensures the ritual is only started if the blocks around the altar match the given block pattern. A block pattern is a 3D pattern of blocks. You can specify the required `BlockState` for each block in the pattern as well. If a `BlockState` is passed, the mod will ensure if the properties are valid and can be applied to the block. Passing a required `BlockState` is optional. You can also specify a block tag instead of a specific block for each entry in the pattern.
+
+To offer complex functionality, this condition is configured via its own builder. You can obtain the builder instance by calling the `blockPattern()` function.
+
+The `offset` argument defines the position of the block relative to the altar block. For example, an offset of `[0, -1, 0]` would check the block directly below the altar block.
+
+Function: `blockPattern(...)`<br>
+Available builder functions:
+
+-   `block(BlockPos offset, Block block)`
+-   `block(BlockPos offset, Block block, BlockState blockState)`
+-   `tag(BlockPos offset, TagKey<Block> blockTag)`
+-   `tag(BlockPos offset, TagKey<Block> blockTag, BlockState blockState)`
+
+```js
+.conditions(c =>
+    c.blockPattern(p => // [!code focus:7]
+    p
+        .tag([0, -1, 0], "c:glass_blocks")
+        .block([1, -1, 1], "chest")
+        .block([-1, -1, -1], "furnace", { lit: true })
+        .block([1, -1, 0], "chest")
+    )
 )
 ```
 

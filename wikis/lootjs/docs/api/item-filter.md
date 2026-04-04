@@ -244,12 +244,12 @@ ItemFilter.anyOf(
 )
 ```
 
-### `all`
+### `any`
 
 Returns an item filter that matches everything.
 
 -   Syntax:
-    -   `ItemFilter.ALL`
+    -   `ItemFilter.ANY`
 
 ### `none`
 

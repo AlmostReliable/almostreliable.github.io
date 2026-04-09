@@ -1,6 +1,6 @@
 # Summoning Entity
 
-`SummoningEntity` is a utility binding that allows you to easily create complex instances of `EntityInput`s and `EntityOutput`s via the `EntityInputBuilder` and `EntityOutputBuilder`. The builders offer functionality to add tooltips, offset and spread values, as well as NBT to entities, which is otherwise not possible if you only provide a simple [entity input](../recipe/inputs.md#entity-inputs) or [entity output](../recipe/outputs.md#entity-outputs) instance.
+`SummoningEntity` is a utility binding that allows you to easily create complex instances of `EntityInput`s, `FakeEntityInput`s and `EntityOutput`s via the `EntityInputBuilder` and `EntityOutputBuilder`. The builders offer functionality to add tooltips, offset and spread values, as well as NBT to entities, which is otherwise not possible if you only provide a simple [entity input](../recipe/inputs.md#entity-inputs) or [entity output](../recipe/outputs.md#entity-outputs) instance.
 
 ## Overview
 
@@ -10,6 +10,9 @@
         -   creates an `EntityInputBuilder` with the specified `EntityInfo`
     -   `input(Holder<EntityType<?>> entity, Integer count)`
         -   creates an `EntityInputBuilder` with the specified entity and the specified count
+    -   `fakeInput(ItemStack displayItem, Integer count, Predicate<Entity> validator)`
+        -   creates a `FakeEntityInput` with the specified display item, count, and validator
+        -   the count defines the amount of entities that have to pass the validator for the input to be valid
     -   `output(EntityInfo entity)`
         -   creates an `EntityOutputBuilder` with the specified `EntityInfo`
     -   `output(Holder<EntityType<?>> entity, Integer count)`
@@ -19,6 +22,8 @@
 SummoningEntity.input("pig")
 SummoningEntity.input("5x minecraft:ghast")
 SummoningEntity.input("minecraft:fox", 3)
+
+SummoningEntity.fakeInput("minecraft:diamond", 5, e => e.isBaby())
 
 SummoningEntity.output("cow")
 SummoningEntity.output("3x sheep")

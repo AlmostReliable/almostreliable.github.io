@@ -71,3 +71,29 @@ The sacrifice zone defines how far away entities can be from the altar block to 
 ```js
 .entityInputZone([3, 3, 3])
 ```
+
+## Fake Entity Inputs
+
+Fake entity inputs are a special type of entity inputs. Instead of an entity type, they use an `ItemStack` for display purposes. Additionally, a validator needs to be attached checking for the correct entity. This is useful if the entity input requires very complex checks on the data that is only available on the entity if it's present in the world. A common use case for this is an entity that defines its visual appearance based on specific data. Because this data would only be available in the world, a normal entity input could not display it properly in the recipe viewer. Instead, an item can be used to display the input while the validator checks for the correcht entity when the recipe is being selected.
+
+The `ItemStack` can also have components to modify its name or the tooltip (via the lore property).
+
+-   type: `List<FakeEntityInput>`
+-   required: no
+-   default: empty list
+-   primary access: `fakeEntityInputs(...)`
+-   aliases: `fakeEntityInput`, `fakeMobInputs`, `fakeMobInput`
+
+### Syntax
+
+Because a fake entity input requires multiple properties, you have to use the [`SummoningEntity` binding](../binding/entity.md) to define it.
+
+```js
+.fakeEntityInputs([
+      SummoningEntity.fakeInput(
+        `minecraft:iron_ingot[custom_name='{"color":"gold","text":"Special Mob"}',lore=['{"color":"gray","text":"Checks for a custom entity."}']]`,
+        2,
+        e => e.type === "minecraft:pig",
+      )
+])
+```

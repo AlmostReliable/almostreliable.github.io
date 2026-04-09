@@ -106,3 +106,36 @@ The `requiresPlayer` boolean defaults to true. If a command output requires play
 // the @s is optional because kill has an implicit entity target
 .command("kill @s");
 ```
+
+## Display Outputs
+
+Display outputs are not actual recipe outputs. They can be used to display an item output in the recipe viewer that won't be spawned automatically when the ritual is performed. This is useful if you want to handle the spawning of outputs in the [`complete` event](../event/complete.md) handler, for example. Adding a display output will also satisfy the recipe serializer requirement for at least one output, so you can have recipes that only spawn outputs via the `complete` event.
+
+-   type: `List<ItemStack>`
+-   required: no
+-   default: empty list
+-   primary access: `displayOutputs(...)`
+-   aliases: `displayOutput`
+
+### Syntax
+
+You can pass any type of the KubeJS `ItemStack` wrapper. If you want to specify multiple entries, you have to wrap them in an array via `[]`.
+
+```js
+.displayOutputs([
+  'minecraft:diamond',
+  'apple',
+  '3x minecraft:iron_ingot',
+  Item.of('carrot', 5),
+  SummoningItem.of("3x diamond"),
+  SummoningItem.of("potato", 3)
+])
+```
+
+### Data
+
+If you want to pass data to display outputs, you need to define them as components. Components are a vanilla system and are wrapped by KubeJS. Components include values like which enchantments an item has, if it's a specific tool type, and more.
+
+```js
+.displayOutputs('minecraft:iron_sword[enchantments={levels:{"minecraft:sharpness":2}}]')
+```

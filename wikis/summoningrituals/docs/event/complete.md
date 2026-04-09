@@ -41,6 +41,8 @@ SummoningRituals.complete(event => {
 })
 ```
 
+After that, you can access the event properties and functions to implement your desired logic.
+
 ## Example
 
 ```js

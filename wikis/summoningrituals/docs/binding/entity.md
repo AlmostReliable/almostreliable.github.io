@@ -13,6 +13,9 @@
     -   `fakeInput(ItemStack displayItem, Integer count, Predicate<Entity> validator)`
         -   creates a `FakeEntityInput` with the specified display item, count, and validator
         -   the count defines the amount of entities that have to pass the validator for the input to be valid
+    -   `fakeInput(ItemStack displayItem, Predicate<Entity> validator)`
+        -   creates a `FakeEntityInput` with the specified display item and validator
+        -   by leaving out the count, it acts as a wildcard, meaning any amount of entities passing the validator
     -   `output(EntityInfo entity)`
         -   creates an `EntityOutputBuilder` with the specified `EntityInfo`
     -   `output(Holder<EntityType<?>> entity, Integer count)`
@@ -23,7 +26,7 @@ SummoningEntity.input("pig")
 SummoningEntity.input("5x minecraft:ghast")
 SummoningEntity.input("minecraft:fox", 3)
 
-SummoningEntity.fakeInput("minecraft:diamond", 5, e => e.isBaby())
+SummoningEntity.fakeInput("minecraft:diamond", 5, e => e.isUnderWater())
 
 SummoningEntity.output("cow")
 SummoningEntity.output("3x sheep")

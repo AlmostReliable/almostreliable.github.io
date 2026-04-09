@@ -93,10 +93,11 @@ Because a fake entity input requires multiple properties, you have to use the [`
 
 ```js
 .fakeEntityInputs([
-      SummoningEntity.fakeInput(
+    SummoningEntity.fakeInput(
         `minecraft:iron_ingot[custom_name='{"color":"gold","text":"Special Mob"}',lore=['{"color":"gray","text":"Checks for a custom entity."}']]`,
         2,
         e => e.type === "minecraft:pig",
-      )
+    ),
+    SummoningEntity.fakeInput("apple", e => e.isUnderWater())
 ])
 ```

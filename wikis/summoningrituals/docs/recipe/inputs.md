@@ -66,7 +66,7 @@ To pass additional data to an entity input such as NBT or a custom tooltip, you 
 
 ### Sacrifice Zone
 
-The sacrifice zone defines how far away entities can be from the altar block to still be considered sacrifices. By default, the value is `[3, 2, 3]`, defined as `[x, y, z]`. This dimension defines the radius around the altar excluding the block itself. Which means the default value covers an actual area of `7x7` blocks with a height of 2 blocks.
+The sacrifice zone defines how far away entities can be from the altar block to still be considered sacrifices. By default, the value is `[3, 2, 3]`, defined as `[x, y, z]`. This dimension defines the radius around the altar excluding the block itself. Which means the default value covers an actual area of `7x5x7` blocks.
 
 ```js
 .entityInputZone([3, 3, 3])

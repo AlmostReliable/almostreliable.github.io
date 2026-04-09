@@ -72,11 +72,9 @@ Since blocks can have an infinite amount of properties, and mods can also define
 
 The block pattern check ensures the ritual is only started if the blocks around the altar match the given block pattern. A block pattern is a 3D pattern of blocks. You can specify the required `BlockState` for each block in the pattern as well. If a `BlockState` is passed, the mod will ensure if the properties are valid and can be applied to the block. Passing a required `BlockState` is optional. You can also specify a block tag instead of a specific block for each entry in the pattern.
 
-To offer complex functionality, this condition is configured via its own builder. You can obtain the builder instance by calling the `blockPattern()` function.
+To offer complex functionality, this condition is configured via its own builder. You can obtain the builder instance by calling the `blockPattern()` function. You can also pass a custom `name` for the block pattern condition. This is useful if you want to create tiered progression that depends on the structure of the blocks around the altar. By default, the `name` component will have no color and will adjust to the color of the other components surrounding it. However, you can define a custom color with the `Text` binding from KubeJS.
 
-The `offset` argument defines the position of the block relative to the altar block. For example, an offset of `[0, -1, 0]` would check the block directly below the altar block.
-
-Function: `blockPattern(...)`<br>
+Function: `blockPattern(Component name, BlockPatternBuilder builder)`<br>
 Available builder functions:
 
 -   `block(BlockPos offset, Block block)`
@@ -84,14 +82,19 @@ Available builder functions:
 -   `tag(BlockPos offset, TagKey<Block> blockTag)`
 -   `tag(BlockPos offset, TagKey<Block> blockTag, BlockState blockState)`
 
+The `offset` argument in each function defines the position of the block relative to the altar block. For example, an offset of `[0, -1, 0]` would check the block directly below the altar block.
+
 ```js
 .conditions(c =>
-    c.blockPattern(p => // [!code focus:7]
-    p
-        .tag([0, -1, 0], "c:glass_blocks")
+    c.blockPattern(p => // [!code focus:10]
+        p.tag([0, -1, 0], "c:glass_blocks")
         .block([1, -1, 1], "chest")
         .block([-1, -1, -1], "furnace", { lit: true })
         .block([1, -1, 0], "chest")
+    )
+    // or
+    c.blockPattern(Text.of("Tier 1").darkRed(), p =>
+        // ...
     )
 )
 ```

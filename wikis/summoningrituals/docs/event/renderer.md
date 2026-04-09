@@ -9,7 +9,7 @@ This event allows you to register custom ritual renderers for specific recipes.
 
 ## Overview
 
-The event is fired when client resources are being loaded. The registered renderers will be called every render tick for the respective recipe.
+The event is fired when client resources are being loaded. The registered renderers will be called every render tick for the respective recipe. If a custom renderer errors, the default renderer will be used and the error will be logged.
 
 -   access in a server script via: `SummoningRituals.ritualRendererRegistration`
 -   functions

@@ -155,3 +155,5 @@ SummoningRituals.ritualRendererRegistration(event => {
     })
 })
 ```
+
+<video controls="controls" src="/../img/custom_animation.mp4" />

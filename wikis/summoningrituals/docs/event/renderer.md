@@ -2,6 +2,9 @@
 
 This event allows you to register custom ritual renderers for specific recipes.
 
+> [!INFO] NOTE
+> This event is available since version 3.7.0.
+
 **It is a client event and reloadable.** Keep in mind that client events have to be located inside the `kubejs/client_scripts` folder. Reloading client scripts does not work with `/reload`. Instead you have to invoke an asset reload by pressing `F3` + `T` in-game.
 
 ## Overview

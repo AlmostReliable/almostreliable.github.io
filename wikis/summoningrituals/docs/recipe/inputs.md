@@ -78,6 +78,9 @@ Fake entity inputs are a special type of entity inputs. Instead of an entity typ
 
 The `ItemStack` can also have components to modify its name or the tooltip (via the lore property).
 
+> [!INFO] NOTE
+> This component is available since version 3.7.0.
+
 -   type: `List<FakeEntityInput>`
 -   required: no
 -   default: empty list

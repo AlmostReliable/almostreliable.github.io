@@ -122,6 +122,20 @@ You can check its implementation [here](https://github.com/AlmostReliable/summon
         -   description: renders the specified item stack using the provided item renderer
         -   note: you can obtain the `ItemRenderer` instance from the `AltarRenderer` parameter of the custom renderer
 
+## Block Pattern
+
+If you want to invoke special logic depending on the [block pattern](../recipe/conditions.md#block-pattern) defined in the recipe, you can obtain the condition instance from the recipe or the render context instances. If you defined `queryId`s for the pattern entries, there is also a `queryEntries(String query)` function available on the condition instance that returns a list of all entries matching the provided `queryId`.
+
+```js
+// ... listener and other logic
+let pattern = recipe.blockPatternCondition
+if (!pattern) return // recipe doesn't have a block pattern condition
+
+pattern.queryEntries("container_blocks").forEach(entry => {
+    // do something with the entries matching the "container_blocks" query
+})
+```
+
 ## Event Listener
 
 To access the event, the first thing you need to do is to open an event listener for the `ritualRendererRegistration` event in a client script.

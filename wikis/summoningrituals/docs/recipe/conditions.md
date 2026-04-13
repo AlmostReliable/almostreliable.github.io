@@ -78,19 +78,23 @@ Function: `blockPattern(Component name, BlockPatternBuilder builder)`<br>
 Available builder functions:
 
 -   `block(BlockPos offset, Block block)`
+-   `block(BlockPos offset, Block block, String queryId)`
 -   `block(BlockPos offset, Block block, BlockState blockState)`
+-   `block(BlockPos offset, Block block, BlockState blockState, String queryId)`
 -   `tag(BlockPos offset, TagKey<Block> blockTag)`
+-   `tag(BlockPos offset, TagKey<Block> blockTag, String queryId)`
 -   `tag(BlockPos offset, TagKey<Block> blockTag, BlockState blockState)`
+-   `tag(BlockPos offset, TagKey<Block> blockTag, BlockState blockState, String queryId)`
 
-The `offset` argument in each function defines the position of the block relative to the altar block. For example, an offset of `[0, -1, 0]` would check the block directly below the altar block.
+The `offset` argument in each function defines the position of the block relative to the altar block. For example, an offset of `[0, -1, 0]` would check the block directly below the altar block. The optional `queryId` argument can be used to reference the defined entries later in an event.
 
 ```js
 .conditions(c =>
     c.blockPattern(p => // [!code focus:10]
         p.tag([0, -1, 0], "c:glass_blocks")
-        .block([1, -1, 1], "chest")
+        .block([1, -1, 1], "chest", "container_blocks")
         .block([-1, -1, -1], "furnace", { lit: true })
-        .block([1, -1, 0], "chest")
+        .block([1, -1, 0], "chest", "container_blocks")
     )
     // or
     c.blockPattern(Text.of("Tier 1").darkRed(), p =>

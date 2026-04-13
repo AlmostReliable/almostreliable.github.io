@@ -32,6 +32,20 @@ At this point, the altar has already invoked the output commands and spawned the
         -   type: `ServerPlayer` (nullable)
         -   description: the player who inserted the initiator item; may be `null` if the ritual was started by automation
 
+## Block Pattern
+
+If you want to invoke special logic depending on the [block pattern](../recipe/conditions.md#block-pattern) defined in the recipe, you can obtain the condition instance from the `recipeInfo` (see above). If you defined `queryId`s for the pattern entries, there is also a `queryEntries(String query)` function available on the condition instance that returns a list of all entries matching the provided `queryId`.
+
+```js
+// ... listener and other logic
+let pattern = event.recipeInfo.blockPatternCondition
+if (!pattern) return // recipe doesn't have a block pattern condition
+
+pattern.queryEntries("container_blocks").forEach(entry => {
+    // do something with the entries matching the "container_blocks" query
+})
+```
+
 ## Event Listener
 
 To access the event, the first thing you need to do is to open an event listener for the `complete` event in a server script.

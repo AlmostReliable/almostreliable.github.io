@@ -25,9 +25,10 @@ At this point, the altar block also contains the initiator item and is about to 
             -   `recipeId` - the ID of the recipe that is about to be processed as `ResourceLocation`
             -   `recipe` - the `AltarRecipe` that is about to be processed
             -   `inputEntities` - an `Entity` collection holding all entities that are about to be sacrificed
+            -   `blockPatternCondition` - the [block pattern condition](../recipe/conditions.md#block-pattern) if you defined one in the recipe, otherwise `null`
     -   `player`
         -   type: `ServerPlayer` (nullable)
-        -   description: the player who inserted the initiator item; may be null if the ritual was started by automation
+        -   description: the player who inserted the initiator item; may be `null` if the ritual was started by automation
 -   functions
     -   `cancel()`
         -   description: cancels the ritual start; this will reset the altar and drop the initiator item

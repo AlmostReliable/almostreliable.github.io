@@ -27,9 +27,10 @@ At this point, the altar has already invoked the output commands and spawned the
             -   `inputEntities` - an `Entity` collection holding all entities that were sacrificed (already dead)
             -   `outputItems` - an `ItemEntity` collection holding all item outputs that were spawned
             -   `outputEntities` - an `Entity` collection holding all entity outputs that were spawned
+            -   `blockPatternCondition` - the [block pattern condition](../recipe/conditions.md#block-pattern) if you defined one in the recipe, otherwise `null`
     -   `player`
         -   type: `ServerPlayer` (nullable)
-        -   description: the player who inserted the initiator item; may be null if the ritual was started by automation
+        -   description: the player who inserted the initiator item; may be `null` if the ritual was started by automation
 
 ## Event Listener
 

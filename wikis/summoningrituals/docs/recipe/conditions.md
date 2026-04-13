@@ -243,6 +243,9 @@ Available Options:
 
 The open sky check ensures the ritual is only started when the altar block has an open sky. This means that the block has to be exposed to the sky (no blocks above it). By default, it does not matter if the altar block has an open sky or not. This means that by passing `false`, you can ensure that the altar block does not have an open sky.
 
+> [!WARNING] NOTE
+> This condition is not compatible with the [`waterlogged` condition](#waterlogged), as the water block will obstruct the Altar's access to the sky. This is Vanilla behavior and can't be changed.
+
 Function: `setOpenSky(Boolean openSky)`
 
 ```js
@@ -344,6 +347,9 @@ Available Options (min, max):
 ## Waterlogged
 
 The waterlogged check ensures the ritual is only started when the altar block is waterlogged. This means that the block has to be covered by water. By default, it does not matter if the altar block is waterlogged or not. This means that by passing `false`, you can ensure that the altar block is not waterlogged.
+
+> [!WARNING] NOTE
+> This condition is not compatible with the [`openSky` condition](#open-sky), as the water block will obstruct the Altar's access to the sky. This is Vanilla behavior and can't be changed.
 
 Function: `setWaterlogged(Boolean waterlogged)`
 

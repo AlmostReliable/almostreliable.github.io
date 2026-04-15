@@ -2,10 +2,9 @@
 
 Summoning Rituals provides a single crafting recipe type that is reused across all systems: the altar recipe.
 
-It is possible to create custom recipes via datapacks as well, but it's not recommended since you'd miss a lot of customization options. Instead, you should make use of [KubeJS](https://github.com/KubeJS-Mods/KubeJS) because the mod has native integration for it.
+It is possible to create custom recipes via datapacks as well, but it's not recommended since you'd miss a lot of customization options. Instead, you should make use of [KubeJS](https://github.com/KubeJS-Mods/KubeJS) because there is native integration for it.
 
-> [!WARNING] NOTE
-> Due to the limitations, creating the recipe via datapacks is not documented on this wiki.
+If you are a developer, you should ensure you understand how player interact with the altar, so you can provide a good user experience. For that, please read the [player usage page](../usage_for_players.md).
 
 ## Creating a Recipe
 
@@ -83,6 +82,24 @@ Each recipe uses the same set of components which define inputs, outputs, condit
     -   primary access: `displayOutputs(...)`
     -   aliases: `displayOutput`
     -   description: items used for display purposes in the recipe viewer; these items are not actually spawned when the ritual finishes
+-   `block_pattern`
+    -   type: `BlockPatternCondition`
+    -   required: no
+    -   default: none
+    -   primary access: `blockPattern(...)`
+    -   description: block pattern that needs to be matched around the altar for the ritual to start
+-   `block_pattern_extension`
+    -   type: `BlockPatternCondition`
+    -   required: no
+    -   default: none
+    -   primary access: `blockPatternExtension(...)`
+    -   description: additional block pattern that is not required for the ritual to start, but can be used in events to add extra outputs or effects when the pattern is matched
+-   `conditions`
+    -   type: `List<LootItemCondition>`
+    -   required: no
+    -   default: empty list
+    -   primary access: `conditions(...)`
+    -   description: conditions evaluated before the ritual can start
 -   `zone`
     -   type: `BlockPos`
     -   required: no
@@ -90,23 +107,17 @@ Each recipe uses the same set of components which define inputs, outputs, condit
     -   primary access: `entityInputZone(...)`
     -   aliases: `mobInputZone`, `inputZone`, `sacrificeZone`, `entityZone`, `mobZone`, `zone`
     -   description: half-size region around altar used to search required entities
--   `conditions`
-    -   type: `List<LootItemCondition>`
-    -   required: no
-    -   default: empty list
-    -   primary access: `conditions(...)`
-    -   description: conditions evaluated before the ritual can start
 -   `ticks`
     -   type: `int`
     -   required: no
     -   default: `40`
     -   primary access: `ticks(...)`
     -   aliases: `time`, `duration`
-    -   description: ritual duration in game ticks
+    -   description: ritual duration in game ticks (1 second = 20 ticks)
 
 ### Inputs
 
-Inputs can be items, entities, or both. If you want to learn more about how players interact with the altar to provide the required inputs, check out the [player usage page](../usage_for_players.md).
+Inputs can be items, entities, fake entities, or combinations thereof.
 
 Item inputs support components. That means an input item could specify a required enchantment. Item input components are strictly enforced in the recipe. That means if the item does not have the specified component, the input will not be valid for the recipe.
 
@@ -116,7 +127,7 @@ For more information about inputs with all available functions and examples, ple
 
 ### Outputs
 
-Outputs can be items, entities, commands, or all three.
+Outputs can be items, entities, commands, display items, or combinations thereof.
 
 Similar to inputs, outputs support components as well. Items with components and entities with NBT will be spawned with their assigned data. Additionally, item and entity outputs can have custom spawn positions altered by offset and spread values.
 
@@ -139,7 +150,7 @@ The `ticks` component defines the duration the ritual needs to be finished. When
 Values passed to this function are specified in ticks (_1 second = 20 ticks_). Higher values mean longer duration for the ritual.
 
 ```js
-.ticks(40) // 2 seconds, this is the default
+.ticks(40) // 2 seconds, this is the default and can be omitted
 .ticks(200) // 10 seconds
 ```
 
@@ -149,11 +160,11 @@ After a recipe has been created, the mod will check its validity internally. The
 
 1. the initiator **cannot** be empty
     - this happens if an invalid item id was specified or if the tag provided does not exist
-2. the recipe **must** have at least one item or entity input
-3. the amount of inputs exceeds the specified altar inventory size in the config
+2. the recipe **must** have at least one item, entity, or fake entity input
+3. the amount of item inputs exceeds the specified altar inventory size in the config
     - you can set the size higher in the config
     - this restriction exists to prevent the altar from being used as an infinite storage solution
-4. the recipe **must** have at least one item, entity, or command output
+4. the recipe **must** have at least one item, entity, command, or display item output
 
 In addition to the general validation, a recipe performs the following steps before it can start:
 
@@ -164,3 +175,7 @@ In addition to the general validation, a recipe performs the following steps bef
 5. start event is not blocked
 
 After the duration ticks have elapsed, the ritual executes commands, and spawns outputs.
+
+## Custom Behavior
+
+To further modify the behavior of a ritual, you can listen to custom events that are fired at different stages of the ritual. You can even register a custom ritual renderer to change the animation of the ritual. For more information about events and custom renderers, please read the [events page](../event/overview.md).

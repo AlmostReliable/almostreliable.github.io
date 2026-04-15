@@ -1,6 +1,6 @@
 # Altar Recipe Inputs
 
-Altar recipe inputs can be item or entity inputs. A recipe requires at least one item _or_ entity input in order to be valid.
+Altar recipe inputs can be item, entity, or fake entity inputs. Combinations are also possible. A recipe requires at least one input in order to be valid.
 
 > [!WARNING] NOTE
 > This page assumes that you know how to get an instance of the altar recipe builder. If you do not know how to do that or you didn't read about the general recipe structure yet, please read the [recipe basics page](basics.md).
@@ -31,7 +31,7 @@ The required type `SizedIngredient` is wrapped by KubeJS. You can use multiple d
 
 ### Data
 
-If you want to pass data to item inputs, you need to define them as components. Components are a vanilla system and are wrapped by KubeJS. Components include values like which enchantments an item has, if it's a specific tool type, and more.
+If you want to pass data to item inputs, you need to define them as components. Minecraft removed item NBT in 1.21+. Components are a vanilla system and are wrapped by KubeJS. Components include values like which enchantments an item has, if it's a specific tool type, custom item names and tooltips, and more.
 
 ```js
 .itemInputs('minecraft:iron_sword[enchantments={levels:{"minecraft:sharpness":2}}]')
@@ -64,19 +64,11 @@ Because entities are not wrapped by KubeJS by default, Summoning Rituals offers 
 
 To pass additional data to an entity input such as NBT or a custom tooltip, you can use the entity input builder exposed via the [`SummoningEntity` binding](../binding/entity.md).
 
-### Sacrifice Zone
-
-The sacrifice zone defines how far away entities can be from the altar block to still be considered sacrifices. By default, the value is `[3, 2, 3]`, defined as `[x, y, z]`. This dimension defines the radius around the altar excluding the block itself. Which means the default value covers an actual area of `7x5x7` blocks.
-
-```js
-.entityInputZone([3, 3, 3])
-```
-
 ## Fake Entity Inputs
 
-Fake entity inputs are a special type of entity inputs. Instead of an entity type, they use an `ItemStack` for display purposes. Additionally, a validator needs to be attached checking for the correct entity. This is useful if the entity input requires very complex checks on the data that is only available on the entity if it's present in the world. A common use case for this is an entity that defines its visual appearance based on specific data. Because this data would only be available in the world, a normal entity input could not display it properly in the recipe viewer. Instead, an item can be used to display the input while the validator checks for the correcht entity when the recipe is being selected.
+Fake entity inputs are a special type of entity inputs. Instead of an entity type, they use an `ItemStack` for display purposes. Additionally, a validator needs to be attached that checks for the correct entity. This is useful if the entity input requires very complex checks on the data that is only available on the entity if it's present in the world. A common use case for this is an entity that defines its visual appearance based on specific data. Because this data would only be available in the world, a normal entity input could not display it properly in the recipe viewer. Instead, an item can be used to display the input while the validator checks for the correcht entity when the recipe is being selected.
 
-The `ItemStack` can also have components to modify its name or the tooltip (via the lore property).
+The `ItemStack` can also have components to modify its name or the tooltip. Because it's used for visual representation in the recipe viewer only, you can attach any information you want.
 
 > [!INFO] NOTE
 > This component is available since version 3.7.0.
@@ -100,4 +92,12 @@ Because a fake entity input requires multiple properties, you have to use the [`
     ),
     SummoningEntity.fakeInput("apple", e => e.isUnderWater())
 ])
+```
+
+### Sacrifice Zone
+
+The sacrifice zone defines how far away entities can be from the altar block to still be considered sacrifices. By default, the value is `[3, 2, 3]`, defined as `[x, y, z]`. This dimension defines the radius around the altar excluding the block itself. Which means the default value covers an actual area of `7x5x7` blocks.
+
+```js
+.entityInputZone([3, 3, 3])
 ```

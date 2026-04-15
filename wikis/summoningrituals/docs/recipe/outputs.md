@@ -1,6 +1,6 @@
 # Altar Recipe Outputs
 
-Altar recipe outputs can be item, entity, or command outputs. A recipe requires at least one item, entity, _or_ command output to be valid.
+Altar recipe outputs can be item, entity, command, or display item outputs. Combinations are also possible. A recipe requires at least one output to be valid.
 
 > [!WARNING] NOTE
 > This page assumes that you know how to get an instance of the altar recipe builder. If you do not know how to do that, or if you have not read about the general recipe structure yet, please read the [recipe basics page](basics.md).
@@ -32,7 +32,7 @@ This custom type supports all KubeJS `ItemStack` wrappers. You can use multiple 
 
 ### Data
 
-If you want to pass data to item outputs, you need to define them as components. Components are a vanilla system and are wrapped by KubeJS. Components include values like which enchantments an item has, if it's a specific tool type, and more.
+If you want to pass data to item outputs, you need to define them as components. Minecraft removed item NBT in 1.21+. Components are a vanilla system and are wrapped by KubeJS. Components include values like which enchantments an item has, if it's a specific tool type, custom item names and tooltips, and more.
 
 ```js
 .itemOutputs('minecraft:iron_sword[enchantments={levels:{"minecraft:sharpness":2}}]')
@@ -137,7 +137,7 @@ You can pass any type of the KubeJS `ItemStack` wrapper. If you want to specify 
 
 ### Data
 
-If you want to pass data to display outputs, you need to define them as components. Components are a vanilla system and are wrapped by KubeJS. Components include values like which enchantments an item has, if it's a specific tool type, and more.
+If you want to pass data to item outputs, you need to define them as components. Minecraft removed item NBT in 1.21+. Components are a vanilla system and are wrapped by KubeJS. Components include values like which enchantments an item has, if it's a specific tool type, custom item names and tooltips, and more.
 
 ```js
 .displayOutputs('minecraft:iron_sword[enchantments={levels:{"minecraft:sharpness":2}}]')

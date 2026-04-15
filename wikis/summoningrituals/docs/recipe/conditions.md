@@ -37,7 +37,7 @@ Functions:
 
 ```js
 .conditions(c =>
-    c.biomes(["minecraft:plains", "minecraft:desert"]) // [!code focus: 3]
+    c.biomes(["minecraft:plains", "minecraft:desert"]) // [!code focus:3]
     // or
     c.biomes("#minecraft:is_badlands")
 )

@@ -35,7 +35,7 @@ SummoningEntity.output("iron_golem", 2)
 
 ## Entity Input Builder
 
-After obtaining the `EntityInputBuilder` instance through the binding, you can chain additional functions to it. It is not required to finish the builder because the `entityInputs` function also accepts builder instances.
+After obtaining the `EntityInputBuilder` instance through the binding, you can chain additional functions to it.
 
 -   properties:
     -   `entity`
@@ -96,7 +96,7 @@ After obtaining the `EntityInputBuilder` instance through the binding, you can c
 
 ## Entity Output Builder
 
-After obtaining the `EntityOutputBuilder` instance through the binding, you can chain additional functions to it. It is not required to finish the builder because the `entityOutputs` function also accepts builder instances.
+After obtaining the `EntityOutputBuilder` instance through the binding, you can chain additional functions to it.
 
 -   properties:
     -   `entity`

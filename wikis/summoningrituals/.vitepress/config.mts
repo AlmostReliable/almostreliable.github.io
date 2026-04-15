@@ -13,7 +13,7 @@ export default defineConfig({
                     { text: "What's New", link: "/whats_new" },
                     { text: "Usage for Players", link: "/usage_for_players" },
                     { text: "Usage for Developers", link: "/usage_for_developers" },
-                    { text: "Full Example", link: "/full_example" },
+                    { text: "Examples", link: "/examples" },
                 ],
             },
             {

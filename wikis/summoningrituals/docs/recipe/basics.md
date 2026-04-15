@@ -48,6 +48,13 @@ Each recipe uses the same set of components which define inputs, outputs, condit
     -   primary access: `entityInputs(...)`
     -   aliases: `entityInput`, `mobInputs`, `mobInput`
     -   description: entities inside the sacrifice zone that are killed when the ritual starts
+-   `fake_entity_inputs`
+    -   type: `List<FakeEntityInput>`
+    -   required: no
+    -   default: empty list
+    -   primary access: `fakeEntityInputs(...)`
+    -   aliases: `fakeEntityInput`, `fakeMobInputs`, `fakeMobInput`
+    -   description: entities inside the sacrifice zone matching a custom predicate that are killed when the ritual starts; instead of an entity for displaying in the recipe viewer, a custom item is used as a placeholder
 -   `item_outputs`
     -   type: `List<ItemOutput>`
     -   required: no
@@ -69,6 +76,13 @@ Each recipe uses the same set of components which define inputs, outputs, condit
     -   primary access: `commands(...)`
     -   aliases: `command`
     -   description: commands executed when the ritual completes
+-   `display_outputs`
+    -   type: `List<ItemStack>`
+    -   required: no
+    -   default: empty list
+    -   primary access: `displayOutputs(...)`
+    -   aliases: `displayOutput`
+    -   description: items used for display purposes in the recipe viewer; these items are not actually spawned when the ritual finishes
 -   `zone`
     -   type: `BlockPos`
     -   required: no

@@ -34,6 +34,15 @@ ServerEvents.recipes(event => {
                 .tooltip("Needs any sword")
                 .validator(e => e.mainHandItem.id.contains("sword")),
         ])
+        .fakeEntityInputs(
+            SummoningEntity.fakeInput(
+                `minecraft:iron_ingot[custom_name='{"color":"gold","text":"Special Mob"}',lore=['{"color":"gray","text":"Checks for a custom entity."}']]`,
+                1,
+                entity => {
+                    return entity.type === "minecraft:pig"
+                }
+            )
+        )
         .itemOutputs([
             "3x carrot",
             Item.of("iron_sword"),
@@ -64,12 +73,22 @@ ServerEvents.recipes(event => {
                 .tooltip("Has a Sword"),
             SummoningEntity.output("ghast").offset([1, 2, 2]).spread([4, 2, 4]),
         ])
+        .displayOutputs(["diamond"])
         .commands(["say Hi", "/say Hello"], ["Broadcasts a greeting!"], false)
         .sacrificeZone([3, 3, 3])
+        .blockPattern(pattern =>
+            pattern
+                .name(Text.of("Test-Pattern").darkRed())
+                .tooltip(["- line 1", Text.of("- line 2").aqua()])
+                .block([0, 0, 2], "furnace", { facing: "north" })
+                .block([-2, 0, 0], "furnace", { facing: "east" })
+                .block([0, 0, -2], "furnace", { facing: "south" })
+                .block([2, 0, 0], "furnace", { facing: "west" })
+        )
+        .blockPatternExtension(pattern => pattern.block([-2, 0, -2], "cobblestone"))
         .conditions(conditions =>
             conditions
                 .biomes(["minecraft:plains", "minecraft:desert"])
-                .blockBelow("furnace", { lit: true })
                 .dimension("minecraft:overworld")
                 .facing(Direction.NORTH)
                 .height(0, 30)
@@ -78,6 +97,7 @@ ServerEvents.recipes(event => {
                 .setSmoked(true)
                 .structures("#minecraft:mineshaft")
                 .time(SummoningTime.NIGHT)
+                .moonPhase("full_moon")
                 .setWaterlogged(true)
                 .weather(w => w.setThundering(true))
         )
@@ -94,12 +114,10 @@ SummoningRituals.start(event => {
 
     // cancel the ritual if one of the entity inputs has less than their max health
     for (let entity of recipeInfo.inputEntities) {
-        if (entity.health < entity.maxHealth) {
-            if (player) {
-                player.tell("Ritual cancelled: Entity health too low")
-            }
-            event.cancel()
+        if (player) {
+            player.tell("Ritual cancelled: Entity health too low")
         }
+        event.cancel()
     }
 })
 
@@ -117,63 +135,17 @@ SummoningRituals.complete(event => {
             itemEntity.item.enchant("minecraft:sharpness", 3)
         }
     }
+
+    // retrieve info if block pattern extension matched
+    let extensionMatched = recipeInfo.blockPatternExtensionMatched
+    if (extensionMatched) {
+        // if it matched, enable rain
+        level.levelData.setRaining(true)
+    }
 })
 ```
 
 ## Datapack
-
-**Example 1**
-
-```json
-{
-    "type": "summoningrituals:altar",
-    "initiator": { "item": "minecraft:apple" },
-    "item_outputs": [{ "item": { "id": "minecraft:potato", "count": 1 } }],
-    "display_outputs": [
-        {
-            "id": "minecraft:iron_ingot",
-            "count": 1,
-            "components": {
-                "minecraft:custom_name": "{\"color\":\"gold\",\"text\":\"Special Mob\"}",
-                "minecraft:lore": ["{\"color\":\"gray\",\"text\":\"Checks for a custom entity.\"}"]
-            }
-        }
-    ],
-    "item_inputs": [{ "item": "minecraft:carrot", "count": 1 }],
-    "fake_entity_inputs": [
-        {
-            "item": {
-                "id": "minecraft:iron_ingot",
-                "count": 1,
-                "components": {
-                    "minecraft:custom_name": "{\"color\":\"gold\",\"text\":\"Special Mob\"}",
-                    "minecraft:lore": ["{\"color\":\"gray\",\"text\":\"Checks for a custom entity.\"}"]
-                }
-            },
-            "count": 2
-        }
-    ],
-    "block_pattern": {
-        "entries": [
-            {
-                "offset": [-1, -1, -1],
-                "predicate": {
-                    "blocks": "minecraft:furnace",
-                    "state": { "lit": "true", "facing": "north" }
-                }
-            },
-            { "offset": [1, -1, 1], "predicate": { "blocks": "minecraft:chest" } },
-            { "offset": [1, -1, 0], "predicate": { "blocks": "minecraft:chest" } },
-            { "offset": [0, -1, 0], "predicate": { "blocks": "#c:glass_blocks" } }
-        ],
-        "name": { "text": "Test-Pattern", "color": "dark_red" },
-        "tooltip": []
-    },
-    "ticks": 200
-}
-```
-
-**Example 2**
 
 ```json
 {
@@ -224,6 +196,7 @@ SummoningRituals.complete(event => {
         "tooltip": ["Broadcasts a greeting!"],
         "requires_player": false
     },
+    "display_outputs": [{ "id": "minecraft:diamond", "count": 1 }],
     "item_inputs": [
         { "item": "minecraft:cobblestone", "count": 2 },
         { "item": "minecraft:stone", "count": 4 },
@@ -253,6 +226,44 @@ SummoningRituals.complete(event => {
             }
         }
     ],
+    "fake_entity_inputs": [
+        {
+            "item": {
+                "id": "minecraft:iron_ingot",
+                "count": 1,
+                "components": {
+                    "minecraft:custom_name": "{\"color\":\"gold\",\"text\":\"Special Mob\"}",
+                    "minecraft:lore": ["{\"color\":\"gray\",\"text\":\"Checks for a custom entity.\"}"]
+                }
+            },
+            "count": 1
+        }
+    ],
+    "block_pattern": {
+        "entries": [
+            {
+                "offset": [-2, 0, 0],
+                "predicate": { "blocks": "minecraft:furnace", "properties": { "facing": "east" } }
+            },
+            {
+                "offset": [0, 0, -2],
+                "predicate": { "blocks": "minecraft:furnace", "properties": { "facing": "south" } }
+            },
+            {
+                "offset": [0, 0, 2],
+                "predicate": { "blocks": "minecraft:furnace", "properties": { "facing": "north" } }
+            },
+            {
+                "offset": [2, 0, 0],
+                "predicate": { "blocks": "minecraft:furnace", "properties": { "facing": "west" } }
+            }
+        ],
+        "name": { "text": "Test-Pattern", "color": "dark_red" },
+        "tooltip": ["- line 1", { "text": "- line 2", "color": "aqua" }]
+    },
+    "block_pattern_extension": {
+        "entries": [{ "offset": [-2, 0, -2], "predicate": { "blocks": "minecraft:cobblestone" } }]
+    },
     "zone": [3, 3, 3],
     "conditions": [
         {
@@ -260,7 +271,7 @@ SummoningRituals.complete(event => {
             "value": { "min": 12000.0, "max": 24000.0 },
             "condition": "minecraft:time_check"
         },
-        { "phase": 0, "condition": "summoningrituals:moon_phase" },
+        { "moon_phase": 0, "condition": "summoningrituals:moon_phase" },
         { "thundering": true, "condition": "minecraft:weather_check" },
         {
             "predicate": {

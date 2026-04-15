@@ -135,6 +135,12 @@ Furthermore, commands can be used as outputs. When the ritual finishes, the alta
 
 For more information about outputs with all available functions and examples, please read the [outputs page](outputs.md).
 
+### Block Patterns
+
+Block patterns are a powerful system to check for specific block arrangements around the altar. They can be used to add more depth to rituals by requiring players to build a specific structure around the altar.
+
+For more information about block patterns with all available functions and examples, please read the [block patterns page](block_patterns.md).
+
 ### Conditions
 
 This component defines which conditions need to be fulfilled before the ritual can start. Conditions are additive meaning if multiple conditions are specified, they all have to pass.
@@ -172,7 +178,8 @@ In addition to the general validation, a recipe performs the following steps bef
 2. all item inputs are present in altar inventory
 3. all entity inputs are found inside the configured zone
 4. all start conditions pass
-5. start event is not blocked
+5. block pattern is matched (if specified)
+6. start event is not blocked
 
 After the duration ticks have elapsed, the ritual executes commands, and spawns outputs.
 

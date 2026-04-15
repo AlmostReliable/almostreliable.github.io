@@ -19,13 +19,13 @@ At this point, the altar block also contains the initiator item and is about to 
         -   type: `BlockPos`
         -   description: the position of the altar block
     -   `recipeInfo`
-        -   type: `RecipeInfoContainer`
+        -   type: `RecipeInfo`
         -   description: a container object holding information about the recipe that is about to be processed
         -   container properties:
             -   `recipeId` - the ID of the recipe that is about to be processed as `ResourceLocation`
             -   `recipe` - the `AltarRecipe` that is about to be processed
             -   `inputEntities` - an `Entity` collection holding all entities that are about to be sacrificed
-            -   `blockPatternCondition` - the [block pattern condition](../recipe/conditions.md#block-pattern) if you defined one in the recipe, otherwise `null`
+            -   `blockPatternExtensionMatched` - defines if the [block pattern extension](../recipe/block_patterns.md#block-pattern-extension) matched
     -   `player`
         -   type: `ServerPlayer` (nullable)
         -   description: the player who inserted the initiator item; may be `null` if the ritual was started by automation
@@ -35,13 +35,18 @@ At this point, the altar block also contains the initiator item and is about to 
 
 ## Block Pattern
 
-If you want to invoke special logic depending on the [block pattern](../recipe/conditions.md#block-pattern) defined in the recipe, you can obtain the condition instance from the `recipeInfo` (see above). If you defined `queryId`s for the pattern entries, there is also a `queryEntries(String query)` function available on the condition instance that returns a list of all entries matching the provided `queryId`.
+If you want to invoke special logic depending on the [block pattern](../recipe/block_patterns.md) defined in the recipe, you can obtain the block pattern instance from the `recipe` (see above) via `recipe.blockPattern()`. You can also obtain the block pattern extension instance via `recipe.blockPatternExtension()`. They are optionals, so make sure to check if they are present before accessing them.
+
+When you obtained the `BlockPatternCondition` instance, you can grab all entries via `instance.entries`. If you defined `query` strings when creating the block pattern, you can also quickly access the entries matching a specific query via `instance.queryEntries(String query)`.
+
+If you want to see more details about the block pattern implementation, you can see it [here](https://github.com/AlmostReliable/summoningrituals/blob/1.21.1/src/main/java/com/almostreliable/summoningrituals/recipe/condition/pattern/BlockPatternCondition.java).
 
 ```js
 // ... listener and other logic
-let pattern = event.recipeInfo.blockPatternCondition
-if (!pattern) return // recipe doesn't have a block pattern condition
+let patternOptional = recipe.blockPattern()
+if (patternOptional.isEmpty()) return // recipe doesn't have a block pattern condition
 
+let pattern = patternOptional.get()
 pattern.queryEntries("container_blocks").forEach(entry => {
     // do something with the entries matching the "container_blocks" query
 })

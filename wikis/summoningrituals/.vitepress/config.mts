@@ -22,6 +22,7 @@ export default defineConfig({
                     { text: "Basics", link: "/recipe/basics" },
                     { text: "Inputs", link: "/recipe/inputs" },
                     { text: "Outputs", link: "/recipe/outputs" },
+                    { text: "Block Patterns", link: "/recipe/block_patterns" },
                     { text: "Conditions", link: "/recipe/conditions" },
                 ],
             },

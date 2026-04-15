@@ -46,7 +46,7 @@ Functions:
 ## Block Below
 
 > [!DANGER] DEPRECATED
-> This condition was removed in version 3.6.0 in favor of the more generic [`blockPattern` condition](#block-pattern).
+> This condition was removed in version 3.6.0 in favor of the improved [block pattern](block_patterns.md).
 
 This check ensures the ritual is only started if the block below the ritual is the given block. You can specify the required `BlockState` as well. If a `BlockState` is passed, the mod will ensure if the properties are valid and can be applied to the block. Passing a required `BlockState` is optional.
 
@@ -67,8 +67,8 @@ Since blocks can have an infinite amount of properties, and mods can also define
 
 ## Block Pattern
 
-> [!INFO] NOTE
-> This condition is available since version 3.6.0.
+> [!DANGER] DEPRECATED
+> This condition was removed in version 3.10.0 in favor of the improved [block pattern](block_patterns.md).
 
 The block pattern check ensures the ritual is only started if the blocks around the altar match the given block pattern. A block pattern is a 3D pattern of blocks. You can specify the required `BlockState` for each block in the pattern as well. If a `BlockState` is passed, the mod will ensure if the properties are valid and can be applied to the block. Passing a required `BlockState` is optional. You can also specify a block tag instead of a specific block for each entry in the pattern.
 

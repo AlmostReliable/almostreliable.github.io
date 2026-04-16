@@ -1,7 +1,7 @@
 import fs from "fs"
 import express from "express"
 import path from "path"
-import WikiConfig, { WikiEntry } from "./WikiConfig"
+import WikiConfig from "./WikiConfig"
 
 const DIST_DIR = path.join(__dirname, "../dist")
 if (!fs.existsSync(DIST_DIR)) throw new Error("Wiki dist directory not found")

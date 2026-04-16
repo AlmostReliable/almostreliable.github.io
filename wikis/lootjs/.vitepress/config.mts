@@ -1,8 +1,8 @@
 import { defineConfig } from "../../../main/defineAlmostWiki"
 
 export default defineConfig({
+    wikiId: "lootjs",
     srcDir: "./docs",
-    title: "LootJS",
     themeConfig: {
         sidebar: [
             {

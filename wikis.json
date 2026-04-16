@@ -1,28 +1,44 @@
 {
   "wikis": [
     {
-      "name": "collection"
+      "id": "collection",
+      "name": "Collection",
+      "description": "A collection of blog posts and cheatsheets related to modding."
     },
     {
-      "name": "energymeter"
+      "id": "energymeter",
+      "name": "Energy Meter",
+      "description": "Easily measure your energy rates. A wiki about the usage of the mod."
     },
     {
-      "name": "kubejs-actuallyadditions"
+      "id": "kubejs-actuallyadditions",
+      "name": "KubeJS ActuallyAdditions",
+      "description": "KubeJS integration for Actually Additions."
     },
     {
-      "name": "kubejs-enderio"
+      "id": "kubejs-enderio",
+      "name": "KubeJS EnderIO",
+      "description": "KubeJS integration for EnderIO."
     },
     {
-      "name": "kubejs-oritech"
+      "id": "kubejs-oritech",
+      "name": "KubeJS Oritech",
+      "description": "KubeJS integration for Oritech."
     },
     {
-      "name": "lootjs"
+      "id": "lootjs",
+      "name": "LootJS",
+      "description": "A KubeJS add-on for loot modification. Create, remove and modify loot tables, or add dynamic modifiers."
     },
     {
-      "name": "morejs"
+      "id": "morejs",
+      "name": "MoreJS",
+      "description": "A KubeJS add-on extending the base functionality of KubeJS. Includes features such as trade and potion brewing modifications."
     },
     {
-      "name": "summoningrituals"
+      "id": "summoningrituals",
+      "name": "Summoning Rituals",
+      "description": "Create custom Summoning Rituals for a custom modpack progression experience."
     }
   ]
 }

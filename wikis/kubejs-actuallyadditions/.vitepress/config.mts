@@ -1,9 +1,8 @@
 import { defineConfig } from "../../../main/defineAlmostWiki"
 
 export default defineConfig({
+    wikiId: "kubejs-actuallyadditions",
     srcDir: "./docs",
-    title: "KubeJS ActuallyAdditions",
-    base: "/kubejs-actuallyadditions/",
     themeConfig: {
         sidebar: [
             {

@@ -1,9 +1,8 @@
 import { defineConfig } from "../../../main/defineAlmostWiki"
 
 export default defineConfig({
+    wikiId: "kubejs-oritech",
     srcDir: "./docs",
-    title: "KubeJS Oritech",
-    base: "/kubejs-oritech/",
     themeConfig: {
         sidebar: [
             {

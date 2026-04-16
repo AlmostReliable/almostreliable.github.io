@@ -1,9 +1,8 @@
 import { defineConfig } from "../../../main/defineAlmostWiki"
 
 export default defineConfig({
+    wikiId: "energymeter",
     srcDir: "./docs",
-    title: "Energy Meter",
-    base: "/energymeter/",
     themeConfig: {
         sidebar: [
             {

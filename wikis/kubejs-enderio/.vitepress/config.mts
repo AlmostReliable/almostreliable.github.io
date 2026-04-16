@@ -1,9 +1,8 @@
 import { defineConfig } from "../../../main/defineAlmostWiki"
 
 export default defineConfig({
+    wikiId: "kubejs-enderio",
     srcDir: "./docs",
-    title: "KubeJS EnderIO",
-    base: "/kubejs-enderio/",
     themeConfig: {
         sidebar: [
             {

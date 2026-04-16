@@ -1,10 +1,12 @@
 import { DefaultTheme, UserConfig } from "vitepress"
+import WikiConfig from "./WikiConfig"
 
-function getBaseThemeConfig(title: string): DefaultTheme.Config {
+function getBaseThemeConfig(wikiId: string): DefaultTheme.Config {
     return {
         editLink: {
-            pattern: `https://github.com/AlmostReliable/almostreliable.github.io/edit/main/wikis/${title}/docs/:path`,
+            pattern: `https://github.com/AlmostReliable/almostreliable.github.io/edit/main/wikis/${wikiId}/docs/:path`,
         },
+        nav: [{ text: "Home", link: "/..", target: "_self" }],
         socialLinks: [
             {
                 icon: "github",
@@ -35,12 +37,15 @@ function getBaseThemeConfig(title: string): DefaultTheme.Config {
     }
 }
 
-export function defineConfig(config: UserConfig<DefaultTheme.Config>): UserConfig<DefaultTheme.Config> {
-    if (!config.title) {
-        throw new Error("Docs title not found")
-    }
+type AlmostWikiUserConfig = UserConfig<DefaultTheme.Config> & {
+    wikiId: string
+}
 
-    config.head = [
+export function defineConfig(config: AlmostWikiUserConfig): UserConfig<DefaultTheme.Config> {
+    const { wikiId, ...vitepressConfig } = config
+    const wiki = WikiConfig.getWiki(wikiId)
+
+    vitepressConfig.head = [
         [
             "script",
             {
@@ -51,12 +56,13 @@ export function defineConfig(config: UserConfig<DefaultTheme.Config>): UserConfi
         ],
     ]
 
-    config.srcDir = "./docs"
-    config.base = config.base ?? `/${config.title.replace(/ /g, "").toLocaleLowerCase()}/`
-    config.description = `Documentation for ${config.title}`
+    vitepressConfig.title = wiki.name
+    vitepressConfig.srcDir = "./docs"
+    vitepressConfig.base = vitepressConfig.base ?? `/${wiki.id}/`
+    vitepressConfig.description = `Documentation for ${wiki.name}`
 
-    const baseThemeConfig = getBaseThemeConfig(config.base)
-    config.themeConfig = Object.assign(config.themeConfig || {}, baseThemeConfig)
+    const baseThemeConfig = getBaseThemeConfig(wiki.id)
+    vitepressConfig.themeConfig = Object.assign(vitepressConfig.themeConfig || {}, baseThemeConfig)
 
-    return config
+    return vitepressConfig
 }

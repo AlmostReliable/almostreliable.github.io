@@ -1,0 +1,193 @@
+:root {
+    color-scheme: dark;
+    --vp-c-bg: #1b1b1f;
+    --vp-c-bg-soft: #202127;
+    --vp-c-bg-elv: #202127;
+    --vp-c-divider: #32363f;
+    --vp-c-text-1: #e2e8f0;
+    --vp-c-text-2: #94a3b8;
+    --vp-c-brand-1: #3e63dd;
+    --vp-c-brand-2: #3e63dd;
+    --vp-c-brand-soft: rgba(62, 99, 221, 0.18);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: "Segoe UI", "Inter", "SF Pro Text", "Helvetica Neue", sans-serif;
+    color: var(--vp-c-text-1);
+    background: radial-gradient(50rem 26rem at 10% -8%, rgba(62, 99, 221, 0.2), transparent 70%),
+        radial-gradient(44rem 22rem at 90% -12%, rgba(62, 99, 221, 0.16), transparent 70%),
+        linear-gradient(180deg, #1b1b1f 0%, #202127 52%, #1b1b1f 100%);
+}
+
+.layout {
+    position: relative;
+    width: min(1100px, calc(100% - 2.5rem));
+    margin: 0 auto;
+    padding: 4.5rem 0 3rem;
+}
+
+.page-glow {
+    position: fixed;
+    width: 26rem;
+    height: 26rem;
+    border-radius: 999px;
+    filter: blur(68px);
+    pointer-events: none;
+    opacity: 0.48;
+    z-index: 0;
+}
+
+.page-glow--top {
+    top: -9rem;
+    right: -6rem;
+    background: rgba(62, 99, 221, 0.7);
+}
+
+.page-glow--bottom {
+    bottom: -12rem;
+    left: -6rem;
+    background: rgba(62, 99, 221, 0.46);
+}
+
+.hero,
+.wiki-section {
+    position: relative;
+    z-index: 1;
+}
+
+.hero {
+    text-align: center;
+    margin-bottom: 2.8rem;
+}
+
+.eyebrow {
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 1.2rem;
+    color: var(--vp-c-brand-2);
+    font-weight: 700;
+}
+
+h1 {
+    margin: 0.75rem 0 1rem;
+    font-size: clamp(2rem, 5vw, 3.25rem);
+    line-height: 1.05;
+}
+
+.tagline {
+    margin: 0 auto;
+    max-width: 44rem;
+    font-size: 1.05rem;
+    color: var(--vp-c-text-2);
+}
+
+.social-links {
+    margin-top: 1.5rem;
+    display: inline-flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.6rem 1rem;
+    border-radius: 999px;
+    border: 1px solid var(--vp-c-divider);
+    background: rgba(32, 33, 39, 0.55);
+    color: var(--vp-c-text-1);
+    text-decoration: none;
+    font-weight: 600;
+    transition:
+        border-color 180ms ease,
+        transform 180ms ease,
+        background-color 180ms ease;
+}
+
+.social-link:hover {
+    border-color: var(--vp-c-brand-2);
+    background: rgba(62, 99, 221, 0.15);
+    transform: translateY(-1px);
+}
+
+.wiki-section {
+    border: 1px solid rgba(148, 163, 184, 0.28);
+    border-radius: 1.15rem;
+    background: linear-gradient(180deg, rgba(32, 33, 39, 0.84), rgba(32, 33, 39, 0.62));
+    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.35);
+    padding: 1.5rem;
+    backdrop-filter: blur(8px);
+}
+
+h2 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.wiki-grid {
+    margin-top: 1rem;
+    display: grid;
+    gap: 0.85rem;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.wiki-card {
+    text-decoration: none;
+    color: inherit;
+    background: linear-gradient(160deg, rgba(50, 54, 63, 0.95), rgba(32, 33, 39, 0.78));
+    border: 1px solid rgba(100, 116, 139, 0.35);
+    border-radius: 0.95rem;
+    padding: 1rem;
+    min-height: 8.3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition:
+        transform 180ms ease,
+        border-color 180ms ease,
+        box-shadow 180ms ease;
+}
+
+.wiki-card:hover {
+    border-color: var(--vp-c-brand-2);
+    box-shadow:
+        0 0 0 1px var(--vp-c-brand-soft),
+        0 10px 26px rgba(62, 99, 221, 0.45);
+    transform: translateY(-2px);
+}
+
+.wiki-card__title {
+    font-size: 1.03rem;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.wiki-card__description {
+    margin-top: 0.45rem;
+    font-size: 0.85rem;
+    color: var(--vp-c-text-2);
+}
+
+@media (max-width: 640px) {
+    .layout {
+        width: min(1100px, calc(100% - 1.25rem));
+        padding-top: 3.1rem;
+    }
+
+    .wiki-section {
+        padding: 1rem;
+    }
+
+    .wiki-grid {
+        grid-template-columns: 1fr;
+    }
+}

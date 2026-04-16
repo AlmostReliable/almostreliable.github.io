@@ -1,8 +1,8 @@
 import { defineConfig } from "../../../main/defineAlmostWiki"
 
 export default defineConfig({
+    wikiId: "morejs",
     srcDir: "./docs",
-    title: "MoreJS",
     themeConfig: {
         sidebar: [
             {

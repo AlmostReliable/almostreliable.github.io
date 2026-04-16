@@ -1,9 +1,8 @@
 import { defineConfig } from "../../../main/defineAlmostWiki"
 
 export default defineConfig({
+    wikiId: "collection",
     srcDir: "./docs",
-    title: "Collection",
-    base: "/collection/",
     themeConfig: {
         sidebar: [
             {

@@ -1,9 +1,8 @@
 import { defineConfig } from "../../../main/defineAlmostWiki"
 
 export default defineConfig({
+    wikiId: "summoningrituals",
     srcDir: "./docs",
-    title: "Summoning Rituals",
-    base: "/summoningrituals/",
     themeConfig: {
         sidebar: [
             {

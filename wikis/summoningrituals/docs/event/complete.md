@@ -15,9 +15,12 @@ At this point, the altar has already invoked the output commands and spawned the
     -   `level`
         -   type: `ServerLevel`
         -   description: the level where the ritual completed
-    -   `pos`
-        -   type: `BlockPos`
-        -   description: the position of the altar block
+    -   `altar`
+        -   type: `AltarBlockEntity`
+        -   description: the altar block entity that completed the ritual; you can also grab the position from this object
+    -   `altarFacing`
+        -   type: `Direction`
+        -   description: the direction the altar is facing
     -   `recipeInfo`
         -   type: `RecipeInfo`
         -   description: a container object holding information about the recipe that was processed
@@ -31,23 +34,43 @@ At this point, the altar has already invoked the output commands and spawned the
     -   `player`
         -   type: `ServerPlayer` (nullable)
         -   description: the player who inserted the initiator item; may be `null` if the ritual was started by automation
+    -   `rawBlockPattern`
+        -   type: `List<PatternEntry>` (nullable)
+        -   description: the raw block pattern entries of the recipe; may be `null` if the recipe doesn't have a block pattern
+    -   `rawBlockPatternExtension`
+        -   type: `List<PatternEntry>` (nullable)
+        -   description: the raw block pattern extension entries of the recipe; may be `null` if the recipe doesn't have a block pattern
+    -   `transformedBlockPattern`
+        -   type: `Map<BlockPos, List<BlockState>>` (nullable)
+        -   description: the transformed (rotated depending on the altar facing) block pattern entries of the recipe; may be `null` if the recipe doesn't have a block pattern
+    -   `transformedBlockPatternExtension`
+        -   type: `Map<BlockPos, List<BlockState>>` (nullable)
+        -   description: the transformed (rotated depending on the altar facing) block pattern extension entries of the recipe; may be `null` if the recipe doesn't have a block pattern
+-   functions
+    -   `queryBlockPattern(String query)`
+        -   type: `Collection<BlockPos>` (nullable)
+        -   description: returns the positions of the block pattern entries matching the query; may be `null` if the recipe doesn't have a block pattern
+    -   `queryBlockPatternExtension(String query)`
+        -   type: `Collection<BlockPos>` (nullable)
+        -   description: returns the positions of the block pattern extension entries matching the query; may be `null` if the recipe doesn't have a block pattern
 
 ## Block Pattern
 
-If you want to invoke special logic depending on the [block pattern](../recipe/block_patterns.md) defined in the recipe, you can obtain the block pattern instance from the `recipe` (see above) via `recipe.blockPattern()`. You can also obtain the block pattern extension instance via `recipe.blockPatternExtension()`. They are optionals, so make sure to check if they are present before accessing them.
-
-When you obtained the `BlockPatternCondition` instance, you can grab all entries via `instance.entries`. If you defined `query` strings when creating the block pattern, you can also quickly access the entries matching a specific query via `instance.queryEntries(String query)`.
-
-If you want to see more details about the block pattern implementation, you can see it [here](https://github.com/AlmostReliable/summoningrituals/blob/1.21.1/src/main/java/com/almostreliable/summoningrituals/recipe/condition/pattern/BlockPatternCondition.java).
+If you want to invoke special logic depending on the [block pattern](../recipe/block_patterns.md) defined in the recipe, you can obtain the block pattern condition instance from the `recipe` (see above) via `recipe.blockPattern()`. However, because the recipe stores the block pattern in its raw format (north orientation), you should use the helper functions from above inside the event. Make sure to check for null-values before accessing them.
 
 ```js
 // ... listener and other logic
-let patternOptional = recipe.blockPattern()
-if (patternOptional.isEmpty()) return // recipe doesn't have a block pattern condition
+let blockPattern = event.rawBlockPattern
+if (blockPattern === null) return // recipe doesn't have a block pattern
 
-let pattern = patternOptional.get()
-pattern.queryEntries("container_blocks").forEach(entry => {
-    // do something with the entries matching the "container_blocks" query
+// do something with the block pattern entries
+```
+
+```js
+let queriedPositions = event.queryBlockPattern("container_blocks")
+if (queriedPositions === null) return // recipe doesn't have a block pattern
+queriedPositions.forEach(pos => {
+    // do something with the positions of entries matching the "container_blocks" query
 })
 ```
 

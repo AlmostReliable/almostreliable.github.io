@@ -81,19 +81,19 @@ Because a pattern is a rather complex object, its creation is handled through a 
         -   you can also use the KubeJS `Text` utility binding to create colored text
     -   `block(BlockPos offset, Block block)`
         -   creates a new pattern entry with the specified offset and a predicate that checks for the specified block
-    -   `block(BlockPos offset, Block block, String query)`
-        -   creates a new pattern entry with the specified offset, a predicate that checks for the specified block, and assigns the specified query to the entry
     -   `block(BlockPos offset, Block block, BlockState blockState)`
         -   creates a new pattern entry with the specified offset and a predicate that checks for the specified block with the specified block state
-    -   `block(BlockPos offset, Block block, BlockState blockState, String query)`
+    -   `queryableBlock(BlockPos offset, Block block, String query)`
+        -   creates a new pattern entry with the specified offset, a predicate that checks for the specified block, and assigns the specified query to the entry
+    -   `queryableBlock(BlockPos offset, Block block, BlockState blockState, String query)`
         -   creates a new pattern entry with the specified offset, a predicate that checks for the specified block with the specified block state, and assigns the specified query to the entry
     -   `tag(BlockPos offset, TagKey<Block> blockTag)`
         -   creates a new pattern entry with the specified offset and a predicate that checks for any block in the specified block tag
-    -   `tag(BlockPos offset, TagKey<Block> blockTag, String query)`
-        -   creates a new pattern entry with the specified offset, a predicate that checks for any block in the specified block tag, and assigns the specified query to the entry
     -   `tag(BlockPos offset, TagKey<Block> blockTag, BlockState blockState)`
         -   creates a new pattern entry with the specified offset and a predicate that checks for any block in the specified block tag with the specified block state
-    -   `tag(BlockPos offset, TagKey<Block> blockTag, BlockState blockState, String query)`
+    -   `queryableTag(BlockPos offset, TagKey<Block> blockTag, String query)`
+        -   creates a new pattern entry with the specified offset, a predicate that checks for any block in the specified block tag, and assigns the specified query to the entry
+    -   `queryableTag(BlockPos offset, TagKey<Block> blockTag, BlockState blockState, String query)`
         -   creates a new pattern entry with the specified offset, a predicate that checks for any block in the specified block tag with the specified block state, and assigns the specified query to the entry
 
 ### Example

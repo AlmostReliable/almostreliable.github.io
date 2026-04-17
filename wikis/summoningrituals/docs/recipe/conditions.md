@@ -43,66 +43,6 @@ Functions:
 )
 ```
 
-## Block Below
-
-> [!DANGER] DEPRECATED
-> This condition was removed in version 3.6.0 in favor of the improved [block pattern](block_patterns.md).
-
-This check ensures the ritual is only started if the block below the ritual is the given block. You can specify the required `BlockState` as well. If a `BlockState` is passed, the mod will ensure if the properties are valid and can be applied to the block. Passing a required `BlockState` is optional.
-
-Functions:
-
--   `blockBelow(Block block)`
--   `blockBelow(Block block, BlockState blockState)`
-
-Since blocks can have an infinite amount of properties, and mods can also define their own, it's not possible to list all possible variants. However, you can easily check a block's properties yourself in the game by activating the debug screen (by pressing `F3`) and looking at the block's properties on the right side of the screen. For more information about `BlockState`s, please read the official [Minecraft wiki article](https://minecraft.wiki/w/Block_states).
-
-```js
-.conditions(c =>
-    c.blockBelow("furnace", { lit: true }) // [!code focus:3]
-    // or
-    c.blockBelow("minecraft:furnace") // no required BlockState
-)
-```
-
-## Block Pattern
-
-> [!DANGER] DEPRECATED
-> This condition was removed in version 3.10.0 in favor of the improved [block pattern](block_patterns.md).
-
-The block pattern check ensures the ritual is only started if the blocks around the altar match the given block pattern. A block pattern is a 3D pattern of blocks. You can specify the required `BlockState` for each block in the pattern as well. If a `BlockState` is passed, the mod will ensure if the properties are valid and can be applied to the block. Passing a required `BlockState` is optional. You can also specify a block tag instead of a specific block for each entry in the pattern.
-
-To offer complex functionality, this condition is configured via its own builder. You can obtain the builder instance by calling the `blockPattern()` function. You can also pass a custom `name` for the block pattern condition. This is useful if you want to create tiered progression that depends on the structure of the blocks around the altar. By default, the `name` component will have no color and will adjust to the color of the other components surrounding it. However, you can define a custom color with the `Text` binding from KubeJS.
-
-Function: `blockPattern(Component name, BlockPatternBuilder builder)`<br>
-Available builder functions:
-
--   `block(BlockPos offset, Block block)`
--   `block(BlockPos offset, Block block, String queryId)`
--   `block(BlockPos offset, Block block, BlockState blockState)`
--   `block(BlockPos offset, Block block, BlockState blockState, String queryId)`
--   `tag(BlockPos offset, TagKey<Block> blockTag)`
--   `tag(BlockPos offset, TagKey<Block> blockTag, String queryId)`
--   `tag(BlockPos offset, TagKey<Block> blockTag, BlockState blockState)`
--   `tag(BlockPos offset, TagKey<Block> blockTag, BlockState blockState, String queryId)`
-
-The `offset` argument in each function defines the position of the block relative to the altar block. For example, an offset of `[0, -1, 0]` would check the block directly below the altar block. The optional `queryId` argument can be used to reference the defined entries later in an event.
-
-```js
-.conditions(c =>
-    c.blockPattern(p => // [!code focus:10]
-        p.tag([0, -1, 0], "c:glass_blocks")
-        .block([1, -1, 1], "chest", "container_blocks")
-        .block([-1, -1, -1], "furnace", { lit: true })
-        .block([1, -1, 0], "chest", "container_blocks")
-    )
-    // or
-    c.blockPattern(Text.of("Tier 1").darkRed(), p =>
-        // ...
-    )
-)
-```
-
 ## Dimension
 
 The dimension check ensures the ritual is only started in the given dimension. It's only possible to specify one dimension.

@@ -15,9 +15,12 @@ At this point, the altar has already invoked the output commands and spawned the
     -   `level`
         -   type: `ServerLevel`
         -   description: the level where the ritual completed
+    -   `pos`
+        -   type: `BlockPos`
+        -   description: the position of the altar block that completed the ritual
     -   `altar`
         -   type: `AltarBlockEntity`
-        -   description: the altar block entity that completed the ritual; you can also grab the position from this object
+        -   description: the altar block entity that completed the ritual
     -   `altarFacing`
         -   type: `Direction`
         -   description: the direction the altar is facing

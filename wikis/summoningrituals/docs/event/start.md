@@ -15,9 +15,12 @@ At this point, the altar block also contains the initiator item and is about to 
     -   `level`
         -   type: `ServerLevel`
         -   description: the level where the ritual is about to happen
+    -   `pos`
+        -   type: `BlockPos`
+        -   description: the position of the altar block that is about to start the ritual
     -   `altar`
         -   type: `AltarBlockEntity`
-        -   description: the altar block entity that is about to start the ritual; you can also grab the position from this object
+        -   description: the altar block entity that is about to start the ritual
     -   `recipeInfo`
         -   type: `RecipeInfo`
         -   description: a container object holding information about the recipe that is about to be processed

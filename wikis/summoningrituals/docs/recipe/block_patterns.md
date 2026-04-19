@@ -43,6 +43,37 @@ Summoning Rituals will only check for properties that are explicitly defined in 
 
 If you don't specify a block state at all, all properties are considered wildcards. This means it just checks for the correct block.
 
+## Automatic Generation
+
+Read the sections below to learn how to define a block pattern. However, if you don't want to define it manually, there is an item in the game that allows generating a pattern automatically. It's called the **Pattern Generator**.
+
+> [!INFO] NOTE
+> This feature is available since version 3.12.0.
+
+The item is not available in the creative inventory. Because it's a dev-only item, you need to obtain it through a command.
+
+```
+/give @p summoningrituals:pattern_generator
+```
+
+After obtaining the item, you have to perform the following steps to generate a pattern:
+
+1. Select position 1 by right-clicking the block you want to use as the first position.
+2. Select position 2 by right-clicking the block you want to use as the second position.
+3. Right-click the Altar block.
+
+The two positions are inclusive. There are a few requirements for the pattern to be generated successfully:
+
+-   The Altar block must be facing towards the north.
+-   Two positions must be selected.
+-   The Altar must be within the pattern bounds.
+
+You can also sneak-right-click at any time to reset the selected positions. A highlighted box will show the current pattern bounds.
+
+After the pattern has been generated, you can find the output in your Minecraft log file. It is already formatted to be pasted into your recipe script. This only includes the offset positions and the blocks, but not the block states. You can then modify the output as needed to add block states or queries.
+
+<video controls="controls" src="/../img/pattern_generator.mp4" />
+
 ## Main Block Pattern
 
 The main block pattern acts as a recipe condition. It is required for the ritual to start and is checked after all other conditions have passed. If the pattern does not match, the ritual won't start.

@@ -32,6 +32,7 @@ export default defineConfig({
                     { text: "Summoning Start", link: "/event/start" },
                     { text: "Summoning Complete", link: "/event/complete" },
                     { text: "Ritual Renderer Registration", link: "/event/renderer" },
+                    { text: "Modify Conditions Tooltip", link: "/event/conditions_tooltip" },
                 ],
             },
             {

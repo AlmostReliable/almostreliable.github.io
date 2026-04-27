@@ -53,6 +53,10 @@ At this point, the altar block also contains the initiator item and is about to 
     -   `queryBlockPatternExtension(String query)`
         -   type: `Collection<BlockPos>` (nullable)
         -   description: returns the positions of the block pattern extension entries matching the query; may be `null` if the recipe doesn't have a block pattern
+    -   `highlightPositions(BlockPos... positions)`
+        -   description: highlights the given positions in the world
+    -   `highlightOffsets(BlockPos... offsets)`
+        -   description: highlights the given offsets in the world
 
 ## Block Pattern
 
@@ -72,6 +76,24 @@ if (queriedPositions === null) return // recipe doesn't have a block pattern
 queriedPositions.forEach(pos => {
     // do something with the positions of entries matching the "container_blocks" query
 })
+```
+
+## Block Highlights
+
+> [!INFO] NOTE
+> This feature is available since version 3.13.0.
+
+If you want to highlight specific blocks in the world, the event exposes the `highlightPositions` and `highlightOffsets` functions. These functions take a collection of either absolute block positions or block offsets (relative to the altar position) and highlight them in the world. The highlight is the same as the one used for invalid blocks in the block pattern. Each highlight is displayed for 100 ticks.
+
+Since this event is fired on the server, Summoning Rituals will take care of synchronizing the highlights to the client. The highlights will be only be visible to players within a certain radius around the altar.
+
+The positions always have to be passed in an array via `[]`. Otherwise each entry would be interpreted as a single position. When passing positions, they are treated as absolute positions in the world. When passing offsets, they are treated as relative to the altar position and are automatically rotated depending on the altar facing similar to the block pattern.
+
+```js
+event.highlightOffsets([
+    [-1, 2, -1],
+    [0, 0, 0],
+])
 ```
 
 ## Event Listener

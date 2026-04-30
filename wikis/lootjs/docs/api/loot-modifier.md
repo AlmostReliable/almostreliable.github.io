@@ -210,7 +210,7 @@ Drops an `amount` of experience on the position where the loot will be dropped.
 
 ```js
 LootJS.modifiers(event => {
-    event.addTableModifier(LootType.CHEST).triggerLightningStrike(false)
+    event.addTableModifier(LootType.CHEST).dropExperience(10)
 })
 ```
 

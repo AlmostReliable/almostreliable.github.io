@@ -32,7 +32,7 @@ This event is fired when a particle collision happens in the Particle Accelerato
         -   type: `ItemStack`
         -   description: the second item that is being collided
     -   `speed`
-        -   type: `float`
+        -   type: `long`
         -   description: the speed of the particle collision (added speeds of both particles)
     -   `recipeId`
         -   type: `ResourceLocation` (nullable)

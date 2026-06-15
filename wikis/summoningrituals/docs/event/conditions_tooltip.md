@@ -17,17 +17,17 @@ If a recipe has no conditions, the event will still be fired. If you add an entr
 
 The tooltip collection always contains the golden "Conditions:" header as the first entry. If you clear the collection, the header will be removed as well.
 
--   access in a server script via: `SummoningRituals.modifyConditionsTooltip`
--   properties
-    -   `recipeId`
-        -   type: `ResourceLocation`
-        -   description: the ID of the recipe that is being displayed
-    -   `recipe`
-        -   type: `AltarRecipe`
-        -   description: the recipe that is being displayed
-    -   `tooltip`
-        -   type: `List<Component>`
-        -   description: the tooltip collection that is being displayed
+- access in a server script via: `SummoningRituals.modifyConditionsTooltip`
+- properties
+    - `recipeId`
+        - type: `ResourceLocation`
+        - description: the ID of the recipe that is being displayed
+    - `recipe`
+        - type: `AltarRecipe`
+        - description: the recipe that is being displayed
+    - `tooltip`
+        - type: `List<Component>`
+        - description: the tooltip collection that is being displayed
 
 ## Event Listener
 

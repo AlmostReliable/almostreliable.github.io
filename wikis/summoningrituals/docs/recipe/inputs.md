@@ -7,11 +7,11 @@ Altar recipe inputs can be item, entity, or fake entity inputs. Combinations are
 
 ## Item Inputs
 
--   type: `List<SizedIngredient>`
--   required: no
--   default: empty list
--   primary access: `itemInputs(...)`
--   aliases: `itemInput`, `inputs`, `input`
+- type: `List<SizedIngredient>`
+- required: no
+- default: empty list
+- primary access: `itemInputs(...)`
+- aliases: `itemInput`, `inputs`, `input`
 
 ### Syntax
 
@@ -39,11 +39,11 @@ If you want to pass data to item inputs, you need to define them as components. 
 
 ## Entity Inputs
 
--   type: `List<EntityInput>`
--   required: no
--   default: empty list
--   primary access: `entityInputs(...)`
--   aliases: `entityInput`, `mobInputs`, `mobInput`
+- type: `List<EntityInput>`
+- required: no
+- default: empty list
+- primary access: `entityInputs(...)`
+- aliases: `entityInput`, `mobInputs`, `mobInput`
 
 ### Syntax
 
@@ -73,11 +73,11 @@ The `ItemStack` can also have components to modify its name or the tooltip. Beca
 > [!INFO] NOTE
 > This component is available since version 3.7.0.
 
--   type: `List<FakeEntityInput>`
--   required: no
--   default: empty list
--   primary access: `fakeEntityInputs(...)`
--   aliases: `fakeEntityInput`, `fakeMobInputs`, `fakeMobInput`
+- type: `List<FakeEntityInput>`
+- required: no
+- default: empty list
+- primary access: `fakeEntityInputs(...)`
+- aliases: `fakeEntityInput`, `fakeMobInputs`, `fakeMobInput`
 
 ### Syntax
 

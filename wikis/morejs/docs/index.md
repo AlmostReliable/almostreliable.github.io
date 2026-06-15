@@ -10,20 +10,20 @@ Wiki ist still in work.
 
 ## Server Events
 
--   `villagerTrades`
--   `wandererTrades`
--   `playerStartTrading`
--   `updateOffer`
--   `isEnchantable`
--   `playerEnchant`
--   `enchantmentTableChanged`
--   `teleport`
--   `structureLoad`
--   `structureAfterPlace`
--   `playerXpChange`
--   `piglinPlayerBehavior`
--   `registerPotionBrewing`
+- `villagerTrades`
+- `wandererTrades`
+- `playerStartTrading`
+- `updateOffer`
+- `isEnchantable`
+- `playerEnchant`
+- `enchantmentTableChanged`
+- `teleport`
+- `structureLoad`
+- `structureAfterPlace`
+- `playerXpChange`
+- `piglinPlayerBehavior`
+- `registerPotionBrewing`
 
 ## Client Events
 
--   `enchantmentTableTooltip`
+- `enchantmentTableTooltip`

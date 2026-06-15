@@ -1,16 +1,16 @@
 # Rendering Entities in a GUI
 
--   Blog Entry 1
--   2025-11-10
+- Blog Entry 1
+- 2025-11-10
 
 > A painful experience turned into a learning opportunity. I want to share my journey, hoping it helps others avoid the pitfalls I encountered.
 
 Links:
 
--   [Discord]
--   [Almost Reliable GitHub][ar-github]
--   [Author GitHub][author-github]
--   [Summoning Rituals GitHub][sr-github]
+- [Discord]
+- [Almost Reliable GitHub][ar-github]
+- [Author GitHub][author-github]
+- [Summoning Rituals GitHub][sr-github]
 
 > [!WARNING] NOTE
 > This blog post shows code snippets of Minecraft and other Minecraft mods. All code is the property of their respective owners. This blog post is for educational purposes only and is not affiliated with Mojang or Microsoft in any way.

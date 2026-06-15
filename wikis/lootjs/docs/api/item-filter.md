@@ -11,8 +11,8 @@ Matches if the item is an armor item.
 Some mods may create their own `armor` typed items without using the vanilla armor system. For these items, this filter will never match.
 :::
 
--   Syntax:
-    -   `ItemFilter.ARMOR`
+- Syntax:
+    - `ItemFilter.ARMOR`
 
 ## `blockItem`
 
@@ -21,15 +21,15 @@ Matches if the item is a block item. Block items are items that can be placed as
 Mods may use their own implementation of block items, so this filter may not match.
 :::
 
--   Syntax:
-    -   `ItemFilter.BLOCK_ITEM`
+- Syntax:
+    - `ItemFilter.BLOCK_ITEM`
 
 ## `custom`
 
 Creates a custom item filter. You can use it to create your own item filters.
 
--   Syntax:
-    -   `ItemFilter.custom(filter: (item: ItemStack) => boolean)`
+- Syntax:
+    - `ItemFilter.custom(filter: (item: ItemStack) => boolean)`
 
 ```js
 ItemFilter.custom(item => item.id === "minecraft:apple")
@@ -47,43 +47,43 @@ ItemFilter.custom(item => {
 
 Matches if the item can be damaged.
 
--   Syntax:
-    -   `ItemFilter.DAMAGEABLE`
+- Syntax:
+    - `ItemFilter.DAMAGEABLE`
 
 ## `damaged`
 
 Matches if the item is already damaged.
 
--   Syntax:
-    -   `ItemFilter.DAMAGED`
+- Syntax:
+    - `ItemFilter.DAMAGED`
 
 ## `edible`
 
 Matches if the item can be eaten.
 
--   Syntax:
-    -   `ItemFilter.EDIBLE`
+- Syntax:
+    - `ItemFilter.EDIBLE`
 
 ## `enchanted`
 
 Matches if the item is already enchanted.
 
--   Syntax:
-    -   `ItemFilter.ENCHANTED`
+- Syntax:
+    - `ItemFilter.ENCHANTED`
 
 ## `empty`
 
 Checks if the item is empty.
 
--   Syntax:
-    -   `ItemFilter.EMPTY`
+- Syntax:
+    - `ItemFilter.EMPTY`
 
 ## `equipmentSlot`
 
 Matches if item has a specific equipment slot. Existing slots: `"mainhand"`, `"offhand"`, `"head"`, `"chest"`, `"legs"`, `"feet"`.
 
--   Syntax:
-    -   `ItemFilter.equipmentSlot(slot: string | EquipmentSlot)`
+- Syntax:
+    - `ItemFilter.equipmentSlot(slot: string | EquipmentSlot)`
 
 ```js
 ItemFilter.equipmentSlot("mainhand")
@@ -93,8 +93,8 @@ ItemFilter.equipmentSlot("mainhand")
 
 Matches if an item is in a specific equipment group. Existing groups: `"any"`, `"mainhand"`, `"offhand"`, `"hand"`, `"feet"`, `"legs"`, `"chest"`, `"head"`, `"armor"`
 
--   Syntax:
-    -   `ItemFilter.equipmentSlotGroup(slot: string | EquipmentSlotGroup)`
+- Syntax:
+    - `ItemFilter.equipmentSlotGroup(slot: string | EquipmentSlotGroup)`
 
 ```js
 ItemFilter.equipmentSlot("armor")
@@ -104,9 +104,9 @@ ItemFilter.equipmentSlot("armor")
 
 Used to check if given item matches the enchantments.
 
--   Syntax:
-    -   `ItemFilter.hasEnchantment(filter)`
-    -   `ItemFilter.hasEnchantment(filter, levelRange: Range)`, _<sub>see [Range]</sub>_
+- Syntax:
+    - `ItemFilter.hasEnchantment(filter)`
+    - `ItemFilter.hasEnchantment(filter, levelRange: Range)`, _<sub>see [Range]</sub>_
 
 ```js
 ItemFilter.hasEnchantment("minecraft:fortune")
@@ -125,9 +125,9 @@ ItemFilter.hasEnchantment("minecraft:unbreaking", [2, 3])
 
 Used to check if given book item matches the enchantments. In minecraft `books` do store the enchantments differently.
 
--   Syntax:
-    -   `ItemFilter.hasStoredEnchantment(filter)`
-    -   `ItemFilter.hasStoredEnchantment(filter, levelBound: Range)`, _<sub>see [Range]</sub>_
+- Syntax:
+    - `ItemFilter.hasStoredEnchantment(filter)`
+    - `ItemFilter.hasStoredEnchantment(filter, levelBound: Range)`, _<sub>see [Range]</sub>_
 
 ```js
 ItemFilter.hasStoredEnchantment("minecraft:fortune")
@@ -146,8 +146,8 @@ ItemFilter.hasStoredEnchantment("minecraft:unbreaking", [2, 3])
 
 Used to check if given item has specific components on it.
 
--   Syntax:
-    -   `ItemFilter.hasComponent(filter)`
+- Syntax:
+    - `ItemFilter.hasComponent(filter)`
 
 ```js
 ItemFilter.hasComponent("minecraft:tool")
@@ -160,9 +160,9 @@ ItemFilter.hasComponent("minecraft:tool", "minecraft:custom_name")
 
 Matches if the item matches. This will not check for count but may check against components.
 
--   Syntax:
-    -   `ItemFilter.item(item: ItemStack | string)`
-    -   `ItemFilter.item(item: ItemStack | string, matchComponents: boolean)`
+- Syntax:
+    - `ItemFilter.item(item: ItemStack | string)`
+    - `ItemFilter.item(item: ItemStack | string, matchComponents: boolean)`
 
 ```js
 ItemFilter.item("minecraft:diamond")
@@ -172,9 +172,9 @@ ItemFilter.item("minecraft:diamond")
 
 Inverts the filter. Matches if the filter does not match.
 
--   Syntax:
-    -   `ItemFilter.not(filter: ItemFilter)`
-    -   `myFilter.negate()`
+- Syntax:
+    - `ItemFilter.not(filter: ItemFilter)`
+    - `myFilter.negate()`
 
 ```js
 ItemFilter.not(ItemFilter.hasEnchantment("minecraft:fortune"))
@@ -186,8 +186,8 @@ ItemFilter.hasEnchantment("minecraft:fortune").negate()
 
 Matches if item has a specific tag.
 
--   Syntax:
-    -   `ItemFilter.tag(tag: string)`
+- Syntax:
+    - `ItemFilter.tag(tag: string)`
 
 ```js
 ItemFilter.tag("#c:ores")
@@ -199,9 +199,9 @@ ItemFilter.tag("#c:ores")
 
 It will match if all actions are present.
 
--   Syntax:
-    -   `ItemFilter.toolAction(...action)`
-    -   `ItemFilter.anyToolAction(...action)`
+- Syntax:
+    - `ItemFilter.toolAction(...action)`
+    - `ItemFilter.anyToolAction(...action)`
 
 ```js
 ItemFilter.toolAction("pickaxe_dig")
@@ -223,8 +223,8 @@ ItemFilter.anyToolAction("pickaxe_dig", "shovel_dig")
 
 Combines multiple item filters into one. Matches if all filters match.
 
--   Syntax:
-    -   `ItemFilter.allOf(...filters: ItemFilter[])`
+- Syntax:
+    - `ItemFilter.allOf(...filters: ItemFilter[])`
 
 ```js
 ItemFilter.allOf(ItemFilter.hasEnchantment("minecraft:fortune"), ItemFilter.equipmentSlotGroup("hand"))
@@ -234,8 +234,8 @@ ItemFilter.allOf(ItemFilter.hasEnchantment("minecraft:fortune"), ItemFilter.equi
 
 Combines multiple item filters into one. Matches if any filter matches.
 
--   Syntax:
-    -   `ItemFilter.anyOf(...filters: ItemFilter[])`
+- Syntax:
+    - `ItemFilter.anyOf(...filters: ItemFilter[])`
 
 ```js
 ItemFilter.anyOf(
@@ -248,14 +248,14 @@ ItemFilter.anyOf(
 
 Returns an item filter that matches everything.
 
--   Syntax:
-    -   `ItemFilter.ANY`
+- Syntax:
+    - `ItemFilter.ANY`
 
 ### `none`
 
 Returns an item filter that matches nothing.
 
--   Syntax:
-    -   `ItemFilter.NONE`
+- Syntax:
+    - `ItemFilter.NONE`
 
 [Range]: /api/range

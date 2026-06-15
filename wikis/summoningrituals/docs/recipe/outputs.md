@@ -7,11 +7,11 @@ Altar recipe outputs can be item, entity, command, or display item outputs. Comb
 
 ## Item Outputs
 
--   type: `List<ItemOutput>`
--   required: no
--   default: empty list
--   primary access: `itemOutputs(...)`
--   aliases: `itemOutput`, `outputs`, `output`
+- type: `List<ItemOutput>`
+- required: no
+- default: empty list
+- primary access: `itemOutputs(...)`
+- aliases: `itemOutput`, `outputs`, `output`
 
 ### Syntax
 
@@ -44,11 +44,11 @@ To pass additional data to an item output such as offset and spread values, you 
 
 ## Entity Outputs
 
--   type: `List<EntityOutput>`
--   required: no
--   default: empty list
--   primary access: `entityOutputs(...)`
--   aliases: `entityOutput`, `mobOutputs`, `mobOutput`
+- type: `List<EntityOutput>`
+- required: no
+- default: empty list
+- primary access: `entityOutputs(...)`
+- aliases: `entityOutput`, `mobOutputs`, `mobOutput`
 
 ### Syntax
 
@@ -71,11 +71,11 @@ To pass additional data to an entity output such as NBT, a custom tooltip, or of
 
 ## Command Outputs
 
--   type: `CommandOutput`
--   required: no
--   default: empty
--   primary access: `commands(...)`
--   aliases: `command`
+- type: `CommandOutput`
+- required: no
+- default: empty
+- primary access: `commands(...)`
+- aliases: `command`
 
 ### Syntax
 
@@ -83,9 +83,9 @@ Summoning Rituals offers a few ways to pass command outputs to the recipe builde
 
 Functions:
 
--   `commands(CommandOutput command)`
--   `commands(List<String> commands, List<Component> tooltip)`
--   `commands(List<String> commands, List<Component> tooltip, Boolean requiresPlayer)`
+- `commands(CommandOutput command)`
+- `commands(List<String> commands, List<Component> tooltip)`
+- `commands(List<String> commands, List<Component> tooltip, Boolean requiresPlayer)`
 
 When no custom tooltip is provided, recipe viewers show the output commands in their raw form. If a tooltip is provided, it is shown _instead_ of the commands. That means if you want to show the actual command, you have to add it to the tooltip yourself. Commands you pass to the function do not have to start with a slash, but you can include one for better clarity if you prefer.
 
@@ -114,11 +114,11 @@ Display outputs are not actual recipe outputs. They can be used to display an it
 > [!INFO] NOTE
 > This component is available since version 3.7.0.
 
--   type: `List<ItemStack>`
--   required: no
--   default: empty list
--   primary access: `displayOutputs(...)`
--   aliases: `displayOutput`
+- type: `List<ItemStack>`
+- required: no
+- default: empty list
+- primary access: `displayOutputs(...)`
+- aliases: `displayOutput`
 
 ### Syntax
 

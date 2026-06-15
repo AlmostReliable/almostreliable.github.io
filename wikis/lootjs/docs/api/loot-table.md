@@ -8,9 +8,9 @@ Loot tables are used dictate what items should be dropped through specific actio
 
 Returns the first pool inside a loot table. If no pool exist, it will create one and return it.
 
--   Syntax:
-    -   `.firstPool()`
-    -   `.firstPool((pool) => {})`
+- Syntax:
+    - `.firstPool()`
+    - `.firstPool((pool) => {})`
 
 ```js
 LootJS.lootTables(event => {
@@ -30,9 +30,9 @@ LootJS.lootTables(event => {
 
 Creates a new pool and returns it.
 
--   Syntax:
-    -   `.createPool()`
-    -   `.createPool((pool) => {})`
+- Syntax:
+    - `.createPool()`
+    - `.createPool((pool) => {})`
 
 ```js
 LootJS.lootTables(event => {
@@ -52,8 +52,8 @@ LootJS.lootTables(event => {
 
 Returns a list of all [item functions](/api/loot-function) attached to the loot table.
 
--   Syntax:
-    -   `.getFunctions()`
+- Syntax:
+    - `.getFunctions()`
 
 ```js
 LootJS.lootTables(event => {
@@ -65,8 +65,8 @@ LootJS.lootTables(event => {
 
 Adds a custom callback when the loot table is rolled.
 
--   Syntax:
-    -   `.onDrop((context, loot) => {})`
+- Syntax:
+    - `.onDrop((context, loot) => {})`
 
 ```js
 LootJS.lootTables(event => {
@@ -82,8 +82,8 @@ LootJS.lootTables(event => {
 
 Get the loot table id
 
--   Syntax:
-    -   `.getLocation()`
+- Syntax:
+    - `.getLocation()`
 
 ```js
 LootJS.lootTables(event => {
@@ -94,8 +94,8 @@ LootJS.lootTables(event => {
 
 ## `getLootType`
 
--   Syntax:
-    -   `.getLootType()`
+- Syntax:
+    - `.getLootType()`
 
 ```js
 LootJS.lootTables(event => {
@@ -108,8 +108,8 @@ LootJS.lootTables(event => {
 
 Clears the loot table. This will remove all item functions and pools from the table.
 
--   Syntax:
-    -   `.clear()`
+- Syntax:
+    - `.clear()`
 
 ```js
 LootJS.lootTables(event => {
@@ -121,8 +121,8 @@ LootJS.lootTables(event => {
 
 Logs the loot table. Can be used for debugging.
 
--   Syntax:
-    -   `.print()`
+- Syntax:
+    - `.print()`
 
 ```js
 LootJS.lootTables(event => {

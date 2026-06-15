@@ -7,7 +7,7 @@ This mod is an add-on for [KubeJS](https://github.com/KubeJS-Mods/KubeJS) to add
 
 Useful links:
 
--   [CurseForge](https://www.curseforge.com/minecraft/mc-mods/kubejs-enderio)
--   [Modrinth](https://modrinth.com/mod/kubejs-enderio)
--   [GitHub](https://github.com/almostreliable/kubejs-enderio)
--   [Discord](https://discord.com/invite/ThFnwZCyYY)
+- [CurseForge](https://www.curseforge.com/minecraft/mc-mods/kubejs-enderio)
+- [Modrinth](https://modrinth.com/mod/kubejs-enderio)
+- [GitHub](https://github.com/almostreliable/kubejs-enderio)
+- [Discord](https://discord.com/invite/ThFnwZCyYY)

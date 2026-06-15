@@ -4,44 +4,44 @@ Fire Crafting allows you to light a specific block on fire. After a bit of time,
 
 ## Overview
 
--   access in recipes event via: `event.recipes.enderio.fire_crafting`
--   properties:
-    -   `results`
-        -   description: specifies the output items, more information [here](../binding/firecraftingresult.md)
-        -   type: `<FireCraftingResult | ItemStack>[]`
-        -   role: output
-        -   required: yes
-        -   usage: passed as the first argument
-    -   `block_after_burning`
-        -   description: specifies the block that remains after the burning process
-        -   type: `Block`
-        -   role: output
-        -   required: no
-        -   default: `minecraft:air`
-        -   usage: can be set by chaining the function `.blockAfterBurning(block)`
-    -   `base_blocks`
-        -   description: specifies the input blocks
-        -   type: `Block[]`
-        -   role: input
-        -   required: no
-        -   default: none
-        -   usage: can be set by chaining the function `.block(block)`
-    -   `base_tags`
-        -   description: specifies the input block tags
-        -   type: `TagKey<Block>[]`
-        -   role: input
-        -   required: no
-        -   default: none
-        -   usage: can be set by chaining the function `.blockTag(tag)`
-    -   `dimensions`
-        -   description: specifies which dimensions this recipe can activate in
-        -   type: `ResourceKey<Level>[]`
-        -   role: other
-        -   required: no
-        -   default: `minecraft:overworld`
-        -   usage: can be set by chaining the function `.dimensions(dimensions)`
--   validators:
-    -   either `base_blocks` or `base_tags` must be set, or both, and containing at least one entry
+- access in recipes event via: `event.recipes.enderio.fire_crafting`
+- properties:
+    - `results`
+        - description: specifies the output items, more information [here](../binding/firecraftingresult.md)
+        - type: `<FireCraftingResult | ItemStack>[]`
+        - role: output
+        - required: yes
+        - usage: passed as the first argument
+    - `block_after_burning`
+        - description: specifies the block that remains after the burning process
+        - type: `Block`
+        - role: output
+        - required: no
+        - default: `minecraft:air`
+        - usage: can be set by chaining the function `.blockAfterBurning(block)`
+    - `base_blocks`
+        - description: specifies the input blocks
+        - type: `Block[]`
+        - role: input
+        - required: no
+        - default: none
+        - usage: can be set by chaining the function `.block(block)`
+    - `base_tags`
+        - description: specifies the input block tags
+        - type: `TagKey<Block>[]`
+        - role: input
+        - required: no
+        - default: none
+        - usage: can be set by chaining the function `.blockTag(tag)`
+    - `dimensions`
+        - description: specifies which dimensions this recipe can activate in
+        - type: `ResourceKey<Level>[]`
+        - role: other
+        - required: no
+        - default: `minecraft:overworld`
+        - usage: can be set by chaining the function `.dimensions(dimensions)`
+- validators:
+    - either `base_blocks` or `base_tags` must be set, or both, and containing at least one entry
 
 ## Examples
 

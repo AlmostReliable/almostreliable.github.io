@@ -6,42 +6,42 @@ Oritech uses a base class for all its recipes. Each recipe type has different re
 
 The base layout for each Oritech recipe is the following:
 
--   item inputs
-    -   type: `List<Ingredient>`
-    -   supports amounts: no
-    -   default: empty list
-    -   description: inputs can be specified by tags, items, or stacks; each entry can only ever have a count of 1
-    -   primary access: `itemInputs(...)`
-    -   aliases: `ingredients`, `inputs`, `itemInput`, `ingredient`, `input`
--   item outputs
-    -   type: `List<ItemStack>`
-    -   supports amounts: yes
-    -   default: empty list
-    -   description: outputs can be specified by items or stacks; a single input could produce multiple outputs
-    -   primary access: `itemOutputs(...)`
-    -   aliases: `results`, `outputs`, `itemOutput`, `result`, `output`
--   fluid input
-    -   type: `FluidIngredient`
-    -   supports amounts: yes
-    -   default: `FluidIngredient.EMPTY` (nothing)
-    -   description: this is a special type by Oritech, read more about it in the [dedicated section below](#fluid-ingredient)
-    -   primary access: `fluidInputs(...)`
-    -   aliases: `fluidIngredient`, `fluid`, `fluidInputs`, `fluidIngredient`, `fluids`
--   fluid outputs
-    -   type: `List<FluidStack>`
-    -   supports amounts: yes
-    -   default: empty list
-    -   description: outputs can be specified by fluids or fluid stacks; a single input could produce multiple outputs
-    -   primary access: `fluidOutputs(...)`
-    -   aliases: `fluidResults`, `fluidOutput`, `fluidResult`
--   time
-    -   type: `Integer`
-    -   default: 60
-    -   description: Oritech uses this property for various purposes, read more about it in the [dedicated section below](#time)
-    -   primary access: `time(...)`
-    -   aliases: `ticks`, `timeInTicks`, `duration`
-    -   helper accessors: `seconds`, `timeInSeconds`
-        -   these helpers assign the passed amount multiplied by 20
+- item inputs
+    - type: `List<Ingredient>`
+    - supports amounts: no
+    - default: empty list
+    - description: inputs can be specified by tags, items, or stacks; each entry can only ever have a count of 1
+    - primary access: `itemInputs(...)`
+    - aliases: `ingredients`, `inputs`, `itemInput`, `ingredient`, `input`
+- item outputs
+    - type: `List<ItemStack>`
+    - supports amounts: yes
+    - default: empty list
+    - description: outputs can be specified by items or stacks; a single input could produce multiple outputs
+    - primary access: `itemOutputs(...)`
+    - aliases: `results`, `outputs`, `itemOutput`, `result`, `output`
+- fluid input
+    - type: `FluidIngredient`
+    - supports amounts: yes
+    - default: `FluidIngredient.EMPTY` (nothing)
+    - description: this is a special type by Oritech, read more about it in the [dedicated section below](#fluid-ingredient)
+    - primary access: `fluidInputs(...)`
+    - aliases: `fluidIngredient`, `fluid`, `fluidInputs`, `fluidIngredient`, `fluids`
+- fluid outputs
+    - type: `List<FluidStack>`
+    - supports amounts: yes
+    - default: empty list
+    - description: outputs can be specified by fluids or fluid stacks; a single input could produce multiple outputs
+    - primary access: `fluidOutputs(...)`
+    - aliases: `fluidResults`, `fluidOutput`, `fluidResult`
+- time
+    - type: `Integer`
+    - default: 60
+    - description: Oritech uses this property for various purposes, read more about it in the [dedicated section below](#time)
+    - primary access: `time(...)`
+    - aliases: `ticks`, `timeInTicks`, `duration`
+    - helper accessors: `seconds`, `timeInSeconds`
+        - these helpers assign the passed amount multiplied by 20
 
 All recipe types theoretically support all of these properties. However, because of slot limitations and logic, most recipes have special constraints and make use of the time property in different ways. Some recipe only support items, some only fluids and some accept both types in different ratios.
 

@@ -6,12 +6,12 @@ A `Mode` specifies the behavior of the tank in the recipe.
 
 ## Overview
 
--   access via: `TankMode`
--   values:
-    -   `TankMode.FILL`
-        -   the recipe will fill the item with the specified fluid from the Tank
-    -   `TankMode.EMPTY`
-        -   the recipe will drain the fluid from the item into the Tank
+- access via: `TankMode`
+- values:
+    - `TankMode.FILL`
+        - the recipe will fill the item with the specified fluid from the Tank
+    - `TankMode.EMPTY`
+        - the recipe will drain the fluid from the item into the Tank
 
 ## Examples
 

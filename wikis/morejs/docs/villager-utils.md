@@ -2,32 +2,32 @@
 
 ## Methods
 
--   `isVanillaTypedTrade(trade: Trade)`
-    -   Checks if given `trade` is using a vanilla trade class internally. Keep in mind that mods can do this too.
--   `isModdedTypedTrade(trade: Trade)`
--   `isCustomTypedTrade(trade: Trade)`
-    -   Returns `true` for trade classes provided by `MoreJS`
--   `createSimpleTrade(input: Item | Item[], output: Item)`
--   `createCustomTrade((offer, entity, random) => {})`
--   `createStructureMapTrade(input: Item | Item[], structure: string | RegEx | string[])`
--   `createBiomeMapTrade(input: Item | Item[], biome: string | RegEx | string[])`
--   `createCustomMapTrade(input: Item | Item[], (level, entity) => {})`
--   `createEnchantedItemTrade(input: Item | Item[], output: Item)`
--   `createEnchantedItemTrade(input: Item | Item[], output: Item, enchantments: string | string[] | RegEx)`
--   `createStewTrade(input: Item | Item[])`
--   `createPotionTrade(input: Item | Item[])`
--   `getVillagerTrades(profession: string)`
-    -   Returns a list of all trades for given profession
--   `getVillagerTrades(profession: string, level: number)`
-    -   Returns a list of all trades for given profession and level
--   `getRandomVillagerTrade(profession: string)`
-    -   Returns a random trade for given profession
--   `getRandomVillagerTrade(profession: string, level: number)`
-    -   Returns a random trade for given profession and level
--   `getWandererTrades(level: number)`
-    -   Returns a list of all trades for given level
--   `getRandomWandererTrade(level: number)`
-    -   Returns a random trade for given level
+- `isVanillaTypedTrade(trade: Trade)`
+    - Checks if given `trade` is using a vanilla trade class internally. Keep in mind that mods can do this too.
+- `isModdedTypedTrade(trade: Trade)`
+- `isCustomTypedTrade(trade: Trade)`
+    - Returns `true` for trade classes provided by `MoreJS`
+- `createSimpleTrade(input: Item | Item[], output: Item)`
+- `createCustomTrade((offer, entity, random) => {})`
+- `createStructureMapTrade(input: Item | Item[], structure: string | RegEx | string[])`
+- `createBiomeMapTrade(input: Item | Item[], biome: string | RegEx | string[])`
+- `createCustomMapTrade(input: Item | Item[], (level, entity) => {})`
+- `createEnchantedItemTrade(input: Item | Item[], output: Item)`
+- `createEnchantedItemTrade(input: Item | Item[], output: Item, enchantments: string | string[] | RegEx)`
+- `createStewTrade(input: Item | Item[])`
+- `createPotionTrade(input: Item | Item[])`
+- `getVillagerTrades(profession: string)`
+    - Returns a list of all trades for given profession
+- `getVillagerTrades(profession: string, level: number)`
+    - Returns a list of all trades for given profession and level
+- `getRandomVillagerTrade(profession: string)`
+    - Returns a random trade for given profession
+- `getRandomVillagerTrade(profession: string, level: number)`
+    - Returns a random trade for given profession and level
+- `getWandererTrades(level: number)`
+    - Returns a list of all trades for given level
+- `getRandomWandererTrade(level: number)`
+    - Returns a random trade for given level
 
 ## Usage
 

@@ -9,29 +9,29 @@ The Particle Accelerator is a machine that can drastically speed up matter to co
 
 ## Overview
 
--   access in recipes event via: `event.recipes.oritech.particle_collision`
--   properties:
-    -   item inputs
-        -   role: input
-        -   required: yes
-        -   limits: exactly 2
-    -   item outputs
-        -   role: output
-        -   required: yes
-        -   limits: exactly 1
-    -   time
-        -   role: misc
-        -   required: no
-        -   default: `60`
-        -   description: specifies the required energy in Joules for the collision; higher values require higher speed
+- access in recipes event via: `event.recipes.oritech.particle_collision`
+- properties:
+    - item inputs
+        - role: input
+        - required: yes
+        - limits: exactly 2
+    - item outputs
+        - role: output
+        - required: yes
+        - limits: exactly 1
+    - time
+        - role: misc
+        - required: no
+        - default: `60`
+        - description: specifies the required energy in Joules for the collision; higher values require higher speed
 
 ## Events
 
 If you want to adjust the behavior of the particle accelerator beyond just adding or removing recipes, there are three events that allow you to do so.
 
--   [particle injected event](../../event/particle/injected.md)
--   [particle collided event](../../event/particle/collided.md)
--   [particle exited event](../../event/particle/exited.md)
+- [particle injected event](../../event/particle/injected.md)
+- [particle collided event](../../event/particle/collided.md)
+- [particle exited event](../../event/particle/exited.md)
 
 There are two special particle accelerator interactions that reserve certain items for portal creation. If you want to make use of these items in your own recipes, you can disable the portal creation via the particle injected event.
 

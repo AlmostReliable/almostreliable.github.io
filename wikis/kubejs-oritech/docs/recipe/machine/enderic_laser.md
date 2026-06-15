@@ -7,20 +7,20 @@ The Enderic Laser is a machine that can accelerate other blocks, break blocks, a
 
 ## Overview
 
--   access in recipes event via: `event.recipes.oritech.laser`
--   properties:
-    -   item inputs
-        -   role: input
-        -   required: yes
-        -   limits: exactly 1
-    -   item outputs
-        -   role: output
-        -   required: yes
-        -   limits: exactly 1
-    -   time
-        -   role: misc
-        -   required: no
-        -   default: `60`
+- access in recipes event via: `event.recipes.oritech.laser`
+- properties:
+    - item inputs
+        - role: input
+        - required: yes
+        - limits: exactly 1
+    - item outputs
+        - role: output
+        - required: yes
+        - limits: exactly 1
+    - time
+        - role: misc
+        - required: no
+        - default: `60`
 
 ## Tagging
 

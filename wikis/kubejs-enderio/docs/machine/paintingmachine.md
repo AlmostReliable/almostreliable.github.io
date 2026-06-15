@@ -4,20 +4,20 @@ The Painting Machine allows painting blocks to change their appearance. In the b
 
 ## Overview
 
--   access in recipes event via: `event.recipes.enderio.painting`
--   parameters:
-    -   `output`
-        -   description: specifies the output item
-        -   type: `ItemStack`
-        -   role: output
-        -   required: yes
-        -   usage: needs to be passed as the first argument
-    -   `input`
-        -   description: specifies the input item
-        -   type: `Ingredient`
-        -   role: input
-        -   required: yes
-        -   usage: needs to be passed as the second argument
+- access in recipes event via: `event.recipes.enderio.painting`
+- parameters:
+    - `output`
+        - description: specifies the output item
+        - type: `ItemStack`
+        - role: output
+        - required: yes
+        - usage: needs to be passed as the first argument
+    - `input`
+        - description: specifies the input item
+        - type: `Ingredient`
+        - role: input
+        - required: yes
+        - usage: needs to be passed as the second argument
 
 ## Examples
 

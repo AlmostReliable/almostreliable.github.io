@@ -9,23 +9,23 @@ The machine doesn't store energy. Instead, it is fed by a Laser until the energy
 
 ## Overview
 
--   access in recipes event via: `event.recipes.oritech.atomic_forge`
--   properties:
-    -   item inputs
-        -   role: input
-        -   required: yes
-        -   limits:
-            -   min 1
-            -   max 3
-    -   item outputs
-        -   role: output
-        -   required: yes
-        -   limits: exactly 1
-    -   time
-        -   role: misc
-        -   required: no
-        -   default: `60`
-        -   description: specifies the required energy multiplied by a setting in the Oritech config (default value `1024`); higher values require more energy
+- access in recipes event via: `event.recipes.oritech.atomic_forge`
+- properties:
+    - item inputs
+        - role: input
+        - required: yes
+        - limits:
+            - min 1
+            - max 3
+    - item outputs
+        - role: output
+        - required: yes
+        - limits: exactly 1
+    - time
+        - role: misc
+        - required: no
+        - default: `60`
+        - description: specifies the required energy multiplied by a setting in the Oritech config (default value `1024`); higher values require more energy
 
 ## Examples
 

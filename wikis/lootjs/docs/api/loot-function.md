@@ -8,18 +8,18 @@ Add attribute modifiers to the item. In the callback, you can use multiple funct
 
 If using simple, it will use the default equipment slot for the item.
 
--   `.simple(attribute, amount: NumberProvider)`_<sub>, see [NumberProvider]</sub>_
--   `.simple(probability, attribute, amount: NumberProvider)`
--   `.forSlots(attribute, amount: NumberProvider, slots: EquipmentSlot[])`
--   `.forSlots(probability, attribute, amount: NumberProvider, slots: EquipmentSlot[])`
+- `.simple(attribute, amount: NumberProvider)`_<sub>, see [NumberProvider]</sub>_
+- `.simple(probability, attribute, amount: NumberProvider)`
+- `.forSlots(attribute, amount: NumberProvider, slots: EquipmentSlot[])`
+- `.forSlots(probability, attribute, amount: NumberProvider, slots: EquipmentSlot[])`
 
 Possible attributes for vanilla can be found in the [Minecraft Wiki](https://minecraft.wiki/w/Attribute#Attributes_available_on_all_living_entities). Also mods may add own attributes, for that you should take a look at the corresponding mod page.
 
 Possible slots are: `"mainhand"`, `"offhand"`, `"head"`, `"chest"`, `"legs"`, `"feet"`.
 
--   Syntax:
-    -   `.addAttributes(callback => {})`
-    -   `LootFunction.addAttributes(callback => {})`
+- Syntax:
+    - `.addAttributes(callback => {})`
+    - `LootFunction.addAttributes(callback => {})`
 
 ```js
 LootEntry.of("minecraft:potion").addAttributes(attr => {
@@ -32,9 +32,9 @@ LootEntry.of("minecraft:potion").addAttributes(attr => {
 
 ## `addPotion`
 
--   Syntax:
-    -   `.addPotion(potion)`
-    -   `LootFunction.addPotion(potion)`
+- Syntax:
+    - `.addPotion(potion)`
+    - `LootFunction.addPotion(potion)`
 
 ```js
 LootEntry.of("minecraft:potion").addPotion("minecraft:poison")
@@ -45,18 +45,18 @@ LootEntry.of("minecraft:potion").addPotion("minecraft:poison")
 Applies a uniform bonus based on given multiplier. The item count will be increased between `0` and `multiplier * enchantmentLevel`.<br>
 _Minecraft uses this for `sea_lantern` or `redstone_ore` as an example by applying `apply_bonus` with `uniform_bonus_count` as formula._
 
--   Syntax:
-    -   `.applyBonus(enchantment, multiplier: number)`
-    -   `LootFunction.applyBonus(enchantment, multiplier: number)`
+- Syntax:
+    - `.applyBonus(enchantment, multiplier: number)`
+    - `LootFunction.applyBonus(enchantment, multiplier: number)`
 
 ## `applyOreBonus`
 
 Applies a bonus based on special formula Minecraft uses for ore drops: <br>
 `count * max(1; randomInt(0, enchantmentLevel + 2))`
 
--   Syntax:
-    -   `.applyOreBonus(enchantment)`
-    -   `LootFunction.applyOreBonus(enchantment)`
+- Syntax:
+    - `.applyOreBonus(enchantment)`
+    - `LootFunction.applyOreBonus(enchantment)`
 
 ```js
 // In vanilla minecraft often uses fortune here. Of course you can use any enchantment here.
@@ -67,9 +67,9 @@ LootEntry.of("minecraft:emerald_ore").applyOreBonus("minecraft:fortune")
 
 Applies a bonus based on the binomial distribution, where `n = enchantmentLevel + extra` and `p = probability`.
 
--   Syntax:
-    -   `.applyBinomialDistributionBonus(enchantment, p: number, extra: number)`
-    -   `LootFunction.applyBinomialDistributionBonus(enchantment, p: number, extra: number)`
+- Syntax:
+    - `.applyBinomialDistributionBonus(enchantment, p: number, extra: number)`
+    - `LootFunction.applyBinomialDistributionBonus(enchantment, p: number, extra: number)`
 
 ```js
 LootEntry.of("minecraft:emerald_ore").applyBinomialDistributionBonus("minecraft:fortune", 0.2, 3)
@@ -79,11 +79,11 @@ LootEntry.of("minecraft:emerald_ore").applyBinomialDistributionBonus("minecraft:
 
 Applies a bonus, when player uses a specific enchantment. If no enchantment is provided, "minecraft:looting" is used as default.
 
--   Syntax:
-    -   `.applyEnchantmentBonus(bonus: NumberProvider)`_<sub>, see [NumberProvider]</sub>_
-    -   `.applyEnchantmentBonus(enchantment: Enchantment, bonus: NumberProvider)`
-    -   `LootFunction.applyEnchantmentBonus(bonus: NumberProvider)`
-    -   `LootFunction.applyEnchantmentBonus(enchantment: Enchantment, bonus: NumberProvider)`
+- Syntax:
+    - `.applyEnchantmentBonus(bonus: NumberProvider)`_<sub>, see [NumberProvider]</sub>_
+    - `.applyEnchantmentBonus(enchantment: Enchantment, bonus: NumberProvider)`
+    - `LootFunction.applyEnchantmentBonus(bonus: NumberProvider)`
+    - `LootFunction.applyEnchantmentBonus(enchantment: Enchantment, bonus: NumberProvider)`
 
 ```js
 LootEntry.of("minecraft:emerald_ore").applyEnchantmentBonus([2, 5])
@@ -101,9 +101,9 @@ For `LootEntries` we often want to change the existing count instead of adding a
 **This behavior does not apply for `LootModifiers` through `LootJS.modifiers()` event!**
 :::
 
--   Syntax:
-    -   `.setCount(count: NumberProvider)`_<sub>, see [NumberProvider]</sub>_
-    -   `LootFunction.setCount(count: NumberProvider)`
+- Syntax:
+    - `.setCount(count: NumberProvider)`_<sub>, see [NumberProvider]</sub>_
+    - `LootFunction.setCount(count: NumberProvider)`
 
 ```js
 LootEntry.of("minecraft:emerald_ore").setCount(20)
@@ -117,9 +117,9 @@ LootEntry.of("minecraft:emerald_ore").setCount([2, 10])
 
 Limits the item count between `min` and `max`. Min and max both can be optional by using `null` as value.
 
--   Syntax:
-    -   `.limitCount(min: NumberProvider | null, max: NumberProvider | null)`_<sub>, see [NumberProvider]</sub>_
-    -   `LootFunction.limitCount(min: NumberProvider | null, max: NumberProvider | null)`
+- Syntax:
+    - `.limitCount(min: NumberProvider | null, max: NumberProvider | null)`_<sub>, see [NumberProvider]</sub>_
+    - `LootFunction.limitCount(min: NumberProvider | null, max: NumberProvider | null)`
 
 ```js
 LootEntry.of("minecraft:emerald_ore").limitCount(2, 10)
@@ -134,8 +134,8 @@ LootEntry.of("minecraft:emerald_ore").limitCount(10, [30, 35])
 
 Set the custom data tag of the item.
 
--   Syntax:
-    -   `.setCustomData(nbt)`
+- Syntax:
+    - `.setCustomData(nbt)`
 
 ```js
 LootEntry.of("minecraft:emerald_ore").setCustomData({ someCustomStuff: true })
@@ -143,9 +143,9 @@ LootEntry.of("minecraft:emerald_ore").setCustomData({ someCustomStuff: true })
 
 ## `setName`
 
--   Syntax:
-    -   `.setName(name: Component)`
-    -   `LootFunction.setName(name: Component)`
+- Syntax:
+    - `.setName(name: Component)`
+    - `LootFunction.setName(name: Component)`
 
 ```js
 LootEntry.of("minecraft:emerald_ore").setName(Component.translatable("item.minecraft.emerald_ore"))
@@ -157,11 +157,11 @@ LootEntry.of("minecraft:emerald_ore").setName("Emerald Ore with new name")
 
 ## `enchantRandomly`
 
--   Syntax:
-    -   `.enchantRandomly()`
-    -   `.enchantRandomly(enchantments: Enchantment | Tag | Enchantment[])`
-    -   `LootFunction.enchantRandomly()`
-    -   `LootFunction.enchantRandomly(enchantments: Enchantment | Tag | Enchantment[])`
+- Syntax:
+    - `.enchantRandomly()`
+    - `.enchantRandomly(enchantments: Enchantment | Tag | Enchantment[])`
+    - `LootFunction.enchantRandomly()`
+    - `LootFunction.enchantRandomly(enchantments: Enchantment | Tag | Enchantment[])`
 
 ```js
 LootEntry.of("minecraft:emerald_ore").enchantRandomly()
@@ -173,8 +173,8 @@ LootEntry.of("minecraft:emerald_ore").enchantRandomly(["minecraft:fortune", "min
 
 ## `enchantWithLevels`
 
--   Syntax:
-    -   `.enchantWithLevels(levelRange: NumberProvider)`
+- Syntax:
+    - `.enchantWithLevels(levelRange: NumberProvider)`
 
 ```js
 LootEntry.of("minecraft:netherite_sword").enchantWithLevels([20, 39])
@@ -182,11 +182,11 @@ LootEntry.of("minecraft:netherite_sword").enchantWithLevels([20, 39])
 
 ## `enchant`
 
--   Syntax:
-    -   `.enchant(add: boolean, (builder) => { ... })`
-    -   `.enchant((builder) => { ... })`
-    -   `LootFunction.enchant(add: boolean, (builder) => { ... })`
-    -   `LootFunction.enchant((builder) => { ... })`
+- Syntax:
+    - `.enchant(add: boolean, (builder) => { ... })`
+    - `.enchant((builder) => { ... })`
+    - `LootFunction.enchant(add: boolean, (builder) => { ... })`
+    - `LootFunction.enchant((builder) => { ... })`
 
 The builder has a method `.withEnchantment(enchantment: id, level: NumberProvider)` you can use to apply enchantments.
 
@@ -201,9 +201,9 @@ LootEntry.of("minecraft:netherite_sword").enchant(builder => {
 
 ## `addLore`
 
--   Syntax:
-    -   `.addLore(lore: Component)`
-    -   `LootFunction.addLore(lore: Component)`
+- Syntax:
+    - `.addLore(lore: Component)`
+    - `LootFunction.addLore(lore: Component)`
 
 ```js
 LootEntry.of("minecraft:emerald_ore").addLore("Enchanted")
@@ -211,9 +211,9 @@ LootEntry.of("minecraft:emerald_ore").addLore("Enchanted")
 
 ## `replaceLore`
 
--   Syntax:
-    -   `.replaceLore(lore: Component)`
-    -   `LootFunction.replaceLore(lore: Component)`
+- Syntax:
+    - `.replaceLore(lore: Component)`
+    - `LootFunction.replaceLore(lore: Component)`
 
 ```js
 LootEntry.of("minecraft:emerald_ore").replaceLore("Enchanted")
@@ -221,9 +221,9 @@ LootEntry.of("minecraft:emerald_ore").replaceLore("Enchanted")
 
 ## `damage`
 
--   Syntax:
-    -   `.damage(damage: NumberProvider)`_<sub>, see [NumberProvider]</sub>_
-    -   `LootFunction.damage(damage: NumberProvider)`
+- Syntax:
+    - `.damage(damage: NumberProvider)`_<sub>, see [NumberProvider]</sub>_
+    - `LootFunction.damage(damage: NumberProvider)`
 
 ```js
 LootEntry.of("minecraft:diamond_sword").damage(5)
@@ -235,9 +235,9 @@ LootEntry.of("minecraft:diamond_sword").damage([5, 10])
 
 ## `simulateExplosionDecay`
 
--   Syntax:
-    -   `.simulateExplosionDecay()`
-    -   `LootFunction.simulateExplosionDecay()`
+- Syntax:
+    - `.simulateExplosionDecay()`
+    - `LootFunction.simulateExplosionDecay()`
 
 ```js
 LootEntry.of("minecraft:diamond_sword").simulateExplosionDecay()
@@ -245,9 +245,9 @@ LootEntry.of("minecraft:diamond_sword").simulateExplosionDecay()
 
 ## `smelt`
 
--   Syntax:
-    -   `.smelt()`
-    -   `LootFunction.smelt()`
+- Syntax:
+    - `.smelt()`
+    - `LootFunction.smelt()`
 
 ```js
 LootEntry.of("minecraft:diamond_sword").smelt()
@@ -257,9 +257,9 @@ LootEntry.of("minecraft:diamond_sword").smelt()
 
 Allows to toggle rendering tooltips for specific DataComponents
 
--   Syntax:
-    -   `.toggleTooltips(data: { componentId: boolean })`
-    -   `LootFunction.toggleTooltips(data: { componentId: boolean })`
+- Syntax:
+    - `.toggleTooltips(data: { componentId: boolean })`
+    - `LootFunction.toggleTooltips(data: { componentId: boolean })`
 
 ```js
 LootEntry.of("minecraft:diamond_boots").toggleTooltips({
@@ -270,9 +270,9 @@ LootEntry.of("minecraft:diamond_boots").toggleTooltips({
 
 ## `jsonFunction`
 
--   Syntax:
-    -   `.jsonFunction(json)`
-    -   `LootFunction.fromJson(json)`
+- Syntax:
+    - `.jsonFunction(json)`
+    - `LootFunction.fromJson(json)`
 
 ```js
 LootEntry.of("minecraft:diamond_sword").jsonFunction({

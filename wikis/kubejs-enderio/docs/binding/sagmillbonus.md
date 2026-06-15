@@ -6,14 +6,14 @@ A `BonusType` specifies the behavior of Grinding Balls in Sag Mill recipes.
 
 ## Overview
 
--   access via: `SagMillBonus`
--   values:
-    -   `SagMillBonus.NONE`
-        -   no multiplier is applied, the recipe will always output the defined outputs with the specified chances
-    -   `SagMillBonus.CHANCE_ONLY`
-        -   only the bonus multiplier of the Grinding Ball is applied, the output count remains unchanged
-    -   `SagMillBonus.MULTIPLY_OUTPUT`
-        -   the output multiplier and the bonus multiplier of the Grinding Ball are applied
+- access via: `SagMillBonus`
+- values:
+    - `SagMillBonus.NONE`
+        - no multiplier is applied, the recipe will always output the defined outputs with the specified chances
+    - `SagMillBonus.CHANCE_ONLY`
+        - only the bonus multiplier of the Grinding Ball is applied, the output count remains unchanged
+    - `SagMillBonus.MULTIPLY_OUTPUT`
+        - the output multiplier and the bonus multiplier of the Grinding Ball are applied
 
 ## Examples
 

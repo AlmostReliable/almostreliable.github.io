@@ -9,20 +9,20 @@ The Industrial Chiller is used cool down fluids to convert them into items.
 
 ## Overview
 
--   access in recipes event via: `event.recipes.oritech.cooler`
--   properties:
-    -   item outputs
-        -   role: output
-        -   required: yes
-        -   limits: exactly 1
-    -   fluid input
-        -   role: input
-        -   required: yes
-        -   limits: exactly 1
-    -   time
-        -   role: misc
-        -   required: no
-        -   default: `60`
+- access in recipes event via: `event.recipes.oritech.cooler`
+- properties:
+    - item outputs
+        - role: output
+        - required: yes
+        - limits: exactly 1
+    - fluid input
+        - role: input
+        - required: yes
+        - limits: exactly 1
+    - time
+        - role: misc
+        - required: no
+        - default: `60`
 
 ## Examples
 

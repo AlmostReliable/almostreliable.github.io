@@ -29,91 +29,91 @@ Each recipe uses the same set of components which define inputs, outputs, condit
 
 ### Structure
 
--   `initiator`
-    -   type: `Ingredient`
-    -   required: yes (passed to `.altar(...)`)
-    -   description: the item used to start the ritual
--   `item_inputs`
-    -   type: `List<SizedIngredient>`
-    -   required: no
-    -   default: empty list
-    -   primary access: `itemInputs(...)`
-    -   aliases: `itemInput`, `inputs`, `input`
-    -   description: items consumed when the ritual starts
--   `entity_inputs`
-    -   type: `List<EntityInput>`
-    -   required: no
-    -   default: empty list
-    -   primary access: `entityInputs(...)`
-    -   aliases: `entityInput`, `mobInputs`, `mobInput`
-    -   description: entities inside the sacrifice zone that are killed when the ritual starts
--   `fake_entity_inputs`
-    -   type: `List<FakeEntityInput>`
-    -   required: no
-    -   default: empty list
-    -   primary access: `fakeEntityInputs(...)`
-    -   aliases: `fakeEntityInput`, `fakeMobInputs`, `fakeMobInput`
-    -   description: entities inside the sacrifice zone matching a custom predicate that are killed when the ritual starts; instead of an entity for displaying in the recipe viewer, a custom item is used as a placeholder
--   `item_outputs`
-    -   type: `List<ItemOutput>`
-    -   required: no
-    -   default: empty list
-    -   primary access: `itemOutputs(...)`
-    -   aliases: `itemOutput`, `outputs`, `output`
-    -   description: items spawned around the altar when the ritual finishes
--   `entity_outputs`
-    -   type: `List<EntityOutput>`
-    -   required: no
-    -   default: empty list
-    -   primary access: `entityOutputs(...)`
-    -   aliases: `entityOutput`, `mobOutputs`, `mobOutput`
-    -   description: entities spawned around the altar when the ritual finishes
--   `commands`
-    -   type: `CommandOutput`
-    -   required: no
-    -   default: empty
-    -   primary access: `commands(...)`
-    -   aliases: `command`
-    -   description: commands executed when the ritual completes
--   `display_outputs`
-    -   type: `List<ItemStack>`
-    -   required: no
-    -   default: empty list
-    -   primary access: `displayOutputs(...)`
-    -   aliases: `displayOutput`
-    -   description: items used for display purposes in the recipe viewer; these items are not actually spawned when the ritual finishes
--   `block_pattern`
-    -   type: `BlockPatternCondition`
-    -   required: no
-    -   default: none
-    -   primary access: `blockPattern(...)`
-    -   description: block pattern that needs to be matched around the altar for the ritual to start
--   `block_pattern_extension`
-    -   type: `BlockPatternCondition`
-    -   required: no
-    -   default: none
-    -   primary access: `blockPatternExtension(...)`
-    -   description: additional block pattern that is not required for the ritual to start, but can be used in events to add extra outputs or effects when the pattern is matched
--   `conditions`
-    -   type: `List<LootItemCondition>`
-    -   required: no
-    -   default: empty list
-    -   primary access: `conditions(...)`
-    -   description: conditions evaluated before the ritual can start
--   `zone`
-    -   type: `BlockPos`
-    -   required: no
-    -   default: `[3, 2, 3]`
-    -   primary access: `entityInputZone(...)`
-    -   aliases: `mobInputZone`, `inputZone`, `sacrificeZone`, `entityZone`, `mobZone`, `zone`
-    -   description: half-size region around altar used to search required entities
--   `ticks`
-    -   type: `int`
-    -   required: no
-    -   default: `40`
-    -   primary access: `ticks(...)`
-    -   aliases: `time`, `duration`
-    -   description: ritual duration in game ticks (1 second = 20 ticks)
+- `initiator`
+    - type: `Ingredient`
+    - required: yes (passed to `.altar(...)`)
+    - description: the item used to start the ritual
+- `item_inputs`
+    - type: `List<SizedIngredient>`
+    - required: no
+    - default: empty list
+    - primary access: `itemInputs(...)`
+    - aliases: `itemInput`, `inputs`, `input`
+    - description: items consumed when the ritual starts
+- `entity_inputs`
+    - type: `List<EntityInput>`
+    - required: no
+    - default: empty list
+    - primary access: `entityInputs(...)`
+    - aliases: `entityInput`, `mobInputs`, `mobInput`
+    - description: entities inside the sacrifice zone that are killed when the ritual starts
+- `fake_entity_inputs`
+    - type: `List<FakeEntityInput>`
+    - required: no
+    - default: empty list
+    - primary access: `fakeEntityInputs(...)`
+    - aliases: `fakeEntityInput`, `fakeMobInputs`, `fakeMobInput`
+    - description: entities inside the sacrifice zone matching a custom predicate that are killed when the ritual starts; instead of an entity for displaying in the recipe viewer, a custom item is used as a placeholder
+- `item_outputs`
+    - type: `List<ItemOutput>`
+    - required: no
+    - default: empty list
+    - primary access: `itemOutputs(...)`
+    - aliases: `itemOutput`, `outputs`, `output`
+    - description: items spawned around the altar when the ritual finishes
+- `entity_outputs`
+    - type: `List<EntityOutput>`
+    - required: no
+    - default: empty list
+    - primary access: `entityOutputs(...)`
+    - aliases: `entityOutput`, `mobOutputs`, `mobOutput`
+    - description: entities spawned around the altar when the ritual finishes
+- `commands`
+    - type: `CommandOutput`
+    - required: no
+    - default: empty
+    - primary access: `commands(...)`
+    - aliases: `command`
+    - description: commands executed when the ritual completes
+- `display_outputs`
+    - type: `List<ItemStack>`
+    - required: no
+    - default: empty list
+    - primary access: `displayOutputs(...)`
+    - aliases: `displayOutput`
+    - description: items used for display purposes in the recipe viewer; these items are not actually spawned when the ritual finishes
+- `block_pattern`
+    - type: `BlockPatternCondition`
+    - required: no
+    - default: none
+    - primary access: `blockPattern(...)`
+    - description: block pattern that needs to be matched around the altar for the ritual to start
+- `block_pattern_extension`
+    - type: `BlockPatternCondition`
+    - required: no
+    - default: none
+    - primary access: `blockPatternExtension(...)`
+    - description: additional block pattern that is not required for the ritual to start, but can be used in events to add extra outputs or effects when the pattern is matched
+- `conditions`
+    - type: `List<LootItemCondition>`
+    - required: no
+    - default: empty list
+    - primary access: `conditions(...)`
+    - description: conditions evaluated before the ritual can start
+- `zone`
+    - type: `BlockPos`
+    - required: no
+    - default: `[3, 2, 3]`
+    - primary access: `entityInputZone(...)`
+    - aliases: `mobInputZone`, `inputZone`, `sacrificeZone`, `entityZone`, `mobZone`, `zone`
+    - description: half-size region around altar used to search required entities
+- `ticks`
+    - type: `int`
+    - required: no
+    - default: `40`
+    - primary access: `ticks(...)`
+    - aliases: `time`, `duration`
+    - description: ritual duration in game ticks (1 second = 20 ticks)
 
 ### Inputs
 

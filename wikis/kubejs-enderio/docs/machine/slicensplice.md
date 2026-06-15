@@ -4,29 +4,29 @@ The Slice'N'Splice is a precision crafting machine designed to cut and assemble 
 
 ## Overview
 
--   access in recipes event via: `event.recipes.enderio.slicing`
--   properties:
-    -   `output`
-        -   description: specifies the output item
-        -   type: `ItemStack`
-        -   role: output
-        -   required: yes
-        -   usage: needs to be passed as the first argument
-    -   `inputs`
-        -   description: specifies the input items
-        -   type: `Ingredient[]`
-        -   role: input
-        -   required: yes
-        -   usage: needs to be passed as the second argument
-    -   `energy`
-        -   description: specifies the energy usage of the recipe
-        -   type: `int`
-        -   role: other
-        -   required: no
-        -   default: `2000`
-        -   usage: can be passed as the third argument or by chaining the function `.energy(int)`
--   validators:
-    -   `inputs` must contain exactly 6 items
+- access in recipes event via: `event.recipes.enderio.slicing`
+- properties:
+    - `output`
+        - description: specifies the output item
+        - type: `ItemStack`
+        - role: output
+        - required: yes
+        - usage: needs to be passed as the first argument
+    - `inputs`
+        - description: specifies the input items
+        - type: `Ingredient[]`
+        - role: input
+        - required: yes
+        - usage: needs to be passed as the second argument
+    - `energy`
+        - description: specifies the energy usage of the recipe
+        - type: `int`
+        - role: other
+        - required: no
+        - default: `2000`
+        - usage: can be passed as the third argument or by chaining the function `.energy(int)`
+- validators:
+    - `inputs` must contain exactly 6 items
 
 ## Examples
 

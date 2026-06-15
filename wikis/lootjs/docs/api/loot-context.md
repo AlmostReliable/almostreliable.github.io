@@ -6,40 +6,40 @@ A loot context contains all information of the current rolled loot table. You ca
 
 Get the id of the loot table which was rolled.
 
--   Syntax:
-    -   `.getId()`
-    -   `.id`
+- Syntax:
+    - `.getId()`
+    - `.id`
 
 ## `isType`
 
 Checks the type of the loot table. Valid types are `chest`, `block`, `entity`, `fishing`, `archaeology`, `gift`, `vault`, `shearing`, `piglin_barter`
 
--   Syntax:
-    -   `.isType(type: LootType)`
+- Syntax:
+    - `.isType(type: LootType)`
 
 ## `getType`
 
 Get the type of the loot table which was rolled.
 
--   Syntax:
-    -   `.getType()`
-    -   `.type`
+- Syntax:
+    - `.getType()`
+    - `.type`
 
 ## `getPosition`
 
 Get the position where the loot table was rolled. When opening a chest it's the position of the chest, when killing an entity it's the position of the entity, etc.
 
--   Syntax:
-    -   `.getPosition()`, returns a `Vec3` with `x`, `y` and `z` values
-    -   `.position`
+- Syntax:
+    - `.getPosition()`, returns a `Vec3` with `x`, `y` and `z` values
+    - `.position`
 
 ## `getEntity`
 
 May return `null`, depending on the type of the loot table.
 
--   Syntax:
-    -   `.getEntity()`
-    -   `.entity`
+- Syntax:
+    - `.getEntity()`
+    - `.entity`
 
 ```js
 LootJS.modifiers(event => {
@@ -53,9 +53,9 @@ LootJS.modifiers(event => {
 
 May return `null`, depending on the type of the loot table.
 
--   Syntax:
-    -   `.getAttackingEntity()`
-    -   `.attackingEntity`
+- Syntax:
+    - `.getAttackingEntity()`
+    - `.attackingEntity`
 
 ```js
 LootJS.modifiers(event => {
@@ -69,9 +69,9 @@ LootJS.modifiers(event => {
 
 May return `null`, depending on the type of the loot table.
 
--   Syntax:
-    -   `.getDamageSource()`
-    -   `.damageSource`
+- Syntax:
+    - `.getDamageSource()`
+    - `.damageSource`
 
 ```js
 LootJS.modifiers(event => {
@@ -83,9 +83,9 @@ LootJS.modifiers(event => {
 
 ## `getTool`
 
--   Syntax:
-    -   `.getTool()`
-    -   `.tool`
+- Syntax:
+    - `.getTool()`
+    - `.tool`
 
 ```js
 LootJS.modifiers(event => {
@@ -97,37 +97,37 @@ LootJS.modifiers(event => {
 
 ## `isExploded`
 
--   Syntax:
-    -   `.isExploded()`
+- Syntax:
+    - `.isExploded()`
 
 ## `getExplosionRadius`
 
--   Syntax:
-    -   `.getExplosionRadius()`
-    -   `.explosionRadius`
+- Syntax:
+    - `.getExplosionRadius()`
+    - `.explosionRadius`
 
 ## `getRandom`
 
 Can be used for further randomization.
 
--   Syntax:
-    -   `.getRandom()`
-    -   `.random`
+- Syntax:
+    - `.getRandom()`
+    - `.random`
 
 ## `getLuck`
 
--   Syntax:
-    -   `.getLuck()`
-    -   `.luck`
+- Syntax:
+    - `.getLuck()`
+    - `.luck`
 
 ## `getLevel`
 
--   Syntax:
-    -   `.getLevel()`
-    -   `.level`
+- Syntax:
+    - `.getLevel()`
+    - `.level`
 
 ## `getServer`
 
--   Syntax:
-    -   `.getServer()`
-    -   `.server`
+- Syntax:
+    - `.getServer()`
+    - `.server`

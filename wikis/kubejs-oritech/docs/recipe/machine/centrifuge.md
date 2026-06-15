@@ -7,22 +7,22 @@ The Centrifuge transforms items by seperating them into their components. It is 
 
 ## Overview
 
--   access in recipes event via: `event.recipes.oritech.centrifuge`
--   properties:
-    -   item inputs
-        -   role: input
-        -   required: yes
-        -   limits: exactly 1
-    -   item outputs
-        -   role: output
-        -   required: yes
-        -   limits:
-            -   min 1
-            -   max 2
-    -   time
-        -   role: misc
-        -   required: no
-        -   default: `60`
+- access in recipes event via: `event.recipes.oritech.centrifuge`
+- properties:
+    - item inputs
+        - role: input
+        - required: yes
+        - limits: exactly 1
+    - item outputs
+        - role: output
+        - required: yes
+        - limits:
+            - min 1
+            - max 2
+    - time
+        - role: misc
+        - required: no
+        - default: `60`
 
 ## Examples
 

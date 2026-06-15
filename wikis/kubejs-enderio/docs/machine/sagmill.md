@@ -6,34 +6,34 @@ Sag Mill recipes support multiple outputs. Output chances and energy consumption
 
 ## Overview
 
--   access in recipes event via: `event.recipes.enderio.sag_milling`
--   parameters:
-    -   `outputs`
-        -   description: specifies the output items, more information [here](../binding/sagmilloutput.md)
-        -   type: `<SagMillOutput | SizedIngredient>[]`
-        -   role: output
-        -   required: yes
-        -   usage: needs to be passed as the first argument
-    -   `input`
-        -   description: specifies the input item
-        -   type: `Ingredient`
-        -   role: input
-        -   required: yes
-        -   usage: needs to be passed as the second argument
-    -   `energy`
-        -   description: specifies the energy usage of the recipe
-        -   type: `int`
-        -   role: other
-        -   required: no
-        -   default: `2000`
-        -   usage: can be passed as the third argument or by chaining the function `.energy(int)`
-    -   `bonus`
-        -   description: specifies the bonus type of the recipe, more information [here](../binding/sagmillbonus.md)
-        -   type: `SagMillBonus`
-        -   role: other
-        -   required: no
-        -   default: `SagMillBonus.MULTIPLY_OUTPUT`
-        -   usage: can be passed as the fourth argument or by chaining the function `.bonus(SagMillBonus)`
+- access in recipes event via: `event.recipes.enderio.sag_milling`
+- parameters:
+    - `outputs`
+        - description: specifies the output items, more information [here](../binding/sagmilloutput.md)
+        - type: `<SagMillOutput | SizedIngredient>[]`
+        - role: output
+        - required: yes
+        - usage: needs to be passed as the first argument
+    - `input`
+        - description: specifies the input item
+        - type: `Ingredient`
+        - role: input
+        - required: yes
+        - usage: needs to be passed as the second argument
+    - `energy`
+        - description: specifies the energy usage of the recipe
+        - type: `int`
+        - role: other
+        - required: no
+        - default: `2000`
+        - usage: can be passed as the third argument or by chaining the function `.energy(int)`
+    - `bonus`
+        - description: specifies the bonus type of the recipe, more information [here](../binding/sagmillbonus.md)
+        - type: `SagMillBonus`
+        - role: other
+        - required: no
+        - default: `SagMillBonus.MULTIPLY_OUTPUT`
+        - usage: can be passed as the fourth argument or by chaining the function `.bonus(SagMillBonus)`
 
 ## Examples
 

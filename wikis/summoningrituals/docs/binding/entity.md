@@ -4,22 +4,22 @@
 
 ## Overview
 
--   access in recipes event via: `SummoningEntity`
--   functions:
-    -   `input(EntityInfo entity)`
-        -   creates an `EntityInputBuilder` with the specified `EntityInfo`
-    -   `input(Holder<EntityType<?>> entity, Integer count)`
-        -   creates an `EntityInputBuilder` with the specified entity and the specified count
-    -   `fakeInput(ItemStack displayItem, Integer count, Predicate<Entity> validator)`
-        -   creates a `FakeEntityInput` with the specified display item, count, and validator
-        -   the count defines the amount of entities that have to pass the validator for the input to be valid
-    -   `fakeInput(ItemStack displayItem, Predicate<Entity> validator)`
-        -   creates a `FakeEntityInput` with the specified display item and validator
-        -   by leaving out the count, it acts as a wildcard, meaning any amount of entities passing the validator
-    -   `output(EntityInfo entity)`
-        -   creates an `EntityOutputBuilder` with the specified `EntityInfo`
-    -   `output(Holder<EntityType<?>> entity, Integer count)`
-        -   creates an `EntityOutputBuilder` with the specified entity and the specified count
+- access in recipes event via: `SummoningEntity`
+- functions:
+    - `input(EntityInfo entity)`
+        - creates an `EntityInputBuilder` with the specified `EntityInfo`
+    - `input(Holder<EntityType<?>> entity, Integer count)`
+        - creates an `EntityInputBuilder` with the specified entity and the specified count
+    - `fakeInput(ItemStack displayItem, Integer count, Predicate<Entity> validator)`
+        - creates a `FakeEntityInput` with the specified display item, count, and validator
+        - the count defines the amount of entities that have to pass the validator for the input to be valid
+    - `fakeInput(ItemStack displayItem, Predicate<Entity> validator)`
+        - creates a `FakeEntityInput` with the specified display item and validator
+        - by leaving out the count, it acts as a wildcard, meaning any amount of entities passing the validator
+    - `output(EntityInfo entity)`
+        - creates an `EntityOutputBuilder` with the specified `EntityInfo`
+    - `output(Holder<EntityType<?>> entity, Integer count)`
+        - creates an `EntityOutputBuilder` with the specified entity and the specified count
 
 ```js
 SummoningEntity.input("pig")
@@ -37,38 +37,38 @@ SummoningEntity.output("iron_golem", 2)
 
 After obtaining the `EntityInputBuilder` instance through the binding, you can chain additional functions to it.
 
--   properties:
-    -   `entity`
-        -   description: specifies the input entity; defined via the binding function to obtain the builder
-        -   type: `Holder<EntityType<?>>`
-        -   required: yes
-    -   `count`
-        -   description: specifies the count of the input entity; defined via the binding function to obtain the builder
-        -   type: `Integer`
-        -   required: no
-        -   default: `1`
-    -   `data`
-        -   description: specifies the data (NBT) of the input entity; only used for rendering
-        -   type: `CompoundTag` (JsonObject)
-        -   required: no
-        -   default: empty
-    -   `tooltip`
-        -   description: specifies additional tooltip lines shown in recipe viewer pages
-        -   type: `List<Component>`
-        -   required: no
-        -   default: empty list
-    -   `validator`
-        -   description: specifies the validator function to check the entity data (NBT)
-        -   type: `Predicate<Entity>`
-        -   required: no
-        -   default: always `true`
--   functions:
-    -   `data(CompoundTag data)`
-        -   assigns the given NBT data to the `EntityInput`
-    -   `tooltip(List<Component> tooltip)`
-        -   assigns the given tooltip lines to the `EntityInput`
-    -   `validator(Predicate<Entity> validator)`
-        -   assigns the given validator to the `EntityInput`
+- properties:
+    - `entity`
+        - description: specifies the input entity; defined via the binding function to obtain the builder
+        - type: `Holder<EntityType<?>>`
+        - required: yes
+    - `count`
+        - description: specifies the count of the input entity; defined via the binding function to obtain the builder
+        - type: `Integer`
+        - required: no
+        - default: `1`
+    - `data`
+        - description: specifies the data (NBT) of the input entity; only used for rendering
+        - type: `CompoundTag` (JsonObject)
+        - required: no
+        - default: empty
+    - `tooltip`
+        - description: specifies additional tooltip lines shown in recipe viewer pages
+        - type: `List<Component>`
+        - required: no
+        - default: empty list
+    - `validator`
+        - description: specifies the validator function to check the entity data (NBT)
+        - type: `Predicate<Entity>`
+        - required: no
+        - default: always `true`
+- functions:
+    - `data(CompoundTag data)`
+        - assigns the given NBT data to the `EntityInput`
+    - `tooltip(List<Component> tooltip)`
+        - assigns the given tooltip lines to the `EntityInput`
+    - `validator(Predicate<Entity> validator)`
+        - assigns the given validator to the `EntityInput`
 
 > [!TIP] What is a validator?
 > You might ask why a custom `validator` is required if `data` is already provided. For inputs, the `data` property is only used for rendering purposes in recipe viewers. If you give an entity a sword via the `data` property, it will be displayed on the recipe viewer page, but it won't check whether the entity actually has a sword when being sacrificed.
@@ -98,45 +98,45 @@ After obtaining the `EntityInputBuilder` instance through the binding, you can c
 
 After obtaining the `EntityOutputBuilder` instance through the binding, you can chain additional functions to it.
 
--   properties:
-    -   `entity`
-        -   description: specifies the output entity; defined via the binding function to obtain the builder
-        -   type: `Holder<EntityType<?>>`
-        -   required: yes
-    -   `count`
-        -   description: specifies the count of the output entity; defined via the binding function to obtain the builder
-        -   type: `Integer`
-        -   required: no
-        -   default: `1`
-    -   `data`
-        -   description: specifies the data (NBT) of the output entity
-        -   type: `CompoundTag` (JsonObject)
-        -   required: no
-        -   default: empty
-    -   `tooltip`
-        -   description: specifies additional tooltip lines shown in recipe viewer pages
-        -   type: `List<Component>`
-        -   required: no
-        -   default: empty list
-    -   `offset`
-        -   description: specifies the offset from the altar block where the output entity is spawned
-        -   type: `BlockPos`
-        -   required: no
-        -   default: `[0, 2, 0]`
-    -   `spread`
-        -   description: specifies the spread of the output entities; output entities are spawned at different positions within the spread area; a single entity can spawn at a position before a new random position is calculated
-        -   type: `BlockPos`
-        -   required: no
-        -   default: `[1, 0, 1]`
--   functions:
-    -   `data(CompoundTag data)`
-        -   assigns the given NBT data to the `EntityOutput`
-    -   `tooltip(List<Component> tooltip)`
-        -   assigns the given tooltip lines to the `EntityOutput`
-    -   `offset(BlockPos offset)`
-        -   assigns the given offset to the `EntityOutput`
-    -   `spread(BlockPos spread)`
-        -   assigns the given spread to the `EntityOutput`
+- properties:
+    - `entity`
+        - description: specifies the output entity; defined via the binding function to obtain the builder
+        - type: `Holder<EntityType<?>>`
+        - required: yes
+    - `count`
+        - description: specifies the count of the output entity; defined via the binding function to obtain the builder
+        - type: `Integer`
+        - required: no
+        - default: `1`
+    - `data`
+        - description: specifies the data (NBT) of the output entity
+        - type: `CompoundTag` (JsonObject)
+        - required: no
+        - default: empty
+    - `tooltip`
+        - description: specifies additional tooltip lines shown in recipe viewer pages
+        - type: `List<Component>`
+        - required: no
+        - default: empty list
+    - `offset`
+        - description: specifies the offset from the altar block where the output entity is spawned
+        - type: `BlockPos`
+        - required: no
+        - default: `[0, 2, 0]`
+    - `spread`
+        - description: specifies the spread of the output entities; output entities are spawned at different positions within the spread area; a single entity can spawn at a position before a new random position is calculated
+        - type: `BlockPos`
+        - required: no
+        - default: `[1, 0, 1]`
+- functions:
+    - `data(CompoundTag data)`
+        - assigns the given NBT data to the `EntityOutput`
+    - `tooltip(List<Component> tooltip)`
+        - assigns the given tooltip lines to the `EntityOutput`
+    - `offset(BlockPos offset)`
+        - assigns the given offset to the `EntityOutput`
+    - `spread(BlockPos spread)`
+        - assigns the given spread to the `EntityOutput`
 
 ```js
 .entityOutputs([

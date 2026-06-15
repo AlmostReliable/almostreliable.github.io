@@ -4,7 +4,7 @@ This mod is an add-on for [KubeJS](https://github.com/KubeJS-Mods/KubeJS) to add
 
 Useful links:
 
--   [CurseForge](https://www.curseforge.com/minecraft/mc-mods/kubejs-oritech)
--   [Modrinth](https://modrinth.com/mod/kjs-oritech)
--   [GitHub](https://github.com/almostreliable/kubejs-oritech)
--   [Discord](https://discord.com/invite/ThFnwZCyYY)
+- [CurseForge](https://www.curseforge.com/minecraft/mc-mods/kubejs-oritech)
+- [Modrinth](https://modrinth.com/mod/kjs-oritech)
+- [GitHub](https://github.com/almostreliable/kubejs-oritech)
+- [Discord](https://discord.com/invite/ThFnwZCyYY)

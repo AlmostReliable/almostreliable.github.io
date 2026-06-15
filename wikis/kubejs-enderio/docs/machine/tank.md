@@ -4,33 +4,33 @@ The Tank allows automated filling and emptying of items with fluids. It supports
 
 ## Overview
 
--   access in recipes event via: `event.recipes.enderio.tank`
--   properties:
-    -   `output`
-        -   description: specifies the output item
-        -   type: `ItemStack`
-        -   role: output
-        -   required: yes
-        -   usage: needs to be passed as the first argument
-    -   `input`
-        -   description: specifies the input item to be filled or drained
-        -   type: `Ingredient`
-        -   role: input
-        -   required: yes
-        -   usage: needs to be passed as the second argument
-    -   `fluid`
-        -   description: specifies the fluid to fill into or extract from the item
-        -   type: `SizedFluidIngredient`
-        -   role: other
-        -   required: yes
-        -   usage: needs to be passed as the third argument
-    -   `mode`
-        -   description: specifies whether the recipe fills or drains fluid, more information [here](../binding/tankmode.md)
-        -   type: `TankMode`
-        -   role: other
-        -   required: no
-        -   default: `TankMode.FILL`
-        -   usage: can be passed as the fourth argument or activate emptying by chaining the function `.emptying()`
+- access in recipes event via: `event.recipes.enderio.tank`
+- properties:
+    - `output`
+        - description: specifies the output item
+        - type: `ItemStack`
+        - role: output
+        - required: yes
+        - usage: needs to be passed as the first argument
+    - `input`
+        - description: specifies the input item to be filled or drained
+        - type: `Ingredient`
+        - role: input
+        - required: yes
+        - usage: needs to be passed as the second argument
+    - `fluid`
+        - description: specifies the fluid to fill into or extract from the item
+        - type: `SizedFluidIngredient`
+        - role: other
+        - required: yes
+        - usage: needs to be passed as the third argument
+    - `mode`
+        - description: specifies whether the recipe fills or drains fluid, more information [here](../binding/tankmode.md)
+        - type: `TankMode`
+        - role: other
+        - required: no
+        - default: `TankMode.FILL`
+        - usage: can be passed as the fourth argument or activate emptying by chaining the function `.emptying()`
 
 ## Examples
 

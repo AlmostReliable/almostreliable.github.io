@@ -7,7 +7,7 @@ This mod adds a simple block you can use for measuring energy transfer rates. It
 
 Useful links:
 
--   [CurseForge](https://www.curseforge.com/minecraft/mc-mods/energymeter)
--   [Modrinth](https://modrinth.com/mod/energymeter)
--   [GitHub](https://github.com/almostreliable/energymeter)
--   [Discord](https://discord.com/invite/ThFnwZCyYY)
+- [CurseForge](https://www.curseforge.com/minecraft/mc-mods/energymeter)
+- [Modrinth](https://modrinth.com/mod/energymeter)
+- [GitHub](https://github.com/almostreliable/energymeter)
+- [Discord](https://discord.com/invite/ThFnwZCyYY)

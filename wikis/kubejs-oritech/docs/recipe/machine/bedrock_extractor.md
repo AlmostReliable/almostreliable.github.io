@@ -13,21 +13,21 @@ The Bedrock Extractor can mine ores from resource nodes that act as infinite sou
 
 ## Overview
 
--   access in recipes event via: `event.recipes.oritech.deep_drill`
--   properties:
-    -   item inputs
-        -   role: input
-        -   required: yes
-        -   limits: exactly 1
-    -   item outputs
-        -   role: output
-        -   required: yes
-        -   limits: exactly 1
-    -   time
-        -   role: misc
-        -   required: no
-        -   default: `60`
-        -   description: time in ticks for a single extraction operation; can mine multiple ores at once occasionally
+- access in recipes event via: `event.recipes.oritech.deep_drill`
+- properties:
+    - item inputs
+        - role: input
+        - required: yes
+        - limits: exactly 1
+    - item outputs
+        - role: output
+        - required: yes
+        - limits: exactly 1
+    - time
+        - role: misc
+        - required: no
+        - default: `60`
+        - description: time in ticks for a single extraction operation; can mine multiple ores at once occasionally
 
 ## Tagging
 

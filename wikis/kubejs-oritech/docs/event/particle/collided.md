@@ -11,44 +11,44 @@ This event allows you to invoke logic when a particle collides in the [Particle 
 
 This event is fired when a particle collision happens in the Particle Accelerator, but before checking if the collision matches a valid recipe. By cancelling the event, the collision will still happen, but not result in any item output, which is the samee thing that happens when no valid recipe is found.
 
--   access in a server script via: `OritechEvents.particleCollided`
--   properties
-    -   `level`
-        -   type: `ServerLevel`
-        -   description: the level where the particle collision is happening
-    -   `pos`
-        -   type: `BlockPos`
-        -   description: the position of the accelerator controller
-    -   `controller`
-        -   type: `AcceleratorControllerBlockEntity`
-        -   description: the `BlockEntity` of the accelerator controller block
-    -   `collisionPos`
-        -   type: `BlockPos`
-        -   description: the position in the world where the particle collision is happening
-    -   `itemA`
-        -   type: `ItemStack`
-        -   description: the first item that is being collided
-    -   `itemB`
-        -   type: `ItemStack`
-        -   description: the second item that is being collided
-    -   `speed`
-        -   type: `long`
-        -   description: the speed of the particle collision (added speeds of both particles)
-    -   `recipeId`
-        -   type: `ResourceLocation` (nullable)
-        -   description: the recipe id of the matched recipe; null if no valid recipe was found for this collision
-    -   `recipe`
-        -   type: `OritechRecipe` (nullable)
-        -   description: the matched recipe; null if no valid recipe was found for this collision
--   functions
-    -   `cancel()`
-        -   description: cancels the particle collision; collision still happens but no item output will be produced, even if a recipe matches
-    -   `spawnEndPortal(BlockPos)`
-        -   description: spawns an end portal at the given position; this is usually used by a special interaction when two Ender Pearls
-            collide with high speed
-    -   `spawnNetherPortal(BlockPos)`
-        -   description: spawns a nether portal at the given position; this is usually used by a special interaction when two Fire Charges
-            collide with high speed
+- access in a server script via: `OritechEvents.particleCollided`
+- properties
+    - `level`
+        - type: `ServerLevel`
+        - description: the level where the particle collision is happening
+    - `pos`
+        - type: `BlockPos`
+        - description: the position of the accelerator controller
+    - `controller`
+        - type: `AcceleratorControllerBlockEntity`
+        - description: the `BlockEntity` of the accelerator controller block
+    - `collisionPos`
+        - type: `BlockPos`
+        - description: the position in the world where the particle collision is happening
+    - `itemA`
+        - type: `ItemStack`
+        - description: the first item that is being collided
+    - `itemB`
+        - type: `ItemStack`
+        - description: the second item that is being collided
+    - `speed`
+        - type: `long`
+        - description: the speed of the particle collision (added speeds of both particles)
+    - `recipeId`
+        - type: `ResourceLocation` (nullable)
+        - description: the recipe id of the matched recipe; null if no valid recipe was found for this collision
+    - `recipe`
+        - type: `OritechRecipe` (nullable)
+        - description: the matched recipe; null if no valid recipe was found for this collision
+- functions
+    - `cancel()`
+        - description: cancels the particle collision; collision still happens but no item output will be produced, even if a recipe matches
+    - `spawnEndPortal(BlockPos)`
+        - description: spawns an end portal at the given position; this is usually used by a special interaction when two Ender Pearls
+          collide with high speed
+    - `spawnNetherPortal(BlockPos)`
+        - description: spawns a nether portal at the given position; this is usually used by a special interaction when two Fire Charges
+          collide with high speed
 
 ## Oritech Recipe
 

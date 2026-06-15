@@ -8,8 +8,8 @@ As `LootPool` extends from [`LootEntriesTransformer`](/api/loot-entries-transfor
 
 Get the name of the pool. May return `null` if no name is set. Some mods will give their injected pools a name, so you can use this to identify them.
 
--   Syntax:
-    -   `.getName()`
+- Syntax:
+    - `.getName()`
 
 ```js
 LootJS.lootTables(event => {
@@ -21,8 +21,8 @@ LootJS.lootTables(event => {
 
 Sets the name of the pool.
 
--   Syntax:
-    -   `.name(name: string)`
+- Syntax:
+    - `.name(name: string)`
 
 ```js
 LootJS.lootTables(event => {
@@ -34,8 +34,8 @@ LootJS.lootTables(event => {
 
 Sets the number of rolls of the pool. The default value is `1`.
 
--   Syntax:
-    -   `.rolls(rolls: NumberProvider)`,_<sub>see [NumberProvider]</sub>_
+- Syntax:
+    - `.rolls(rolls: NumberProvider)`,_<sub>see [NumberProvider]</sub>_
 
 ```js
 LootJS.lootTables(event => {
@@ -47,8 +47,8 @@ LootJS.lootTables(event => {
 
 Sets the number of bonus rolls of the pool. The default value is `0`.
 
--   Syntax:
-    -   `.bonusRolls(rolls: NumberProvider)`,_<sub>see [NumberProvider]</sub>_
+- Syntax:
+    - `.bonusRolls(rolls: NumberProvider)`,_<sub>see [NumberProvider]</sub>_
 
 ```js
 LootJS.lootTables(event => {
@@ -60,8 +60,8 @@ LootJS.lootTables(event => {
 
 Set the conditions of the pool. If no condition met the pool will be skipped. See [`LootCondition`](/api/loot-condition) for more information.
 
--   Syntax:
-    -   `.when((conditions) => {})`
+- Syntax:
+    - `.when((conditions) => {})`
 
 ```js
 LootJS.lootTables(event => {
@@ -78,9 +78,9 @@ LootJS.lootTables(event => {
 
 Returns a list of all conditions attached to the pool. Alternative to `when`. See [`LootCondition`](/api/loot-condition) for more information.
 
--   Syntax:
-    -   `.getConditions()`
-    -   `.conditions`
+- Syntax:
+    - `.getConditions()`
+    - `.conditions`
 
 ```js
 LootJS.lootTables(event => {
@@ -93,8 +93,8 @@ LootJS.lootTables(event => {
 
 Set the item loot functions of the pool. See [`LootFunction`](/api/loot-function) for more information.
 
--   Syntax:
-    -   `.apply((functions) => {})`
+- Syntax:
+    - `.apply((functions) => {})`
 
 ```js
 LootJS.lootTables(event => {
@@ -111,9 +111,9 @@ LootJS.lootTables(event => {
 
 Returns a list of all loot item functions attached to the pool. Alternative to `apply`. See [`LootFunction`](/api/loot-function) for more information.
 
--   Syntax:
-    -   `.getFunctions()`
-    -   `.functions`
+- Syntax:
+    - `.getFunctions()`
+    - `.functions`
 
 ```js
 LootJS.lootTables(event => {
@@ -126,9 +126,9 @@ LootJS.lootTables(event => {
 
 Returns a list of all `LootEntry` in the pool.
 
--   Syntax:
-    -   `.getEntries()`
-    -   `.entries`
+- Syntax:
+    - `.getEntries()`
+    - `.entries`
 
 ```js
 LootJS.lootTables(event => {
@@ -142,9 +142,9 @@ LootJS.lootTables(event => {
 
 Adds a new `LootEntry` to the pool. See [`LootEntry`](/api/loot-entry) for more information.
 
--   Syntax:
-    -   `.addEntry(entry: LootEntry)`
-    -   `.addCustomEntry(json)`
+- Syntax:
+    - `.addEntry(entry: LootEntry)`
+    - `.addCustomEntry(json)`
 
 ```js
 LootJS.lootTables(event => {

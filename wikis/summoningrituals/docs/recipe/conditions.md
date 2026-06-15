@@ -5,10 +5,10 @@ Conditions are used to restrict when a ritual can be started. All conditions are
 > [!WARNING] NOTE
 > This page assumes that you know how to get an instance of the altar recipe builder. If you do not know how to do that or you didn't read about the general recipe structure yet, please read the [recipe basics page](basics.md).
 
--   type: `List<LootItemCondition>`
--   required: no
--   default: empty list
--   primary access: `conditions(...)`
+- type: `List<LootItemCondition>`
+- required: no
+- default: empty list
+- primary access: `conditions(...)`
 
 ## Condition Builder
 
@@ -32,8 +32,8 @@ It's possible to either specify specific biomes or a single biome tag.
 
 Functions:
 
--   `biomes(HolderSet<Biome> biomes)`
--   `biomes(TagKey<Biome> biomeTag)`
+- `biomes(HolderSet<Biome> biomes)`
+- `biomes(TagKey<Biome> biomeTag)`
 
 ```js
 .conditions(c =>
@@ -166,14 +166,14 @@ If you want to read more about moon phases and how they are calculated, check th
 Function: `moonPhase(MoonPhase phase)`<br>
 Available Options:
 
--   `FULL_MOON`
--   `WANING_GIBBOUS`
--   `THIRD_QUARTER`
--   `WANING_CRESCENT`
--   `NEW_MOON`
--   `WAXING_CRESCENT`
--   `FIRST_QUARTER`
--   `WAXING_GIBBOUS`
+- `FULL_MOON`
+- `WANING_GIBBOUS`
+- `THIRD_QUARTER`
+- `WANING_CRESCENT`
+- `NEW_MOON`
+- `WAXING_CRESCENT`
+- `FIRST_QUARTER`
+- `WAXING_GIBBOUS`
 
 ```js
 .conditions(c =>
@@ -218,8 +218,8 @@ It's possible to either specify specific structures or a single structure tag.
 
 Functions:
 
--   `structures(HolderSet<Structure> structures)`
--   `structures(TagKey<Structure> structureTag)`
+- `structures(HolderSet<Structure> structures)`
+- `structures(TagKey<Structure> structureTag)`
 
 ```js
 .conditions(c =>
@@ -270,13 +270,13 @@ Function: `maxTime(Integer max)`
 Function: `time(SummoningTime time)`<br>
 Available Options (min, max):
 
--   `DAY` (0, 12000)
--   `NIGHT` (12000, 24000)
--   `MORNING` (0, 4000)
--   `NOON` (4000, 8000)
--   `AFTERNOON` (8000, 10000)
--   `EVENING` (10000, 12000)
--   `MIDNIGHT` (17000, 19000)
+- `DAY` (0, 12000)
+- `NIGHT` (12000, 24000)
+- `MORNING` (0, 4000)
+- `NOON` (4000, 8000)
+- `AFTERNOON` (8000, 10000)
+- `EVENING` (10000, 12000)
+- `MIDNIGHT` (17000, 19000)
 
 ```js
 .conditions(c =>
@@ -312,8 +312,8 @@ Because there are different types of weather, this is configured via its own bui
 Function: `weather(...)`<br>
 Available builder functions:
 
--   `setRaining(Boolean raining)`
--   `setThundering(Boolean thundering)`
+- `setRaining(Boolean raining)`
+- `setThundering(Boolean thundering)`
 
 ```js
 .conditions(c =>

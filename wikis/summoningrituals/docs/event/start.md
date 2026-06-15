@@ -10,53 +10,53 @@ The event is fired after a valid recipe is found but before the ritual is starte
 
 At this point, the altar block also contains the initiator item and is about to start the ritual.
 
--   access in a server script via: `SummoningRituals.start`
--   properties
-    -   `level`
-        -   type: `ServerLevel`
-        -   description: the level where the ritual is about to happen
-    -   `pos`
-        -   type: `BlockPos`
-        -   description: the position of the altar block that is about to start the ritual
-    -   `altar`
-        -   type: `AltarBlockEntity`
-        -   description: the altar block entity that is about to start the ritual
-    -   `recipeInfo`
-        -   type: `RecipeInfo`
-        -   description: a container object holding information about the recipe that is about to be processed
-        -   container properties:
-            -   `recipeId` - the ID of the recipe that is about to be processed as `ResourceLocation`
-            -   `recipe` - the `AltarRecipe` that is about to be processed
-            -   `inputEntities` - an `Entity` collection holding all entities that are about to be sacrificed
-            -   `blockPatternExtensionMatched` - defines if the [block pattern extension](../recipe/block_patterns.md#block-pattern-extension) matched
-    -   `player`
-        -   type: `ServerPlayer` (nullable)
-        -   description: the player who inserted the initiator item; may be `null` if the ritual was started by automation
-    -   `rawBlockPattern`
-        -   type: `List<PatternEntry>` (nullable)
-        -   description: the raw block pattern entries of the recipe; may be `null` if the recipe doesn't have a block pattern
-    -   `rawBlockPatternExtension`
-        -   type: `List<PatternEntry>` (nullable)
-        -   description: the raw block pattern extension entries of the recipe; may be `null` if the recipe doesn't have a block pattern
-    -   `transformedBlockPattern`
-        -   type: `Map<BlockPos, List<BlockState>>` (nullable)
-        -   description: the transformed (rotated depending on the altar facing) block pattern entries of the recipe; may be `null` if the recipe doesn't have a block pattern
-    -   `transformedBlockPatternExtension`
-        -   type: `Map<BlockPos, List<BlockState>>` (nullable)
-        -   description: the transformed (rotated depending on the altar facing) block pattern extension entries of the recipe; may be `null` if the recipe doesn't have a block pattern
--   functions
-    -   `cancel()`
-        -   description: cancels the ritual start; this will reset the altar and drop the initiator item
-    -   `queryBlockPattern(String query)`
-        -   type: `Collection<BlockPos>` (nullable)
-        -   description: returns the positions of the block pattern entries matching the query; may be `null` if the recipe doesn't have a block pattern
-    -   `queryBlockPatternExtension(String query)`
-        -   type: `Collection<BlockPos>` (nullable)
-        -   description: returns the positions of the block pattern extension entries matching the query; may be `null` if the recipe doesn't have a block pattern
-    -   `highlightPositions(BlockPos... positions)`
-        -   description: highlights the given positions in the world
-    -   `highlightOffsets(BlockPos... offsets)`
-        -   description: highlights the given offsets in the world
+- access in a server script via: `SummoningRituals.start`
+- properties
+    - `level`
+        - type: `ServerLevel`
+        - description: the level where the ritual is about to happen
+    - `pos`
+        - type: `BlockPos`
+        - description: the position of the altar block that is about to start the ritual
+    - `altar`
+        - type: `AltarBlockEntity`
+        - description: the altar block entity that is about to start the ritual
+    - `recipeInfo`
+        - type: `RecipeInfo`
+        - description: a container object holding information about the recipe that is about to be processed
+        - container properties:
+            - `recipeId` - the ID of the recipe that is about to be processed as `ResourceLocation`
+            - `recipe` - the `AltarRecipe` that is about to be processed
+            - `inputEntities` - an `Entity` collection holding all entities that are about to be sacrificed
+            - `blockPatternExtensionMatched` - defines if the [block pattern extension](../recipe/block_patterns.md#block-pattern-extension) matched
+    - `player`
+        - type: `ServerPlayer` (nullable)
+        - description: the player who inserted the initiator item; may be `null` if the ritual was started by automation
+    - `rawBlockPattern`
+        - type: `List<PatternEntry>` (nullable)
+        - description: the raw block pattern entries of the recipe; may be `null` if the recipe doesn't have a block pattern
+    - `rawBlockPatternExtension`
+        - type: `List<PatternEntry>` (nullable)
+        - description: the raw block pattern extension entries of the recipe; may be `null` if the recipe doesn't have a block pattern
+    - `transformedBlockPattern`
+        - type: `Map<BlockPos, List<BlockState>>` (nullable)
+        - description: the transformed (rotated depending on the altar facing) block pattern entries of the recipe; may be `null` if the recipe doesn't have a block pattern
+    - `transformedBlockPatternExtension`
+        - type: `Map<BlockPos, List<BlockState>>` (nullable)
+        - description: the transformed (rotated depending on the altar facing) block pattern extension entries of the recipe; may be `null` if the recipe doesn't have a block pattern
+- functions
+    - `cancel()`
+        - description: cancels the ritual start; this will reset the altar and drop the initiator item
+    - `queryBlockPattern(String query)`
+        - type: `Collection<BlockPos>` (nullable)
+        - description: returns the positions of the block pattern entries matching the query; may be `null` if the recipe doesn't have a block pattern
+    - `queryBlockPatternExtension(String query)`
+        - type: `Collection<BlockPos>` (nullable)
+        - description: returns the positions of the block pattern extension entries matching the query; may be `null` if the recipe doesn't have a block pattern
+    - `highlightPositions(BlockPos... positions)`
+        - description: highlights the given positions in the world
+    - `highlightOffsets(BlockPos... offsets)`
+        - description: highlights the given offsets in the world
 
 ## Block Pattern
 

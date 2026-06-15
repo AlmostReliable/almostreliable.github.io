@@ -6,8 +6,8 @@ Besides actions you can also apply any [loot condition](/api/loot-condition) and
 
 ## `addLoot`
 
--   Syntax:
-    -   `.addLoot(item: string | Item | LootEntry)`, _<sub>see [LootEntry]</sub>_
+- Syntax:
+    - `.addLoot(item: string | Item | LootEntry)`, _<sub>see [LootEntry]</sub>_
 
 ```js
 LootJS.modifiers(event => {
@@ -37,8 +37,8 @@ LootJS.modifiers(event => {
 
 According to the Minecraft Wiki: Will only add the first successful (conditions are met) item to the loot pool. If no item is successful, no item will be added.
 
--   Syntax:
-    -   `.addAlternativesLoot(....items: string | Item | LootEntry)`, _<sub>see [LootEntry]</sub>_
+- Syntax:
+    - `.addAlternativesLoot(....items: string | Item | LootEntry)`, _<sub>see [LootEntry]</sub>_
     -
 
 ```js
@@ -73,8 +73,8 @@ LootJS.modifiers(event => {
 
 Will add multiple items which will be rolled one after another. According to the Minecraft Wiki, it will add all items until one condition fails. After that no more items will be added.
 
--   Syntax:
-    -   `.addSequenceLoot(....items: string | Item | LootEntry)`, _<sub>see [LootEntry]</sub>_
+- Syntax:
+    - `.addSequenceLoot(....items: string | Item | LootEntry)`, _<sub>see [LootEntry]</sub>_
 
 ```js
 LootJS.modifiers(event => {
@@ -118,8 +118,8 @@ LootJS.modifiers(event => {
 
 Remove all `items` which matches the given [ItemFilter].
 
--   Syntax:
-    -   `.removeLoot(items: string | Item | LootEntry)`, _<sub>see [LootEntry]</sub>_
+- Syntax:
+    - `.removeLoot(items: string | Item | LootEntry)`, _<sub>see [LootEntry]</sub>_
 
 ```js
 LootJS.modifiers(event => {
@@ -139,10 +139,10 @@ LootJS.modifiers(event => {
 
 Replaces all `items` which matches the given [ItemFilter] with a replacement. It's also possible to preserve the original count.
 
--   Syntax:
-    -   `.replaceLoot(item: string | Item | LootEntry, replacement: string | Item | LootEntry)`, _<sub>see [LootEntry]</sub>_
-    -   `.replaceLoot(item: string | Item | LootEntry, replacement: string | Item | LootEntry, preserveCount?: boolean)`
-    -   `.replaceLoot(item: string | Item | LootEntry, replacement: string | Item | LootEntry, preserveCount?: boolean, preserveComponentTypes?: string[])`
+- Syntax:
+    - `.replaceLoot(item: string | Item | LootEntry, replacement: string | Item | LootEntry)`, _<sub>see [LootEntry]</sub>_
+    - `.replaceLoot(item: string | Item | LootEntry, replacement: string | Item | LootEntry, preserveCount?: boolean)`
+    - `.replaceLoot(item: string | Item | LootEntry, replacement: string | Item | LootEntry, preserveCount?: boolean, preserveComponentTypes?: string[])`
 
 ```js
 LootJS.modifiers(event => {
@@ -174,8 +174,8 @@ LootJS.modifiers(event => {
 
 For every `item` in the current loot pool which matches the given [ItemFilter], a callback will be called. `LootJS` will pass the item into the callback to modify it and return the `item`. Make sure to always return an `item`!
 
--   Syntax:
-    -   `.modifyLoot(items: string | Item | LootEntry, onModify: (item) => { ... })`, _<sub>see [LootEntry]</sub>_
+- Syntax:
+    - `.modifyLoot(items: string | Item | LootEntry, onModify: (item) => { ... })`, _<sub>see [LootEntry]</sub>_
 
 ```js
 LootJS.modifiers(event => {
@@ -192,8 +192,8 @@ LootJS.modifiers(event => {
 
 Triggers a lightning strike at the position the loot is dropped at. The `items` will not be destroyed.
 
--   Syntax:
-    -   `.triggerLightningStrike(shouldDamagePlayer: boolean)`
+- Syntax:
+    - `.triggerLightningStrike(shouldDamagePlayer: boolean)`
 
 ```js
 LootJS.modifiers(event => {
@@ -205,8 +205,8 @@ LootJS.modifiers(event => {
 
 Drops an `amount` of experience on the position where the loot will be dropped.
 
--   Syntax:
-    -   `.dropExperience(amount: NumberProvider)`, _<sub>see [NumberProvider](/api/number-provider)</sub>_
+- Syntax:
+    - `.dropExperience(amount: NumberProvider)`, _<sub>see [NumberProvider](/api/number-provider)</sub>_
 
 ```js
 LootJS.modifiers(event => {
@@ -218,8 +218,8 @@ LootJS.modifiers(event => {
 
 Creates a loot pool, which acts as a normal pool from a loot table. See [LootPool](/api/loot-pool) for more details.
 
--   Syntax:
-    -   `.pool(onCreate: (pool) => { ... })`, _<sub>see [LootPool](/api/loot-pool)</sub>_
+- Syntax:
+    - `.pool(onCreate: (pool) => { ... })`, _<sub>see [LootPool](/api/loot-pool)</sub>_
 
 ```js
 LootJS.modifiers(event => {
@@ -233,9 +233,9 @@ LootJS.modifiers(event => {
 
 Creates a new nested loot modifier. You can also pre-filter it, so you can only work with a subset of items.
 
--   Syntax:
-    -   `.group(onCreate: (modifier) => { ... })`
-    -   `.group(filter: ItemFilter, onCreate: (modifier) => { ... })`, _<sub>see [ItemFilter]</sub>_
+- Syntax:
+    - `.group(onCreate: (modifier) => { ... })`
+    - `.group(filter: ItemFilter, onCreate: (modifier) => { ... })`, _<sub>see [ItemFilter]</sub>_
 
 ```js
 LootJS.modifiers(event => {
@@ -249,8 +249,8 @@ LootJS.modifiers(event => {
 
 Adds a custom action to the loot modifier. The action gives you access to the [LootContext](/api/loot-context) and a list of items which can be used to modify the loot.
 
--   Syntax:
-    -   `.customAction(action: (context, bucket) => { ... })`
+- Syntax:
+    - `.customAction(action: (context, bucket) => { ... })`
 
 ```js
 LootJS.modifiers(event => {

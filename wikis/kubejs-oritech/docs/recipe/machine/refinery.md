@@ -7,39 +7,39 @@ The Refinery is used to process items and fluids. It has one item and one fluid 
 
 ## Overview
 
--   access in recipes event via: `event.recipes.oritech.refinery`
--   properties:
-    -   item inputs
-        -   role: input
-        -   required: no
-        -   limits:
-            -   min 0
-            -   max 1
-    -   item outputs
-        -   role: output
-        -   required: no
-        -   limits:
-            -   min 0
-            -   max 1
-    -   fluid input
-        -   role: input
-        -   required: no
-        -   limits:
-            -   min 0
-            -   max 1
-    -   fluid outputs
-        -   role: output
-        -   required: no
-        -   limits:
-            -   min 0
-            -   max 3
-    -   time
-        -   role: misc
-        -   required: no
-        -   default: `60`
--   recipe limitations
-    -   needs at least one item input or one fluid input
-    -   needs at least one item output or one fluid output
+- access in recipes event via: `event.recipes.oritech.refinery`
+- properties:
+    - item inputs
+        - role: input
+        - required: no
+        - limits:
+            - min 0
+            - max 1
+    - item outputs
+        - role: output
+        - required: no
+        - limits:
+            - min 0
+            - max 1
+    - fluid input
+        - role: input
+        - required: no
+        - limits:
+            - min 0
+            - max 1
+    - fluid outputs
+        - role: output
+        - required: no
+        - limits:
+            - min 0
+            - max 3
+    - time
+        - role: misc
+        - required: no
+        - default: `60`
+- recipe limitations
+    - needs at least one item input or one fluid input
+    - needs at least one item output or one fluid output
 
 ## Examples
 

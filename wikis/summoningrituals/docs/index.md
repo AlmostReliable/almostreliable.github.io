@@ -12,7 +12,7 @@ For developers: Please refer to [this page](usage_for_developers.md).
 
 Useful links:
 
--   [CurseForge](https://www.curseforge.com/minecraft/mc-mods/summoningrituals)
--   [Modrinth](https://modrinth.com/mod/summoningrituals)
--   [GitHub](https://github.com/almostreliable/summoningrituals)
--   [Discord](https://discord.com/invite/ThFnwZCyYY)
+- [CurseForge](https://www.curseforge.com/minecraft/mc-mods/summoningrituals)
+- [Modrinth](https://modrinth.com/mod/summoningrituals)
+- [GitHub](https://github.com/almostreliable/summoningrituals)
+- [Discord](https://discord.com/invite/ThFnwZCyYY)

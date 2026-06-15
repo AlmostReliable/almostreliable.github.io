@@ -7,20 +7,20 @@ The Assembler acts as a 2x2 crafting grid and will automatically craft items as 
 
 ## Overview
 
--   access in recipes event via: `event.recipes.oritech.assembler`
--   properties:
-    -   item inputs
-        -   role: input
-        -   required: yes
-        -   limits: exactly 4
-    -   item outputs
-        -   role: output
-        -   required: yes
-        -   limits: exactly 1
-    -   time
-        -   role: misc
-        -   required: no
-        -   default: `60`
+- access in recipes event via: `event.recipes.oritech.assembler`
+- properties:
+    - item inputs
+        - role: input
+        - required: yes
+        - limits: exactly 4
+    - item outputs
+        - role: output
+        - required: yes
+        - limits: exactly 1
+    - time
+        - role: misc
+        - required: no
+        - default: `60`
 
 ## Examples
 

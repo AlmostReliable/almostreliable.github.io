@@ -7,20 +7,20 @@ The Foundry focuses on alloy creation by combining two materials.
 
 ## Overview
 
--   access in recipes event via: `event.recipes.oritech.foundry`
--   properties:
-    -   item inputs
-        -   role: input
-        -   required: yes
-        -   limits: exactly 2
-    -   item outputs
-        -   role: output
-        -   required: yes
-        -   limits: exactly 1
-    -   time
-        -   role: misc
-        -   required: no
-        -   default: `60`
+- access in recipes event via: `event.recipes.oritech.foundry`
+- properties:
+    - item inputs
+        - role: input
+        - required: yes
+        - limits: exactly 2
+    - item outputs
+        - role: output
+        - required: yes
+        - limits: exactly 1
+    - time
+        - role: misc
+        - required: no
+        - default: `60`
 
 ## Examples
 

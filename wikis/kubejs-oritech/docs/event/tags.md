@@ -73,9 +73,9 @@ ServerEvents.tags("block", event => {
 
 Oritech uses a variation of the `oritech:unstable_container` block tag to determine how much energy capacity is reached when a block is captured inside the unstable container. There are 3 different levels of instability, which are determined by the following tags:
 
--   `oritech:unstable_container/low` -> 0.3
--   `oritech:unstable_container/medium` -> 1.0
--   `oritech:unstable_container/high` -> 5.0
+- `oritech:unstable_container/low` -> 0.3
+- `oritech:unstable_container/medium` -> 1.0
+- `oritech:unstable_container/high` -> 5.0
 
 Assigning these tags is also required to capture a block inside of the safe.
 

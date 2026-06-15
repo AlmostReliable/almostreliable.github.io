@@ -7,17 +7,17 @@ The Nuclear Reactor burns nuclear fuel to generate energy.
 
 ## Overview
 
--   access in recipes event via: `event.recipes.oritech.reactor`
--   properties:
-    -   item inputs
-        -   role: input
-        -   required: yes
-        -   limits: exactly 1
-    -   time
-        -   role: misc
-        -   required: no
-        -   default: `60`
-        -   description: specifies the time in ticks how long a single item burns; higher values burn longer and generate more energy
+- access in recipes event via: `event.recipes.oritech.reactor`
+- properties:
+    - item inputs
+        - role: input
+        - required: yes
+        - limits: exactly 1
+    - time
+        - role: misc
+        - required: no
+        - default: `60`
+        - description: specifies the time in ticks how long a single item burns; higher values burn longer and generate more energy
 
 ## Examples
 

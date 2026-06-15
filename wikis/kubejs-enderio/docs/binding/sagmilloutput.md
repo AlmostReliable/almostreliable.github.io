@@ -8,40 +8,40 @@ It also supports chance-based outputs which can be useful for something like byp
 
 ## Overview
 
--   access in recipes event via: `SagMillOutput`
--   properties:
-    -   `output`
-        -   description: specifies the output item or tag
-        -   type: `ItemStack | TagKey`
-        -   required: yes
-    -   `count`
-        -   description: specifies the count of the output item, only required when using a tag
-        -   type: `int`
-        -   required: no
-        -   default: `1`
-    -   `chance`
-        -   description: specifies the chance of the output item, between `0` and `1`
-        -   type: `float`
-        -   required: no
-        -   default: `1.0` (100% chance)
-    -   `optional`
-        -   description: this property is currently unused and has no effect
-        -   type: `boolean`
-        -   required: no
-        -   default: `false`
--   methods:
-    -   `of(ItemStack output, float chance, boolean optional)`
-        -   creates an `OutputItem` with a chance-based output and the optional property
-    -   `of(ItemStack output, float chance)`
-        -   creates an `OutputItem` with a chance-based output (sets optional to false)
-    -   `of(ItemStack output)`
-        -   creates an `OutputItem` with a guaranteed output (100% chance) (sets optional to false)
-    -   `ofTag(TagKey output, int count, float chance, boolean optional)`
-        -   creates an `OutputItem` with a chance-based output using a tag and the optional property
-    -   `ofTag(TagKey output, int count, float chance)`
-        -   creates an `OutputItem` with a chance-based output using a tag (sets optional to false)
-    -   `ofTag(TagKey output, int count)`
-        -   creates an `OutputItem` with a guaranteed output (100% chance) using a tag (sets optional to false)
+- access in recipes event via: `SagMillOutput`
+- properties:
+    - `output`
+        - description: specifies the output item or tag
+        - type: `ItemStack | TagKey`
+        - required: yes
+    - `count`
+        - description: specifies the count of the output item, only required when using a tag
+        - type: `int`
+        - required: no
+        - default: `1`
+    - `chance`
+        - description: specifies the chance of the output item, between `0` and `1`
+        - type: `float`
+        - required: no
+        - default: `1.0` (100% chance)
+    - `optional`
+        - description: this property is currently unused and has no effect
+        - type: `boolean`
+        - required: no
+        - default: `false`
+- methods:
+    - `of(ItemStack output, float chance, boolean optional)`
+        - creates an `OutputItem` with a chance-based output and the optional property
+    - `of(ItemStack output, float chance)`
+        - creates an `OutputItem` with a chance-based output (sets optional to false)
+    - `of(ItemStack output)`
+        - creates an `OutputItem` with a guaranteed output (100% chance) (sets optional to false)
+    - `ofTag(TagKey output, int count, float chance, boolean optional)`
+        - creates an `OutputItem` with a chance-based output using a tag and the optional property
+    - `ofTag(TagKey output, int count, float chance)`
+        - creates an `OutputItem` with a chance-based output using a tag (sets optional to false)
+    - `ofTag(TagKey output, int count)`
+        - creates an `OutputItem` with a guaranteed output (100% chance) using a tag (sets optional to false)
 
 ## Examples
 

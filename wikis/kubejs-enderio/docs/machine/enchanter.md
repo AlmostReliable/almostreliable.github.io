@@ -4,27 +4,27 @@ The Enchanter allows to craft enchantments using items. When defining a recipe f
 
 ## Overview
 
--   access in recipes event via: `event.recipes.enderio.enchanting`
--   properties:
-    -   `enchantment`
-        -   description: specifies the enchantment recipes should be generated for
-        -   type: `Holder<Enchantment>`, a string in the format of a `ResourceLocation`
-        -   role: other
-        -   required: yes
-        -   usage: needs to be passed as the first argument
-    -   `input`
-        -   description: specifies the input item, the count will be multiplied by the enchantment level
-        -   type: `SizedIngredient`
-        -   role: input
-        -   required: yes
-        -   usage: needs to be passed as the second argument
-    -   `cost_multiplier`
-        -   description: specifies the experience cost multiplier for each consecutive level of the enchantment, more information below
-        -   type: `int`
-        -   role: other
-        -   required: no
-        -   default: `1`
-        -   usage: can be passed as the third argument or by chaining the function `.costMultiplier(int)`
+- access in recipes event via: `event.recipes.enderio.enchanting`
+- properties:
+    - `enchantment`
+        - description: specifies the enchantment recipes should be generated for
+        - type: `Holder<Enchantment>`, a string in the format of a `ResourceLocation`
+        - role: other
+        - required: yes
+        - usage: needs to be passed as the first argument
+    - `input`
+        - description: specifies the input item, the count will be multiplied by the enchantment level
+        - type: `SizedIngredient`
+        - role: input
+        - required: yes
+        - usage: needs to be passed as the second argument
+    - `cost_multiplier`
+        - description: specifies the experience cost multiplier for each consecutive level of the enchantment, more information below
+        - type: `int`
+        - role: other
+        - required: no
+        - default: `1`
+        - usage: can be passed as the third argument or by chaining the function `.costMultiplier(int)`
 
 ## Cost Multiplier
 

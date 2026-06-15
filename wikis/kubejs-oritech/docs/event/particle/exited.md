@@ -11,46 +11,46 @@ This event allows you to invoke logic when a particle exits the [Particle Accele
 
 This event is fired when an a particle leaves the Particle Accelerator without colliding with another particle. This can happen if the particle becomes too fast and can't be contained by the accelerator, for example.
 
--   access in a server script via: `OritechEvents.particleExited`
--   properties
-    -   `level`
-        -   type: `ServerLevel`
-        -   description: the level where the particle exited
-    -   `pos`
-        -   type: `BlockPos`
-        -   description: the position of the accelerator controller
-    -   `controller`
-        -   type: `AcceleratorControllerBlockEntity`
-        -   description: the `BlockEntity` of the accelerator controller block
-    -   `gatePos`
-        -   type: `BlockPos`
-        -   description: the position of the last gate the particle passed through before exiting
-    -   `fromVec`
-        -   type: `Vec3`
-        -   description: the vector from which the particle came from
-    -   `toVec`
-        -   type: `Vec3`
-        -   description: the vector to which the particle is heading
-    -   `directionVec`
-        -   type: `Vec3`
-        -   description: the normalized vector that represents the direction of the particle movement
-    -   `reason`
-        -   type: `ParticleEvent`
-        -   description: the reason why the particle exited
-        -   possible values:
-            -   `IDLE` - nothing was insert yet; should not be possible in a valid scenario
-            -   `ERROR` - no ring was found; should not be possible in a valid scenario
-            -   `ACCELERATING` - particle is in collider; should not be possible in a valid scenario
-            -   `COLLIDED` - particle collided with another particle; should not be possible in a valid scenario
-            -   `EXITED_FAST` - particle was too fast to take curve
-            -   `EXITED_NO_GATE` - no gate found in range; particle was to slow to bridge the gap between gates
--   functions
-    -   `spawnEndPortal(BlockPos)`
-        -   description: spawns an end portal at the given position; this is usually used by a special interaction when two Ender Pearls
-            collide with high speed
-    -   `spawnNetherPortal(BlockPos)`
-        -   description: spawns a nether portal at the given position; this is usually used by a special interaction when two Fire Charges
-            collide with high speed
+- access in a server script via: `OritechEvents.particleExited`
+- properties
+    - `level`
+        - type: `ServerLevel`
+        - description: the level where the particle exited
+    - `pos`
+        - type: `BlockPos`
+        - description: the position of the accelerator controller
+    - `controller`
+        - type: `AcceleratorControllerBlockEntity`
+        - description: the `BlockEntity` of the accelerator controller block
+    - `gatePos`
+        - type: `BlockPos`
+        - description: the position of the last gate the particle passed through before exiting
+    - `fromVec`
+        - type: `Vec3`
+        - description: the vector from which the particle came from
+    - `toVec`
+        - type: `Vec3`
+        - description: the vector to which the particle is heading
+    - `directionVec`
+        - type: `Vec3`
+        - description: the normalized vector that represents the direction of the particle movement
+    - `reason`
+        - type: `ParticleEvent`
+        - description: the reason why the particle exited
+        - possible values:
+            - `IDLE` - nothing was insert yet; should not be possible in a valid scenario
+            - `ERROR` - no ring was found; should not be possible in a valid scenario
+            - `ACCELERATING` - particle is in collider; should not be possible in a valid scenario
+            - `COLLIDED` - particle collided with another particle; should not be possible in a valid scenario
+            - `EXITED_FAST` - particle was too fast to take curve
+            - `EXITED_NO_GATE` - no gate found in range; particle was to slow to bridge the gap between gates
+- functions
+    - `spawnEndPortal(BlockPos)`
+        - description: spawns an end portal at the given position; this is usually used by a special interaction when two Ender Pearls
+          collide with high speed
+    - `spawnNetherPortal(BlockPos)`
+        - description: spawns a nether portal at the given position; this is usually used by a special interaction when two Fire Charges
+          collide with high speed
 
 ## Event Listener
 

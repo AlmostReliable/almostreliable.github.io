@@ -8,25 +8,25 @@ This event allows you to cancel soul collection or modify the soul collection am
 
 Oritech has a mechanic that allows collecting souls from parting mobs. The collected souls can be used in various ways, such as enchanting or spawning certain mobs. By default, the soul collection is always 1, whenever a mob dies nearby. This event allows you to cancel the soul collection completely or modify the the amount of souls collected per mob death.
 
--   access in a server script via: `OritechEvents.soulCollection`
--   properties
-    -   `level`
-        -   type: `ServerLevel`
-        -   description: the level where the soul collection is happening
-    -   `pos`
-        -   type: `Vec3` (precise floating point position as a vector)
-        -   description: the position the mob died at, the soul collection is happening at this position
-    -   `soulCollector`
-        -   type: `? extends BaseSoulCollectionEntity`
-        -   description: the `BlockEntity` of the soul collection block; this object is responsible for collecting and storing the soul
-    -   `entity`
-        -   type: `? extends LivingEntity` (nullable)
-        -   description: the mob that died and is the source of the soul collection; this can be null if the soul collection was initiated by a Soul Flower
--   functions
-    -   `cancel()`
-        -   description: cancels the soul collection, no souls will be collected for this mob death
-    -   `setSoulValue(Integer)`
-        -   description: sets the amount of souls collected for this mob death; the default value is 1
+- access in a server script via: `OritechEvents.soulCollection`
+- properties
+    - `level`
+        - type: `ServerLevel`
+        - description: the level where the soul collection is happening
+    - `pos`
+        - type: `Vec3` (precise floating point position as a vector)
+        - description: the position the mob died at, the soul collection is happening at this position
+    - `soulCollector`
+        - type: `? extends BaseSoulCollectionEntity`
+        - description: the `BlockEntity` of the soul collection block; this object is responsible for collecting and storing the soul
+    - `entity`
+        - type: `? extends LivingEntity` (nullable)
+        - description: the mob that died and is the source of the soul collection; this can be null if the soul collection was initiated by a Soul Flower
+- functions
+    - `cancel()`
+        - description: cancels the soul collection, no souls will be collected for this mob death
+    - `setSoulValue(Integer)`
+        - description: sets the amount of souls collected for this mob death; the default value is 1
 
 ## Event Listener
 

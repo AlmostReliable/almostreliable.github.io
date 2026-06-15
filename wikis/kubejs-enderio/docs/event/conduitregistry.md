@@ -14,13 +14,13 @@ EnderIO supports data-driven conduits by default. This event adds convenience me
 It automatically generates the required JSON files for the conduit as well as the language file entry. The only thing you have to provide is a texture
 for your custom conduit.
 
--   access in a server script via: `EnderIOEvents.conduits`
--   supported conduits
-    -   item conduit
-    -   energy conduit
-    -   fluid conduit
-    -   chemical conduit (Mekanism)
-    -   ME conduit (Applied Energistics 2)
+- access in a server script via: `EnderIOEvents.conduits`
+- supported conduits
+    - item conduit
+    - energy conduit
+    - fluid conduit
+    - chemical conduit (Mekanism)
+    - ME conduit (Applied Energistics 2)
 
 ## Registration
 
@@ -38,9 +38,9 @@ The custom conduit will be part of the normal EnderIO Conduits creative tab. Rec
 
 ### Item Conduit
 
--   `transferRate` - specifies the transfer rate of items per tick
--   `ticksPerCycle` - specifies the amount of ticks per second the conduit operates at
--   note: to calculate the effective transfer rate, the two values need to be multiplied (e.g. 2 ticks per cycle and a transfer rate of 8 would be 16 items per second)
+- `transferRate` - specifies the transfer rate of items per tick
+- `ticksPerCycle` - specifies the amount of ticks per second the conduit operates at
+- note: to calculate the effective transfer rate, the two values need to be multiplied (e.g. 2 ticks per cycle and a transfer rate of 8 would be 16 items per second)
 
 ```js
 EnderIOEvents.conduits(event => {
@@ -50,7 +50,7 @@ EnderIOEvents.conduits(event => {
 
 ### Energy Conduit
 
--   `transferRate` - specifies the transfer rate of energy per tick
+- `transferRate` - specifies the transfer rate of energy per tick
 
 ```js
 EnderIOEvents.conduits(event => {
@@ -60,7 +60,7 @@ EnderIOEvents.conduits(event => {
 
 ### Fluid Conduit
 
--   `transferRate` - specifies the transfer rate of fluid per tick
+- `transferRate` - specifies the transfer rate of fluid per tick
 
 ```js
 EnderIOEvents.conduits(event => {
@@ -70,7 +70,7 @@ EnderIOEvents.conduits(event => {
 
 ### Chemical Conduit
 
--   `transferRate` - specifies the transfer rate of chemical per tick
+- `transferRate` - specifies the transfer rate of chemical per tick
 
 ```js
 EnderIOEvents.conduits(event => {
@@ -80,10 +80,10 @@ EnderIOEvents.conduits(event => {
 
 ### ME Conduit
 
--   `color` - specifies the AE2 color conduit transports channels for
-    -   this needs to be a value from the `AEColor` enum, for universal color use `TRANSPARENT`
-    -   possible values: `BLACK`, `BLUE`, `BROWN`, `CYAN`, `GRAY`, `GREEN`, `LIGHT_BLUE`, `LIGHT_GRAY`, `LIME`, `MAGENTA`, `ORANGE`, `PINK`, `PURPLE`, `RED`, `TRANSPARENT`, `WHITE`, `YELLOW`
--   `dense` - specifies whether the conduit is a dense ME conduit (32 channels) or a normal one (8 channels)
+- `color` - specifies the AE2 color conduit transports channels for
+    - this needs to be a value from the `AEColor` enum, for universal color use `TRANSPARENT`
+    - possible values: `BLACK`, `BLUE`, `BROWN`, `CYAN`, `GRAY`, `GREEN`, `LIGHT_BLUE`, `LIGHT_GRAY`, `LIME`, `MAGENTA`, `ORANGE`, `PINK`, `PURPLE`, `RED`, `TRANSPARENT`, `WHITE`, `YELLOW`
+- `dense` - specifies whether the conduit is a dense ME conduit (32 channels) or a normal one (8 channels)
 
 ```js
 EnderIOEvents.conduits(event => {

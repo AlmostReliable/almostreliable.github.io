@@ -9,19 +9,19 @@ Because generators support a boiler add-on, which turns water into steam, all fl
 
 ## Overview
 
--   access in recipes event via: `event.recipes.oritech.fuel_generator`
--   properties:
-    -   fluid input
-        -   role: input
-        -   required: yes
-        -   limits:
-            -   exactly 1
-            -   does not support water
-    -   time
-        -   role: misc
-        -   required: no
-        -   default: `60`
-        -   description: specifies the time in ticks how long a fluid burns; higher values burn longer and generate more energy
+- access in recipes event via: `event.recipes.oritech.fuel_generator`
+- properties:
+    - fluid input
+        - role: input
+        - required: yes
+        - limits:
+            - exactly 1
+            - does not support water
+    - time
+        - role: misc
+        - required: no
+        - default: `60`
+        - description: specifies the time in ticks how long a fluid burns; higher values burn longer and generate more energy
 
 ## Examples
 

@@ -8,20 +8,20 @@ Usable through `MoreJS.playerEnchant((event) => {...})`
 
 ## Methods
 
--   `getEnchantments()`
--   `getEnchantmentIds()`
--   `getRequiredLevel()`
-    -   The required level is the minimum level the player needs to have to be able to enchant the item
--   `getPosition()`
--   `getItem()`
--   `getSecondItem()`
--   `getLevel()`
--   `getPlayer()`
+- `getEnchantments()`
+- `getEnchantmentIds()`
+- `getRequiredLevel()`
+    - The required level is the minimum level the player needs to have to be able to enchant the item
+- `getPosition()`
+- `getItem()`
+- `getSecondItem()`
+- `getLevel()`
+- `getPlayer()`
 
 ## Usage
 
 ```js
-MoreJS.playerEnchant((event) => {
+MoreJS.playerEnchant(event => {
     const player = event.player
     const rl = event.requiredLevel
 
@@ -33,10 +33,10 @@ MoreJS.playerEnchant((event) => {
 ```
 
 ```js
-MoreJS.playerEnchant((event) => {
+MoreJS.playerEnchant(event => {
     if (event.item.id === "minecraft:netherite_pickaxe") {
-        event.player.tell("You can't enchant Netherite Pickaxes! Oops!");
-        event.cancel();
+        event.player.tell("You can't enchant Netherite Pickaxes! Oops!")
+        event.cancel()
     }
 })
 ```

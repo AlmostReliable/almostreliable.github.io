@@ -2,14 +2,14 @@
 
 ## Methods
 
--   `addPotionBrewing(ingredient: Ingredient, input: Potion, output: Potion)`
--   `removePotionBrewing(filter: PotionBrewingFilter)`
--   `addContainerRecipe(ingredient: Ingredient, input: Item, output: Item)`
--   `removeContainer(ingredient: Ingredient)`
--   `addCustomBrewing(ingredient: Ingredient, input: Ingredient, output: Item)`
--   `removeCustomBrewing(filter: CustomBrewingFilter)`
--   `getCustomBrewingRecipes()`
-    -   Returns a mutable list of all custom brewing recipes. Some mods register their own implementation of a custom brewing recipe. This method can be used to remove them or modify them.
+- `addPotionBrewing(ingredient: Ingredient, input: Potion, output: Potion)`
+- `removePotionBrewing(filter: PotionBrewingFilter)`
+- `addContainerRecipe(ingredient: Ingredient, input: Item, output: Item)`
+- `removeContainer(ingredient: Ingredient)`
+- `addCustomBrewing(ingredient: Ingredient, input: Ingredient, output: Item)`
+- `removeCustomBrewing(filter: CustomBrewingFilter)`
+- `getCustomBrewingRecipes()`
+    - Returns a mutable list of all custom brewing recipes. Some mods register their own implementation of a custom brewing recipe. This method can be used to remove them or modify them.
 
 ## Usage
 

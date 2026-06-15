@@ -6,14 +6,14 @@ Called when the player inserts an item into the enchanting table. Event can be c
 
 ## Methods
 
--   `get(row: number): EnchantmentData`
-    -   Returns the enchantment data for the given row inside the enchanting table. Row `0` is the top row, `1` is the second row and `2` is the bottom row.
--   `getPosition()`
--   `getItem()`
--   `setItem(item: ItemStack)`
--   `getSecondItem()`
--   `getLevel()`
--   `getPlayer()`
+- `get(row: number): EnchantmentData`
+    - Returns the enchantment data for the given row inside the enchanting table. Row `0` is the top row, `1` is the second row and `2` is the bottom row.
+- `getPosition()`
+- `getItem()`
+- `setItem(item: ItemStack)`
+- `getSecondItem()`
+- `getLevel()`
+- `getPlayer()`
 
 ## EnchantmentData
 

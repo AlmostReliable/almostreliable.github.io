@@ -64,9 +64,9 @@ After obtaining the item, you have to perform the following steps to generate a 
 
 The two positions are inclusive. There are a few requirements for the pattern to be generated successfully:
 
--   The Altar block must be facing towards the north.
--   Two positions must be selected.
--   The Altar must be within the pattern bounds.
+- The Altar block must be facing towards the north.
+- Two positions must be selected.
+- The Altar must be within the pattern bounds.
 
 You can also sneak-right-click at any time to reset the selected positions. A highlighted box will show the current pattern bounds.
 
@@ -78,54 +78,54 @@ After the pattern has been generated, you can find the output in your Minecraft 
 
 The main block pattern acts as a recipe condition. It is required for the ritual to start and is checked after all other conditions have passed. If the pattern does not match, the ritual won't start.
 
--   type: `BlockPatternCondition`
--   required: no
--   default: none
--   primary access: `blockPattern(...)`
+- type: `BlockPatternCondition`
+- required: no
+- default: none
+- primary access: `blockPattern(...)`
 
 ### Syntax
 
 Because a pattern is a rather complex object, its creation is handled through a builder pattern. You can obtain the instance of the builder by calling the `blockPattern` function. The builder instance is then passed to a callback where you can define the pattern.
 
--   builder properties:
-    -   `name`
-        -   description: specifies the pattern name; useful for patterns that have multiple tiers
-        -   type: `Component`
-        -   required: no
-        -   default: none
-    -   `tooltip`
-        -   description: specifies custom tooltip lines for the pattern; these lines are shown in the recipe viewer when hovering over the pattern icon
-        -   type: `List<Component>`
-        -   required: no
-        -   default: empty list
-    -   `entries`
-        -   description: holds all defined pattern entries
-        -   type: `Set<PatternEntry>`
-        -   required: yes
--   builder functions:
-    -   `name(Component name)`
-        -   assigns the given name to the pattern
-        -   you can also use the KubeJS `Text` utility binding to create a colored text
-    -   `tooltip(List<Component> tooltip)`
-        -   assigns the given tooltip lines to the pattern
-        -   needs to be passed as an array wrapped in `[]`
-        -   you can also use the KubeJS `Text` utility binding to create colored text
-    -   `block(BlockPos offset, Block block)`
-        -   creates a new pattern entry with the specified offset and a predicate that checks for the specified block
-    -   `block(BlockPos offset, Block block, BlockState blockState)`
-        -   creates a new pattern entry with the specified offset and a predicate that checks for the specified block with the specified block state
-    -   `queryableBlock(BlockPos offset, Block block, String query)`
-        -   creates a new pattern entry with the specified offset, a predicate that checks for the specified block, and assigns the specified query to the entry
-    -   `queryableBlock(BlockPos offset, Block block, BlockState blockState, String query)`
-        -   creates a new pattern entry with the specified offset, a predicate that checks for the specified block with the specified block state, and assigns the specified query to the entry
-    -   `tag(BlockPos offset, TagKey<Block> blockTag)`
-        -   creates a new pattern entry with the specified offset and a predicate that checks for any block in the specified block tag
-    -   `tag(BlockPos offset, TagKey<Block> blockTag, BlockState blockState)`
-        -   creates a new pattern entry with the specified offset and a predicate that checks for any block in the specified block tag with the specified block state
-    -   `queryableTag(BlockPos offset, TagKey<Block> blockTag, String query)`
-        -   creates a new pattern entry with the specified offset, a predicate that checks for any block in the specified block tag, and assigns the specified query to the entry
-    -   `queryableTag(BlockPos offset, TagKey<Block> blockTag, BlockState blockState, String query)`
-        -   creates a new pattern entry with the specified offset, a predicate that checks for any block in the specified block tag with the specified block state, and assigns the specified query to the entry
+- builder properties:
+    - `name`
+        - description: specifies the pattern name; useful for patterns that have multiple tiers
+        - type: `Component`
+        - required: no
+        - default: none
+    - `tooltip`
+        - description: specifies custom tooltip lines for the pattern; these lines are shown in the recipe viewer when hovering over the pattern icon
+        - type: `List<Component>`
+        - required: no
+        - default: empty list
+    - `entries`
+        - description: holds all defined pattern entries
+        - type: `Set<PatternEntry>`
+        - required: yes
+- builder functions:
+    - `name(Component name)`
+        - assigns the given name to the pattern
+        - you can also use the KubeJS `Text` utility binding to create a colored text
+    - `tooltip(List<Component> tooltip)`
+        - assigns the given tooltip lines to the pattern
+        - needs to be passed as an array wrapped in `[]`
+        - you can also use the KubeJS `Text` utility binding to create colored text
+    - `block(BlockPos offset, Block block)`
+        - creates a new pattern entry with the specified offset and a predicate that checks for the specified block
+    - `block(BlockPos offset, Block block, BlockState blockState)`
+        - creates a new pattern entry with the specified offset and a predicate that checks for the specified block with the specified block state
+    - `queryableBlock(BlockPos offset, Block block, String query)`
+        - creates a new pattern entry with the specified offset, a predicate that checks for the specified block, and assigns the specified query to the entry
+    - `queryableBlock(BlockPos offset, Block block, BlockState blockState, String query)`
+        - creates a new pattern entry with the specified offset, a predicate that checks for the specified block with the specified block state, and assigns the specified query to the entry
+    - `tag(BlockPos offset, TagKey<Block> blockTag)`
+        - creates a new pattern entry with the specified offset and a predicate that checks for any block in the specified block tag
+    - `tag(BlockPos offset, TagKey<Block> blockTag, BlockState blockState)`
+        - creates a new pattern entry with the specified offset and a predicate that checks for any block in the specified block tag with the specified block state
+    - `queryableTag(BlockPos offset, TagKey<Block> blockTag, String query)`
+        - creates a new pattern entry with the specified offset, a predicate that checks for any block in the specified block tag, and assigns the specified query to the entry
+    - `queryableTag(BlockPos offset, TagKey<Block> blockTag, BlockState blockState, String query)`
+        - creates a new pattern entry with the specified offset, a predicate that checks for any block in the specified block tag with the specified block state, and assigns the specified query to the entry
 
 ### Example
 

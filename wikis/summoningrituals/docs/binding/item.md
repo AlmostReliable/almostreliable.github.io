@@ -4,12 +4,12 @@
 
 ## Overview
 
--   access in recipes event via: `SummoningItem`
--   functions:
-    -   `of(ItemStack result)`
-        -   creates an `ItemOutputBuilder` with the specified item and its assigned count
-    -   `of(ItemStack result, int count)`
-        -   creates an `ItemOutputBuilder` with the specified item and the specified count
+- access in recipes event via: `SummoningItem`
+- functions:
+    - `of(ItemStack result)`
+        - creates an `ItemOutputBuilder` with the specified item and its assigned count
+    - `of(ItemStack result, int count)`
+        - creates an `ItemOutputBuilder` with the specified item and the specified count
 
 ```js
 SummoningItem.of("iron_ingot")
@@ -22,26 +22,26 @@ SummoningItem.of("minecraft:carrot", 2)
 
 After obtaining the `ItemOutputBuilder` instance through the binding, you can chain additional functions to it. It is not required to finish the builder because the `itemOutputs` function also accepts builder instances.
 
--   properties:
-    -   `item`
-        -   description: specifies the output item; defined via the binding function to obtain the builder
-        -   type: `ItemStack`
-        -   required: yes
-    -   `offset`
-        -   description: specifies the offset from the altar block where the output item is spawned
-        -   type: `BlockPos`
-        -   required: no
-        -   default: `[0, 2, 0]`
-    -   `spread`
-        -   description: specifies the spread of the output items; output items are spawned at different positions within the spread area; 4 items can spawn at a position before a new random position is calculated
-        -   type: `BlockPos`
-        -   required: no
-        -   default: `[1, 0, 1]`
--   functions:
-    -   `offset(BlockPos offset)`
-        -   assigns the given offset to the `ItemOutput`
-    -   `spread(BlockPos spread)`
-        -   assigns the given spread to the `ItemOutput`
+- properties:
+    - `item`
+        - description: specifies the output item; defined via the binding function to obtain the builder
+        - type: `ItemStack`
+        - required: yes
+    - `offset`
+        - description: specifies the offset from the altar block where the output item is spawned
+        - type: `BlockPos`
+        - required: no
+        - default: `[0, 2, 0]`
+    - `spread`
+        - description: specifies the spread of the output items; output items are spawned at different positions within the spread area; 4 items can spawn at a position before a new random position is calculated
+        - type: `BlockPos`
+        - required: no
+        - default: `[1, 0, 1]`
+- functions:
+    - `offset(BlockPos offset)`
+        - assigns the given offset to the `ItemOutput`
+    - `spread(BlockPos spread)`
+        - assigns the given spread to the `ItemOutput`
 
 ```js
 .itemOutputs([

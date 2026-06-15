@@ -19,41 +19,41 @@ ServerEvents.recipes(event => {
 
 ## Overview
 
--   access in recipes event via: `event.recipes.enderio.alloy_smelting`
--   properties:
-    -   `output`
-        -   description: specifies the output item
-        -   type: `ItemStack`
-        -   role: output
-        -   required: yes
-        -   usage: needs to be passed as the first argument
-    -   `inputs`
-        -   description: specifies the input items
-        -   type: `SizedIngredient[]`
-        -   role: input
-        -   required: yes
-        -   usage: needs to be passed as the second argument
-    -   `energy`
-        -   description: specifies the energy usage of the recipe
-        -   type: `int`
-        -   role: other
-        -   required: no
-        -   default: `2000`
-        -   usage: can be passed as the third argument or by chaining the function `.energy(int)`
-    -   `experience`
-        -   description: specifies the experience gained from the recipe
-        -   type: `float`
-        -   role: other
-        -   required: no
-        -   default: `0.0`
-        -   usage: can be passed as the fourth argument or by chaining the function `.experience(float)`
-    -   `is_smelting`
-        -   description: specifies if the recipe should be copied to the vanilla smelting recipe type, more information below
-        -   type: `boolean`
-        -   role: other
-        -   required: no
-        -   default: `false`
-        -   usage: can be passed as the fifth argument or by chaining the function `.smelting()` which will set the value to `true`
+- access in recipes event via: `event.recipes.enderio.alloy_smelting`
+- properties:
+    - `output`
+        - description: specifies the output item
+        - type: `ItemStack`
+        - role: output
+        - required: yes
+        - usage: needs to be passed as the first argument
+    - `inputs`
+        - description: specifies the input items
+        - type: `SizedIngredient[]`
+        - role: input
+        - required: yes
+        - usage: needs to be passed as the second argument
+    - `energy`
+        - description: specifies the energy usage of the recipe
+        - type: `int`
+        - role: other
+        - required: no
+        - default: `2000`
+        - usage: can be passed as the third argument or by chaining the function `.energy(int)`
+    - `experience`
+        - description: specifies the experience gained from the recipe
+        - type: `float`
+        - role: other
+        - required: no
+        - default: `0.0`
+        - usage: can be passed as the fourth argument or by chaining the function `.experience(float)`
+    - `is_smelting`
+        - description: specifies if the recipe should be copied to the vanilla smelting recipe type, more information below
+        - type: `boolean`
+        - role: other
+        - required: no
+        - default: `false`
+        - usage: can be passed as the fifth argument or by chaining the function `.smelting()` which will set the value to `true`
 
 ## Smelting Mode
 

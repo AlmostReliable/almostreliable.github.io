@@ -10,11 +10,11 @@ EnderIO supports data-driven Vat Reagents by default. This event adds convenienc
 
 A [Vat recipe](../machine/vat.md) only accepts item tags as inputs. A Vat Reagent is defined by specifying an item within this input tag and assigning a modifier value to it. You can also assign a modifier to the whole input tag. If the reagent item is not part of the input tag, the modifier will not be applied. This system is a bit tricky to understand at first, but it allows defining different modifier values for the same item depending on the recipe input tag.
 
--   access in a server script via: `EnderIOEvents.vatReagents`
--   supported operations
-    -   add new entries
-    -   remove existing entries
-    -   clear all entries
+- access in a server script via: `EnderIOEvents.vatReagents`
+- supported operations
+    - add new entries
+    - remove existing entries
+    - clear all entries
 
 ## Event Listener
 
@@ -30,21 +30,21 @@ After that, use one of the following methods to modify the Vat Reagents.
 
 ## Adding
 
--   access in the event via: `event.add(...)`
--   properties:
-    -   `item`
-        -   description: specifies the input item or tag
-        -   type: `Ingredient`
-    -   `tag`
-        -   description: specifies the recipe input tag
-        -   type: `TagKey<Item>`
-    -   `modifier`
-        -   description: specifies the modifier value
-        -   type: `float`
--   notes:
-    -   the `item` property can take a single item or a tag (prefixed with `#`)
-    -   the `tag` property is always a tag, do not prefix it with `#`
-    -   if a tag has been used for `item` and you add another entry with a single item, which is part of the tag, the tag entry takes priority
+- access in the event via: `event.add(...)`
+- properties:
+    - `item`
+        - description: specifies the input item or tag
+        - type: `Ingredient`
+    - `tag`
+        - description: specifies the recipe input tag
+        - type: `TagKey<Item>`
+    - `modifier`
+        - description: specifies the modifier value
+        - type: `float`
+- notes:
+    - the `item` property can take a single item or a tag (prefixed with `#`)
+    - the `tag` property is always a tag, do not prefix it with `#`
+    - if a tag has been used for `item` and you add another entry with a single item, which is part of the tag, the tag entry takes priority
 
 ```js
 EnderIOEvents.vatReagents(event => {
@@ -63,14 +63,14 @@ EnderIOEvents.vatReagents(event => {
 
 ### Removing
 
--   access in the event via: `event.remove(...)`
--   properties:
-    -   `item`
-        -   description: specifies the item or tag to remove the modifier from
-        -   type: `Ingredient`
--   notes:
-    -   the `item` property can take a single item or a tag (prefixed with `#`)
-    -   if a tag is used, all items, which are part of the tag, will have their modifiers removed
+- access in the event via: `event.remove(...)`
+- properties:
+    - `item`
+        - description: specifies the item or tag to remove the modifier from
+        - type: `Ingredient`
+- notes:
+    - the `item` property can take a single item or a tag (prefixed with `#`)
+    - if a tag is used, all items, which are part of the tag, will have their modifiers removed
 
 ```js
 EnderIOEvents.vatReagents(event => {
@@ -84,8 +84,8 @@ EnderIOEvents.vatReagents(event => {
 
 ### Clearing
 
--   access in the event via: `event.clear()`
--   description: removes all existing Vat Reagents
+- access in the event via: `event.clear()`
+- description: removes all existing Vat Reagents
 
 ```js
 EnderIOEvents.vatReagents(event => {

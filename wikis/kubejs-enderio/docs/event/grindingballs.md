@@ -11,11 +11,11 @@ This event allows you to add, modify, and remove Grinding Balls, which can be us
 
 Grinding Balls are used in the [Sag Mill](../machine/sagmill.md) to add a modifier values to the recipe process. These modifiers affect the output quantity, the chance of a byproduct, and the energy consumption of the recipe.
 
--   access in a server script via: `EnderIOEvents.grindingBalls`
--   supported operations
-    -   add new entries
-    -   remove existing entries
-    -   clear all entries
+- access in a server script via: `EnderIOEvents.grindingBalls`
+- supported operations
+    - add new entries
+    - remove existing entries
+    - clear all entries
 
 ## Event Listener
 
@@ -31,27 +31,27 @@ After that, use one of the following methods to modify the Vat Reagents.
 
 ## Adding
 
--   access in the event via: `event.add(...)`
--   properties:
-    -   `item`
-        -   description: specifies the item or tag
-        -   type: `Ingredient`
-    -   `outputMultiplier`
-        -   description: specifies the output multiplier value
-        -   type: `float`
-    -   `bonusMultiplier`
-        -   description: specifies the bonus multiplier value
-        -   type: `float`
-    -   `energyMultiplier`
-        -   description: specifies the energy multiplier value
-        -   type: `float`
-        -   usage: values less than 1.0 reduce energy consumption, values greater than 1.0 increase it
-    -   `durability`
-        -   description: specifies the durability of the Grinding Ball item
-        -   type: `int`
--   notes:
-    -   the `item` property can take a single item or a tag (prefixed with `#`)
-    -   if a tag has been used for `item` and you add another entry with a single item, which is part of the tag, the tag entry takes priority
+- access in the event via: `event.add(...)`
+- properties:
+    - `item`
+        - description: specifies the item or tag
+        - type: `Ingredient`
+    - `outputMultiplier`
+        - description: specifies the output multiplier value
+        - type: `float`
+    - `bonusMultiplier`
+        - description: specifies the bonus multiplier value
+        - type: `float`
+    - `energyMultiplier`
+        - description: specifies the energy multiplier value
+        - type: `float`
+        - usage: values less than 1.0 reduce energy consumption, values greater than 1.0 increase it
+    - `durability`
+        - description: specifies the durability of the Grinding Ball item
+        - type: `int`
+- notes:
+    - the `item` property can take a single item or a tag (prefixed with `#`)
+    - if a tag has been used for `item` and you add another entry with a single item, which is part of the tag, the tag entry takes priority
 
 ```js
 EnderIOEvents.grindingBalls(event => {
@@ -67,15 +67,15 @@ EnderIOEvents.grindingBalls(event => {
 
 ### Removing
 
--   access in the event via: `event.remove(...)`
--   properties:
-    -   `item`
-        -   description: specifies the item or tag
-        -   type: `Ingredient`
--   notes:
-    -   the `item` property can take a single item or a tag (prefixed with `#`)
-    -   if a tag is used, all items, which are part of the tag, will have their data removed
-    -   removing refers to deleting the Grinding Ball data, the item still exists in the game
+- access in the event via: `event.remove(...)`
+- properties:
+    - `item`
+        - description: specifies the item or tag
+        - type: `Ingredient`
+- notes:
+    - the `item` property can take a single item or a tag (prefixed with `#`)
+    - if a tag is used, all items, which are part of the tag, will have their data removed
+    - removing refers to deleting the Grinding Ball data, the item still exists in the game
 
 ```js
 EnderIOEvents.grindingBalls(event => {
@@ -89,8 +89,8 @@ EnderIOEvents.grindingBalls(event => {
 
 ### Clearing
 
--   access in the event via: `event.clear()`
--   description: removes all existing Grinding Balls
+- access in the event via: `event.clear()`
+- description: removes all existing Grinding Balls
 
 ```js
 EnderIOEvents.grindingBalls(event => {

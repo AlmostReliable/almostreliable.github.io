@@ -10,9 +10,9 @@ The event fires after other mods inject their loot changes into vanilla tables a
 
 Returns an array of all available loot table ids. Can optionally be filtered.
 
--   Syntax:
-    -   `getLootTableIds()`
-    -   `getLootTableIds(filter: string | regex)`
+- Syntax:
+    - `getLootTableIds()`
+    - `getLootTableIds(filter: string | regex)`
 
 ::: code-group
 
@@ -34,8 +34,8 @@ LootJS.lootTables(event => {
 
 Returns a [loot table] by the given id or `null` if no loot table is found.
 
--   Syntax:
-    -   `getLootTable(id: string)`
+- Syntax:
+    - `getLootTable(id: string)`
 
 ```js
 LootJS.lootTables(event => {
@@ -47,8 +47,8 @@ LootJS.lootTables(event => {
 
 Returns whether the loot table with the given id exists.
 
--   Syntax:
-    -   `hasLootTable(id: string)`
+- Syntax:
+    - `hasLootTable(id: string)`
 
 ```js
 LootJS.lootTables(event => {
@@ -62,8 +62,8 @@ Clears all loot tables matching the given filter.
 
 Alternatively, you can call `.clear()` directly on the loot table object obtained from `getLootTable`.
 
--   Syntax:
-    -   `clearLootTables(filter: string | regex)`
+- Syntax:
+    - `clearLootTables(filter: string | regex)`
 
 ```js
 LootJS.lootTables(event => {
@@ -75,8 +75,8 @@ LootJS.lootTables(event => {
 
 Creates a new [loot table].
 
--   Syntax:
-    -   `create(id: string, type?: LootType)`, _defaults to `LootType.CHEST` if not provided_
+- Syntax:
+    - `create(id: string, type?: LootType)`, _defaults to `LootType.CHEST` if not provided_
 
 ```js
 LootJS.lootTables(event => {
@@ -109,8 +109,8 @@ Alternatively, you can filter by loot table type. Loot table types are defined u
 }
 ```
 
--   Syntax:
-    -   `modifyLootTables(filter: LootTableFilter | LootTableFilter[])`
+- Syntax:
+    - `modifyLootTables(filter: LootTableFilter | LootTableFilter[])`
 
 A `LootTableFilter` can be a string, regex, or a `LootType`.
 
@@ -163,8 +163,8 @@ LootJS.lootTables(event => {
 
 Returns a [loot table] for the given block or `null` if no loot table is found.
 
--   Syntax:
-    -   `getBlockTable(block: string | Block)`
+- Syntax:
+    - `getBlockTable(block: string | Block)`
 
 ```js
 LootJS.lootTables(event => {
@@ -181,8 +181,8 @@ Returns all [loot table]s matching the given blocks as a compound. The compound 
 >
 > If you need to modify by tags, consider using the [loot modifier event].
 
--   Syntax:
-    -   `modifyBlockTables(filter: string | string[] | Block | Block[])`
+- Syntax:
+    - `modifyBlockTables(filter: string | string[] | Block | Block[])`
 
 ::: code-group
 
@@ -210,8 +210,8 @@ LootJS.lootTables(event => {
 
 Returns a [loot table] for the given entity or `null` if no loot table is found.
 
--   Syntax:
-    -   `getEntityTable(entity: string | EntityType)`
+- Syntax:
+    - `getEntityTable(entity: string | EntityType)`
 
 ```js
 LootJS.lootTables(event => {
@@ -228,8 +228,8 @@ Returns all [loot table]s matching the given entities as a compound. The compoun
 >
 > If you need to modify by tags, consider using the [loot modifier event].
 
--   Syntax:
-    -   `modifyEntityTables(filter: string | string[] | EntityType | EntityType[])`
+- Syntax:
+    - `modifyEntityTables(filter: string | string[] | EntityType | EntityType[])`
 
 ::: code-group
 

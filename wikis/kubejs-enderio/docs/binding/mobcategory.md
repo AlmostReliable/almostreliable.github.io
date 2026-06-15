@@ -4,16 +4,16 @@ The `MobCategory` is a utility binding of a vanilla enumeration that represents 
 
 ## Overview
 
--   access via: `MobCategory`
--   values:
-    -   `MobCategory.AMBIENT`
-    -   `MobCategory.AXOLOTLS`
-    -   `MobCategory.CREATURE`
-    -   `MobCategory.MISC`
-    -   `MobCategory.MONSTER`
-    -   `MobCategory.UNDERGROUND_WATER_CREATURE`
-    -   `MobCategory.WATER_AMBIENT`
-    -   `MobCategory.WATER_CREATURE`
+- access via: `MobCategory`
+- values:
+    - `MobCategory.AMBIENT`
+    - `MobCategory.AXOLOTLS`
+    - `MobCategory.CREATURE`
+    - `MobCategory.MISC`
+    - `MobCategory.MONSTER`
+    - `MobCategory.UNDERGROUND_WATER_CREATURE`
+    - `MobCategory.WATER_AMBIENT`
+    - `MobCategory.WATER_CREATURE`
 
 ## Examples
 

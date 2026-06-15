@@ -11,27 +11,27 @@ This registry event extension allows you to register custom Capacitors. Capacito
 
 This is an extension to the built-in KubeJS item registry event. It adds convenience methods to register custom Capacitors via KubeJS.
 
--   access in a startup script via: `StartupEvents.registry`
--   functions:
-    -   `baseValue(float)`
-        -   description: sets the base value of the Capacitor; this is the value for all Capacitor modifiers if no custom value is set for them
-        -   required: no
-        -   default value: `1`
-    -   `modifierValue(CapacitorModifier, float)`
-        -   description: sets the value for a specific Capacitor modifier; this overrides the base value for the specified modifier
-        -   required: no
-        -   default value: same as base value
-        -   `CapacitorModifier` is an enum and can be specified by using `CapacitorModifier.<VALUE>` or by an case-insensitive string
-        -   possible values:
-            -   `ENERGY_CAPACITY` - modifies the energy capacity of the machine
-            -   `ENERGY_USE` - modifies the energy use of the machine
-            -   `FUEL_EFFICIENCY` - modifies the fuel efficiency of the machine
-            -   `BURNING_ENERGY_GENERATION` - modifies the burning energy generation of the machine; only applies to generators
-    -   `hideFromCreativeTab()`
-        -   description: hides the Capacitor from the creative tab; this is useful for Capacitors that are only used for loot as a surprise
-        -   required: no
-        -   default value: `false`
-    -   all functions of the KubeJS `ItemBuilder`, for example `displayName`, `rarity`, `tooltip`, etc.
+- access in a startup script via: `StartupEvents.registry`
+- functions:
+    - `baseValue(float)`
+        - description: sets the base value of the Capacitor; this is the value for all Capacitor modifiers if no custom value is set for them
+        - required: no
+        - default value: `1`
+    - `modifierValue(CapacitorModifier, float)`
+        - description: sets the value for a specific Capacitor modifier; this overrides the base value for the specified modifier
+        - required: no
+        - default value: same as base value
+        - `CapacitorModifier` is an enum and can be specified by using `CapacitorModifier.<VALUE>` or by an case-insensitive string
+        - possible values:
+            - `ENERGY_CAPACITY` - modifies the energy capacity of the machine
+            - `ENERGY_USE` - modifies the energy use of the machine
+            - `FUEL_EFFICIENCY` - modifies the fuel efficiency of the machine
+            - `BURNING_ENERGY_GENERATION` - modifies the burning energy generation of the machine; only applies to generators
+    - `hideFromCreativeTab()`
+        - description: hides the Capacitor from the creative tab; this is useful for Capacitors that are only used for loot as a surprise
+        - required: no
+        - default value: `false`
+    - all functions of the KubeJS `ItemBuilder`, for example `displayName`, `rarity`, `tooltip`, etc.
 
 ## Event Listener
 

@@ -4,57 +4,57 @@ The Soul Binder is a machine that binds the essence of living beings into items.
 
 ## Overview
 
--   access in recipes event via: `event.recipes.enderio.soul_binding`
--   properties:
-    -   `output`
-        -   description: specifies the output item
-        -   type: `ItemStack`
-        -   role: output
-        -   required: yes
-        -   usage: needs to be passed as the first argument
-    -   `input`
-        -   description: specifies the input item
-        -   type: `Ingredient`
-        -   role: input
-        -   required: yes
-        -   usage: needs to be passed as the second argument
-    -   `energy`
-        -   description: specifies the energy usage of the recipe
-        -   type: `int`
-        -   role: other
-        -   required: no
-        -   default: `2000`
-        -   usage: can be passed as the third argument or by chaining the function `.energy(int)`
-    -   `experience`
-        -   description: specifies the experience cost of the recipe
-        -   type: `float`
-        -   role: other
-        -   required: no
-        -   default: `5.0`
-        -   usage: can be passed as the fourth argument or by chaining the function `.experience(float)`
-    -   `entity_type`
-        -   description: specifies the entity type soul required for the recipe
-        -   type: `TagKey<EntityType>`
-        -   role: other
-        -   required: no
-        -   default: none
-        -   usage: can be set by chaining the function `.entityType(string)`
-    -   `mob_category`
-        -   description: specifies the mob category soul required for the recipe, more information [here](../binding/mobcategory.md)
-        -   type: `MobCategory`
-        -   role: other
-        -   required: no
-        -   default: none
-        -   usage: can be set by chaining the function `.mobCategory(string)`
-    -   `soul_data`
-        -   description: specifies the soul data required for the recipe
-        -   type: `string`
-        -   role: other
-        -   required: no
-        -   default: none
-        -   usage: can be set by chaining the function `.soulData(string)`
--   validators:
-    -   `entity_type`, `mob_category`, and `soul_data` must be mutually exclusive
+- access in recipes event via: `event.recipes.enderio.soul_binding`
+- properties:
+    - `output`
+        - description: specifies the output item
+        - type: `ItemStack`
+        - role: output
+        - required: yes
+        - usage: needs to be passed as the first argument
+    - `input`
+        - description: specifies the input item
+        - type: `Ingredient`
+        - role: input
+        - required: yes
+        - usage: needs to be passed as the second argument
+    - `energy`
+        - description: specifies the energy usage of the recipe
+        - type: `int`
+        - role: other
+        - required: no
+        - default: `2000`
+        - usage: can be passed as the third argument or by chaining the function `.energy(int)`
+    - `experience`
+        - description: specifies the experience cost of the recipe
+        - type: `float`
+        - role: other
+        - required: no
+        - default: `5.0`
+        - usage: can be passed as the fourth argument or by chaining the function `.experience(float)`
+    - `entity_type`
+        - description: specifies the entity type soul required for the recipe
+        - type: `TagKey<EntityType>`
+        - role: other
+        - required: no
+        - default: none
+        - usage: can be set by chaining the function `.entityType(string)`
+    - `mob_category`
+        - description: specifies the mob category soul required for the recipe, more information [here](../binding/mobcategory.md)
+        - type: `MobCategory`
+        - role: other
+        - required: no
+        - default: none
+        - usage: can be set by chaining the function `.mobCategory(string)`
+    - `soul_data`
+        - description: specifies the soul data required for the recipe
+        - type: `string`
+        - role: other
+        - required: no
+        - default: none
+        - usage: can be set by chaining the function `.soulData(string)`
+- validators:
+    - `entity_type`, `mob_category`, and `soul_data` must be mutually exclusive
 
 ## Examples
 

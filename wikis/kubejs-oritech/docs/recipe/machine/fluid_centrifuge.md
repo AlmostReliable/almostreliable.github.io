@@ -11,39 +11,39 @@ If you want to avoid that players have two use two Centrifuges or constantly nee
 
 ## Overview
 
--   access in recipes event via: `event.recipes.oritech.centrifuge_fluid`
--   properties:
-    -   item inputs
-        -   role: input
-        -   required: no
-        -   limits:
-            -   min 0
-            -   max 1
-    -   item outputs
-        -   role: output
-        -   required: no
-        -   limits:
-            -   min 0
-            -   max 2
-    -   fluid input
-        -   role: input
-        -   required: no
-        -   limits:
-            -   min 0
-            -   max 1
-    -   fluid outputs
-        -   role: output
-        -   required: no
-        -   limits:
-            -   min 0
-            -   max 1
-    -   time
-        -   role: misc
-        -   required: no
-        -   default: `60`
--   recipe limitations
-    -   needs at least one item input or one fluid input
-    -   needs at least one item output or one fluid output
+- access in recipes event via: `event.recipes.oritech.centrifuge_fluid`
+- properties:
+    - item inputs
+        - role: input
+        - required: no
+        - limits:
+            - min 0
+            - max 1
+    - item outputs
+        - role: output
+        - required: no
+        - limits:
+            - min 0
+            - max 2
+    - fluid input
+        - role: input
+        - required: no
+        - limits:
+            - min 0
+            - max 1
+    - fluid outputs
+        - role: output
+        - required: no
+        - limits:
+            - min 0
+            - max 1
+    - time
+        - role: misc
+        - required: no
+        - default: `60`
+- recipe limitations
+    - needs at least one item input or one fluid input
+    - needs at least one item output or one fluid output
 
 ## Examples
 

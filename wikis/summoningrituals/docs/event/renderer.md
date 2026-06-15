@@ -11,11 +11,11 @@ This event allows you to register custom ritual renderers for specific recipes.
 
 The event is fired when client resources are being loaded. The registered renderers will be called every render tick for the respective recipe. If a custom renderer errors, the default renderer will be used and the error will be logged.
 
--   access in a server script via: `SummoningRituals.ritualRendererRegistration`
--   functions
-    -   `register(ResourceLocation recipeId, CustomRitualRenderer renderer)`
-        -   description: registers a custom ritual renderer for the specified recipe
-        -   note: it can't be ensured that the recipe ID points to a valid recipe; make sure it's correct
+- access in a server script via: `SummoningRituals.ritualRendererRegistration`
+- functions
+    - `register(ResourceLocation recipeId, CustomRitualRenderer renderer)`
+        - description: registers a custom ritual renderer for the specified recipe
+        - note: it can't be ensured that the recipe ID points to a valid recipe; make sure it's correct
 
 ## Recipe ID
 
@@ -36,9 +36,9 @@ The custom ritual renderer is a simple callback function that is called every re
 
 The renderer function receives three parameters and doesn't return anything:
 
--   `AltarRenderer`: the instance of the original renderer
--   `AltarRecipe`: the instance of the recipe that is currently being processed
--   `AltarRenderContext`: the context for the render operation containing useful data and utility methods
+- `AltarRenderer`: the instance of the original renderer
+- `AltarRecipe`: the instance of the recipe that is currently being processed
+- `AltarRenderContext`: the context for the render operation containing useful data and utility methods
 
 ### Altar Renderer
 
@@ -58,69 +58,69 @@ This class is a container class holding necessary information for rendering the 
 
 You can check its implementation [here](https://github.com/AlmostReliable/summoningrituals/blob/1.21.1/src/main/java/com/almostreliable/summoningrituals/client/render/AltarRenderContext.java).
 
--   properties
-    -   `level`
-        -   type: `ClientLevel`
-        -   description: the level where the ritual is being performed
-    -   `player`
-        -   type: `Player`
-        -   description: the client player the render thread is running for
-    -   `altar`
-        -   type: `AltarBlockEntity`
-        -   description: the altar block entity instance; can be used to access the position and other data of the altar
-    -   `playerToAltarDistance`
-        -   type: `Float`
-        -   description: the distance from the player to the altar; can be used for distance-based rendering effects
-    -   `playerToAltarAngle`
-        -   type: `Float`
-        -   description: the angle from the player to the altar; can be used for angle-based rendering effects
-    -   `recipeProgress`
-        -   type: `Integer`
-        -   description: the progress of the recipe in ticks
-    -   `recipeTime`
-        -   type: `Integer`
-        -   description: the total time of the recipe in ticks
-    -   `recipeProgressRatio`
-        -   type: `Float`
-        -   description: the progress of the recipe as a ratio from 0 to 1; can be used for progress-based rendering effects
-    -   `poseStack`
-        -   type: `PoseStack`
-        -   description: the pose stack for rendering; has a defensive push/pop to revert any transformations after the render method finishes
-    -   `bufferSource`
-        -   type: `MultiBufferSource`
-        -   description: the buffer source for rendering; can be used to get vertex builders for rendering
-    -   `lightAbove`
-        -   type: `Integer`
-        -   description: the light level above the altar; can be used for light-based rendering effects
-    -   `packedOverlay`
-        -   type: `Integer`
-        -   description: the packed overlay for rendering; used for UV transformations in the vertex consumer
-    -   `partialTicks`
-        -   type: `Float`
-        -   description: the partial ticks for rendering; can be used for smooth animations
--   functions
-    -   `pushPose()`
-        -   description: pushes the current pose; should be used at the beginning of the render method to ensure transformations don't affect other renderers
-    -   `popPose()`
-        -   description: pops the current pose; should be used at the end of the render method to ensure transformations don't affect other renderers
-    -   `translate(float x, float y, float z)`
-        -   description: translates the pose stack by the specified amounts
-    -   `scale(float x, float y, float z)`
-        -   description: scales the pose stack by the specified x, y, z values
-    -   `scale(float scale)`
-        -   description: scales the pose stack uniformly by the specified scale
-    -   `mulPose(Quaternionf quaternion)`
-        -   description: multiplies the pose stack by the specified quaternion; used for rotations
-    -   `shouldReset()`
-        -   description: returns true if the recipe has completed (progress >= time)
-        -   note: this is likely not going to work in a custom renderer because the default renderer will run at this point
-    -   `getInitiator()`
-        -   description: returns the initiator item stack from the altar inventory
-    -   `getInputs()`
-        -   description: returns a list of input item stacks from the altar inventory for display
-    -   `renderItem(ItemRenderer itemRenderer, ItemStack item)`
-        -   description: renders the specified item stack using the provided item renderer
-        -   note: you can obtain the `ItemRenderer` instance from the `AltarRenderer` parameter of the custom renderer
+- properties
+    - `level`
+        - type: `ClientLevel`
+        - description: the level where the ritual is being performed
+    - `player`
+        - type: `Player`
+        - description: the client player the render thread is running for
+    - `altar`
+        - type: `AltarBlockEntity`
+        - description: the altar block entity instance; can be used to access the position and other data of the altar
+    - `playerToAltarDistance`
+        - type: `Float`
+        - description: the distance from the player to the altar; can be used for distance-based rendering effects
+    - `playerToAltarAngle`
+        - type: `Float`
+        - description: the angle from the player to the altar; can be used for angle-based rendering effects
+    - `recipeProgress`
+        - type: `Integer`
+        - description: the progress of the recipe in ticks
+    - `recipeTime`
+        - type: `Integer`
+        - description: the total time of the recipe in ticks
+    - `recipeProgressRatio`
+        - type: `Float`
+        - description: the progress of the recipe as a ratio from 0 to 1; can be used for progress-based rendering effects
+    - `poseStack`
+        - type: `PoseStack`
+        - description: the pose stack for rendering; has a defensive push/pop to revert any transformations after the render method finishes
+    - `bufferSource`
+        - type: `MultiBufferSource`
+        - description: the buffer source for rendering; can be used to get vertex builders for rendering
+    - `lightAbove`
+        - type: `Integer`
+        - description: the light level above the altar; can be used for light-based rendering effects
+    - `packedOverlay`
+        - type: `Integer`
+        - description: the packed overlay for rendering; used for UV transformations in the vertex consumer
+    - `partialTicks`
+        - type: `Float`
+        - description: the partial ticks for rendering; can be used for smooth animations
+- functions
+    - `pushPose()`
+        - description: pushes the current pose; should be used at the beginning of the render method to ensure transformations don't affect other renderers
+    - `popPose()`
+        - description: pops the current pose; should be used at the end of the render method to ensure transformations don't affect other renderers
+    - `translate(float x, float y, float z)`
+        - description: translates the pose stack by the specified amounts
+    - `scale(float x, float y, float z)`
+        - description: scales the pose stack by the specified x, y, z values
+    - `scale(float scale)`
+        - description: scales the pose stack uniformly by the specified scale
+    - `mulPose(Quaternionf quaternion)`
+        - description: multiplies the pose stack by the specified quaternion; used for rotations
+    - `shouldReset()`
+        - description: returns true if the recipe has completed (progress >= time)
+        - note: this is likely not going to work in a custom renderer because the default renderer will run at this point
+    - `getInitiator()`
+        - description: returns the initiator item stack from the altar inventory
+    - `getInputs()`
+        - description: returns a list of input item stacks from the altar inventory for display
+    - `renderItem(ItemRenderer itemRenderer, ItemStack item)`
+        - description: renders the specified item stack using the provided item renderer
+        - note: you can obtain the `ItemRenderer` instance from the `AltarRenderer` parameter of the custom renderer
 
 ## Block Pattern
 

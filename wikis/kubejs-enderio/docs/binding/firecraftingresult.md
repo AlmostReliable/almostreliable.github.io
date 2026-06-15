@@ -6,38 +6,38 @@ A `Result` is a convenience type added by EnderIO that supports `ItemStack`s wit
 
 ## Overview
 
--   access in recipes event via: `FireCraftingResult`
--   properties:
-    -   `result`
-        -   description: specifies the output item
-        -   type: `ItemStack`
-        -   required: yes
-    -   `minCount`
-        -   description: specifies the minimum count of the output item
-        -   type: `int`
-        -   required: no
-        -   default: `1`
-        -   note: the count of the `ItemStack` is ignored if defined
-    -   `maxCount`
-        -   description: specifies the maximum count of the output item
-        -   type: `int`
-        -   required: no
-        -   default: `1`
-        -   note: the count of the `ItemStack` is ignored if defined
-    -   `chance`
-        -   description: specifies the chance of the output item, between `0` and `1`
-        -   type: `float`
-        -   required: no
-        -   default: `1.0` (100% chance)
--   methods:
-    -   `of(ItemStack result, int minCount, int maxCount, float chance)`
-        -   creates a `Result` with the specified item between the specified min and max count, with the specified chance
-    -   `of(ItemStack result, int minCount, int maxCount)`
-        -   creates a `Result` with the specified item between the specified min and max count, with a 100% chance
-    -   `of(ItemStack result, int count)`
-        -   creates a `Result` with the specified item with the specified count, with a 100% chance
-    -   `of(ItemStack result)`
-        -   creates a `Result` with the specified item with the count of the item, with a 100% chance
+- access in recipes event via: `FireCraftingResult`
+- properties:
+    - `result`
+        - description: specifies the output item
+        - type: `ItemStack`
+        - required: yes
+    - `minCount`
+        - description: specifies the minimum count of the output item
+        - type: `int`
+        - required: no
+        - default: `1`
+        - note: the count of the `ItemStack` is ignored if defined
+    - `maxCount`
+        - description: specifies the maximum count of the output item
+        - type: `int`
+        - required: no
+        - default: `1`
+        - note: the count of the `ItemStack` is ignored if defined
+    - `chance`
+        - description: specifies the chance of the output item, between `0` and `1`
+        - type: `float`
+        - required: no
+        - default: `1.0` (100% chance)
+- methods:
+    - `of(ItemStack result, int minCount, int maxCount, float chance)`
+        - creates a `Result` with the specified item between the specified min and max count, with the specified chance
+    - `of(ItemStack result, int minCount, int maxCount)`
+        - creates a `Result` with the specified item between the specified min and max count, with a 100% chance
+    - `of(ItemStack result, int count)`
+        - creates a `Result` with the specified item with the specified count, with a 100% chance
+    - `of(ItemStack result)`
+        - creates a `Result` with the specified item with the count of the item, with a 100% chance
 
 ## Examples
 

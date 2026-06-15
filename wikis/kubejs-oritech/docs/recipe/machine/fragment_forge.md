@@ -9,22 +9,22 @@ The Fragment Forge is a machine primarily focused at ore processing and can prov
 
 ## Overview
 
--   access in recipes event via: `event.recipes.oritech.grinder`
--   properties:
-    -   item inputs
-        -   role: input
-        -   required: yes
-        -   limits: exactly 1
-    -   item outputs
-        -   role: output
-        -   required: yes
-        -   limits:
-            -   min 1
-            -   max 3
-    -   time
-        -   role: misc
-        -   required: no
-        -   default: `60`
+- access in recipes event via: `event.recipes.oritech.grinder`
+- properties:
+    - item inputs
+        - role: input
+        - required: yes
+        - limits: exactly 1
+    - item outputs
+        - role: output
+        - required: yes
+        - limits:
+            - min 1
+            - max 3
+    - time
+        - role: misc
+        - required: no
+        - default: `60`
 
 ## Examples
 

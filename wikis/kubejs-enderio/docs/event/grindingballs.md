@@ -52,6 +52,7 @@ After that, use one of the following methods to modify the Vat Reagents.
 - notes:
     - the `item` property can take a single item or a tag (prefixed with `#`)
     - if a tag has been used for `item` and you add another entry with a single item, which is part of the tag, the tag entry takes priority
+    - adding a Grinding Ball will only register an item to be used as a Grinding Ball, it does not add a new item to the game, you need to use an existing item or create one via KubeJS or another mod
 
 ```js
 EnderIOEvents.grindingBalls(event => {

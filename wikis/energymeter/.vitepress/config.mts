@@ -19,6 +19,10 @@ export default defineConfig({
                     { text: "Interface", link: "/interface" },
                 ],
             },
+            {
+                text: "Integration",
+                items: [{ text: "CC: Tweaked", link: "/cctweaked" }],
+            },
         ],
     },
 })

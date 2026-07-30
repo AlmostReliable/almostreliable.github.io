@@ -30,6 +30,7 @@ At this point, the altar has already invoked the output commands and spawned the
         - container properties:
             - `recipeId` - the ID of the recipe that was processed as `ResourceLocation`
             - `recipe` - the `AltarRecipe` that was processed
+            - `initiator` - the `ItemStack` that was used to initiate the ritual
             - `inputEntities` - an `Entity` collection holding all entities that were sacrificed (already dead)
             - `outputItems` - an `ItemEntity` collection holding all item outputs that were spawned
             - `outputEntities` - an `Entity` collection holding all entity outputs that were spawned

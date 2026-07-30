@@ -27,6 +27,7 @@ At this point, the altar block also contains the initiator item and is about to 
         - container properties:
             - `recipeId` - the ID of the recipe that is about to be processed as `ResourceLocation`
             - `recipe` - the `AltarRecipe` that is about to be processed
+            - `initiator` - the `ItemStack` that was used to initiate the ritual
             - `inputEntities` - an `Entity` collection holding all entities that are about to be sacrificed
             - `blockPatternExtensionMatched` - defines if the [block pattern extension](../recipe/block_patterns.md#block-pattern-extension) matched
     - `player`

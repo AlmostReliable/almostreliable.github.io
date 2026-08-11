@@ -5,8 +5,8 @@
     "preview": "vitepress preview",
     "prettier:check": "prettier --check .",
     "prettier:write": "prettier --write .",
-    "build:static": "ts-node main/build_wikis.ts",
-    "serve:static": "ts-node main/start_dev_server.ts"
+    "build:static": "ts-node --project tsconfig.build.json main/build_wikis.ts",
+    "serve:static": "ts-node --project tsconfig.build.json main/start_dev_server.ts"
   },
   "devDependencies": {
     "@types/express": "^5.0.6",
@@ -14,6 +14,7 @@
     "esbuild": "^0.28.1",
     "prettier": "^3.8.4",
     "ts-node": "^10.9.2",
+    "typescript": "^6.0.3",
     "vitepress": "^2.0.0-alpha.19",
     "vue": "^3.5.38"
   },

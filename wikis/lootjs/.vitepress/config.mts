@@ -3,6 +3,7 @@ import { defineConfig } from "../../../main/defineAlmostWiki"
 export default defineConfig({
     wikiId: "lootjs",
     srcDir: "./docs",
+    currentMinecraftVersion: "26.1",
     themeConfig: {
         sidebar: [
             {

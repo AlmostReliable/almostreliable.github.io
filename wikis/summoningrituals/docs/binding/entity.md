@@ -76,6 +76,9 @@ After obtaining the `EntityInputBuilder` instance through the binding, you can c
 > **Why is that?<br>**
 > Because vanilla Minecraft only checks entity data (NBT) for exact matches, there is no way to always cover all desired functionality. If you want to ensure that an entity has at least 10 HP, this wouldn't be possible because Minecraft would check only for the exact value. That's why you have to use a custom validator with your own logic to check whether the respective values are correct.
 
+> [!DANGER] Function context leak!
+> There is a Rhino issue causing a lot of RAM usage when using the `validator` function. Please read the [Function context leak](#function-context-leak) section for more information.
+
 ```js
 .entityInputs([
     SummoningEntity.input("cat", 3).tooltip("Meow"),  // [!code focus:13]
@@ -160,3 +163,37 @@ After obtaining the `EntityOutputBuilder` instance through the binding, you can 
         }),
 ])
 ```
+
+## Function context leak
+
+**TLDR;**
+
+Currently, there is an issue with Rhino that causes dynamic functions to capture the whole calling context. This leads to large amounts of memory being used when using the `validator` function, as it captures the whole recipe context.
+
+This means you should _never_ delcare your validator functions inside the recipe event listener. So instead of this:
+
+```js
+ServerEvents.recipes(event => {
+    event.summoningrituals
+        .altar("...")
+        .fakeEntityInputs([
+            SummoningEntity.fakeInput(`minecraft:iron_ingot`, 2, e => e.type === "minecraft:pig"),
+        ])
+})
+```
+
+Please do this instead:
+
+```js
+let myEntityPredicate = e => e.type === "minecraft:pig"
+
+ServerEvents.recipes(event => {
+    event.summoningrituals
+        .altar("...")
+        .fakeEntityInputs([SummoningEntity.fakeInput(`minecraft:iron_ingot`, 2, myEntityPredicate)])
+})
+```
+
+**Long answer**
+
+See this issue for more details: https://github.com/AlmostReliable/summoningrituals/issues/37

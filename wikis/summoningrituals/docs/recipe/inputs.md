@@ -83,6 +83,9 @@ The `ItemStack` can also have components to modify its name or the tooltip. Beca
 
 Because a fake entity input requires multiple properties, you have to use the [`SummoningEntity` binding](../binding/entity.md) to define it.
 
+> [!DANGER] Function context leak!
+> There is a Rhino issue causing a lot of RAM usage when using the `validator` function. Please read the [Function context leak](../binding/entity.md##function-context-leak) section for more information.
+
 ```js
 .fakeEntityInputs([
     SummoningEntity.fakeInput(

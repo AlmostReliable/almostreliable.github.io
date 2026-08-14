@@ -1,5 +1,6 @@
 import { DefaultTheme, UserConfig } from "vitepress"
 import WikiConfig from "./WikiConfig"
+import { defineVersionedConfig, PartialConfigurationType } from "@viteplus/versions"
 
 function getBaseThemeConfig(wikiId: string): DefaultTheme.Config {
     return {
@@ -39,11 +40,12 @@ function getBaseThemeConfig(wikiId: string): DefaultTheme.Config {
 
 type AlmostWikiUserConfig = UserConfig<DefaultTheme.Config> & {
     wikiId: string
+    currentMinecraftVersion?: string
 }
 
 export function defineConfig(config: AlmostWikiUserConfig): UserConfig<DefaultTheme.Config> {
-    const { wikiId, ...vitepressConfig } = config
-    const wiki = WikiConfig.getWiki(wikiId)
+    const wiki = WikiConfig.getWiki(config.wikiId)
+    const vitepressConfig = config as PartialConfigurationType
 
     vitepressConfig.head = [
         [
@@ -57,12 +59,27 @@ export function defineConfig(config: AlmostWikiUserConfig): UserConfig<DefaultTh
     ]
 
     vitepressConfig.title = wiki.name
-    vitepressConfig.srcDir = "./docs"
     vitepressConfig.base = vitepressConfig.base ?? `/${wiki.id}/`
     vitepressConfig.description = `Documentation for ${wiki.name}`
 
     const baseThemeConfig = getBaseThemeConfig(wiki.id)
     vitepressConfig.themeConfig = Object.assign(vitepressConfig.themeConfig || {}, baseThemeConfig)
 
-    return vitepressConfig
+    if (config.currentMinecraftVersion) {
+        vitepressConfig.srcDir = "./"
+        vitepressConfig.versionsConfig = {
+            current: config.currentMinecraftVersion || "latest",
+            sources: "docs",
+            archive: "archive",
+            versionSwitcher: {
+                text: "Minecraft Version",
+                includeCurrentVersion: true,
+            },
+        }
+
+        return defineVersionedConfig(vitepressConfig)
+    }
+
+    vitepressConfig.srcDir = "./docs"
+    return vitepressConfig as UserConfig
 }

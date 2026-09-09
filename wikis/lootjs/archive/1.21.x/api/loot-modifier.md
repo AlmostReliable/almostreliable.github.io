@@ -63,7 +63,7 @@ LootJS.modifiers(event => {
     const ironIngot = "minecraft:iron_ingot"
 
     event
-        .addBlockLootModifier("minecraft:iron_ore")
+        .addBlockModifier("minecraft:iron_ore")
         .removeLoot(Ingredient.all)
         .addAlternativesLoot(stickWhenFortune, appleWhenSilkTouch, ironIngot)
 })
@@ -108,7 +108,7 @@ LootJS.modifiers(event => {
     const ironIngot = "minecraft:iron_ingot"
 
     event
-        .addBlockLootModifier("minecraft:coal_ore")
+        .addBlockModifier("minecraft:coal_ore")
         .removeLoot(Ingredient.all)
         .addSequenceLoot(stickWhenFortune, appleWhenEfficiency, flint, diamondNoDrop, ironIngot)
 })

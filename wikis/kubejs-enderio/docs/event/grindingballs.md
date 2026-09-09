@@ -15,7 +15,7 @@ Grinding Balls are used in the [Sag Mill](../machine/sagmill.md) to add a modifi
 - supported operations
     - add new entries
     - remove existing entries
-    - clear all entries
+    - clear modifications from other sources (e.g. other mods)
 
 ## Event Listener
 
@@ -91,7 +91,7 @@ EnderIOEvents.grindingBalls(event => {
 ### Clearing
 
 - access in the event via: `event.clear()`
-- description: removes all existing Grinding Balls
+- description: removes all all modifications from other sources (e.g. other mods with datapacks), this does not clear all Grinding Balls
 
 ```js
 EnderIOEvents.grindingBalls(event => {

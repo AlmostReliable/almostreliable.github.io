@@ -14,7 +14,7 @@ A [Vat recipe](../machine/vat.md) only accepts item tags as inputs. A Vat Reagen
 - supported operations
     - add new entries
     - remove existing entries
-    - clear all entries
+    - clear modifications from other sources (e.g. other mods)
 
 ## Event Listener
 
@@ -85,7 +85,7 @@ EnderIOEvents.vatReagents(event => {
 ### Clearing
 
 - access in the event via: `event.clear()`
-- description: removes all existing Vat Reagents
+- description: removes all all modifications from other sources (e.g. other mods with datapacks), this does not clear all Vat Reagents
 
 ```js
 EnderIOEvents.vatReagents(event => {

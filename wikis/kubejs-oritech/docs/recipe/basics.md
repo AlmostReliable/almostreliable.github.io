@@ -19,14 +19,14 @@ The base layout for each Oritech recipe is the following:
     - default: empty list
     - description: outputs can be specified by items or stacks; a single input could produce multiple outputs
     - primary access: `itemOutputs(...)`
-    - aliases: `results`, `outputs`, `itemOutput`, `result`, `output`
+    - aliases: `results`, `outputs`, `itemOutput`, `itemResult`, `itemResults`, `result`, `output`
 - fluid input
-    - type: `FluidIngredient`
+    - type: `SizedFluidIngredient`
     - supports amounts: yes
-    - default: `FluidIngredient.EMPTY` (nothing)
-    - description: this is a special type by Oritech, read more about it in the [dedicated section below](#fluid-ingredient)
-    - primary access: `fluidInputs(...)`
-    - aliases: `fluidIngredient`, `fluid`, `fluidInputs`, `fluidIngredient`, `fluids`
+    - default: empty
+    - description: inputs can be specified by tags, fluids, or fluid stacks; this input supports amounts
+    - primary access: `fluidInput(...)`
+    - aliases: `fluidIngredient`, `fluid`, `fluidInputs`, `fluidIngredients`, `fluids`
 - fluid outputs
     - type: `List<FluidStack>`
     - supports amounts: yes
@@ -48,36 +48,6 @@ All recipe types theoretically support all of these properties. However, because
 There is special handling to accept a single parameter when a list is required. This means instead of `itemOutputs(['cobblestone'])`, you can also write `itemOutputs('cobblestone')`. However, when multiple entries are required, you **have** to pass them as an array (with the `[]` brackets).
 
 If you want to know more about the limitations and requirements for specific recipes, read the respective recipe page.
-
-## Fluid Ingredient
-
-`FluidIngredient` is a special type by Oritech. Usually, ingredients do not support amounts (also known as count). However, this custom implementation does support it. A `FluidIngredient` can either refer to a fluid `TagKey` or a fluid.
-
-A fluid tag groups multiple fluids in a simple entry. A built-in example for a fluid tag is `c:water`, which groups the still water and the flowing water variant. Making use of this tag doesn't really make sense, but if multiple mods add the same liquid, you can cover them all by making use of a tag.
-
-The amount of a `FluidIngredient` is measured in millibuckets. 1000 millibuckets are one bucket. If the amount is not set, it will default to `1000` millibuckets / 1 bucket.
-
-KubeJS Oritech adds a custom component that supports the custom `FluidIngredient` by default. Conventional KubeJS ways to define fluids and fluid ingredients are natively supported.
-
-### Examples
-
-The following examples show how an instance of a `FluidIngredient` can be obtained. The different syntaxes all result in the same output.
-
-```
-// 1 bucket of water
-Fluid.of("water", 1000)
-"1000x water"
-"1000x minecraft:water"
-"water"
-
-// 2500 millibuckets / 2,5 buckets of lava
-Fluid.of("lava", 2500)
-"2500x lava"
-
-// 1500 millibuckets / 1,5 buckets of all fluids contained in the water tag
-Fluid.of("#c:water", 1500)
-"1500x #c:water"
-```
 
 ## Time
 

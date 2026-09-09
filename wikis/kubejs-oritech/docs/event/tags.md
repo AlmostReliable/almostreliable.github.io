@@ -56,7 +56,7 @@ ServerEvents.tags("block", event => {
 
 > [!DANGER] WARNING
 > Because the functionality of the Bedrock Extractor relies on a recipe **and** a tag, it is highly recommended to use the
-> [dedicated event](deepdrill_registration.md) for registering new recipes and resource nodes.
+> [dedicated event](bedrock_extractor_registration.md) for registering new recipes and resource nodes.
 
 Oritech uses the block tag `oritech:resource_nodes` to determine which blocks can be used as resource nodes for the [Bedrock Extractor](../recipe/machine/bedrock_extractor.md). Tagging a block is required if it's used as an input for the extractor recipe.
 
@@ -66,24 +66,5 @@ ServerEvents.tags("block", event => {
     event.add("oritech:resource_nodes", "glass")
     // assigns the resource node block tag to the cobblestone block
     event.add("oritech:resource_nodes", "minecraft:cobblestone")
-})
-```
-
-## Schrödinger's Safe
-
-Oritech uses a variation of the `oritech:unstable_container` block tag to determine how much energy capacity is reached when a block is captured inside the unstable container. There are 3 different levels of instability, which are determined by the following tags:
-
-- `oritech:unstable_container/low` -> 0.3
-- `oritech:unstable_container/medium` -> 1.0
-- `oritech:unstable_container/high` -> 5.0
-
-Assigning these tags is also required to capture a block inside of the safe.
-
-```js
-ServerEvents.tags("block", event => {
-    // assigns the low instability container block tag to the glass block
-    event.add("oritech:unstable_container/low", "glass")
-    // assigns the medium instability container block tag to the cobblestone block
-    event.add("oritech:unstable_container/medium", "minecraft:cobblestone")
 })
 ```

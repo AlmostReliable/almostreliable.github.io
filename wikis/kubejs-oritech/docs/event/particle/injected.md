@@ -2,9 +2,6 @@
 
 This event allows you to invoke logic when a particle is injected into the [Particle Accelerator](../../recipe/machine/particle_accelerator.md). It can also be used to cancel the injection completely.
 
-> [!WARNING] NOTE
-> This event only exists since mod version 1.21.1-0.3.0, release date: 2026-02-06.
-
 **It is a server event and reloadable!** Keep in mind that server events have to be located inside the `kubejs/server_scripts` folder.
 
 ## Overview
@@ -22,7 +19,7 @@ Additionally, you can disable special interactions such as the creation of an En
         - type: `BlockPos`
         - description: the position of the accelerator controller
     - `controller`
-        - type: `AcceleratorControllerBlockEntity`
+        - type: `ParticleAcceleratorBlockEntity`
         - description: the `BlockEntity` of the accelerator controller block
     - `startPos`
         - type: `BlockPos`
@@ -31,7 +28,7 @@ Additionally, you can disable special interactions such as the creation of an En
         - type: `BlockPos`
         - description: the position of the first gate the particle is heading towards after successful injection
     - `particle`
-        - type: `Particle`
+        - type: `ActiveParticle`
         - description: the particle that is being injected
     - `item`
         - type: `ItemStack`

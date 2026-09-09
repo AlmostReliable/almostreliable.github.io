@@ -2,9 +2,6 @@
 
 This event allows you to invoke logic when a particle exits the [Particle Accelerator](../../recipe/machine/particle_accelerator.md). Exiting refers to uncontrolled particle movement leaving the accelerator. For successful particle exits, refer to the [particle collided event](collided.md).
 
-> [!WARNING] NOTE
-> This event only exists since mod version 1.21.1-0.3.0, release date: 2026-02-06.
-
 **It is a server event and reloadable!** Keep in mind that server events have to be located inside the `kubejs/server_scripts` folder.
 
 ## Overview
@@ -20,7 +17,7 @@ This event is fired when an a particle leaves the Particle Accelerator without c
         - type: `BlockPos`
         - description: the position of the accelerator controller
     - `controller`
-        - type: `AcceleratorControllerBlockEntity`
+        - type: `ParticleAcceleratorBlockEntity`
         - description: the `BlockEntity` of the accelerator controller block
     - `gatePos`
         - type: `BlockPos`

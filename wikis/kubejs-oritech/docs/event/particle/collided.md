@@ -2,9 +2,6 @@
 
 This event allows you to invoke logic when a particle collides in the [Particle Accelerator](../../recipe/machine/particle_accelerator.md). Colliding refers to controlled particle movement that results in a successful collision. For particles that exit the accelerator without colliding, refer to the [particle exited event](exited.md).
 
-> [!WARNING] NOTE
-> This event only exists since mod version 1.21.1-0.3.0, release date: 2026-02-06.
-
 **It is a server event and reloadable!** Keep in mind that server events have to be located inside the `kubejs/server_scripts` folder.
 
 ## Overview
@@ -20,10 +17,10 @@ This event is fired when a particle collision happens in the Particle Accelerato
         - type: `BlockPos`
         - description: the position of the accelerator controller
     - `controller`
-        - type: `AcceleratorControllerBlockEntity`
+        - type: `ParticleAcceleratorBlockEntity`
         - description: the `BlockEntity` of the accelerator controller block
     - `collisionPos`
-        - type: `BlockPos`
+        - type: `Vec3`
         - description: the position in the world where the particle collision is happening
     - `itemA`
         - type: `ItemStack`
@@ -32,10 +29,10 @@ This event is fired when a particle collision happens in the Particle Accelerato
         - type: `ItemStack`
         - description: the second item that is being collided
     - `speed`
-        - type: `long`
+        - type: `float`
         - description: the speed of the particle collision (added speeds of both particles)
     - `recipeId`
-        - type: `ResourceLocation` (nullable)
+        - type: `Identifier` (nullable)
         - description: the recipe id of the matched recipe; null if no valid recipe was found for this collision
     - `recipe`
         - type: `OritechRecipe` (nullable)

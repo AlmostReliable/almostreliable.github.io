@@ -1,19 +1,17 @@
 # Bedrock Extractor
 
-Internally, this machine is called the Deep Drill.
-
 The Bedrock Extractor can mine ores from resource nodes that act as infinite sources of ores. These are usually found at Bedrock level.
 
 > [!DANGER] WARNING
 > Because the functionality of this machine relies on a recipe **and** a tag, it is highly recommended to use the
-> [dedicated event](../../event/deepdrill_registration.md) for registering new recipes and resource nodes.
+> [dedicated event](../../event/bedrock_extractor_registration.md) for registering new recipes and resource nodes.
 
 > [!WARNING] NOTE
 > This recipe inherits from the Oritech base recipe. [Read about it first](../basics.md) before reading this page.
 
 ## Overview
 
-- access in recipes event via: `event.recipes.oritech.deep_drill`
+- access in recipes event via: `event.recipes.oritech.bedrock_extractor`
 - properties:
     - item inputs
         - role: input
@@ -41,18 +39,18 @@ Read more about tags and how to assign them in the [tags event documentation](..
 
 ```js
 ServerEvents.recipes(event => {
-    // removes all bedrock extractor / deep drill recipes
-    event.remove({ type: "oritech:deep_drill" })
+    // removes all bedrock extractor recipes
+    event.remove({ type: "oritech:bedrock_extractor" })
 
     // adds a recipe that converts a glass block into an iron ingot
     // requires 60 ticks by default
-    event.recipes.oritech.deep_drill().itemInputs("glass").itemOutputs("iron_ingot")
+    event.recipes.oritech.bedrock_extractor().itemInputs("glass").itemOutputs("iron_ingot")
 
     // adds a recipe that converts a cobblestone block into 2 sand
     // requires 40 ticks / 2 seconds
     // could use .timeInSeconds(2) alternatively
     event.recipes.oritech
-        .deep_drill()
+        .bedrock_extractor()
         .itemInputs("minecraft:cobblestone")
         .itemOutputs("2x sand")
         .time(40)

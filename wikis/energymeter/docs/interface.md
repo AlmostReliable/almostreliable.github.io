@@ -64,6 +64,8 @@ The text boxes also support several smart features, including input validation. 
 
 All text boxes also support mathematical expressions. Supported operations include addition, subtraction, multiplication, division, exponentiation, and parentheses. If a mathematical expression is detected, the text box displays a small popup with the calculated result that can be applied. Since all configurable values are integers, results from mathematical expressions are automatically rounded to the nearest whole number. Invalid symbols are also prevented while entering mathematical expressions. For example, a closing parenthesis can only be inserted if a matching opening parenthesis exists.
 
+Numbers can be shortened with unit suffixes: `k` (thousand), `M` (million), `G` (billion), `T`, `P`, and `E`, each a factor of 1000 larger than the previous one. The suffix is case-insensitive and must directly follow a number, for example `100k`, `1.5M`, or `2k * 3`. Large values such as the transfer limit are also displayed in this short form when possible.
+
 #### Limit
 
 The transfer limit defines how much energy the Energy Meter can transfer per tick _(1 second = 20 ticks)_. All inputs are accumulated and limited by this value. The limit therefore applies globally and not per input. Any energy exceeding the limit is returned to the sender.

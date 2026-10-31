@@ -16,7 +16,7 @@
     "ts-node": "^10.9.2",
     "typescript": "^6.0.3",
     "vitepress": "^2.0.0-alpha.19",
-    "vue": "^3.5.38"
+    "vue": "^3.5.44"
   },
   "dependencies": {
     "@viteplus/versions": "^2.0.8",

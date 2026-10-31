@@ -18,7 +18,7 @@ The values for the current measurements update once per configured interval. The
 
 The status updates whenever a setting or state changes that could affect it. This includes the current flow rate, changes to neighboring blocks, and changes to input and output configurations.
 
-The status **Disconnected** indicates that the required settings for the currently selected mode have not been configured. In most cases, this means that an input or output is missing. **Idle** means that all settings are configured correctly and the Energy Meter is waiting to transfer energy. The final status depends on the selected [transfer mode](#transferring) and indicates that the Energy Meter is currently processing requests and operating correctly.
+The status **Disconnected** indicates that the required settings for the currently selected mode have not been configured. In most cases, this means that an input or output is missing. **Idle** means that all settings are configured correctly and the Energy Meter is waiting to transfer energy. The final status depends on the selected [transfer mode](#transferring) and indicates that the Energy Meter is currently processing requests and operating correctly. **Blocked** means that the [Control](#function) redstone function currently blocks the transfer.
 
 ### I/O Grid
 
@@ -98,8 +98,61 @@ The data is shown in a simple coordinate system. The **x-axis** represents the m
 
 If data for fewer than 10 intervals exists, only the available intervals are displayed. While the current interval is running, only a horizontal line is shown. The graph point appears once the interval result becomes available.
 
+For the **Analog** and **Threshold** [redstone functions](#function), the lower and upper bounds are shown as dashed lines, so you can see where the flow rate sits relative to them. The upper bound is drawn in green and the lower bound in gray. A bound above the visible range is shown as a marker with its value at the top edge instead.
+
 To inspect the data more easily, the graph can be paused using the small pause icon in the upper-right corner. Pausing only stops the graphical representation of the graph. Internally, new data is still processed and the Energy Meter continues operating. A label inside the graph indicates that it is paused, and the icon turns into a play icon. Press it again to resume the graph.
 
 ## Redstone Panel
 
-The Redstone panel is currently still under development and does not yet contain any options.
+<img src="/../img/redstone_tab.png" width="400" style="float:right; margin-left:10px;" />
+
+The redstone panel can be accessed by selecting the **Redstone** tab. It allows the Energy Meter to emit a redstone signal based on the current flow rate, or to be switched on and off with a redstone signal.
+
+Redstone is disabled by default. Pick a function other than **Off** to activate it. While active, redstone dust connects to every side of the Energy Meter except the front with the display. The signal is weak power, so it does not pass through solid blocks next to the Energy Meter. The signal is updated once per [interval](#interval).
+
+### Function
+
+The function defines how the flow rate is turned into a signal. Only one function can be active at a time.
+
+- **Off** emits no signal and redstone dust does not connect.
+- **Analog** maps the flow rate between the lower and upper bound to a signal strength between 0 and 15. A flow rate at or below the lower bound emits 0; a flow rate at or above the upper bound emits 15.
+- **Threshold** emits a full signal once the flow rate reaches the upper bound **(On at)** and keeps it until the flow rate drops below the lower bound **(Off below)**. The gap between both bounds prevents the signal from flickering when the flow rate fluctuates around a single value. If both bounds are equal, the signal switches at that value.
+- **Control** reads a redstone signal from every side except the front and blocks all energy transfer while powered. Levers, buttons, redstone dust, redstone blocks, and strongly powered blocks next to the Energy Meter count. This function emits no signal itself, so redstone dust leading into the Energy Meter can't keep itself powered. While blocked, the [status](#status) shows **Blocked** and the flow rate drops to zero with the next interval. The [behavior](#behavior) defines whether the signal only blocks the transfer or scales it gradually.
+
+### Scale
+
+The scale only applies to the **Analog** function:
+
+- **Linear**: every signal level covers the same range of flow rates. To get one signal level per step, set the lower bound to `0` and the upper bound to `15 x step`. For example, a lower bound of `0` and an upper bound of `150k` adds one signal level per 10k FE/t.
+- **Logarithmic**: every signal level multiplies the flow rate by the same factor. This is useful to cover a large range of flow rates. For example, a lower bound of `1` and an upper bound of `1000T` _(10^15)_ adds one signal level per factor of 10. A lower bound of `0` is treated as `1`.
+
+### Behavior
+
+For the **Control** function, the scale section is replaced by the behavior section:
+
+- **Switch**: any signal blocks the transfer.
+- **Throttle**: the signal strength scales the [transfer limit](#limit) down in 15 steps, so a redstone circuit can regulate how much energy flows. A signal of 15 blocks the transfer. Throttle also applies the transfer limit in the **Consume** mode.
+
+With a transfer limit of 15k FE/t, the effective limit looks like this:
+
+| Signal | Normal | Inverted |
+| ------ | ------ | -------- |
+| 0      | 15k    | 0        |
+| 5      | 10k    | 5k       |
+| 15     | 0      | 15k      |
+
+Throttle needs a transfer limit as its base. Without one, the signal can only block the transfer at full strength _(or at zero when inverted)_ and the transfer is unlimited otherwise.
+
+For example, a comparator reading an energy storage behind the Energy Meter slows down the transfer as the storage fills up and stops it once the storage is full.
+
+### Settings {#redstone-settings}
+
+The **lower** and **upper** bounds are flow rates in FE/t. Both are shared between the functions, so switching the function keeps the values. If the lower bound is not below the upper bound, the **Analog** function acts like a threshold at the upper bound.
+
+The bounds don't apply to the **Control** function.
+
+**Invert** flips the signal. An inverted **Analog** signal emits 15 at the lower bound and 0 at the upper bound. An inverted **Threshold** signal is on while the flow rate is low. An inverted **Control** function blocks the transfer while unpowered instead. With **Throttle**, an inverted signal grants the transfer limit instead of reducing it. Since an Energy Meter without any flow has a flow rate of zero, inverting the signal can be used as an alarm when the energy supply stops.
+
+### Output
+
+The output section shows the signal strength that is currently emitted and, for the **Analog** function, how much the flow rate has to change for the signal to change by one level. For the **Control** function, it is replaced by the input section, which shows the strongest signal received and whether the transfer is currently allowed or blocked. With **Throttle**, it shows the effective transfer limit instead. It is shown in red if no transfer limit is set.

@@ -17,4 +17,6 @@ Another new feature is the graph view. It displays the values of previous interv
 
 Finally, new configuration options have also been added. It is now possible to define the default interval frequency that every Energy Meter uses when placed. Additionally, you can configure whether Energy Meters are allowed to connect to each other.
 
-Since the mod is still in the beta phase, additional features will be added over time. Planned features include things like **ComputerCraft integration** and interactions with **Redstone**. For a more detailed explanation of all features and the user interface, please refer to the other pages of this wiki.
+Since then, the mod has gained an integration for **CC: Tweaked** and support for **Redstone**. Computers can read all values and settings of the Energy Meter and react to changes. With redstone, the Energy Meter can emit a signal based on the current flow rate or be blocked and throttled by an incoming signal. Number inputs also accept unit suffixes such as `100k` or `1.5M`, and the graph shows the redstone bounds as lines.
+
+Since the mod is still in the beta phase, additional features will be added over time. For a more detailed explanation of all features and the user interface, please refer to the other pages of this wiki.

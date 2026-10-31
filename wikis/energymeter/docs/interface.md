@@ -62,7 +62,7 @@ By default, the fields always display the current value. While editing a value, 
 
 The text boxes also support several smart features, including input validation. If an input is invalid, for example due to an invalid number, the box turns red and the value cannot be applied.
 
-All text boxes also support mathematical expressions. Supported operations include addition, subtraction, multiplication, division, exponentiation, and parentheses. If a mathematical expression is detected, the text box displays a small popup with the calculated result that can be applied. Since all configurable values are integers, results from mathematical expressions are automatically rounded to the nearest whole number. Invalid symbols are also prevented while entering mathematical expressions. For example, closing parentheses can only be inserted if a matching opening parenthesis exists.
+All text boxes also support mathematical expressions. Supported operations include addition, subtraction, multiplication, division, exponentiation, and parentheses. If a mathematical expression is detected, the text box displays a small popup with the calculated result that can be applied. Since all configurable values are integers, results from mathematical expressions are automatically rounded to the nearest whole number. Invalid symbols are also prevented while entering mathematical expressions. For example, a closing parenthesis can only be inserted if a matching opening parenthesis exists.
 
 #### Limit
 

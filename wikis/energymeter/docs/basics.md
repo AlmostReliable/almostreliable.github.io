@@ -6,7 +6,7 @@ Welcome to the **Energy Meter** mod!
 
 <img src="/../img/logo.png" width="300" style="float:right; margin-left:10px;" />
 
-Energy Meter is a small content mod that adds a block called the Energy Meter which allows you to measure energy flow rates. The block functions as a cable: incoming requests are simply forwarded to the outputs. All values of these requests are stored and used at a configurable interval to calculate the flow rate.
+Energy Meter is a small content mod that adds a block called the Energy Meter, which allows you to measure energy flow rates. The block functions as a cable: incoming requests are simply forwarded to the outputs. All values of these requests are stored and used at a configurable interval to calculate the flow rate.
 
 In addition to a comprehensive user interface, the block also features a digital display on its front. The current rate can be checked there at any time. The display can be rotated in any direction, including upwards and downwards. Since the front of the Energy Meter is used for the display, only the remaining five sides can be configured as input or output.
 

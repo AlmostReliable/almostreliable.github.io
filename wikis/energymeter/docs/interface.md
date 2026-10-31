@@ -98,7 +98,7 @@ The data is shown in a simple coordinate system. The **x-axis** represents the m
 
 If data for fewer than 10 intervals exists, only the available intervals are displayed. While the current interval is running, only a horizontal line is shown. The graph point appears once the interval result becomes available.
 
-To inspect the data more easily, the graph can be paused using the button in the upper-right corner. Pausing only stops the graphical representation of the graph. Internally, new data is still processed and the Energy Meter continues operating. A label inside the graph indicates that it is paused. Press the button again to resume the graph.
+To inspect the data more easily, the graph can be paused using the small pause icon in the upper-right corner. Pausing only stops the graphical representation of the graph. Internally, new data is still processed and the Energy Meter continues operating. A label inside the graph indicates that it is paused, and the icon turns into a play icon. Press it again to resume the graph.
 
 ## Redstone Panel
 

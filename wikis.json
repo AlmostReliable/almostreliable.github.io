@@ -1,6 +1,11 @@
 {
   "wikis": [
     {
+      "id": "almostunified",
+      "name": "Almost Unified",
+      "description": "Unify resources from different mods. A wiki about the configuration, integrations and API of the mod."
+    },
+    {
       "id": "collection",
       "name": "Collection",
       "description": "A collection of blog posts and cheatsheets related to modding."

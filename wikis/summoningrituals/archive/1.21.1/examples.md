@@ -114,10 +114,12 @@ SummoningRituals.start(event => {
 
     // cancel the ritual if one of the entity inputs has less than their max health
     for (let entity of recipeInfo.inputEntities) {
-        if (player) {
-            player.tell("Ritual cancelled: Entity health too low")
+        if (entity.health < entity.maxHealth) {
+            if (player) {
+                player.tell("Ritual cancelled: Entity health too low")
+            }
+            event.cancel()
         }
-        event.cancel()
     }
 })
 

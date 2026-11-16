@@ -170,11 +170,11 @@ After obtaining the `EntityOutputBuilder` instance through the binding, you can 
 
 Currently, there is an issue with Rhino that causes dynamic functions to capture the whole calling context. This leads to large amounts of memory being used when using the `validator` function, as it captures the whole recipe context.
 
-This means you should _never_ delcare your validator functions inside the recipe event listener. So instead of this:
+This means you should _never_ declare your validator functions inside the recipe event listener. So instead of this:
 
 ```js
 ServerEvents.recipes(event => {
-    event.summoningrituals
+    event.recipes.summoningrituals
         .altar("...")
         .fakeEntityInputs([
             SummoningEntity.fakeInput(`minecraft:iron_ingot`, 2, e => e.type === "minecraft:pig"),
@@ -188,7 +188,7 @@ Please do this instead:
 let myEntityPredicate = e => e.type === "minecraft:pig"
 
 ServerEvents.recipes(event => {
-    event.summoningrituals
+    event.recipes.summoningrituals
         .altar("...")
         .fakeEntityInputs([SummoningEntity.fakeInput(`minecraft:iron_ingot`, 2, myEntityPredicate)])
 })

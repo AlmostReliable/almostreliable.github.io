@@ -32,7 +32,7 @@ This custom type supports all KubeJS `ItemStack` wrappers. You can use multiple 
 
 ### Data
 
-If you want to pass data to item outputs, you need to define them as components. Minecraft removed item NBT in 1.21+. Components are a vanilla system and are wrapped by KubeJS. Components include values like which enchantments an item has, if it's a specific tool type, custom item names and tooltips, and more.
+If you want to pass data to item outputs, you need to define them as components. Minecraft replaced item NBT with components in 1.20.5. Components are a vanilla system and are wrapped by KubeJS. Components include values like which enchantments an item has, if it's a specific tool type, custom item names and tooltips, and more.
 
 ```js
 .itemOutputs('minecraft:iron_sword[enchantments={levels:{"minecraft:sharpness":2}}]')
@@ -137,7 +137,7 @@ You can pass any type of the KubeJS `ItemStack` wrapper. If you want to specify 
 
 ### Data
 
-If you want to pass data to item outputs, you need to define them as components. Minecraft removed item NBT in 1.21+. Components are a vanilla system and are wrapped by KubeJS. Components include values like which enchantments an item has, if it's a specific tool type, custom item names and tooltips, and more.
+If you want to pass data to item outputs, you need to define them as components. Minecraft replaced item NBT with components in 1.20.5. Components are a vanilla system and are wrapped by KubeJS. Components include values like which enchantments an item has, if it's a specific tool type, custom item names and tooltips, and more.
 
 ```js
 .displayOutputs('minecraft:iron_sword[enchantments={levels:{"minecraft:sharpness":2}}]')

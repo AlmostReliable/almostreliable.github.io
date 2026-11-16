@@ -21,6 +21,9 @@ At this point, the altar block also contains the initiator item and is about to 
     - `altar`
         - type: `AltarBlockEntity`
         - description: the altar block entity that is about to start the ritual
+    - `altarFacing`
+        - type: `Direction`
+        - description: the direction the altar is facing
     - `recipeInfo`
         - type: `RecipeInfo`
         - description: a container object holding information about the recipe that is about to be processed
@@ -122,10 +125,12 @@ SummoningRituals.start(event => {
 
     // cancel the ritual if one of the entity inputs has less than their max health
     for (let entity of recipeInfo.inputEntities) {
-        if (player) {
-            player.tell("Ritual cancelled: Entity health too low")
+        if (entity.health < entity.maxHealth) {
+            if (player) {
+                player.tell("Ritual cancelled: Entity health too low")
+            }
+            event.cancel()
         }
-        event.cancel()
     }
 })
 ```

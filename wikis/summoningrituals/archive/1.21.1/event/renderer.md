@@ -9,9 +9,9 @@ This event allows you to register custom ritual renderers for specific recipes.
 
 ## Overview
 
-The event is fired when client resources are being loaded. The registered renderers will be called every render tick for the respective recipe. If a custom renderer errors, the default renderer will be used and the error will be logged.
+The event is fired when client resources are being loaded. The registered renderers will be called every render tick for the respective recipe. If a custom renderer throws an error, the error will be logged and the renderer will be removed until the next asset reload. The default renderer will be used instead.
 
-- access in a server script via: `SummoningRituals.ritualRendererRegistration`
+- access in a client script via: `SummoningRituals.ritualRendererRegistration`
 - functions
     - `register(ResourceLocation recipeId, CustomRitualRenderer renderer)`
         - description: registers a custom ritual renderer for the specified recipe
@@ -95,7 +95,7 @@ You can check its implementation [here](https://github.com/AlmostReliable/summon
     - `packedOverlay`
         - type: `Integer`
         - description: the packed overlay for rendering; used for UV transformations in the vertex consumer
-    - `partialTicks`
+    - `partialTick`
         - type: `Float`
         - description: the partial ticks for rendering; can be used for smooth animations
 - functions
@@ -124,15 +124,23 @@ You can check its implementation [here](https://github.com/AlmostReliable/summon
 
 ## Block Pattern
 
-If you want to invoke special logic depending on the [block pattern](../recipe/conditions.md#block-pattern) defined in the recipe, you can obtain the condition instance from the recipe or the render context instances. If you defined `queryId`s for the pattern entries, there is also a `queryEntries(String query)` function available on the condition instance that returns a list of all entries matching the provided `queryId`.
+If you want to invoke special logic depending on the [block pattern](../recipe/block_patterns.md) defined in the recipe, you can obtain the block pattern condition from the recipe via `recipe.blockPattern()`. The function returns an `Optional` because a recipe doesn't need a block pattern.
+
+The raw entries of the pattern use the default north orientation of the altar. If you defined queries for the pattern entries, you can use the `test(String query)` function of an entry to check whether it matches a query. If you need the offsets rotated to the actual orientation of the altar, use the `queryOffsets(Direction altarFacing, String query)` function of the pattern.
 
 ```js
 // ... listener and other logic
-let pattern = recipe.blockPatternCondition
-if (!pattern) return // recipe doesn't have a block pattern condition
+let pattern = recipe.blockPattern().orElse(null)
+if (pattern === null) return // recipe doesn't have a block pattern
 
-pattern.queryEntries("container_blocks").forEach(entry => {
+pattern.rawEntries.forEach(entry => {
+    if (!entry.test("container_blocks")) return
     // do something with the entries matching the "container_blocks" query
+})
+
+let altarFacing = context.altar.blockState.getValue(BlockProperties.HORIZONTAL_FACING)
+pattern.queryOffsets(altarFacing, "container_blocks").forEach(offset => {
+    // do something with the rotated offsets of entries matching the "container_blocks" query
 })
 ```
 

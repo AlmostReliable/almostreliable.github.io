@@ -25,7 +25,7 @@ A pattern entry describes a single entry inside the block pattern. As mentioned 
 
 To obtain the correct offset points for your pattern entries, the easiest way is to look at the altar from the top. In this example, the altar faces north.
 
-As you can see, the bottom on the bottom right is at the position `[-1, 0, -1]` relative to the altar, which is at `[0, 0, 0]`. This means that the top left corner is at the position `[1, 0, 1]`. With this information, you can easily obtain the correct offsets for all of the blocks you want to include in the pattern.
+As you can see, the block on the bottom right is at the position `[-1, 0, -1]` relative to the altar, which is at `[0, 0, 0]`. This means that the top left corner is at the position `[1, 0, 1]`. With this information, you can easily obtain the correct offsets for all of the blocks you want to include in the pattern.
 
 An offset **must** be unique. Only one pattern entry can exist at a specific offset.
 

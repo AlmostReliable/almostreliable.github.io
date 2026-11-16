@@ -17,7 +17,7 @@ If a recipe has no conditions, the event will still be fired. If you add an entr
 
 The tooltip collection always contains the golden "Conditions:" header as the first entry. If you clear the collection, the header will be removed as well.
 
-- access in a server script via: `SummoningRituals.modifyConditionsTooltip`
+- access in a client script via: `SummoningRituals.modifyConditionsTooltip`
 - properties
     - `recipeId`
         - type: `ResourceLocation`
@@ -48,7 +48,7 @@ SummoningRituals.modifyConditionsTooltip(event => {
     const { recipeId, recipe, tooltip } = event
 
     // check for a specific recipe
-    if (recipeInfo.recipeId.toString() !== "kubejs:forbidden_ritual") {
+    if (recipeId.toString() !== "kubejs:forbidden_ritual") {
         return
     }
 

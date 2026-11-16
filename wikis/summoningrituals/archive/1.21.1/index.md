@@ -1,7 +1,7 @@
 # Getting Started
 
 > [!DANGER] WARNING
-> This wiki is for Summoning Rituals for Minecraft 1.21.1 and above. For previous versions, please refer to the [old wiki](https://github.com/AlmostReliable/summoningrituals/wiki).
+> You are viewing the Minecraft 1.21.1 docs. Use the version picker dropdown in the top-right of the header to switch versions. For Minecraft 1.20.1 and older, please refer to the [old wiki](https://github.com/AlmostReliable/summoningrituals/wiki).
 
 Summoning Rituals is intended to be used as a progression mod in modpacks. It adds an Altar block you can use to perform summoning rituals. By default, this mod has no content apart from the block itself.
 

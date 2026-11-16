@@ -11,7 +11,7 @@ A block pattern consists of a 3D pattern of blocks. Each `PatternEntry` has an `
 
 The pattern can have an optional name, which is useful if you want to design multiple tiers of a pattern. Additionally, you can set custom tooltip lines to give more context to the player.
 
-<img src="/../img/pattern_tooltip.png" class="center" width="600">
+<img src="/img/pattern_tooltip.png" class="center" width="600">
 
 When creating block patterns, the best approach is to think about the standard orientation of the altar. By default, an altar faces the north direction. You should define the pattern in the same way. Place down an altar facing towards the north and build the pattern around it. This way, the pattern will be correctly oriented and you can avoid confusion with the block states.
 
@@ -29,7 +29,7 @@ As you can see, the bottom on the bottom right is at the position `[-1, 0, -1]` 
 
 An offset **must** be unique. Only one pattern entry can exist at a specific offset.
 
-<img src="/../img/altar_orientation.png" class="center" width="600">
+<img src="/img/altar_orientation.png" class="center" width="600">
 
 ### Block State
 
@@ -37,7 +37,7 @@ Each pattern entry predicate can specify a required block state. A block state c
 
 To obtain your desired block state properties and values, you can use the Minecraft debug screen (activated by pressing `F3`). When looking at a block, the debug screen shows the block states of that block at the right border. You can then use these properties and values in your pattern entry predicates.
 
-<img src="/../img/block_states.png" class="center" width="600">
+<img src="/img/block_states.png" class="center" width="600">
 
 Summoning Rituals will only check for properties that are explicitly defined in the pattern entry. That means if you don't set a specific value or a property, it acts as wildcard and any value for that property will be accepted. For example, if you include a furnace in your pattern but do not care about its orientation, you can simply omit the facing property. This way, the pattern will match regardless of the direction the furnace is facing.
 
@@ -72,7 +72,7 @@ You can also sneak-right-click at any time to reset the selected positions. A hi
 
 After the pattern has been generated, you can find the output in your Minecraft log file. It is already formatted to be pasted into your recipe script. This only includes the offset positions and the blocks, but not the block states. You can then modify the output as needed to add block states or queries.
 
-<video controls="controls" src="/../img/pattern_generator.mp4" />
+<video controls="controls" src="/img/pattern_generator.mp4" />
 
 ## Main Block Pattern
 

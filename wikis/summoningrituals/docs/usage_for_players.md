@@ -34,7 +34,7 @@ The ritual might have more dependencies or outputs handled by custom logic insid
 
 ## Recipes
 
-To see the available recipes, you should check out the recipe viewer (JEI/EMI) pages for the altar. You can access them by looking up the usages for the block itself.
+To see the available recipes, you should check out the recipe viewer pages for the altar. You can access them by looking up the usages for the block itself.
 
 <img src="/img/recipe_viewer.png" class="center" width="600">
 

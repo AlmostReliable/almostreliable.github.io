@@ -19,6 +19,8 @@ The required type `ItemOutput` is a custom type provided by Summoning Rituals. I
 
 This custom type supports all KubeJS `ItemStack` wrappers. You can use multiple different syntaxes to pass an instance of it to the recipe builder. If you want to specify multiple entries, you have to wrap them in an array via `[]`.
 
+Item outputs must not be empty. If an item can't be resolved, for example because of a typo in the item ID, KubeJS reports an error.
+
 ```js
 .itemOutputs([
   'minecraft:diamond',
@@ -32,10 +34,10 @@ This custom type supports all KubeJS `ItemStack` wrappers. You can use multiple 
 
 ### Data
 
-If you want to pass data to item outputs, you need to define them as components. Minecraft replaced item NBT with components in 1.20.5. Components are a vanilla system and are wrapped by KubeJS. Components include values like which enchantments an item has, if it's a specific tool type, custom item names and tooltips, and more.
+If you want to pass data to item outputs, you need to define them as components. Components are a vanilla system and are wrapped by KubeJS. Components include values like which enchantments an item has, if it's a specific tool type, custom item names and tooltips, and more.
 
 ```js
-.itemOutputs('minecraft:iron_sword[enchantments={levels:{"minecraft:sharpness":2}}]')
+.itemOutputs('minecraft:iron_sword[enchantments={"minecraft:sharpness":2}]')
 ```
 
 ### Builder
@@ -111,9 +113,6 @@ The `requiresPlayer` boolean defaults to true. If a command output requires play
 
 Display outputs are not actual recipe outputs. They can be used to display an item output in the recipe viewer that won't be spawned automatically when the ritual is performed. This is useful if you want to handle the spawning of outputs in the [`complete` event](../event/complete.md) handler, for example. Adding a display output will also satisfy the recipe serializer requirement for at least one output, so you can have recipes that only spawn outputs via the `complete` event.
 
-> [!INFO] NOTE
-> This component is available since version 3.7.0.
-
 - type: `List<ItemStack>`
 - required: no
 - default: empty list
@@ -137,8 +136,8 @@ You can pass any type of the KubeJS `ItemStack` wrapper. If you want to specify 
 
 ### Data
 
-If you want to pass data to item outputs, you need to define them as components. Minecraft replaced item NBT with components in 1.20.5. Components are a vanilla system and are wrapped by KubeJS. Components include values like which enchantments an item has, if it's a specific tool type, custom item names and tooltips, and more.
+If you want to pass data to item outputs, you need to define them as components. Components are a vanilla system and are wrapped by KubeJS. Components include values like which enchantments an item has, if it's a specific tool type, custom item names and tooltips, and more.
 
 ```js
-.displayOutputs('minecraft:iron_sword[enchantments={levels:{"minecraft:sharpness":2}}]')
+.displayOutputs('minecraft:iron_sword[enchantments={"minecraft:sharpness":2}]')
 ```

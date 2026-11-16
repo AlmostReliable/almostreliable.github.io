@@ -2,14 +2,11 @@
 
 This event allows you to modify the tooltips displayed for ritual conditions in recipe viewers.
 
-> [!INFO] NOTE
-> This event is available since version 3.13.0.
-
 **It is a client event and reloadable.** Keep in mind that client events have to be located inside the `kubejs/client_scripts` folder. Reloading client scripts does not work with `/reload`. Instead you have to invoke an asset reload by pressing `F3` + `T` in-game.
 
 ## Overview
 
-The event is fired when recipe viewers collect tooltips for altar recipe displays. Depending on the recipe viewer, this can happen once per recipe or every render tick. The exposed `tooltip` collection contains all components that will be displayed in the tooltip and it's mutable. This means you can add, remove, or modify the components in the tooltip.
+The event is fired when recipe viewers collect tooltips for altar recipe displays. Depending on the recipe viewer, this can happen once per recipe or every render tick, so keep your logic lightweight. The exposed `tooltip` collection contains all components that will be displayed in the tooltip and it's mutable. This means you can add, remove, or modify the components in the tooltip.
 
 To filter tooltip modification to specific recipes, you can use the `recipeId` property of the event. The `recipe` object is also exposed. Make sure to only use this as a reference because the event is client-sided and modifying data inside the recipe could lead to desyncs. The recipe may not contain all information because not all data is synchronized to the client.
 
@@ -20,7 +17,7 @@ The tooltip collection always contains the golden "Conditions:" header as the fi
 - access in a client script via: `SummoningRituals.modifyConditionsTooltip`
 - properties
     - `recipeId`
-        - type: `ResourceLocation`
+        - type: `Identifier`
         - description: the ID of the recipe that is being displayed
     - `recipe`
         - type: `AltarRecipe`

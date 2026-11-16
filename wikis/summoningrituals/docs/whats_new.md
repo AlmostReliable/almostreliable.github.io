@@ -1,27 +1,36 @@
 # What's New
 
-If you have previously used **Summoning Rituals** with Minecraft 1.20 or earlier, you will notice that several things have changed. The mod has been completely rewritten from the ground up and now includes many technical improvements as well as new features.
+If you have used **Summoning Rituals** with Minecraft 1.21.1, most things work the same way in 26.1. The recipe builder, the bindings, and the server events are largely unchanged. However, Minecraft 26.1 introduced several technical changes that affect how scripts and datapacks are written.
 
-## General
-
-There are plenty of new conditions, such as biome, dimension, height, light level, moon phase, sky, and structure checks.
-
-The recipe checking logic has been overhauled to allow multiple recipes with similar inputs that only differ in their conditions.
-
-Additionally, a new output type has been added: the command output. Output commands are invoked by the altar when a ritual finishes. This allows basic custom logic to be invoked without the need for custom events.
-
-Block patterns are also supported now. This means that you can require specific blocks to be placed around the altar for a ritual to work. This opens up a lot of possibilities for custom rituals that are more than just "place items on the altar and wait".
+> [!TIP] NOTE
+> This page only covers the changes from Minecraft 1.21.1 to 26.1. If you are coming from Minecraft 1.20.1 or older, switch to the 1.21.1 docs with the version picker dropdown in the top-right of the header and read the What's New page there. It covers the rewrite of the mod that happened in 1.21.1.
 
 ## Players
 
-For players, the most notable changes are the recipe viewer integrations. The recipe pages were improved to show all the newly added conditions. Additionally, the display for entity inputs and outputs was refined.
-
-Because recipes now support block pattern requirements, you can activate a live preview via the recipe manager pages. Additionally, there will be highlights in the world when a specific block doesn't match the expected pattern.
+Block pattern highlights no longer show up when automation only simulates inserting items into the altar.
 
 ## Developers
 
-Due to the rewrite, it's now a lot easier to create very complex recipes. The new API is more intuitive and allows for better code readability. Additionally, the new recipe system is more flexible and allows for more complex logic to be implemented.
+The biggest change affects custom ritual renderers. Minecraft 26.1 uses a new render pipeline where the game first extracts all data it needs to render and submits the actual render calls afterwards. The [ritual renderer registration](event/renderer.md) was adjusted to follow this pipeline:
 
-One of the most impactful technical changes is how much context the events have access to. Previously, the events only had access to the general recipe information. If you wanted to invoke logic on the items and entities that were actually spawned, this wasn't possible. Now, you get access to the entities in the world to customize the ritual behavior even further.
+- `renderer.itemRenderer` is now `renderer.itemModelResolver`
+- `context.bufferSource` is now `context.submitNodeCollector`
+- `context.packedOverlay` and `context.shouldReset()` were removed
+- `context.altar` can be `null`; use `context.altarPos` if you only need the position
+- `context.altarPos`, `context.orbitScale`, `context.orbitWaveAnchor`, `context.initiatorRenderState`, and `context.inputRenderStates` were added
+- `renderer.renderInventoryContents(context)` was added to draw the default initiator and item orbit
 
-Additionally, you can also register custom ritual renderers now.
+KubeJS scripts are stricter now:
+
+- [item outputs](recipe/outputs.md#item-outputs) and the display items of [fake entity inputs](recipe/inputs.md#fake-entity-inputs) reject empty items, for example when an item ID is misspelled
+- [block patterns](recipe/block_patterns.md) reject unknown block tags
+
+Minecraft also changed several data formats. Entity data, item components, and text components use the new vanilla formats. Check the [examples page](examples.md) to see how they look in 26.1. For datapack recipes, the following changed:
+
+- the initiator uses the new vanilla ingredient format
+- item inputs use `{ "ingredient": ..., "count": n }`
+- time conditions (`minecraft:time_check`) need a `clock`
+
+The [moon phase condition](recipe/conditions.md#moon-phase) now uses the vanilla moon phases. Because only the Overworld tracks moon phases, the condition always checks the moon phase of the Overworld, even if the altar is located in another dimension.
+
+Lastly, Minecraft renamed `ResourceLocation` to `Identifier`. This affects the types of recipe IDs in events, but the usage in scripts stays the same.

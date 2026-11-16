@@ -47,9 +47,6 @@ If you don't specify a block state at all, all properties are considered wildcar
 
 Read the sections below to learn how to define a block pattern. However, if you don't want to define it manually, there is an item in the game that allows generating a pattern automatically. It's called the **Pattern Generator**.
 
-> [!INFO] NOTE
-> This feature is available since version 3.12.0.
-
 The item is not available in the creative inventory. Because it's a dev-only item, you need to obtain it through a command.
 
 ```
@@ -126,6 +123,8 @@ Because a pattern is a rather complex object, its creation is handled through a 
         - creates a new pattern entry with the specified offset, a predicate that checks for any block in the specified block tag, and assigns the specified query to the entry
     - `queryableTag(BlockPos offset, TagKey<Block> blockTag, BlockState blockState, String query)`
         - creates a new pattern entry with the specified offset, a predicate that checks for any block in the specified block tag with the specified block state, and assigns the specified query to the entry
+
+Block tags passed to the `tag` and `queryableTag` functions must exist. If a tag is unknown, for example because of a typo, KubeJS reports an error like `unknown block tag 'kubejs:no_such_tag'`.
 
 ### Example
 

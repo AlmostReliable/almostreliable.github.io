@@ -23,20 +23,16 @@ ServerEvents.recipes(event => {
             SummoningEntity.input("cat", 3).tooltip("Meow"),
             SummoningEntity.input("zombie")
                 .data({
-                    HandItems: [
-                        {
-                            id: "minecraft:diamond_sword",
-                            Count: 1,
-                            tag: { ench: [{ id: 16, lvl: 1 }] },
-                        },
-                    ],
+                    equipment: {
+                        mainhand: { id: "minecraft:diamond_sword", count: 1 },
+                    },
                 })
                 .tooltip("Needs any sword")
                 .validator(e => e.mainHandItem.id.contains("sword")),
         ])
         .fakeEntityInputs(
             SummoningEntity.fakeInput(
-                `minecraft:iron_ingot[custom_name='{"color":"gold","text":"Special Mob"}',lore=['{"color":"gray","text":"Checks for a custom entity."}']]`,
+                `minecraft:iron_ingot[custom_name={color:"gold",text:"Special Mob"},lore=[{color:"gray",text:"Checks for a custom entity."}]]`,
                 1,
                 entity => {
                     return entity.type === "minecraft:pig"
@@ -56,19 +52,15 @@ ServerEvents.recipes(event => {
             SummoningEntity.output("2x blaze")
                 .data({
                     Health: 50,
-                    attributes: [{ id: "generic.max_health", base: 50 }],
+                    attributes: [{ id: "minecraft:max_health", base: 50 }],
                 })
                 .offset([1, 2, 2])
                 .tooltip([Text.of("50 health").aqua()]),
             SummoningEntity.output("zombie", 3)
                 .data({
-                    HandItems: [
-                        {
-                            id: "minecraft:diamond_sword",
-                            Count: 1,
-                            tag: { ench: [{ id: 16, lvl: 1 }] },
-                        },
-                    ],
+                    equipment: {
+                        mainhand: { id: "minecraft:diamond_sword", count: 1 },
+                    },
                 })
                 .tooltip("Has a Sword"),
             SummoningEntity.output("ghast").offset([1, 2, 2]).spread([4, 2, 4]),
@@ -152,10 +144,10 @@ SummoningRituals.complete(event => {
 ```json
 {
     "type": "summoningrituals:altar",
-    "initiator": { "tag": "c:ingots" },
+    "initiator": "#c:ingots",
     "item_outputs": [
         { "item": { "id": "minecraft:carrot", "count": 3 } },
-        { "item": { "id": "minecraft:iron_sword", "count": 1 } },
+        { "item": { "id": "minecraft:iron_sword" } },
         { "item": { "id": "minecraft:potato", "count": 4 } },
         { "item": { "id": "minecraft:diamond", "count": 3 } },
         { "item": { "id": "minecraft:emerald", "count": 6 }, "offset": [1, 2, 2], "spread": [4, 2, 4] }
@@ -169,7 +161,7 @@ SummoningRituals.complete(event => {
                 "count": 2,
                 "data": {
                     "Health": 50.0,
-                    "attributes": [{ "id": "generic.max_health", "base": 50.0 }]
+                    "attributes": [{ "id": "minecraft:max_health", "base": 50.0 }]
                 },
                 "tooltip": [{ "text": "50 health", "color": "aqua" }]
             },
@@ -180,13 +172,9 @@ SummoningRituals.complete(event => {
                 "id": "minecraft:zombie",
                 "count": 3,
                 "data": {
-                    "HandItems": [
-                        {
-                            "id": "minecraft:diamond_sword",
-                            "Count": 1.0,
-                            "tag": { "ench": [{ "id": 16.0, "lvl": 1.0 }] }
-                        }
-                    ]
+                    "equipment": {
+                        "mainhand": { "id": "minecraft:diamond_sword", "count": 1 }
+                    }
                 },
                 "tooltip": ["Has a Sword"]
             }
@@ -198,13 +186,13 @@ SummoningRituals.complete(event => {
         "tooltip": ["Broadcasts a greeting!"],
         "requires_player": false
     },
-    "display_outputs": [{ "id": "minecraft:diamond", "count": 1 }],
+    "display_outputs": [{ "id": "minecraft:diamond" }],
     "item_inputs": [
-        { "item": "minecraft:cobblestone", "count": 2 },
-        { "item": "minecraft:stone", "count": 4 },
-        { "item": "minecraft:dirt", "count": 2 },
-        { "tag": "c:glass_blocks", "count": 1 },
-        { "tag": "c:ingots/iron", "count": 3 }
+        { "ingredient": "minecraft:cobblestone", "count": 2 },
+        { "ingredient": "minecraft:stone", "count": 4 },
+        { "ingredient": "minecraft:dirt", "count": 2 },
+        { "ingredient": "#c:glass_blocks", "count": 1 },
+        { "ingredient": "#c:ingots/iron", "count": 3 }
     ],
     "entity_inputs": [
         { "entity": { "id": "minecraft:elder_guardian", "count": 3 } },
@@ -216,13 +204,9 @@ SummoningRituals.complete(event => {
             "entity": {
                 "id": "minecraft:zombie",
                 "data": {
-                    "HandItems": [
-                        {
-                            "id": "minecraft:diamond_sword",
-                            "Count": 1.0,
-                            "tag": { "ench": [{ "id": 16.0, "lvl": 1.0 }] }
-                        }
-                    ]
+                    "equipment": {
+                        "mainhand": { "id": "minecraft:diamond_sword", "count": 1 }
+                    }
                 },
                 "tooltip": ["Needs any sword"]
             }
@@ -232,10 +216,9 @@ SummoningRituals.complete(event => {
         {
             "item": {
                 "id": "minecraft:iron_ingot",
-                "count": 1,
                 "components": {
-                    "minecraft:custom_name": "{\"color\":\"gold\",\"text\":\"Special Mob\"}",
-                    "minecraft:lore": ["{\"color\":\"gray\",\"text\":\"Checks for a custom entity.\"}"]
+                    "minecraft:custom_name": { "color": "gold", "text": "Special Mob" },
+                    "minecraft:lore": [{ "color": "gray", "text": "Checks for a custom entity." }]
                 }
             },
             "count": 1
@@ -269,27 +252,28 @@ SummoningRituals.complete(event => {
     "zone": [3, 3, 3],
     "conditions": [
         {
+            "condition": "minecraft:time_check",
+            "clock": "minecraft:overworld",
             "period": 24000,
-            "value": { "min": 12000.0, "max": 24000.0 },
-            "condition": "minecraft:time_check"
+            "value": { "min": 12000, "max": 24000 }
         },
-        { "moon_phase": 0, "condition": "summoningrituals:moon_phase" },
-        { "thundering": true, "condition": "minecraft:weather_check" },
+        { "condition": "summoningrituals:moon_phase", "moon_phase": 0 },
+        { "condition": "minecraft:weather_check", "thundering": true },
         {
+            "condition": "minecraft:location_check",
             "predicate": {
                 "can_see_sky": false,
                 "smokey": true,
                 "light": { "light": { "min": 5 } },
-                "position": { "y": { "min": 0.0, "max": 30.0 } },
+                "position": { "y": { "min": 0, "max": 30 } },
                 "biomes": ["minecraft:plains", "minecraft:desert"],
                 "structures": "#minecraft:mineshaft",
                 "dimension": "minecraft:overworld"
-            },
-            "condition": "minecraft:location_check"
+            }
         },
         {
-            "properties": { "waterlogged": "true", "facing": "north" },
-            "condition": "summoningrituals:block_tag_block_state"
+            "condition": "summoningrituals:block_tag_block_state",
+            "properties": { "waterlogged": "true", "facing": "north" }
         }
     ]
 }

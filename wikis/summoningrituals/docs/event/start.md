@@ -28,7 +28,7 @@ At this point, the altar block also contains the initiator item and is about to 
         - type: `RecipeInfo`
         - description: a container object holding information about the recipe that is about to be processed
         - container properties:
-            - `recipeId` - the ID of the recipe that is about to be processed as `ResourceLocation`
+            - `recipeId` - the ID of the recipe that is about to be processed as `Identifier`
             - `recipe` - the `AltarRecipe` that is about to be processed
             - `initiator` - the `ItemStack` that was used to initiate the ritual
             - `inputEntities` - an `Entity` collection holding all entities that are about to be sacrificed
@@ -83,9 +83,6 @@ queriedPositions.forEach(pos => {
 ```
 
 ## Block Highlights
-
-> [!INFO] NOTE
-> This feature is available since version 3.13.0.
 
 If you want to highlight specific blocks in the world, the event exposes the `highlightPositions` and `highlightOffsets` functions. These functions take a collection of either absolute block positions or block offsets (relative to the altar position) and highlight them in the world. The highlight is the same as the one used for invalid blocks in the block pattern. Each highlight is displayed for 100 ticks.
 

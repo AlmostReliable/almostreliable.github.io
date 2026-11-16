@@ -33,6 +33,9 @@ SummoningEntity.output("3x sheep")
 SummoningEntity.output("iron_golem", 2)
 ```
 
+> [!INFO] NOTE
+> Entity data uses the vanilla entity format of Minecraft 26.1. For example, the held items of an entity are defined via the `equipment` compound. You can check the data of an existing entity in-game with the `/data get entity` command.
+
 ## Entity Input Builder
 
 After obtaining the `EntityInputBuilder` instance through the binding, you can chain additional functions to it.
@@ -81,16 +84,12 @@ After obtaining the `EntityInputBuilder` instance through the binding, you can c
 
 ```js
 .entityInputs([
-    SummoningEntity.input("cat", 3).tooltip("Meow"),  // [!code focus:13]
+    SummoningEntity.input("cat", 3).tooltip("Meow"),  // [!code focus:9]
     SummoningEntity.input("zombie")
         .data({
-            HandItems: [
-            {
-                id: "minecraft:diamond_sword",
-                Count: 1,
-                tag: { ench: [{ id: 16, lvl: 1 }] },
+            equipment: {
+                mainhand: { id: "minecraft:diamond_sword", count: 1 },
             },
-            ],
         })
         .tooltip("Needs any sword")
         .validator((e) => e.mainHandItem.id.contains("sword")),
@@ -143,23 +142,19 @@ After obtaining the `EntityOutputBuilder` instance through the binding, you can 
 
 ```js
 .entityOutputs([
-    SummoningEntity.output("5x creeper").tooltip("Kaboom"), // [!code focus:18]
+    SummoningEntity.output("5x creeper").tooltip("Kaboom"), // [!code focus:14]
     SummoningEntity.output("skeleton", 2)
         .data({
-            HandItems: [
-            {
-                id: "minecraft:diamond_sword",
-                Count: 1,
-                tag: { ench: [{ id: 16, lvl: 1 }] },
+            equipment: {
+                mainhand: { id: "minecraft:diamond_sword", count: 1 },
             },
-            ],
         }),
     SummoningEntity.output("6x sheep")
         .offset([1, 2, 2])
         .spread([4, 2, 4])
         .data({
           Health: 50,
-          attributes: [{ id: "generic.max_health", base: 50 }],
+          attributes: [{ id: "minecraft:max_health", base: 50 }],
         }),
 ])
 ```

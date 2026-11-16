@@ -161,7 +161,11 @@ Function: `maxLightLevel(Integer max)`
 
 The moon phase check ensures the ritual is only started at the given moon phase.
 
+Only the Overworld tracks moon phases. Other dimensions always report a full moon. Because of that, the check always uses the moon phase of the Overworld, even if the altar is located in another dimension.
+
 If you want to read more about moon phases and how they are calculated, check the [official Minecraft wiki article](https://minecraft.wiki/w/Moon#Phases).
+
+The `SummoningMoonPhase` binding exposes the vanilla moon phases. You can also pass the name of the phase as a string.
 
 Function: `moonPhase(MoonPhase phase)`<br>
 Available Options:
@@ -232,6 +236,8 @@ Functions:
 ## Time
 
 The time check ensures the ritual is only started at the given game time. The time is the amount of ticks that have passed during a day. A day has 24000 ticks. You can specify a range, a minimum, a maximum, or a predefined time range. If you use more than a single function to specify a time, the required value will be overridden.
+
+Minecraft tracks time with world clocks. The time check always uses the Overworld clock, so the ritual follows the Overworld's day cycle, even if the altar is located in another dimension.
 
 If you happen to pass the exact same bounds which would correspond to a predefined time range, the predefined time range will be used instead.
 

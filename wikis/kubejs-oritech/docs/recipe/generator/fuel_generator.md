@@ -30,11 +30,11 @@ ServerEvents.recipes(event => {
     // removes all fuel generator recipes
     event.remove({ type: "oritech:fuel_generator" })
 
-    // adds a recipe that converts 1000 mB of water into energy for 60 ticks by default
-    event.recipes.oritech.fuel_generator().fluidInput("water")
+    // adds a recipe that converts 1000 mB of crude oil into energy for 60 ticks by default
+    event.recipes.oritech.fuel_generator().fluidInput("oritech:still_oil")
 
-    // adds a recipe that converts 1500 mB of any water into energy for 60 ticks by default
-    event.recipes.oritech.fuel_generator().fluidInput("1500x #c:water")
+    // adds a recipe that converts 1500 mB of any diesel into energy for 60 ticks by default
+    event.recipes.oritech.fuel_generator().fluidInput("1500x #c:diesel")
 
     // adds a recipe that converts 3000 mB of lava into energy for 40 ticks
     // could use .timeInSeconds(2) alternatively

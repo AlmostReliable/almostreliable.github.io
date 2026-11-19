@@ -3,54 +3,105 @@ import { defineConfig } from "../../../main/defineAlmostWiki"
 export default defineConfig({
     wikiId: "kubejs-enderio",
     srcDir: "./docs",
+    currentMinecraftVersion: "26.1",
     themeConfig: {
-        sidebar: [
-            {
-                text: "Introduction",
-                items: [{ text: "Getting Started", link: "/" }],
-            },
-            {
-                text: "Machine Recipes",
-                items: [
-                    { text: "Alloy Smelter", link: "machine/alloysmelter" },
-                    { text: "Enchanter", link: "machine/enchanter" },
-                    { text: "Painting Machine", link: "machine/paintingmachine" },
-                    { text: "Sag Mill", link: "machine/sagmill" },
-                    { text: "Slice'N'Splice", link: "machine/slicensplice" },
-                    { text: "Soul Binder", link: "machine/soulbinder" },
-                    { text: "Tank", link: "machine/tank" },
-                    { text: "Vat", link: "machine/vat" },
-                    { text: "Weather Obelisk", link: "machine/weatherobelisk" },
-                ],
-            },
-            {
-                text: "Misc Recipes",
-                items: [{ text: "Fire Crafting", link: "misc/firecrafting" }],
-            },
-            {
-                text: "Events",
-                items: [
-                    { text: "Overview", link: "event/overview" },
-                    { text: "Capacitor Registration", link: "event/capacitorregistry" },
-                    { text: "Conduit Registration", link: "event/conduitregistry" },
-                    { text: "Grinding Ball Modification", link: "event/grindingballs" },
-                    { text: "Range Extender Modification", link: "event/rangeextenders" },
-                    { text: "Soul Data Modification", link: "event/souldata" },
-                    { text: "Vat Reagent Modification", link: "event/vatreagents" },
-                ],
-            },
-            {
-                text: "Bindings",
-                items: [
-                    { text: "Fire Crafting Result", link: "binding/firecraftingresult" },
-                    { text: "Mob Category", link: "binding/mobcategory" },
-                    { text: "Mob Spawn Mode", link: "binding/mobspawnmode" },
-                    { text: "Sag Mill Bonus", link: "binding/sagmillbonus" },
-                    { text: "Sag Mill Output", link: "binding/sagmilloutput" },
-                    { text: "Tank Mode", link: "binding/tankmode" },
-                    { text: "Weather Mode", link: "binding/weathermode" },
-                ],
-            },
-        ],
+        sidebar: {
+            root: [
+                {
+                    text: "Introduction",
+                    items: [{ text: "Getting Started", link: "/" }],
+                },
+                {
+                    text: "Machine Recipes",
+                    items: [
+                        { text: "Alloy Smelter", link: "machine/alloysmelter" },
+                        { text: "Enchanter", link: "machine/enchanter" },
+                        { text: "Painting Machine", link: "machine/paintingmachine" },
+                        { text: "Sag Mill", link: "machine/sagmill" },
+                        { text: "Slice'N'Splice", link: "machine/slicensplice" },
+                        { text: "Soul Binder", link: "machine/soulbinder" },
+                        { text: "Tank", link: "machine/tank" },
+                        { text: "Vat", link: "machine/vat" },
+                        { text: "Weather Obelisk", link: "machine/weatherobelisk" },
+                    ],
+                },
+                {
+                    text: "Misc Recipes",
+                    items: [{ text: "Fire Crafting", link: "misc/firecrafting" }],
+                },
+                {
+                    text: "Events",
+                    items: [
+                        { text: "Overview", link: "event/overview" },
+                        { text: "Capacitor Registration", link: "event/capacitorregistry" },
+                        { text: "Conduit Registration", link: "event/conduitregistry" },
+                        { text: "Grinding Ball Modification", link: "event/grindingballs" },
+                        { text: "Range Extender Modification", link: "event/rangeextenders" },
+                        { text: "Soul Data Modification", link: "event/souldata" },
+                        { text: "Vat Reagent Modification", link: "event/vatreagents" },
+                    ],
+                },
+                {
+                    text: "Bindings",
+                    items: [
+                        { text: "Fire Crafting Result", link: "binding/firecraftingresult" },
+                        { text: "Mob Category", link: "binding/mobcategory" },
+                        { text: "Mob Spawn Mode", link: "binding/mobspawnmode" },
+                        { text: "Sag Mill Bonus", link: "binding/sagmillbonus" },
+                        { text: "Sag Mill Output", link: "binding/sagmilloutput" },
+                        { text: "Tank Mode", link: "binding/tankmode" },
+                        { text: "Weather Mode", link: "binding/weathermode" },
+                    ],
+                },
+            ],
+            "1.21.1": [
+                {
+                    text: "Introduction",
+                    items: [{ text: "Getting Started", link: "/" }],
+                },
+                {
+                    text: "Machine Recipes",
+                    items: [
+                        { text: "Alloy Smelter", link: "machine/alloysmelter" },
+                        { text: "Enchanter", link: "machine/enchanter" },
+                        { text: "Painting Machine", link: "machine/paintingmachine" },
+                        { text: "Sag Mill", link: "machine/sagmill" },
+                        { text: "Slice'N'Splice", link: "machine/slicensplice" },
+                        { text: "Soul Binder", link: "machine/soulbinder" },
+                        { text: "Tank", link: "machine/tank" },
+                        { text: "Vat", link: "machine/vat" },
+                        { text: "Weather Obelisk", link: "machine/weatherobelisk" },
+                    ],
+                },
+                {
+                    text: "Misc Recipes",
+                    items: [{ text: "Fire Crafting", link: "misc/firecrafting" }],
+                },
+                {
+                    text: "Events",
+                    items: [
+                        { text: "Overview", link: "event/overview" },
+                        { text: "Capacitor Registration", link: "event/capacitorregistry" },
+                        { text: "Conduit Registration", link: "event/conduitregistry" },
+                        { text: "Grinding Ball Modification", link: "event/grindingballs" },
+                        { text: "Range Extender Modification", link: "event/rangeextenders" },
+                        { text: "Soul Data Modification", link: "event/souldata" },
+                        { text: "Vat Reagent Modification", link: "event/vatreagents" },
+                    ],
+                },
+                {
+                    text: "Bindings",
+                    items: [
+                        { text: "Fire Crafting Result", link: "binding/firecraftingresult" },
+                        { text: "Mob Category", link: "binding/mobcategory" },
+                        { text: "Mob Spawn Mode", link: "binding/mobspawnmode" },
+                        { text: "Sag Mill Bonus", link: "binding/sagmillbonus" },
+                        { text: "Sag Mill Output", link: "binding/sagmilloutput" },
+                        { text: "Tank Mode", link: "binding/tankmode" },
+                        { text: "Weather Mode", link: "binding/weathermode" },
+                    ],
+                },
+            ],
+        },
     },
 })

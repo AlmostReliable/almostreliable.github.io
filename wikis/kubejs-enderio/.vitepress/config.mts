@@ -34,6 +34,7 @@ export default defineConfig({
                     { text: "Capacitor Registration", link: "event/capacitorregistry" },
                     { text: "Conduit Registration", link: "event/conduitregistry" },
                     { text: "Grinding Ball Modification", link: "event/grindingballs" },
+                    { text: "Range Extender Modification", link: "event/rangeextenders" },
                     { text: "Soul Data Modification", link: "event/souldata" },
                     { text: "Vat Reagent Modification", link: "event/vatreagents" },
                 ],

@@ -80,6 +80,7 @@ export default defineConfig({
                                 { text: "Fuel Generator", link: "recipe/generator/fuel_generator" },
                                 { text: "Lava Generator", link: "recipe/generator/lava_generator" },
                                 { text: "Nuclear Reactor", link: "recipe/generator/nuclear_reactor" },
+                                { text: "Steam Engine", link: "recipe/generator/steam_engine" },
                             ],
                         },
                         {

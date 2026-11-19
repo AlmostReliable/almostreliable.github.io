@@ -26,15 +26,15 @@ The Soul Binder is a machine that binds the essence of living beings into items.
         - default: `2000`
         - usage: can be passed as the third argument or by chaining the function `.energy(int)`
     - `experience`
-        - description: specifies the experience cost of the recipe
-        - type: `float`
+        - description: specifies the experience levels the recipe requires
+        - type: `int`
         - role: other
         - required: no
-        - default: `5.0`
-        - usage: can be passed as the fourth argument or by chaining the function `.experience(float)`
+        - default: `5`
+        - usage: can be passed as the fourth argument or by chaining the function `.experience(int)`
     - `entity_type`
         - description: specifies the entity type soul required for the recipe
-        - type: `TagKey<EntityType>`
+        - type: `ResourceLocation`
         - role: other
         - required: no
         - default: none
@@ -47,14 +47,31 @@ The Soul Binder is a machine that binds the essence of living beings into items.
         - default: none
         - usage: can be set by chaining the function `.mobCategory(string)`
     - `soul_data`
-        - description: specifies the soul data required for the recipe
+        - description: specifies the soul data type the soul requires an entry in, more information [here](../event/souldata.md)
         - type: `string`
         - role: other
         - required: no
         - default: none
         - usage: can be set by chaining the function `.soulData(string)`
+        - possible values:
+            - `spawner` - the soul can be used in the Powered Spawner
+            - `engine` - the soul can be used in the Soul Engine
+            - `farm` - the soul can be used in the Farming Station
+            - `solar` - the soul can be used in Solar Panels
+    - `copyInputComponents`
+        - description: specifies whether the output item copies the data components of the input item, for example to keep the stored energy or the configuration of a machine
+        - type: `boolean`
+        - role: other
+        - required: no
+        - default: `false`
+        - usage: can be enabled by chaining the function `.copyInputComponents()`
 - validators:
     - `entity_type`, `mob_category`, and `soul_data` must be mutually exclusive
+    - `entity_type` must be an existing entity type, entity type tags are not supported
+    - `soul_data` must be one of the possible values
+
+> [!WARNING] NOTE
+> Since mod version 1.21.1-0.14.0, `experience` is an `int` and `entity_type` is an entity type id. Previously, `entity_type` was documented as a tag, but EnderIO always treated it as an entity type id. `copyInputComponents` and the validation of `entity_type` and `soul_data` were added in the same version.
 
 ## Examples
 
@@ -76,7 +93,7 @@ ServerEvents.recipes(event => {
 
     // adds a recipe that converts a stick to 4 stone
     // energy usage of 5000
-    // no experience
+    // default experience
     // mob category of axolotls
     // uses the chaining function for the mob category
     event.recipes.enderio
@@ -84,13 +101,20 @@ ServerEvents.recipes(event => {
         .mobCategory(MobCategory.AXOLOTLS)
 
     // adds a recipe that converts white wool to bread
-    // default values for energy and exp
     // entity type of minecraft:zombie
-    // uses the chaining function for the entity type
+    // uses the chaining functions for energy, experience, and the entity type
     event.recipes.enderio
         .soul_binding("bread", "white_wool")
         .energy(3000)
         .experience(2)
         .entityType("minecraft:zombie")
+
+    // adds a recipe that binds a soul to a Powered Spawner
+    // the soul has to have an entry in the spawner soul data
+    // the output keeps the components of the input like stored energy
+    event.recipes.enderio
+        .soul_binding("enderio:powered_spawner", "enderio:powered_spawner", 100000, 8)
+        .soulData("spawner")
+        .copyInputComponents()
 })
 ```

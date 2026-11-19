@@ -20,6 +20,7 @@ export default defineConfig({
                     { text: "Soul Binder", link: "machine/soulbinder" },
                     { text: "Tank", link: "machine/tank" },
                     { text: "Vat", link: "machine/vat" },
+                    { text: "Weather Obelisk", link: "machine/weatherobelisk" },
                 ],
             },
             {
@@ -46,6 +47,7 @@ export default defineConfig({
                     { text: "Sag Mill Bonus", link: "binding/sagmillbonus" },
                     { text: "Sag Mill Output", link: "binding/sagmilloutput" },
                     { text: "Tank Mode", link: "binding/tankmode" },
+                    { text: "Weather Mode", link: "binding/weathermode" },
                 ],
             },
         ],

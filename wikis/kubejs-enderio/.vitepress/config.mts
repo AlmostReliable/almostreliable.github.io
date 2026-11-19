@@ -33,6 +33,7 @@ export default defineConfig({
                     { text: "Capacitor Registration", link: "event/capacitorregistry" },
                     { text: "Conduit Registration", link: "event/conduitregistry" },
                     { text: "Grinding Ball Modification", link: "event/grindingballs" },
+                    { text: "Soul Data Modification", link: "event/souldata" },
                     { text: "Vat Reagent Modification", link: "event/vatreagents" },
                 ],
             },
@@ -41,6 +42,7 @@ export default defineConfig({
                 items: [
                     { text: "Fire Crafting Result", link: "binding/firecraftingresult" },
                     { text: "Mob Category", link: "binding/mobcategory" },
+                    { text: "Mob Spawn Mode", link: "binding/mobspawnmode" },
                     { text: "Sag Mill Bonus", link: "binding/sagmillbonus" },
                     { text: "Sag Mill Output", link: "binding/sagmilloutput" },
                     { text: "Tank Mode", link: "binding/tankmode" },

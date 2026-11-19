@@ -1,6 +1,6 @@
 # Vat
 
-The Vat combines fluids with solid reagents to produce new fluids through a processing step that takes time. It accepts two solid reagents (left and right) and one input fluid, producing one output fluid after processing.
+The Vat combines fluids with solid reagents to produce new fluids through a processing step that takes time. It accepts two solid reagents (first and second) and one input fluid, producing one output fluid after processing.
 
 Vat recipes also support the concept of Vat Reagents, which modify the output quantity based on the reagents used. To modify the Vat Reagents, please refer to the [Vat Reagents Event](../event/vatreagents.md) page.
 
@@ -20,14 +20,14 @@ Vat recipes also support the concept of Vat Reagents, which modify the output qu
         - role: input
         - required: yes
         - usage: needs to be passed as the second argument
-    - `left_reagent`
-        - description: specifies the tag of the item to be used in the left reagent slot
+    - `first_reagent`
+        - description: specifies the tag of the item to be used in the first reagent slot
         - type: `TagKey<Item>`
         - role: input
         - required: yes
         - usage: needs to be passed as the third argument
-    - `right_reagent`
-        - description: specifies the tag of the item to be used in the right reagent slot
+    - `second_reagent`
+        - description: specifies the tag of the item to be used in the second reagent slot
         - type: `TagKey<Item>`
         - role: input
         - required: yes

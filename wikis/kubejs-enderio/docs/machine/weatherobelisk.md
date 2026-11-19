@@ -2,9 +2,6 @@
 
 The Weather Obelisk changes the weather by launching a firework that consumes a fluid. Each recipe links a fluid amount to a weather mode.
 
-> [!WARNING] NOTE
-> This recipe type is only supported since mod version 1.21.1-0.14.0.
-
 ## Overview
 
 - access in recipes event via: `event.recipes.enderio.weather_change`

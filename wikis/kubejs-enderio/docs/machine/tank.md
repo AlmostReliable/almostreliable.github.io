@@ -43,13 +43,13 @@ ServerEvents.recipes(event => {
     //  water from the tank
     event.recipes.enderio.tank("stick", "apple", "water")
 
-    // adds a recipe that converts a 3 carrots to a potato by draining 5 buckets of lava from
+    // adds a recipe that converts a carrot to a potato by draining 5 buckets of lava from
     //  the item into the tank
-    event.recipes.enderio.tank("potato", "3x carrot", Fluid.of("lava", 5000), TankMode.EMPTY)
+    event.recipes.enderio.tank("potato", "carrot", Fluid.of("lava", 5000), TankMode.EMPTY)
 
-    // adds a recipe that converts a 5 sticks to a 3 stone by draining 2 buckets of any kind
+    // adds a recipe that converts a stick to 3 stone by draining 2 buckets of any kind
     //  of water from the item into the tank
     // uses the chaining function for emptying
-    event.recipes.enderio.tank("3x stone", Item.of("stick", 5), "2000x #c:water").emptying()
+    event.recipes.enderio.tank("3x stone", "stick", "2000x #c:water").emptying()
 })
 ```

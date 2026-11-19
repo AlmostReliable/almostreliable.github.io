@@ -4,9 +4,6 @@ This event allows you to register custom conduits.
 
 **It is a server event and reloadable!** Keep in mind that server events have to be located inside the `kubejs/server_scripts` folder.
 
-> [!WARNING] NOTE
-> The Conduits have been reworked by the EnderIO team in version 8.2.0. Previously, the functions to register the conduits required some more properties. If you need help with that, join the Discord or take a look at the source code before version 8.2.0.
-
 ## Overview
 
 EnderIO supports data-driven conduits by default. This event adds convenience methods to register custom conduits via KubeJS.
@@ -19,7 +16,6 @@ for your custom conduit.
     - item conduit
     - energy conduit
     - fluid conduit
-    - chemical conduit (Mekanism)
     - ME conduit (Applied Energistics 2)
 
 ## Registration
@@ -68,16 +64,6 @@ EnderIOEvents.conduits(event => {
 });
 ```
 
-### Chemical Conduit
-
-- `transferRate` - specifies the transfer rate of chemical per tick
-
-```js
-EnderIOEvents.conduits(event => {
-    event.registerChemicalConduit(String id, String name, int transferRate); // [!code focus]
-});
-```
-
 ### ME Conduit
 
 - `color` - specifies the AE2 color conduit transports channels for
@@ -118,13 +104,13 @@ EnderIOEvents.conduits(event => {
 ```
 
 Texture:
-![](/../img/texture.png)
+![](/img/texture.png)
 
 Creative Tab:
-![](/../img/creative_tab.png)
+![](/img/creative_tab.png)
 
 Connection:
-![](/../img/connection.png)
+![](/img/connection.png)
 
 GUI:
-![](/../img/gui.png)
+![](/img/gui.png)

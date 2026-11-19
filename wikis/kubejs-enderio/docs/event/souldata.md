@@ -4,9 +4,6 @@ This event allows you to add, modify, and remove soul data. Soul data defines wh
 
 **It is a server event and reloadable!** Keep in mind that server events have to be located inside the `kubejs/server_scripts` folder.
 
-> [!WARNING] NOTE
-> This event only exists since mod version 1.21.1-0.14.0.
-
 ## Overview
 
 EnderIO loads soul data from datapacks (`data/<namespace>/eio_soul/<type>/*.json`). There is one soul data type per machine:
@@ -46,7 +43,7 @@ After that, use one of the following methods to modify the soul data.
 - properties:
     - `entity`
         - description: specifies the mob
-        - type: `ResourceLocation`
+        - type: `Identifier`
     - `power`
         - description: specifies the energy cost of one spawn cycle
         - type: `int`
@@ -72,7 +69,7 @@ EnderIOEvents.soulData(event => {
 - properties:
     - `entity`
         - description: specifies the mob
-        - type: `ResourceLocation`
+        - type: `Identifier`
     - `fluid`
         - description: specifies the fluid the engine burns
         - type: `string`
@@ -100,7 +97,7 @@ EnderIOEvents.soulData(event => {
 - properties:
     - `entity`
         - description: specifies the mob
-        - type: `ResourceLocation`
+        - type: `Identifier`
     - `bonemeal`
         - description: specifies the chance that using bonemeal consumes it, from `0` to `1`
         - type: `float`
@@ -128,7 +125,7 @@ EnderIOEvents.soulData(event => {
 - properties:
     - `entity`
         - description: specifies the mob
-        - type: `ResourceLocation`
+        - type: `Identifier`
     - `daytime`
         - description: specifies whether the panel generates energy during the day
         - type: `boolean`
@@ -137,7 +134,7 @@ EnderIOEvents.soulData(event => {
         - type: `boolean`
     - `dimension`
         - description: specifies a dimension without skylight, like the Nether, where the panel works anyway
-        - type: `ResourceLocation`
+        - type: `Identifier`
         - required: no
         - default: none, the panel only works in dimensions with skylight
 - notes:
@@ -163,7 +160,7 @@ EnderIOEvents.soulData(event => {
         - possible values: `spawner`, `engine`, `farm`, `solar`
     - `entity`
         - description: specifies the mob
-        - type: `ResourceLocation`
+        - type: `Identifier`
 - notes:
     - removing an entry stops new souls of the mob from being bound, machines and items that already hold the soul keep it
     - a Powered Spawner that already holds the soul keeps spawning the mob with the default energy cost from the EnderIO config, add the mob to the `enderio:spawner_blacklist` entity type tag to stop that

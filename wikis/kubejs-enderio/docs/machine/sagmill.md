@@ -34,6 +34,9 @@ Sag Mill recipes support multiple outputs. Output chances and energy consumption
         - required: no
         - default: `SagMillBonus.MULTIPLY_OUTPUT`
         - usage: can be passed as the fourth argument or by chaining the function `.bonus(SagMillBonus)`
+- validators:
+    - item outputs must not be empty, an empty item output fails the recipe
+    - tag outputs (e.g. `"3x #c:dusts/redstone"`) are allowed even when the tag has no items
 
 ## Examples
 

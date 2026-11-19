@@ -34,7 +34,7 @@ The Soul Binder is a machine that binds the essence of living beings into items.
         - usage: can be passed as the fourth argument or by chaining the function `.experience(int)`
     - `entity_type`
         - description: specifies the entity type soul required for the recipe
-        - type: `ResourceLocation`
+        - type: `Identifier`
         - role: other
         - required: no
         - default: none
@@ -69,9 +69,6 @@ The Soul Binder is a machine that binds the essence of living beings into items.
     - `entity_type`, `mob_category`, and `soul_data` must be mutually exclusive
     - `entity_type` must be an existing entity type, entity type tags are not supported
     - `soul_data` must be one of the possible values
-
-> [!WARNING] NOTE
-> Since mod version 1.21.1-0.14.0, `experience` is an `int` and `entity_type` is an entity type id. Previously, `entity_type` was documented as a tag, but EnderIO always treated it as an entity type id. `copyInputComponents` and the validation of `entity_type` and `soul_data` were added in the same version.
 
 ## Examples
 

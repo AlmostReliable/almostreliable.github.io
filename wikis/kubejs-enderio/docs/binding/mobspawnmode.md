@@ -2,9 +2,6 @@
 
 The `MobSpawnMode` is a utility binding that allows you to define how the Powered Spawner spawns a mob.
 
-> [!WARNING] NOTE
-> This binding only exists since mod version 1.21.1-0.14.0.
-
 ## Overview
 
 - access via: `MobSpawnMode`

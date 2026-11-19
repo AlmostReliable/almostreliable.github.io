@@ -8,7 +8,7 @@ The Enchanter allows to craft enchantments using items. When defining a recipe f
 - properties:
     - `enchantment`
         - description: specifies the enchantment recipes should be generated for
-        - type: `Holder<Enchantment>`, a string in the format of a `ResourceLocation`
+        - type: `Holder<Enchantment>`, a string in the format of an `Identifier`
         - role: other
         - required: yes
         - usage: needs to be passed as the first argument
@@ -49,7 +49,7 @@ return Math.max(1, cost)
 
 As an example for the enchantment `"minecraft:thorns"` which has three levels and a cost multiplier of `3`, you get the following costs:
 
-![](/../img/thorns-costs.png)
+![](/img/thorns-costs.png)
 
 ## Examples
 

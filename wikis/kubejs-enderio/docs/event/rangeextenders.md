@@ -4,9 +4,6 @@ This event allows you to add, modify, and remove range extenders of the Wireless
 
 **It is a server event and reloadable!** Keep in mind that server events have to be located inside the `kubejs/server_scripts` folder.
 
-> [!WARNING] NOTE
-> This event only exists since mod version 1.21.1-0.14.0.
-
 ## Overview
 
 A range extender is a block placed on top of the Wireless Charger to increase its charging range. EnderIO uses its Wireless Charger Antennas as range extenders. The extra range is stored in a data map, and the block also has to be in the `enderio:range_extender` block tag to be recognized.

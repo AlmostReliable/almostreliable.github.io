@@ -2,9 +2,6 @@
 
 The `WeatherMode` is a utility binding that allows you to define the `WeatherMode` for [Weather Obelisk recipes](../machine/weatherobelisk.md).
 
-> [!WARNING] NOTE
-> This binding only exists since mod version 1.21.1-0.14.0.
-
 ## Overview
 
 - access via: `WeatherMode`

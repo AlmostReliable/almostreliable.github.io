@@ -42,6 +42,7 @@ It also supports chance-based outputs which can be useful for something like byp
         - creates an `OutputItem` with a chance-based output using a tag (sets optional to false)
     - `ofTag(TagKey output, int count)`
         - creates an `OutputItem` with a guaranteed output (100% chance) using a tag (sets optional to false)
+- note: `ofTag` expects the tag id without the leading `#` (e.g. `"c:ingots"`)
 
 ## Examples
 
@@ -54,8 +55,8 @@ ServerEvents.recipes(event => {
     // creates an OutputItem that outputs 1 diamond with a 100% chance
     const output2 = SagMillOutput.of("minecraft:diamond")
     // creates an OutputItem that outputs 5 items from the tag #c:glass_blocks
-    const output3 = SagMillOutput.ofTag("#c:glass_blocks", 5)
+    const output3 = SagMillOutput.ofTag("c:glass_blocks", 5)
     // creates an OutputItem that outputs 2 items from the tag #c:ingots with a 25% chance
-    const output4 = SagMillOutput.ofTag("#c:ingots", 2, 0.25)
+    const output4 = SagMillOutput.ofTag("c:ingots", 2, 0.25)
 })
 ```

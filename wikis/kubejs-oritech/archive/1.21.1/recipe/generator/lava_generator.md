@@ -30,11 +30,11 @@ ServerEvents.recipes(event => {
     // removes all lava generator recipes
     event.remove({ type: "oritech:lava_generator" })
 
-    // adds a recipe that converts 1000 mB of water into energy for 60 ticks by default
-    event.recipes.oritech.lava_generator().fluidInput("water")
+    // adds a recipe that converts 1000 mB of lava into energy for 60 ticks by default
+    event.recipes.oritech.lava_generator().fluidInput("lava")
 
-    // adds a recipe that converts 1500 mB of any water into energy for 60 ticks by default
-    event.recipes.oritech.lava_generator().fluidInput("1500x #c:water")
+    // adds a recipe that converts 1500 mB of sheol fire into energy for 60 ticks by default
+    event.recipes.oritech.lava_generator().fluidInput("1500x oritech:still_sheol_fire")
 
     // adds a recipe that converts 3000 mB of lava into energy for 40 ticks
     // could use .timeInSeconds(2) alternatively

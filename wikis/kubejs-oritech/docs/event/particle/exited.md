@@ -1,6 +1,6 @@
 # Particle Exited Event
 
-This event allows you to invoke logic when a particle exits the [Particle Accelerator](../../recipe/machine/particle_accelerator.md). Exiting refers to uncontrolled particle movement leaving the accelerator. For successful particle exits, refer to the [particle collided event](collided.md).
+This event allows you to invoke logic when a particle exits the [Particle Accelerator](../../recipe/machine/particle_accelerator.md). Exiting refers to uncontrolled particle movement leaving the accelerator. For successful particle exits, refer to the [particle collided event](collided.md). To change what happens to the blocks the particle hits after exiting, refer to the [particle impact event](impact.md).
 
 **It is a server event and reloadable!** Keep in mind that server events have to be located inside the `kubejs/server_scripts` folder.
 

@@ -9,3 +9,4 @@
 | Particle Injected                      |   ✓    |     ✓      |
 | Particle Collided                      |   ✓    |     ✓      |
 | Particle Exited                        |   ✓    |            |
+| Particle Impact                        |   ✓    |     ✓      |

@@ -58,6 +58,7 @@ export default defineConfig({
                                 { text: "Injected", link: "event/particle/injected" },
                                 { text: "Collided", link: "event/particle/collided" },
                                 { text: "Exited", link: "event/particle/exited" },
+                                { text: "Impact", link: "event/particle/impact" },
                             ],
                         },
                     ],

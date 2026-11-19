@@ -67,6 +67,18 @@ ServerEvents.recipes(event => {
 })
 ```
 
+> [!WARNING] NOTE
+> `.smelting()` stores the recipe ID at the moment it's called. If you set a custom recipe ID, call `.id(...)` before `.smelting()`. With `.smelting().id(...)`, no vanilla smelting recipe is created.
+
+```js
+ServerEvents.recipes(event => {
+    event.recipes.enderio
+        .alloy_smelting("minecraft:iron_ingot", "minecraft:gold_ingot")
+        .id("kubejs:iron_from_gold")
+        .smelting()
+})
+```
+
 ## Examples
 
 ```js
